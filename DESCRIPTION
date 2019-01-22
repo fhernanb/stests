@@ -6,10 +6,11 @@ Authors@R: person("Freddy", "Hernandez", email = "fhernanb@unal.edu.co", role = 
 Maintainer: Freddy Hernandez <fhernanb@unal.edu.co>
 Description: In this package the users could find several functions to perform 
     statistical tests.
+Depends: R (>= 3.0.0), tcltk
 License: GPL-3
 URL: https://fhernanb.github.io/stests/
 BugReports: https://github.com/fhernanb/stests/issues
-Imports: asbio, tcltk
+Imports: asbio
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
