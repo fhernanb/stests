@@ -4,7 +4,7 @@
 
 # stests <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
-An R package with useful statistical test.
+An R package with useful functions to perform several statistical tests.
 
 You can visit the [package website](https://fhernanb.github.io/stests/index.html) to explore the vignettes (articles) and function reference. 
 

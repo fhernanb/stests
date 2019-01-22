@@ -9,7 +9,7 @@ Description: In this package the users could find several functions to perform
 License: GPL-3
 URL: https://fhernanb.github.io/stests/
 BugReports: https://github.com/fhernanb/stests/issues
-Imports: asbio
+Imports: asbio, tcltk
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
