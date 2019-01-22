@@ -1,0 +1,32 @@
+---
+title: "Hypothesis Testing and Confidence Interval"
+author: "Freddy Hernandez, Angie Lopez, Olga Usuga and Liliana Usuga"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "##"
+)
+```
+
+# Introduction
+
+In this vignette we explain how to use the functions available in the `usefultools` package to hypothesis testing. Additionally, we compare our functions with the built-in functions `t.test` and `var.test` from `stats` package.
+
+The functions covered in this vignette are:
+
+- `z_test`: function to perform z-test using __values__.
+- `z.test`: function to perform z-test using __vectors__.
+- `t_test`: function to perform t-test using __values__.
+- `t.test`: built-in R function from `stats` package to perform t-test using __vectors__.
+- `var_test`: function to perform $\chi^2$-test or F-test using __values__.
+- `var.test`: fuction that generalizes the `var.test` function from `stats` package, this function uses __vectors__.
+- `print.htest`: generic function to print objects with `htest` class.
+- `plot.htest`: generic function to plot objects with `htest` class.
