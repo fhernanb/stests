@@ -2,7 +2,7 @@ Package: stests
 Type: Package
 Title: Package with useful statistical tests
 Version: 0.1.0
-Author: Freddy Hernandez
+Authors@R: person("Freddy", "Hernandez", email = "fhernanb@unal.edu.co", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-4757-117X"))
 Maintainer: Freddy Hernandez <fhernanb@unal.edu.co>
 Description: In this package the users could find several functions to perform 
     statistical tests.
