@@ -139,13 +139,13 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8, ...) {
   if (x$method %in% c('One Sample z-test',
                       'Z test for mean')) {
     if (x$alternative == 'less')
-      asbio::shade.norm(x=x$statistic, tail='lower',
+      shade.norm(x=x$statistic, tail='lower',
                         las=1, shade.col=shade.col, cex=cex)
     if (x$alternative == 'greater')
-      asbio::shade.norm(x=x$statistic, tail='upper',
+      shade.norm(x=x$statistic, tail='upper',
                         las=1, shade.col=shade.col, cex=cex)
     if (x$alternative == 'two.sided')
-      asbio::shade.norm(x=x$statistic, tail="two",
+      shade.norm(x=x$statistic, tail="two",
                         las=1, shade.col=shade.col, cex=cex)
     title(main='Shaded area corresponds to p-value')
     mtext(text=round(x$statistic, digits=4),
@@ -160,13 +160,13 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8, ...) {
     x$statistic <- sign(x$estimate - x$null.value) * sqrt(x$statistic)
 
     if (x$alternative == 'less')
-      asbio::shade.norm(x=x$statistic, tail='lower',
+      shade.norm(x=x$statistic, tail='lower',
                         las=1, shade.col=shade.col, cex=cex)
     if (x$alternative == 'greater')
-      asbio::shade.norm(x=x$statistic, tail='upper',
+      shade.norm(x=x$statistic, tail='upper',
                         las=1, shade.col=shade.col, cex=cex)
     if (x$alternative == 'two.sided')
-      asbio::shade.norm(x=x$statistic, tail="two",
+      shade.norm(x=x$statistic, tail="two",
                         las=1, shade.col=shade.col, cex=cex)
   }
 
@@ -177,13 +177,13 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8, ...) {
     x$statistic <- sign(x$estimate[1] - x$estimate[2]) * sqrt(x$statistic)
 
     if (x$alternative == 'less')
-      asbio::shade.norm(x=x$statistic, tail='lower',
+      shade.norm(x=x$statistic, tail='lower',
                         las=1, shade.col=shade.col, cex=cex)
     if (x$alternative == 'greater')
-      asbio::shade.norm(x=x$statistic, tail='upper',
+      shade.norm(x=x$statistic, tail='upper',
                         las=1, shade.col=shade.col, cex=cex)
     if (x$alternative == 'two.sided')
-      asbio::shade.norm(x=x$statistic, tail="two",
+      shade.norm(x=x$statistic, tail="two",
                         las=1, shade.col=shade.col, cex=cex)
   }
 
@@ -194,15 +194,15 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8, ...) {
                       'Two Sample t-test',
                       'Paired t-test')) {
     if (x$alternative == 'less')
-      asbio::shade.t(x=x$statistic, tail='lower',
+      shade.t(x=x$statistic, tail='lower',
                      nu=x$parameter,
                      las=1, shade.col=shade.col, cex=cex)
     if (x$alternative == 'greater')
-      asbio::shade.t(x=x$statistic, tail='upper',
+      shade.t(x=x$statistic, tail='upper',
                      nu=x$parameter,
                      las=1, shade.col=shade.col, cex=cex)
     if (x$alternative == 'two.sided')
-      asbio::shade.t(x=x$statistic, tail="two",
+      shade.t(x=x$statistic, tail="two",
                      nu=x$parameter,
                      las=1, shade.col=shade.col, cex=cex)
     title(main='Shaded area corresponds to p-value')
@@ -214,15 +214,15 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8, ...) {
   # Chi squared test
   if (x$method %in% c('X-squared test for variance')) {
     if (x$alternative == 'less')
-      asbio::shade.chi(x=x$statistic, nu=x$parameter,
+      shade.chi(x=x$statistic, nu=x$parameter,
                        tail='lower', las=1,
                        shade.col=shade.col, cex=cex)
     if (x$alternative == 'greater')
-      asbio::shade.chi(x=x$statistic, nu=x$parameter,
+      shade.chi(x=x$statistic, nu=x$parameter,
                        tail='upper', las=1,
                        shade.col=shade.col, cex=cex)
     if (x$alternative == 'two.sided')
-      asbio::shade.chi(nu=x$parameter, tail="two",
+      shade.chi(nu=x$parameter, tail="two",
                        las=1, shade.col=shade.col, cex=cex,
                        prob.to.each.tail=x$p.value/2)
     title(main='Shaded area corresponds to p-value')
@@ -234,19 +234,19 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8, ...) {
   # F test
   if (x$method %in% c('F test to compare two variances')) {
     if (x$alternative == 'less')
-      asbio::shade.F(x=x$statistic,
+      shade.F(x=x$statistic,
                      nu1=x$parameter[1],
                      nu2=x$parameter[2],
                      tail='lower', las=1,
                      shade.col=shade.col, cex=cex)
     if (x$alternative == 'greater')
-      asbio::shade.F(x=x$statistic,
+      shade.F(x=x$statistic,
                      nu1=x$parameter[1],
                      nu2=x$parameter[2],
                      tail='upper', las=1,
                      shade.col=shade.col, cex=cex)
     if (x$alternative == 'two.sided')
-      asbio::shade.F(nu1=x$parameter[1],
+      shade.F(nu1=x$parameter[1],
                      nu2=x$parameter[2],
                      tail="two",
                      shade.col=shade.col, cex=cex,
