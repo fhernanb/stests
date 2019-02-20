@@ -1,6 +1,6 @@
 ---
 title: "Univariate tests"
-author: "Freddy Hernandez"
+author: "Freddy Hernandez and Angie Lopez"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
