@@ -1,6 +1,6 @@
 #' Test for \eqn{\mu} in a \eqn{Np(\mu, \Sigma)}
 #'
-#' This function can be used to test \eqn{H0: \mu = \mu0} versus \eqn{H0: \mu != \mu0}.
+#' This function can be used to test \eqn{Ho: \mu = \muo} versus \eqn{H1: \mu != \muo}.
 #'
 #' @param mu0 a vector indicating the hypothesized value of the mean.
 #' @param xbar a vector with the sample mean.

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot — plot.htest • stests</title>
+<title>Test for \(\mu\) in a \(Np(\mu, \Sigma)\) — one_mean_vector_test • stests</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Plot — plot.htest" />
+<meta property="og:title" content="Test for \(\mu\) in a \(Np(\mu, \Sigma)\) — one_mean_vector_test" />
 
-<meta property="og:description" content="This function depictes the p-value area for a object with class htest." />
+<meta property="og:description" content="This function can be used to test \(Ho: \mu = \muo\) versus \(H1: \mu != \muo\)." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -111,78 +111,89 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot</h1>
+    <h1>Test for \(\mu\) in a \(Np(\mu, \Sigma)\)</h1>
     
-    <div class="hidden name"><code>plot.htest.Rd</code></div>
+    <div class="hidden name"><code>one_mean_vector_test.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function depictes the p-value area for a object with class <code>htest</code>.</p>
+    <p>This function can be used to test \(Ho: \mu = \muo\) versus \(H1: \mu != \muo\).</p>
     
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for htest</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>shade.col</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
-  <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>one_mean_vector_test</span>(<span class='no'>mu0</span>, <span class='no'>xbar</span>, <span class='no'>n</span>, <span class='kw'>S</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>Sigma</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>Object of class &#8220;htest&#8221;.</p></td>
+      <th>mu0</th>
+      <td><p>a vector indicating the hypothesized value of the mean.</p></td>
     </tr>
     <tr>
-      <th>col</th>
-      <td><p>color for the observed statistic.</p></td>
+      <th>xbar</th>
+      <td><p>a vector with the sample mean.</p></td>
     </tr>
     <tr>
-      <th>shade.col</th>
-      <td><p>color for the shaded area.</p></td>
+      <th>n</th>
+      <td><p>sample size.</p></td>
     </tr>
     <tr>
-      <th>cex</th>
-      <td><p>A numerical value giving the amount by which plotting the p-value.</p></td>
+      <th>S</th>
+      <td><p>a matrix with sample variances and covariances.</p></td>
     </tr>
     <tr>
-      <th>...</th>
-      <td><p>Other plotting parameters to affect the plot.</p></td>
+      <th>Sigma</th>
+      <td><p>the matrix \(\Sigma\) if known.</p></td>
+    </tr>
+    <tr>
+      <th>alpha</th>
+      <td><p>the significance level.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>None. Function produces a plot</p>
-    
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p><code>plot</code> will produce a graph with the p-value of the test.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='z.test.html'>z.test</a></code></p></div>
+    <p>a list.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># Example</span>
-<span class='co'># H0: mu = 170</span>
-<span class='co'># Ha: mu != 170 with sigma2=25</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>80</span>, <span class='kw'>mean</span><span class='kw'>=</span><span class='fl'>171</span>, <span class='kw'>sd</span><span class='kw'>=</span><span class='fl'>5</span>)
-<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='z.test.html'>z.test</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>x</span>, <span class='kw'>mu</span><span class='kw'>=</span><span class='fl'>170</span>, <span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'two.sided'</span>)
-<span class='no'>res</span></div><div class='output co'>#&gt; 
-#&gt; 	One Sample z-test
+    <pre class="examples"><div class='input'><span class='co'># Example 5.2.2 from Rencher &amp; Christensen (2012) page 127</span>
+<span class='co'># Test H0: mu = (70, 170) versus H1: mu != (70, 170)</span>
+<span class='co'># with known Sigma</span>
+
+<span class='no'>Sigma</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>100</span>, <span class='fl'>100</span>, <span class='fl'>1000</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>2</span>)
+
+<span class='fu'>one_mean_vector_test</span>(<span class='kw'>mu0</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>70</span>, <span class='fl'>170</span>), <span class='kw'>xbar</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>71.45</span>, <span class='fl'>164.7</span>),
+                     <span class='kw'>n</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>Sigma</span><span class='kw'>=</span><span class='no'>Sigma</span>)</div><div class='output co'>#&gt; $statistic
+#&gt; [1] 8.4026
 #&gt; 
-#&gt; data:  x
-#&gt; Z = 1.4038, p-value = 0.1604
-#&gt; alternative hypothesis: true  is not equal to 170
-#&gt; 95 percent confidence interval:
-#&gt;  169.6891 171.8804
-#&gt; sample estimates:
-#&gt; mean of x 
-#&gt;  170.7848 
-#&gt; </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>res</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'blue'</span>)</div><div class='img'><img src='plot.htest-1.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; $critic_value
+#&gt; [1] 5.991465
+#&gt; 
+#&gt; $pvalue
+#&gt; [1] 0.0149761
+#&gt; </div><div class='input'>
+<span class='co'># Example 5.2 from Johnson and Wichern (2012) page 214</span>
+<span class='co'># Test H0: mu = (4, 50, 10) versus H1: mu != (4, 50, 10)</span>
+<span class='co'># with unknown Sigma</span>
+
+<span class='no'>S</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2.879</span>, <span class='fl'>10.010</span>, -<span class='fl'>1.810</span>,
+              <span class='fl'>10.010</span>, <span class='fl'>199.788</span>, -<span class='fl'>5.640</span>,
+              -<span class='fl'>1.810</span>, -<span class='fl'>5.640</span>, <span class='fl'>3.628</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>3</span>, <span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>3</span>)
+
+<span class='fu'>one_mean_vector_test</span>(<span class='kw'>mu0</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>50</span>, <span class='fl'>10</span>), <span class='kw'>xbar</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>4.640</span>, <span class='fl'>45.400</span>, <span class='fl'>9.965</span>),
+                     <span class='kw'>n</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>S</span><span class='kw'>=</span><span class='no'>S</span>)</div><div class='output co'>#&gt; $statistic
+#&gt; [1] 9.743038
+#&gt; 
+#&gt; $critic_value
+#&gt; [1] 10.7186
+#&gt; 
+#&gt; $pvalue
+#&gt; [1] 0.06485358
+#&gt; </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -191,16 +202,10 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
 
-    <h2>Author</h2>
-    <p>Freddy Hernandez</p>
   </div>
 </div>
 

@@ -1,19 +1,19 @@
 ---
-title: "D-value"
-author: "Freddy Hernández and Karen Rivera"
+title: "D value"
+author: "Freddy Hernandez"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{D value}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include=FALSE, fig.width=20}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  collapse= TRUE,
-  comment= "##"
-  )
+  collapse = TRUE,
+  comment = "##"
+)
 ```
 
 # P-value for example 1 of Demidenko (2016)

@@ -1,15 +1,15 @@
 ---
-title: "Hypothesis Testing and Confidence Interval"
-author: "Freddy Hernandez, Angie Lopez, Olga Usuga and Liliana Usuga"
+title: "Univariate tests"
+author: "Freddy Hernandez"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Univariate tests}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "##"
@@ -42,7 +42,7 @@ devtools::install_github('fhernanb/stests', force=TRUE)
 Next, the package must be loaded into the current session using:
 
 ```{r, message=FALSE}
-require(stests)
+library(stests)
 ```
 
 # z-test for population mean $\mu$
