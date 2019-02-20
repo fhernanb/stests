@@ -24,7 +24,7 @@ one_mean_vector_test(mu0, xbar, n, S = NULL, Sigma = NULL,
 a list.
 }
 \description{
-This function can be used to test \eqn{Ho: \mu = \muo} versus \eqn{H1: \mu != \muo}.
+This function can be used to test \eqn{H0: \mu = \mu0} versus \eqn{H1: \mu not = \mu0}.
 }
 \examples{
 # Example 5.2.2 from Rencher & Christensen (2012) page 127
