@@ -57,16 +57,42 @@ one_mean_vector_test <- function (mu0, xbar, n,
     T2 <- as.numeric(T2)
     critic_value <- (n - 1) * p * qf(p=alpha, df1=p,
                                      df2=n-p, lower.tail=FALSE)/(n-p)
-    pvalue <- pf(q=(n - p) * T2/(p * (n - 1)), df1=p,
-                 df2=n - p, lower.tail=FALSE)
-    result <- list(statistic=T2, critic_value=critic_value, pvalue=pvalue)
+    p.value <- pf(q=(n - p) * T2/(p * (n - 1)), df1=p,
+                  df2=n - p, lower.tail=FALSE)
+
+    method <- 'T2 test for mean vector'
+    statistic <- T2
+    names(statistic) <- 'T2'
+
   }
   if (! is.null(Sigma)) {
     X2 <- n * t(xbar - mu0) %*% solve(Sigma) %*% (xbar - mu0)
     X2 <- as.numeric(X2)
     critic_value <- qchisq(p=alpha, df=p, lower.tail=FALSE)
-    pvalue <- pchisq(q=X2, df=p, lower.tail=FALSE)
-    result <- list(statistic=X2, critic_value=critic_value, pvalue=pvalue)
+    p.value <- pchisq(q=X2, df=p, lower.tail=FALSE)
+
+    method <- 'X2 test for mean vector'
+    statistic <- X2
+    names(statistic) <- 'X2'
   }
-  return(result)
+
+  alternative <- "two.sided"
+  null.message <- paste0("(", paste0(mu0, collapse=", "), ")", sep="")
+  estimate <- c(xbar)
+  names(estimate) <- paste('xbar', 1:p, sep='_')
+  data.name <- 'this test used summarized data'
+
+  res <- list(statistic=statistic,
+              p.value=p.value,
+              #conf.int=conf.int,
+              estimate=estimate,
+              null.value=null.message,
+              alternative=alternative,
+              method=method,
+              data.name=data.name
+  )
+
+  class(res) <- "htest"
+  res
 }
+
