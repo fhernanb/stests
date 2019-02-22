@@ -256,4 +256,32 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8, ...) {
           side=1, at=x$statistic,
           col=col, cex=cex, adj=0.5)
   }
+
+  # X2 test for mean vector
+  if (x$method %in% c('X2 test for mean vector')) {
+    shade.chi(x=x$statistic, nu=x$parameter,
+              tail='upper', las=1,
+              shade.col=shade.col, cex=cex)
+    title(main='Shaded area corresponds to p-value')
+    mtext(text=round(x$statistic, digits=4),
+          side=1, at=x$statistic,
+          col=col, cex=cex, adj=0.5)
+  }
+
+  # T2 test for mean vector
+  if (x$method %in% c('T2 test for mean vector')) {
+    shade.F(x=x$statistic[2],
+            nu1=x$parameter[1],
+            nu2=x$parameter[2],
+            tail='upper', las=1,
+            shade.col=shade.col, cex=cex)
+    title(main='Shaded area corresponds to p-value')
+    mtext(text=round(x$statistic[2], digits=4),
+          side=1, at=x$statistic[2],
+          col=col, cex=cex, adj=0.5)
+  }
+
 }
+
+
+

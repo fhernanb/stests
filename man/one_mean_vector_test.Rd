@@ -33,8 +33,10 @@ This function can be used to test \eqn{H0: \mu = \mu0} versus \eqn{H1: \mu not =
 
 Sigma <- matrix(c(20, 100, 100, 1000), ncol=2, nrow=2)
 
-one_mean_vector_test(mu0=c(70, 170), xbar=c(71.45, 164.7),
-                     n=20, Sigma=Sigma)
+res1 <- one_mean_vector_test(mu0=c(70, 170), xbar=c(71.45, 164.7),
+                             n=20, Sigma=Sigma)
+res1
+plot(res1)
 
 # Example 5.2 from Johnson and Wichern (2012) page 214
 # Test H0: mu = (4, 50, 10) versus H1: mu != (4, 50, 10)
@@ -44,7 +46,10 @@ S <- matrix(c(2.879, 10.010, -1.810,
               10.010, 199.788, -5.640,
               -1.810, -5.640, 3.628), ncol=3, nrow=3)
 
-one_mean_vector_test(mu0=c(4, 50, 10), xbar=c(4.640, 45.400, 9.965),
-                     n=20, S=S)
+res2 <- one_mean_vector_test(mu0=c(4, 50, 10),
+                             xbar=c(4.640, 45.400, 9.965),
+                             n=20, S=S)
+res2
+plot(res2)
 
 }

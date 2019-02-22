@@ -18,8 +18,10 @@
 #'
 #' Sigma <- matrix(c(20, 100, 100, 1000), ncol=2, nrow=2)
 #'
-#' one_mean_vector_test(mu0=c(70, 170), xbar=c(71.45, 164.7),
-#'                      n=20, Sigma=Sigma)
+#' res1 <- one_mean_vector_test(mu0=c(70, 170), xbar=c(71.45, 164.7),
+#'                              n=20, Sigma=Sigma)
+#' res1
+#' plot(res1)
 #'
 #' # Example 5.2 from Johnson and Wichern (2012) page 214
 #' # Test H0: mu = (4, 50, 10) versus H1: mu != (4, 50, 10)
@@ -29,8 +31,11 @@
 #'               10.010, 199.788, -5.640,
 #'               -1.810, -5.640, 3.628), ncol=3, nrow=3)
 #'
-#' one_mean_vector_test(mu0=c(4, 50, 10), xbar=c(4.640, 45.400, 9.965),
-#'                      n=20, S=S)
+#' res2 <- one_mean_vector_test(mu0=c(4, 50, 10),
+#'                              xbar=c(4.640, 45.400, 9.965),
+#'                              n=20, S=S)
+#' res2
+#' plot(res2)
 #'
 #' @importFrom stats qf pf qchisq pchisq
 #' @export
@@ -52,6 +57,7 @@ one_mean_vector_test <- function (mu0, xbar, n,
   mu0  <- matrix(mu0, ncol=1)
   xbar <- matrix(xbar, ncol=1)
 
+  # T2 test
   if (! is.null(S)) {
     T2 <- n * t(xbar - mu0) %*% solve(S) %*% (xbar - mu0)
     T2 <- as.numeric(T2)
@@ -60,33 +66,39 @@ one_mean_vector_test <- function (mu0, xbar, n,
     p.value <- pf(q=(n - p) * T2/(p * (n - 1)), df1=p,
                   df2=n - p, lower.tail=FALSE)
 
+    parameter <- c(p, n-p)
+    names(parameter) <- c('df1', 'df2')
     method <- 'T2 test for mean vector'
-    statistic <- T2
-    names(statistic) <- 'T2'
+    statistic <- c(T2, (n - p) * T2/(p * (n - 1)))
+    names(statistic) <- c('T2', 'F')
 
   }
+
+  # X2 test
   if (! is.null(Sigma)) {
     X2 <- n * t(xbar - mu0) %*% solve(Sigma) %*% (xbar - mu0)
     X2 <- as.numeric(X2)
     critic_value <- qchisq(p=alpha, df=p, lower.tail=FALSE)
     p.value <- pchisq(q=X2, df=p, lower.tail=FALSE)
 
+    parameter <- p
+    names(parameter) <- 'df'
     method <- 'X2 test for mean vector'
     statistic <- X2
     names(statistic) <- 'X2'
   }
 
-  alternative <- "two.sided"
-  null.message <- paste0("(", paste0(mu0, collapse=", "), ")", sep="")
+  #alternative <- "two.sided"
+  alternative <- paste0("true mean vector is not equal to (", paste0(mu0, collapse=", "), ") \n", sep="")
   estimate <- c(xbar)
   names(estimate) <- paste('xbar', 1:p, sep='_')
-  data.name <- 'this test used summarized data'
+  data.name <- 'this test uses summarized data'
 
   res <- list(statistic=statistic,
+              parameter=parameter,
               p.value=p.value,
-              #conf.int=conf.int,
               estimate=estimate,
-              null.value=null.message,
+              #null.value=null.message,
               alternative=alternative,
               method=method,
               data.name=data.name

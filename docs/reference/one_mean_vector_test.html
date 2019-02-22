@@ -166,17 +166,19 @@
 
 <span class='no'>Sigma</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>100</span>, <span class='fl'>100</span>, <span class='fl'>1000</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>2</span>)
 
-<span class='fu'>one_mean_vector_test</span>(<span class='kw'>mu0</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>70</span>, <span class='fl'>170</span>), <span class='kw'>xbar</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>71.45</span>, <span class='fl'>164.7</span>),
-                     <span class='kw'>n</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>Sigma</span><span class='kw'>=</span><span class='no'>Sigma</span>)</div><div class='output co'>#&gt; 
+<span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>one_mean_vector_test</span>(<span class='kw'>mu0</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>70</span>, <span class='fl'>170</span>), <span class='kw'>xbar</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>71.45</span>, <span class='fl'>164.7</span>),
+                             <span class='kw'>n</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>Sigma</span><span class='kw'>=</span><span class='no'>Sigma</span>)
+<span class='no'>res1</span></div><div class='output co'>#&gt; 
 #&gt; 	X2 test for mean vector
 #&gt; 
-#&gt; data:  this test used summarized data
-#&gt; X2 = 8.4026, p-value = 0.01498
-#&gt; alternative hypothesis: true  is not equal to (70, 170)
+#&gt; data:  this test uses summarized data
+#&gt; X2 = 8.4026, df = 2, p-value = 0.01498
+#&gt; alternative hypothesis: true mean vector is not equal to (70, 170) 
+#&gt; 
 #&gt; sample estimates:
 #&gt; xbar_1 xbar_2 
 #&gt;  71.45 164.70 
-#&gt; </div><div class='input'>
+#&gt; </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>res1</span>)</div><div class='img'><img src='one_mean_vector_test-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Example 5.2 from Johnson and Wichern (2012) page 214</span>
 <span class='co'># Test H0: mu = (4, 50, 10) versus H1: mu != (4, 50, 10)</span>
 <span class='co'># with unknown Sigma</span>
@@ -185,17 +187,20 @@
               <span class='fl'>10.010</span>, <span class='fl'>199.788</span>, -<span class='fl'>5.640</span>,
               -<span class='fl'>1.810</span>, -<span class='fl'>5.640</span>, <span class='fl'>3.628</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>3</span>, <span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>3</span>)
 
-<span class='fu'>one_mean_vector_test</span>(<span class='kw'>mu0</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>50</span>, <span class='fl'>10</span>), <span class='kw'>xbar</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>4.640</span>, <span class='fl'>45.400</span>, <span class='fl'>9.965</span>),
-                     <span class='kw'>n</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>S</span><span class='kw'>=</span><span class='no'>S</span>)</div><div class='output co'>#&gt; 
+<span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>one_mean_vector_test</span>(<span class='kw'>mu0</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>4</span>, <span class='fl'>50</span>, <span class='fl'>10</span>),
+                             <span class='kw'>xbar</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>4.640</span>, <span class='fl'>45.400</span>, <span class='fl'>9.965</span>),
+                             <span class='kw'>n</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>S</span><span class='kw'>=</span><span class='no'>S</span>)
+<span class='no'>res2</span></div><div class='output co'>#&gt; 
 #&gt; 	T2 test for mean vector
 #&gt; 
-#&gt; data:  this test used summarized data
-#&gt; T2 = 9.743, p-value = 0.06485
-#&gt; alternative hypothesis: true  is not equal to (4, 50, 10)
+#&gt; data:  this test uses summarized data
+#&gt; T2 = 9.7430, F = 2.9058, df1 = 3, df2 = 17, p-value = 0.06485
+#&gt; alternative hypothesis: true mean vector is not equal to (4, 50, 10) 
+#&gt; 
 #&gt; sample estimates:
 #&gt; xbar_1 xbar_2 xbar_3 
 #&gt;  4.640 45.400  9.965 
-#&gt; </div><div class='input'>
+#&gt; </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>res2</span>)</div><div class='img'><img src='one_mean_vector_test-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
