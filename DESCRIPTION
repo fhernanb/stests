@@ -8,7 +8,7 @@ Description: In this package the users could find several functions to perform
     statistical tests.
 Depends: R (>= 3.0.0)
 License: GPL-3
-URL: https://fhernanb.github.io/stests/
+URL: https://fhernanb.github.io/stests
 BugReports: https://github.com/fhernanb/stests/issues
 Encoding: UTF-8
 LazyData: true

@@ -21,10 +21,13 @@ one_mean_vector_test(mu0, xbar, n, S = NULL, Sigma = NULL,
 \item{alpha}{the significance level.}
 }
 \value{
-a list.
+A list with class \code{"htest"}.
 }
 \description{
 This function can be used to test \eqn{H0: \mu = \mu0} versus \eqn{H1: \mu not = \mu0}.
+}
+\details{
+The user must provide only one matrix, S (T2 test) or Sigma (X2 test).
 }
 \examples{
 # Example 5.2.2 from Rencher & Christensen (2012) page 127
@@ -51,5 +54,17 @@ res2 <- one_mean_vector_test(mu0=c(4, 50, 10),
                              n=20, S=S)
 res2
 plot(res2)
+
+\dontrun{
+library(rrcov)
+data(delivery)
+delivery.x <- delivery[, 1:2]
+
+# Using T2.test from rrcov package
+T2.test(delivery.x)
+
+one_mean_vector_test(mu0=c(0, 0), xbar=colMeans(delivery.x),
+                     n=25, S=var(delivery.x))
+}
 
 }

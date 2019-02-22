@@ -9,7 +9,9 @@
 #' @param Sigma the matrix \eqn{\Sigma} if known.
 #' @param alpha the significance level.
 #'
-#' @return a list.
+#' @details The user must provide only one matrix, S (T2 test) or Sigma (X2 test).
+#'
+#' @return A list with class \code{"htest"}.
 #'
 #' @examples
 #' # Example 5.2.2 from Rencher & Christensen (2012) page 127
@@ -36,6 +38,18 @@
 #'                              n=20, S=S)
 #' res2
 #' plot(res2)
+#'
+#' \dontrun{
+#' library(rrcov)
+#' data(delivery)
+#' delivery.x <- delivery[, 1:2]
+#'
+#' # Using T2.test from rrcov package
+#' T2.test(delivery.x)
+#'
+#' one_mean_vector_test(mu0=c(0, 0), xbar=colMeans(delivery.x),
+#'                      n=25, S=var(delivery.x))
+#' }
 #'
 #' @importFrom stats qf pf qchisq pchisq
 #' @export
