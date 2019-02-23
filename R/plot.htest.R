@@ -6,8 +6,10 @@
 #' @param col color for the observed statistic.
 #' @param shade.col color for the shaded area.
 #' @param cex A numerical value giving the amount by which plotting the p-value.
+#' @param from inicio
+#' @param to final
 #' @param ... Other plotting parameters to affect the plot.
-#' @return None. Function produces a plot
+#' @return None. Function produces a plot.
 #' @author Freddy Hernandez
 #' @seealso \code{\link{z.test}}
 #' @keywords plot.htest
@@ -23,7 +25,9 @@
 #'
 #' @importFrom graphics mtext title
 #' @export
-plot.htest <- function(x, col='red', shade.col='red', cex=0.8, ...) {
+plot.htest <- function(x, col='red', shade.col='red', cex=0.8,
+                       from, to, ...) {
+
   # Z test
   if (x$method %in% c('One Sample z-test',
                       'Z test for mean')) {
@@ -159,15 +163,27 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8, ...) {
 
   # T2 test for mean vector
   if (x$method %in% c('T2 test for mean vector')) {
-    shade.F(x=x$statistic[2],
-            nu1=x$parameter[1],
-            nu2=x$parameter[2],
-            tail='upper', las=1,
-            shade.col=shade.col, cex=cex)
+    #shade.F(x=x$statistic[2],
+    #        nu1=x$parameter[1],
+    #        nu2=x$parameter[2],
+    #        tail='upper', las=1,
+    #        shade.col=shade.col, cex=cex)
+
+    shadow.dist(dist='df',
+                param=list(df1=x$parameter[1], df2=x$parameter[2]),
+                a=x$statistic[2], type='upper',
+                from=from, to=to, col.shadow=shade.col, ...)
+
     title(main='Shaded area corresponds to p-value')
     mtext(text=round(x$statistic[2], digits=4),
           side=1, at=x$statistic[2],
           col=col, cex=cex, adj=0.5)
+
+    df1 <- x$parameter[1]
+    df2 <- x$parameter[2]
+    legend("top",
+           legend=bquote(paste(italic(X)," ~ ",italic(F),"(",.(df1),",",.(df2),")", sep = "")),
+           bty="n", adj=0.5)
   }
 
 }

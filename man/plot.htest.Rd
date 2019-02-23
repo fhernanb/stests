@@ -5,7 +5,7 @@
 \title{To plot p-value area}
 \usage{
 \method{plot}{htest}(x, col = "red", shade.col = "red", cex = 0.8,
-  ...)
+  from, to, ...)
 }
 \arguments{
 \item{x}{Object of class \dQuote{htest}.}
@@ -16,10 +16,14 @@
 
 \item{cex}{A numerical value giving the amount by which plotting the p-value.}
 
+\item{from}{inicio}
+
+\item{to}{final}
+
 \item{...}{Other plotting parameters to affect the plot.}
 }
 \value{
-None. Function produces a plot
+None. Function produces a plot.
 }
 \description{
 This is a generic function to depict the p-value area for a object with class \code{htest}.

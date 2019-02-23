@@ -12,7 +12,7 @@
 #' @details The user must provide only one matrix, S (T2 test) or Sigma (X2 test).
 #'
 #' @return A list with class \code{"htest"}.
-#'
+#' @author Freddy Hernandez
 #' @examples
 #' # Example 5.2.2 from Rencher & Christensen (2012) page 127
 #' # Test H0: mu = (70, 170) versus H1: mu != (70, 170)
@@ -37,7 +37,7 @@
 #'                              xbar=c(4.640, 45.400, 9.965),
 #'                              n=20, S=S)
 #' res2
-#' plot(res2)
+#' plot(res2, from=0, to=5)
 #'
 #' \dontrun{
 #' library(rrcov)

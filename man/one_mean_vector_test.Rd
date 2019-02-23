@@ -53,7 +53,7 @@ res2 <- one_mean_vector_test(mu0=c(4, 50, 10),
                              xbar=c(4.640, 45.400, 9.965),
                              n=20, S=S)
 res2
-plot(res2)
+plot(res2, from=0, to=5)
 
 \dontrun{
 library(rrcov)
@@ -67,4 +67,7 @@ one_mean_vector_test(mu0=c(0, 0), xbar=colMeans(delivery.x),
                      n=25, S=var(delivery.x))
 }
 
+}
+\author{
+Freddy Hernandez
 }
