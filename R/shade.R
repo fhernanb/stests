@@ -135,9 +135,11 @@ shade.F<-function(x=NULL, from=NULL, to=NULL, nu1=1, nu2=5, tail="lower",
                   show.p=TRUE, show.d=FALSE, show.dist=TRUE,
                   prob.to.each.tail=0.025, digits=5, legend.cex=.9,
                   shade.col="gray", ...){
+
   sigma<-qf(.9999,nu1,nu2)
   xv<-seq(0,sigma,sigma/1000)
   yv<-df(xv,nu1,nu2)
+
   curve(df(x,nu1,nu2),from=0,to=sigma,xlab=expression(italic(x)),ylab=expression(paste(italic(f),"(",italic(x),")", sep = "")), ...)
 
   if(tail=="lower"){
