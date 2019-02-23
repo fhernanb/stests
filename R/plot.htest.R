@@ -127,19 +127,19 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8, ...) {
               nu1=x$parameter[1],
               nu2=x$parameter[2],
               tail='lower', las=1,
-              shade.col=shade.col, cex=cex)
+              shade.col=shade.col, cex=cex, ...)
     if (x$alternative == 'greater')
       shade.F(x=x$statistic,
               nu1=x$parameter[1],
               nu2=x$parameter[2],
               tail='upper', las=1,
-              shade.col=shade.col, cex=cex)
+              shade.col=shade.col, cex=cex, ...)
     if (x$alternative == 'two.sided')
       shade.F(nu1=x$parameter[1],
               nu2=x$parameter[2],
               tail="two",
               shade.col=shade.col, cex=cex,
-              prob.to.each.tail=x$p.value/2, las=1)
+              prob.to.each.tail=x$p.value/2, las=1, ...)
     title(main='Shaded area corresponds to p-value')
     mtext(text=round(x$statistic, digits=4),
           side=1, at=x$statistic,
