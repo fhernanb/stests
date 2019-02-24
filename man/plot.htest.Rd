@@ -5,7 +5,7 @@
 \title{To plot p-value area}
 \usage{
 \method{plot}{htest}(x, col = "red", shade.col = "red", cex = 0.8,
-  from, to, ...)
+  from = NULL, to = NULL, ...)
 }
 \arguments{
 \item{x}{Object of class \dQuote{htest}.}
@@ -14,11 +14,11 @@
 
 \item{shade.col}{color for the shaded area.}
 
-\item{cex}{A numerical value giving the amount by which plotting the p-value.}
+\item{cex}{a numerical value giving the amount by which plotting the p-value.}
 
-\item{from}{inicio}
+\item{from}{the minimum value of the X-axis.}
 
-\item{to}{final}
+\item{to}{the maximum value of the X-axis.}
 
 \item{...}{Other plotting parameters to affect the plot.}
 }
@@ -38,11 +38,5 @@ res <- z.test(x=x, mu=170, sigma2=25, alternative='two.sided')
 res
 plot(res, col='blue', shade.col='tomato')
 
-}
-\seealso{
-\code{\link{z.test}}
-}
-\author{
-Freddy Hernandez
 }
 \keyword{plot.htest}

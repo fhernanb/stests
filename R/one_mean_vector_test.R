@@ -1,6 +1,6 @@
 #' Test for \eqn{\mu} in a \eqn{Np(\mu, \Sigma)}
 #'
-#' This function can be used to test \eqn{H0: \mu = \mu0} versus \eqn{H1: \mu not = \mu0}.
+#' This function can be used to test \eqn{H0: \mu = \mu0} versus \eqn{H1: \mu} not = \eqn{\mu0}.
 #'
 #' @param mu0 a vector indicating the hypothesized value of the mean.
 #' @param xbar a vector with the sample mean.
@@ -9,7 +9,7 @@
 #' @param Sigma the matrix \eqn{\Sigma} if known.
 #' @param alpha the significance level.
 #'
-#' @details The user must provide only one matrix, S (T2 test) or Sigma (X2 test).
+#' @details The user must provide only one matrix, S to perform the T2 test or Sigma to perform the X2 test.
 #'
 #' @return A list with class \code{"htest"}.
 #' @author Freddy Hernandez
@@ -23,7 +23,7 @@
 #' res1 <- one_mean_vector_test(mu0=c(70, 170), xbar=c(71.45, 164.7),
 #'                              n=20, Sigma=Sigma)
 #' res1
-#' plot(res1)
+#' plot(res1, from=4, to=10)
 #'
 #' # Example 5.2 from Johnson and Wichern (2012) page 214
 #' # Test H0: mu = (4, 50, 10) versus H1: mu != (4, 50, 10)

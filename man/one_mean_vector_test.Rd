@@ -24,10 +24,10 @@ one_mean_vector_test(mu0, xbar, n, S = NULL, Sigma = NULL,
 A list with class \code{"htest"}.
 }
 \description{
-This function can be used to test \eqn{H0: \mu = \mu0} versus \eqn{H1: \mu not = \mu0}.
+This function can be used to test \eqn{H0: \mu = \mu0} versus \eqn{H1: \mu} not = \eqn{\mu0}.
 }
 \details{
-The user must provide only one matrix, S (T2 test) or Sigma (X2 test).
+The user must provide only one matrix, S to perform the T2 test or Sigma to perform the X2 test.
 }
 \examples{
 # Example 5.2.2 from Rencher & Christensen (2012) page 127
@@ -39,7 +39,7 @@ Sigma <- matrix(c(20, 100, 100, 1000), ncol=2, nrow=2)
 res1 <- one_mean_vector_test(mu0=c(70, 170), xbar=c(71.45, 164.7),
                              n=20, Sigma=Sigma)
 res1
-plot(res1)
+plot(res1, from=4, to=10)
 
 # Example 5.2 from Johnson and Wichern (2012) page 214
 # Test H0: mu = (4, 50, 10) versus H1: mu != (4, 50, 10)
