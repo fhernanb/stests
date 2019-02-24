@@ -4,8 +4,7 @@
 \alias{one_mean_vector_test}
 \title{Test for \eqn{\mu} in a \eqn{Np(\mu, \Sigma)}}
 \usage{
-one_mean_vector_test(mu0, xbar, n, S = NULL, Sigma = NULL,
-  alpha = 0.05)
+one_mean_vector_test(mu0, xbar, n, S = NULL, Sigma = NULL)
 }
 \arguments{
 \item{mu0}{a vector indicating the hypothesized value of the mean.}
@@ -17,8 +16,6 @@ one_mean_vector_test(mu0, xbar, n, S = NULL, Sigma = NULL,
 \item{S}{a matrix with sample variances and covariances.}
 
 \item{Sigma}{the matrix \eqn{\Sigma} if known.}
-
-\item{alpha}{the significance level.}
 }
 \value{
 A list with class \code{"htest"}.
@@ -39,7 +36,7 @@ Sigma <- matrix(c(20, 100, 100, 1000), ncol=2, nrow=2)
 res1 <- one_mean_vector_test(mu0=c(70, 170), xbar=c(71.45, 164.7),
                              n=20, Sigma=Sigma)
 res1
-plot(res1, from=4, to=10)
+plot(res1, from=4, to=10, shade.col='dodgerblue2')
 
 # Example 5.2 from Johnson and Wichern (2012) page 214
 # Test H0: mu = (4, 50, 10) versus H1: mu != (4, 50, 10)
@@ -53,7 +50,7 @@ res2 <- one_mean_vector_test(mu0=c(4, 50, 10),
                              xbar=c(4.640, 45.400, 9.965),
                              n=20, S=S)
 res2
-plot(res2, from=0, to=5)
+plot(res2, from=0, to=5, shade.col='aquamarine3')
 
 \dontrun{
 library(rrcov)
@@ -67,6 +64,9 @@ one_mean_vector_test(mu0=c(0, 0), xbar=colMeans(delivery.x),
                      n=25, S=var(delivery.x))
 }
 
+}
+\seealso{
+[one_covar_matrix_test()] for test \eqn{\Sigma} in a \eqn{Np(\mu, \Sigma)}.
 }
 \author{
 Freddy Hernandez

@@ -7,9 +7,10 @@
 #' @param n sample size.
 #' @param S a matrix with sample variances and covariances.
 #' @param Sigma the matrix \eqn{\Sigma} if known.
-#' @param alpha the significance level.
 #'
 #' @details The user must provide only one matrix, S to perform the T2 test or Sigma to perform the X2 test.
+#'
+#' @seealso [one_covar_matrix_test()] for test \eqn{\Sigma} in a \eqn{Np(\mu, \Sigma)}.
 #'
 #' @return A list with class \code{"htest"}.
 #' @author Freddy Hernandez
@@ -23,7 +24,7 @@
 #' res1 <- one_mean_vector_test(mu0=c(70, 170), xbar=c(71.45, 164.7),
 #'                              n=20, Sigma=Sigma)
 #' res1
-#' plot(res1, from=4, to=10)
+#' plot(res1, from=4, to=10, shade.col='dodgerblue2')
 #'
 #' # Example 5.2 from Johnson and Wichern (2012) page 214
 #' # Test H0: mu = (4, 50, 10) versus H1: mu != (4, 50, 10)
@@ -37,7 +38,7 @@
 #'                              xbar=c(4.640, 45.400, 9.965),
 #'                              n=20, S=S)
 #' res2
-#' plot(res2, from=0, to=5)
+#' plot(res2, from=0, to=5, shade.col='aquamarine3')
 #'
 #' \dontrun{
 #' library(rrcov)
@@ -51,12 +52,11 @@
 #'                      n=25, S=var(delivery.x))
 #' }
 #'
-#' @importFrom stats qf pf qchisq pchisq
+#' @importFrom stats pf pchisq
 #' @export
 #'
-one_mean_vector_test <- function (mu0, xbar, n,
-                                  S=NULL, Sigma=NULL,
-                                  alpha=0.05) {
+one_mean_vector_test <- function (mu0, xbar, n, S=NULL, Sigma=NULL) {
+
   if (length(mu0) != length(xbar))
     stop("The vectors mu0 and xbar do not have same dimension")
 
@@ -75,8 +75,6 @@ one_mean_vector_test <- function (mu0, xbar, n,
   if (! is.null(S)) {
     T2 <- n * t(xbar - mu0) %*% solve(S) %*% (xbar - mu0)
     T2 <- as.numeric(T2)
-    critic_value <- (n - 1) * p * qf(p=alpha, df1=p,
-                                     df2=n-p, lower.tail=FALSE)/(n-p)
     p.value <- pf(q=(n - p) * T2/(p * (n - 1)), df1=p,
                   df2=n - p, lower.tail=FALSE)
 
@@ -92,7 +90,6 @@ one_mean_vector_test <- function (mu0, xbar, n,
   if (! is.null(Sigma)) {
     X2 <- n * t(xbar - mu0) %*% solve(Sigma) %*% (xbar - mu0)
     X2 <- as.numeric(X2)
-    critic_value <- qchisq(p=alpha, df=p, lower.tail=FALSE)
     p.value <- pchisq(q=X2, df=p, lower.tail=FALSE)
 
     parameter <- p

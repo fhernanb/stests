@@ -129,7 +129,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>Sigma0</th>
-      <td><p>a matrix indicating the hypothesized value of the covariance matrix \(Sigma\).</p></td>
+      <td><p>a matrix indicating the hypothesized value of the covariance matrix \(\Sigma\).</p></td>
     </tr>
     <tr>
       <th>S</th>
@@ -155,6 +155,14 @@
 <dt>method</dt><dd><p>a character string indicating the type of test performed.</p></dd>
 
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>When <code>method="lrt"</code> (default) the function performs the LRT test given in Mardia et. al (1979),page 126, expression 5.2.7. For <code>method="modlrt1"</code> or <code>method="modlrt2"</code> the function performs the LRT test given in Rencher and Christensen (2012), page 260, expressions 7.2 and 7.4.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>[one_mean_vector_test()] for test \(\mu\) in a \(Np(\mu, \Sigma)\).</p></div>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Example 5.3.2 from Mardia (1979) page 127</span>
@@ -163,8 +171,9 @@
 <span class='no'>Sigma0</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>100</span>, <span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>100</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>2</span>)
 <span class='no'>S</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>91.481</span>, <span class='fl'>66.875</span>, <span class='fl'>66.875</span>, <span class='fl'>96.775</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>2</span>)
 
-<span class='fu'>one_covar_matrix_test</span>(<span class='kw'>Sigma0</span><span class='kw'>=</span><span class='no'>Sigma0</span>, <span class='kw'>S</span><span class='kw'>=</span><span class='no'>S</span>, <span class='kw'>n</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>'lrt'</span>)</div><div class='output co'>#&gt; 
-#&gt; 	LRT test
+<span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>one_covar_matrix_test</span>(<span class='kw'>Sigma0</span><span class='kw'>=</span><span class='no'>Sigma0</span>, <span class='kw'>S</span><span class='kw'>=</span><span class='no'>S</span>, <span class='kw'>n</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>'lrt'</span>)
+<span class='no'>res1</span></div><div class='output co'>#&gt; 
+#&gt; 	LRT test for Sigma matrix
 #&gt; 
 #&gt; data:  this test uses summarized data
 #&gt; lrt = 17.698, df = 3, p-value = 0.0005077
@@ -174,7 +183,7 @@
 #&gt;        xbar_1 xbar_2
 #&gt; xbar_1 91.481 66.875
 #&gt; xbar_2 66.875 96.775
-#&gt; </div><div class='input'>
+#&gt; </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>res1</span>, <span class='kw'>from</span><span class='kw'>=</span><span class='fl'>12</span>, <span class='kw'>to</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'dodgerblue2'</span>)</div><div class='img'><img src='one_covar_matrix_test-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Example from Morrison (1990) page 293</span>
 <span class='co'># Test H0: Sigma = Sigma0 versus H1: Sigma != Sigma0</span>
 <span class='co'># using the modified LRT test versions</span>
@@ -189,8 +198,9 @@
               <span class='fl'>2.60</span>, <span class='fl'>8.00</span>, <span class='fl'>6.51</span>,
               <span class='fl'>1.89</span>, <span class='fl'>6.51</span>, <span class='fl'>9.62</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>3</span>)
 
-<span class='fu'>one_covar_matrix_test</span>(<span class='kw'>Sigma0</span><span class='kw'>=</span><span class='no'>Sigma0</span>, <span class='kw'>S</span><span class='kw'>=</span><span class='no'>S</span>, <span class='kw'>n</span><span class='kw'>=</span><span class='no'>n</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>'modlrt1'</span>)</div><div class='output co'>#&gt; 
-#&gt; 	Modified LRT test
+<span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>one_covar_matrix_test</span>(<span class='kw'>Sigma0</span><span class='kw'>=</span><span class='no'>Sigma0</span>, <span class='kw'>S</span><span class='kw'>=</span><span class='no'>S</span>, <span class='kw'>n</span><span class='kw'>=</span><span class='no'>n</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>'modlrt1'</span>)
+<span class='no'>res2</span></div><div class='output co'>#&gt; 
+#&gt; 	Modified LRT test for Sigma matrix
 #&gt; 
 #&gt; data:  this test uses summarized data
 #&gt; lrt = 3.6374, df = 6, p-value = 0.7256
@@ -201,8 +211,10 @@
 #&gt; xbar_1   3.42   2.60   1.89
 #&gt; xbar_2   2.60   8.00   6.51
 #&gt; xbar_3   1.89   6.51   9.62
-#&gt; </div><div class='input'><span class='fu'>one_covar_matrix_test</span>(<span class='kw'>Sigma0</span><span class='kw'>=</span><span class='no'>Sigma0</span>, <span class='kw'>S</span><span class='kw'>=</span><span class='no'>S</span>, <span class='kw'>n</span><span class='kw'>=</span><span class='no'>n</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>'modlrt2'</span>)</div><div class='output co'>#&gt; 
-#&gt; 	Modified LRT test with moderate n
+#&gt; </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>res2</span>, <span class='kw'>from</span><span class='kw'>=</span><span class='fl'>0</span>, <span class='kw'>to</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'indianred1'</span>)</div><div class='img'><img src='one_covar_matrix_test-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>one_covar_matrix_test</span>(<span class='kw'>Sigma0</span><span class='kw'>=</span><span class='no'>Sigma0</span>, <span class='kw'>S</span><span class='kw'>=</span><span class='no'>S</span>, <span class='kw'>n</span><span class='kw'>=</span><span class='no'>n</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>'modlrt2'</span>)
+<span class='no'>res3</span></div><div class='output co'>#&gt; 
+#&gt; 	Modified LRT test for Sigma matrix with moderate n
 #&gt; 
 #&gt; data:  this test uses summarized data
 #&gt; lrt = 3.43, df = 6, p-value = 0.7533
@@ -213,7 +225,7 @@
 #&gt; xbar_1   3.42   2.60   1.89
 #&gt; xbar_2   2.60   8.00   6.51
 #&gt; xbar_3   1.89   6.51   9.62
-#&gt; </div><div class='input'>
+#&gt; </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>res3</span>, <span class='kw'>from</span><span class='kw'>=</span><span class='fl'>0</span>, <span class='kw'>to</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'aquamarine3'</span>)</div><div class='img'><img src='one_covar_matrix_test-3.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -222,6 +234,10 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

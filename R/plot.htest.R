@@ -162,6 +162,10 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8,
     leg <- bquote(paste(italic(X)," ~ ",chi^2,"(",.(df),")", sep = ""))
     legend("top", bty="n", adj=0.5, legend=leg)
 
+    # To print the main title and the statistic
+    title(main='Shaded area corresponds to p-value')
+    mtext(text=round(st, digits=4), side=1, at=st, col=col, cex=cex, adj=0.5)
+
   }
 
   # T2 test for mean vector
@@ -182,6 +186,28 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8,
     # To print the main title and the statistic
     title(main='Shaded area corresponds to p-value')
     mtext(text=round(st, digits=4), side=1, at=st, col=col, cex=cex, adj=0.5)
+  }
+
+  # Test for covariance matrix
+  if (x$method %in% c('LRT test for Sigma matrix',
+                      'Modified LRT test for Sigma matrix',
+                      'Modified LRT test for Sigma matrix with moderate n')) {
+
+    df <- x$parameter
+    st <- x$statistic
+    if (is.null(from)) from <- 0
+    if (is.null(to))     to <- 2 * st # Para sombrear hasta 2*stat
+
+    shade.dist(dist='dchisq', param=list(df=df),
+               b=st, type='upper', from=from, to=to, col.shadow=shade.col, ...)
+
+    leg <- bquote(paste(italic(X)," ~ ",chi^2,"(",.(df),")", sep = ""))
+    legend("top", bty="n", adj=0.5, legend=leg)
+
+    # To print the main title and the statistic
+    title(main='Shaded area corresponds to p-value')
+    mtext(text=round(st, digits=4), side=1, at=st, col=col, cex=cex, adj=0.5)
+
   }
 
 
