@@ -102,7 +102,6 @@ one_mean_vector_test <- function (mu0, xbar, n,
     names(statistic) <- 'X2'
   }
 
-  #alternative <- "two.sided"
   alternative <- paste0("true mean vector is not equal to (", paste0(mu0, collapse=", "), ") \n", sep="")
   estimate <- c(xbar)
   names(estimate) <- paste('xbar', 1:p, sep='_')
