@@ -9,7 +9,13 @@
 #' @param Sigma2 a matrix with sample variances and covariances from population 2.
 #' @param n2 sample size 2.
 #'
-#' @return A list with class \code{"htest"}.
+#' @return A list with class \code{"htest"} containing the following components:
+#' \item{statistic}{the value of the statistic.}
+#' \item{parameter}{the degrees of freedom for the test.}
+#' \item{p.value}{the p-value for the test.}
+#' \item{estimate}{the estimated mean vectors.}
+#' \item{method}{a character string indicating the type of test performed.}
+#'
 #' @author Freddy Hernandez
 #' @examples
 #' # Example 4.1 from Nel and Van de Merwe (1986) page 3729
@@ -22,7 +28,9 @@
 #' xb2 <- c(130.0, 355.0)
 #' s2 <- matrix(c(8632.0, 19616.7, 19616.7, 55964.5), ncol=2)
 #'
-#' mvn_test(xbar1=xb1, Sigma1=s1, n1=n1, xbar2=xb2, Sigma2=s2, n2=n2)
+#' res1 <- mvn_test(xbar1=xb1, Sigma1=s1, n1=n1, xbar2=xb2, Sigma2=s2, n2=n2)
+#' res1
+#' plot(res1, from=5, to=10, shade.col='orange')
 #'
 #' \dontrun{
 #' # Example using simulated data -----

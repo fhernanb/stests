@@ -20,7 +20,12 @@ mvn_test(xbar1, Sigma1, n1, xbar2, Sigma2, n2)
 \item{n2}{sample size 2.}
 }
 \value{
-A list with class \code{"htest"}.
+A list with class \code{"htest"} containing the following components:
+\item{statistic}{the value of the statistic.}
+\item{parameter}{the degrees of freedom for the test.}
+\item{p.value}{the p-value for the test.}
+\item{estimate}{the estimated mean vectors.}
+\item{method}{a character string indicating the type of test performed.}
 }
 \description{
 This function implements the Modified Nel and Van der Merwe test the Behrens-Fisher problem \eqn{H0: \mu 1 = \mu 2} versus \eqn{H1: \mu1} not = \eqn{\mu2} without assuming anything about the covariance matrices.
@@ -36,7 +41,9 @@ n2 <- 55
 xb2 <- c(130.0, 355.0)
 s2 <- matrix(c(8632.0, 19616.7, 19616.7, 55964.5), ncol=2)
 
-mvn_test(xbar1=xb1, Sigma1=s1, n1=n1, xbar2=xb2, Sigma2=s2, n2=n2)
+res1 <- mvn_test(xbar1=xb1, Sigma1=s1, n1=n1, xbar2=xb2, Sigma2=s2, n2=n2)
+res1
+plot(res1, from=5, to=10, shade.col='orange')
 
 \dontrun{
 # Example using simulated data -----

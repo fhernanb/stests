@@ -169,7 +169,8 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8,
   }
 
   # T2 test for mean vector
-  if (x$method %in% c('T2 test for mean vector')) {
+  if (x$method %in% c('T2 test for mean vector',
+                      'Modified Nel and Van der Merwe test for two mean vectors')) {
 
     df1 <- x$parameter[1]
     df2 <- x$parameter[2]
