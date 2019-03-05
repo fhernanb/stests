@@ -41,13 +41,10 @@ This function performs the test for a single variance or two variances using val
 \examples{
 # Examples with ONE sample
 
-# Example 6.9.1 from Wayne (2006), https://tinyurl.com/y8vbxlk8
-var_test(varx=0.391868, nx=12, conf.level=0.95)
+# Example 7.7.1 from Wayne (2013), http://tinyurl.com/y6z49hrw
+var_test(varx=670.81, nx=16, null.value=600, alternative='two.sided')
 
-# Example 7.7.1 from Wayne (2006), https://tinyurl.com/y8vbxlk8
-var_test(varx=1.92, nx=12, null.value=4, alternative='two.sided')
-
-# Exercise 7.7.5 from Wayne (2006), https://tinyurl.com/y8vbxlk8
+# Exercise 7.7.5 from Wayne (2013), http://tinyurl.com/y6z49hrw
 var_test(varx=30, nx=25, null.value=25, alternative='greater')
 
 # Using the plot to illustrate Hypothesis Test

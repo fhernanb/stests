@@ -91,6 +91,8 @@ z.test <- function(x, sigma2,
   attr(conf.int, 'conf.level') <- conf.level
   estimate <- meanx
   names(estimate) <- paste("mean of", deparse(substitute(x)))
+  null.value <- mu
+  names(null.value) <- 'mean'
   method <- 'One Sample z-test'
   data.name <- deparse(substitute(x))
 
@@ -98,7 +100,7 @@ z.test <- function(x, sigma2,
               p.value=p.value,
               conf.int=conf.int,
               estimate=estimate,
-              null.value=mu,
+              null.value=null.value,
               alternative=alternative,
               method=method,
               data.name=data.name)

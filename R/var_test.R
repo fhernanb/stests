@@ -25,13 +25,10 @@
 #' @examples
 #' # Examples with ONE sample
 #'
-#' # Example 6.9.1 from Wayne (2006), https://tinyurl.com/y8vbxlk8
-#' var_test(varx=0.391868, nx=12, conf.level=0.95)
+#' # Example 7.7.1 from Wayne (2013), http://tinyurl.com/y6z49hrw
+#' var_test(varx=670.81, nx=16, null.value=600, alternative='two.sided')
 #'
-#' # Example 7.7.1 from Wayne (2006), https://tinyurl.com/y8vbxlk8
-#' var_test(varx=1.92, nx=12, null.value=4, alternative='two.sided')
-#'
-#' # Exercise 7.7.5 from Wayne (2006), https://tinyurl.com/y8vbxlk8
+#' # Exercise 7.7.5 from Wayne (2013), http://tinyurl.com/y6z49hrw
 #' var_test(varx=30, nx=25, null.value=25, alternative='greater')
 #'
 #' # Using the plot to illustrate Hypothesis Test
@@ -141,6 +138,8 @@ var_test_one <- function(varx, nx, alternative, conf.level,
   attr(conf.int, 'conf.level') <- conf.level
   estimate <- varx
   names(estimate) <- 'variance of x'
+  null.value <- null.value
+  names(null.value) <- 'variance'
   method <- 'X-squared test for variance'
   if (raw.data) data.name <- name_x
   else data.name <- paste('varx =', varx, 'and nx =', nx)
@@ -193,6 +192,8 @@ var_test_two <- function(varx, nx, vary, ny, alternative, conf.level,
   attr(conf.int, 'conf.level') <- conf.level
   estimate <- varx / vary
   names(estimate) <- 'ratio of variances'
+  null.value <- null.value
+  names(null.value) <- 'ratio of variances'
   method <- 'F test to compare two variances'
   if (raw.data) data.name <- paste(name_x, ' and ', name_y)
   else data.name <- data.name <- paste('varx =', varx, ', nx =', nx,

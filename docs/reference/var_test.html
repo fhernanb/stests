@@ -177,39 +177,26 @@ hypothesis, must be one of <code>two.sided</code> (default),
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Examples with ONE sample</span>
 
-<span class='co'># Example 6.9.1 from Wayne (2006), https://tinyurl.com/y8vbxlk8</span>
-<span class='fu'>var_test</span>(<span class='kw'>varx</span><span class='kw'>=</span><span class='fl'>0.391868</span>, <span class='kw'>nx</span><span class='kw'>=</span><span class='fl'>12</span>, <span class='kw'>conf.level</span><span class='kw'>=</span><span class='fl'>0.95</span>)</div><div class='output co'>#&gt; 
+<span class='co'># Example 7.7.1 from Wayne (2013), http://tinyurl.com/y6z49hrw</span>
+<span class='fu'>var_test</span>(<span class='kw'>varx</span><span class='kw'>=</span><span class='fl'>670.81</span>, <span class='kw'>nx</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>null.value</span><span class='kw'>=</span><span class='fl'>600</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'two.sided'</span>)</div><div class='output co'>#&gt; 
 #&gt; 	X-squared test for variance
 #&gt; 
-#&gt; data:  varx = 0.391868 and nx = 12
-#&gt; X-squared = 4.3105, df = 11, p-value = 0.08013
-#&gt; alternative hypothesis: true  is not equal to 1
+#&gt; data:  varx = 670.81 and nx = 16
+#&gt; X-squared = 16.77, df = 15, p-value = 0.6656
+#&gt; alternative hypothesis: true variance is not equal to 600
 #&gt; 95 percent confidence interval:
-#&gt;  0.1966486 1.1296731
+#&gt;   366.0509 1606.8235
 #&gt; sample estimates:
 #&gt; variance of x 
-#&gt;      0.391868 
+#&gt;        670.81 
 #&gt; </div><div class='input'>
-<span class='co'># Example 7.7.1 from Wayne (2006), https://tinyurl.com/y8vbxlk8</span>
-<span class='fu'>var_test</span>(<span class='kw'>varx</span><span class='kw'>=</span><span class='fl'>1.92</span>, <span class='kw'>nx</span><span class='kw'>=</span><span class='fl'>12</span>, <span class='kw'>null.value</span><span class='kw'>=</span><span class='fl'>4</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'two.sided'</span>)</div><div class='output co'>#&gt; 
-#&gt; 	X-squared test for variance
-#&gt; 
-#&gt; data:  varx = 1.92 and nx = 12
-#&gt; X-squared = 5.28, df = 11, p-value = 0.1663
-#&gt; alternative hypothesis: true  is not equal to 4
-#&gt; 95 percent confidence interval:
-#&gt;  0.9635015 5.5349563
-#&gt; sample estimates:
-#&gt; variance of x 
-#&gt;          1.92 
-#&gt; </div><div class='input'>
-<span class='co'># Exercise 7.7.5 from Wayne (2006), https://tinyurl.com/y8vbxlk8</span>
+<span class='co'># Exercise 7.7.5 from Wayne (2013), http://tinyurl.com/y6z49hrw</span>
 <span class='fu'>var_test</span>(<span class='kw'>varx</span><span class='kw'>=</span><span class='fl'>30</span>, <span class='kw'>nx</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>null.value</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'greater'</span>)</div><div class='output co'>#&gt; 
 #&gt; 	X-squared test for variance
 #&gt; 
 #&gt; data:  varx = 30 and nx = 25
 #&gt; X-squared = 28.8, df = 24, p-value = 0.2277
-#&gt; alternative hypothesis: true  is greater than 25
+#&gt; alternative hypothesis: true variance is greater than 25
 #&gt; 95 percent confidence interval:
 #&gt;   0.00000 51.99147
 #&gt; sample estimates:
@@ -223,7 +210,7 @@ hypothesis, must be one of <code>two.sided</code> (default),
 #&gt; 
 #&gt; data:  varx = 30 and nx = 25
 #&gt; X-squared = 28.8, df = 24, p-value = 0.2277
-#&gt; alternative hypothesis: true  is greater than 25
+#&gt; alternative hypothesis: true variance is greater than 25
 #&gt; 95 percent confidence interval:
 #&gt;   0.00000 51.99147
 #&gt; sample estimates:
@@ -238,7 +225,7 @@ hypothesis, must be one of <code>two.sided</code> (default),
 #&gt; 
 #&gt; data:  varx = 26.01 , nx = 12 , vary = 22.09 and ny = 15
 #&gt; F = 1.1775, num df = 11, denom df = 14, p-value = 0.7605
-#&gt; alternative hypothesis: true  is not equal to 1
+#&gt; alternative hypothesis: true ratio of variances is not equal to 1
 #&gt; 90 percent confidence interval:
 #&gt;  0.4589581 3.2246374
 #&gt; sample estimates:
@@ -252,7 +239,7 @@ hypothesis, must be one of <code>two.sided</code> (default),
 #&gt; 
 #&gt; data:  varx = 3.84 , nx = 20 , vary = 4.54 and ny = 20
 #&gt; F = 0.84581, num df = 19, denom df = 19, p-value = 0.7189
-#&gt; alternative hypothesis: true  is not equal to 1
+#&gt; alternative hypothesis: true ratio of variances is not equal to 1
 #&gt; 95 percent confidence interval:
 #&gt;  0.3347839 2.1369100
 #&gt; sample estimates:
@@ -280,7 +267,7 @@ hypothesis, must be one of <code>two.sided</code> (default),
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
 </div>
       </footer>
    </div>
