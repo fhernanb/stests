@@ -75,9 +75,9 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Univariate tests</h1>
-                        <h4 class="author">Freddy Hernandez and Angie Lopez</h4>
+                        <h4 class="author">Freddy Hernandez, Angie Lopez and Sara Garces</h4>
             
-            <h4 class="date">2019-03-05</h4>
+            <h4 class="date">2019-03-15</h4>
       
       
       <div class="hidden name"><code>univariate_tests.Rmd</code></div>
@@ -86,9 +86,10 @@
 
     
     
-<div id="introduction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h1>
+<p><br></p>
+<div id="introduction" class="section level2">
+<h2 class="hasAnchor">
+<a href="#introduction" class="anchor"></a>1) Introduction</h2>
 <p>In this vignette we explain how to use the functions available in the <code>stests</code> package to hypothesis testing. Additionally, we compare our functions with the built-in functions <code>t.test</code> and <code>var.test</code> from <code>stats</code> package.</p>
 <p>The functions covered in this vignette are:</p>
 <ul>
@@ -103,72 +104,60 @@
 <li>
 <code>var_test</code>: function to perform <span class="math inline">\(\chi^2\)</span>-test or F-test using <strong>values</strong>.</li>
 <li>
-<code>var.test</code>: fuction that generalizes the <code>var.test</code> function from <code>stats</code> package, this function uses <strong>vectors</strong>.</li>
+<code>var.test</code>: fuction that generalizes the <code>var.test</code> function from <code>stats</code> package. This function uses <strong>vectors</strong>.</li>
 <li>
 <code>print.htest</code>: generic function to print objects with <code>htest</code> class.</li>
 <li>
 <code>plot.htest</code>: generic function to plot objects with <code>htest</code> class.</li>
 </ul>
+<p><br></p>
 </div>
-<div id="stests-package" class="section level1">
-<h1 class="hasAnchor">
-<a href="#stests-package" class="anchor"></a><code>stests</code> package</h1>
+<div id="stests-package" class="section level2">
+<h2 class="hasAnchor">
+<a href="#stests-package" class="anchor"></a>2) <code>stests</code> package</h2>
 <p>Any user can download the <code>stests</code> package from GitHub using the next code:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(<span class="st">'devtools'</span>)) <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">'devtools'</span>)
 devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">'fhernanb/stests'</span>, <span class="dt">force=</span><span class="ot">TRUE</span>)</code></pre></div>
 <p>Next, the package must be loaded into the current session using:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(stests)</code></pre></div>
 </div>
-<div id="z-test-for-population-mean-mu" class="section level1">
-<h1 class="hasAnchor">
-<a href="#z-test-for-population-mean-mu" class="anchor"></a>z-test for population mean <span class="math inline">\(\mu\)</span>
-</h1>
-<p>The objective in this type of problems is to test <span class="math inline">\(H_0: \mu = \mu_0\)</span> against</p>
+<div id="z-test-for-population-mean-mu" class="section level2">
+<h2 class="hasAnchor">
+<a href="#z-test-for-population-mean-mu" class="anchor"></a>2.1) z-test for population mean <span class="math inline">\(\mu\)</span>
+</h2>
+<p>The objective in this type of problems is to test <span class="math inline">\(H_0: \mu = \mu_0\)</span> against:</p>
 <ul>
+<li>
+<span class="math inline">\(H_a: \mu &gt; \mu_0\)</span>,</li>
 <li>
 <span class="math inline">\(H_a: \mu &lt; \mu_0\)</span>,</li>
 <li>
 <span class="math inline">\(H_a: \mu \neq \mu_0\)</span>,</li>
-<li>
-<span class="math inline">\(H_a: \mu &gt; \mu_0\)</span>,</li>
 </ul>
-<p>Using the information of a random sample <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> from a Normal population with known variance <span class="math inline">\(\sigma^2\)</span>.</p>
-<div id="z-test-using-z_test-function" class="section level2">
-<h2 class="hasAnchor">
-<a href="#z-test-using-z_test-function" class="anchor"></a>z-test using <code>z_test</code> function</h2>
-<p>The <code>z_test</code> function can be used for students or instructors to solve textbook’s problems in which the information is summarized with values. In the next examples we show the utility of this function.</p>
-<div id="example-8-6-from-devore-2016" class="section level3">
+<p>using the information of a random sample <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> from a Normal population with known variance <span class="math inline">\(\sigma^2\)</span>.</p>
+<p><br></p>
+<div id="z-test-using-z_test-function" class="section level3">
 <h3 class="hasAnchor">
-<a href="#example-8-6-from-devore-2016" class="anchor"></a>Example 8.6 from Devore (2016)</h3>
-<p>A manufacturer of sprinkler systems used for fire protection in office buildings claims that the true average system-activation temperature is 130°F. A sample of <span class="math inline">\(n=9\)</span> systems, when tested, yields a sample average activation temperature of 131.08°F. If the distribution of activation times is normal with standard deviation 1.5°F, does the data contradict the manufacturer claim at significance level <span class="math inline">\(\alpha=0.01\)</span>?</p>
-<p>In this example we have <span class="math inline">\(\bar{x}=131.08\)</span>, <span class="math inline">\(n=9\)</span> with <span class="math inline">\(\sigma=1.5\)</span>. The objective is to test <span class="math inline">\(H_0: \mu = 130\)</span> against <span class="math inline">\(H_a: \mu \neq 130\)</span>.</p>
-<p>The code to perform the test is:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/z_test.html">z_test</a></span>(<span class="dt">meanx=</span><span class="fl">131.08</span>, <span class="dt">nx=</span><span class="dv">9</span>, <span class="dt">sigma2=</span><span class="fl">1.5</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">mu=</span><span class="dv">130</span>, <span class="dt">alternative=</span><span class="st">'two.sided'</span>)
-## 
-##  Z test for mean
-## 
-## data:  x
-## Z = 2.16, p-value = 0.03077
-## alternative hypothesis: true  is not equal to 130
-## 95 percent confidence interval:
-##  130.10 132.06
-## sample estimates:
-## mean of x 
-##    131.08</code></pre></div>
-<p>The last output is the same as the obtained in Devore (2016). Additionally, we can observe that the output has the same print due to the generic <code>print</code> function for <code>htest</code> objects.</p>
-<p>If we want to depict the p-value for the test, we could save the result in an object and then use the <code>plot.htest</code> function as follows:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/z_test.html">z_test</a></span>(<span class="dt">meanx=</span><span class="fl">131.08</span>, <span class="dt">nx=</span><span class="dv">9</span>, <span class="dt">sigma2=</span><span class="fl">1.5</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">mu=</span><span class="dv">130</span>, <span class="dt">alternative=</span><span class="st">'two.sided'</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(res1, <span class="dt">shade.col=</span><span class="st">'deepskyblue'</span>, <span class="dt">col=</span><span class="st">'deepskyblue'</span>)</code></pre></div>
-<p><img src="univariate_tests_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;"></p>
-</div>
-<div id="example-10-3-from-walpole-2012" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-10-3-from-walpole-2012" class="anchor"></a>Example 10.3 from Walpole (2012)</h3>
+<a href="#z-test-using-z_test-function" class="anchor"></a>2.1.1) z-test using <code>z_test</code> function</h3>
+<p>The <code>z_test</code> function can be used for students or instructors to solve textbook’s problems in which the information is summarized with values. In the next examples we show how to use this function and it’s utility.</p>
+<div id="example-10-3-walpole-2012" class="section level4">
+<h4 class="hasAnchor">
+<a href="#example-10-3-walpole-2012" class="anchor"></a>Example 10.3 (Walpole, 2012)</h4>
 <p>A random sample of 100 recorded deaths in the United States during the past year showed an average life span of 71.8 years. Assuming a population standard deviation of 8.9 years, does this seem to indicate that the mean life span today is greater than 70 years? Use a 0.05 level of significance.</p>
-<p>In this example we have <span class="math inline">\(\bar{x}=71.8\)</span>, <span class="math inline">\(n=100\)</span> with <span class="math inline">\(\sigma=8.9\)</span>. The objective is to test <span class="math inline">\(H_0: \mu = 70\)</span> against <span class="math inline">\(H_a: \mu \leq 70\)</span>.</p>
-<p>The code to perform the test is:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/z_test.html">z_test</a></span>(<span class="dt">meanx=</span><span class="fl">71.8</span>, <span class="dt">nx=</span><span class="dv">100</span>, <span class="dt">sigma2=</span><span class="fl">8.9</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">mu=</span><span class="dv">70</span>, <span class="dt">alternative=</span><span class="st">'greater'</span>)
-res2
+<p><br></p>
+<p>In this example we have: <span class="math inline">\(n=100\)</span>, <span class="math inline">\(\bar{x}=71.8\)</span>, <span class="math inline">\(\sigma^2=79.21\)</span>. The objective is to test the next hypothesis:</p>
+<p><br></p>
+<center>
+<span class="math inline">\(H_0: \mu = 70\)</span> vs <span class="math inline">\(H_a: \mu &gt; 70\)</span>
+</center>
+<p><br></p>
+<center>
+<span class="math inline">\(\mu=\)</span> <em>True average life span today (years)</em>
+</center>
+<p><br></p>
+<p>The code to perform the test with <span class="math inline">\(\alpha=0.05\)</span> significance is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/z_test.html">z_test</a></span>(<span class="dt">meanx=</span><span class="fl">71.8</span>, <span class="dt">nx=</span><span class="dv">100</span>, <span class="dt">sigma2=</span><span class="fl">79.21</span>, <span class="dt">mu=</span><span class="dv">70</span>, <span class="dt">alternative=</span><span class="st">'greater'</span>)
+test1
 ## 
 ##  Z test for mean
 ## 
@@ -179,147 +168,246 @@ res2
 ##  70.33608      Inf
 ## sample estimates:
 ## mean of x 
-##      71.8
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(res2, <span class="dt">shade.col=</span><span class="st">'firebrick1'</span>, <span class="dt">col=</span><span class="st">'firebrick1'</span>)</code></pre></div>
-<p><img src="univariate_tests_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;"></p>
+##      71.8</code></pre></div>
+<p>We can observe that the output provides a p-value and a confidence interval for the population mean that will help the user in the decision making of the hypothesis test.</p>
+<p>If we want to depict the p-value for the test, we could save the result in an object and then use the <code>plot.htest</code> function as follows:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(test1, <span class="dt">shade.col=</span><span class="st">'firebrick1'</span>, <span class="dt">col=</span><span class="st">'firebrick1'</span>)</code></pre></div>
+<p><img src="univariate_tests_files/figure-html/unnamed-chunk-4-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><br></p>
 </div>
 </div>
-<div id="z-test-using-z-test-function" class="section level2">
-<h2 class="hasAnchor">
-<a href="#z-test-using-z-test-function" class="anchor"></a>z-test using <code>z.test</code> function</h2>
-<p>The <code>z.test</code> function can be used to solve problems in which we have the raw data as a vector.</p>
-<div id="example-numero-de-fulanito-xxx-" class="section level3">
+<div id="z-test-using-z-test-function" class="section level3">
 <h3 class="hasAnchor">
-<a href="#example-numero-de-fulanito-xxx-" class="anchor"></a>Example numero de fulanito (xxx).</h3>
-<p>Aqui el enunciado del ejercicio.</p>
+<a href="#z-test-using-z-test-function" class="anchor"></a>2.1.2) z-test using <code>z.test</code> function</h3>
+<p>The <code>z.test</code> function can be used to solve problems in which we have the raw data as a vector. In the next examples we show how to use this function.</p>
+<div id="example-8-8-devore-2016" class="section level4">
+<h4 class="hasAnchor">
+<a href="#example-8-8-devore-2016" class="anchor"></a>Example 8.8 (Devore, 2016)</h4>
+<p>A dynamic cone penetrometer (DCP) is used for measuring material resistance to penetration (mm/blow) as a cone is driven into pavement or subgrade. Suppose that for a particular application it is required that the true average DCP value for a certain type of pavement be less than 30. The pavement will not be used unless there is conclusive evidence that the specification has been met. Let’s state and test the appropriate hypotheses using the following data:</p>
+<p><br></p>
+<center>
+<em>14.1, 14.5, 15.5, 16.0, 16.0, 16.7, 16.9, 17.1, 17.5, 17.8, 17.8, 18.1, 18.2, 18.3, 18.3, 19.0, 19.2, 19.4, 20.0, 20.0, 20.8, 20.8, 21.0, 21.5, 23.5, 27.5, 27.5, 28.0, 28.3, 30.0, 30.0, 31.6, 31.7, 31.7, 32.5, 33.5, 33.9, 35.0, 35.0, 35.0, 36.7, 40.0, 40.0, 41.3, 41.7, 47.5, 50.0, 51.0, 51.8, 54.4, 55.0, 57.0</em>
+</center>
+<p><br></p>
+<p>In this example we have: <span class="math inline">\(n=52\)</span>. The objective is to test the next hypothesis:</p>
+<p><br></p>
+<center>
+<span class="math inline">\(H_0: \mu = 30\)</span> vs <span class="math inline">\(H_a: \mu &lt; 30\)</span>
+</center>
+<p><br></p>
+<center>
+<span class="math inline">\(\mu=\)</span> <em>True average DCP value for a certain type of pavement</em>
+</center>
+<p><br></p>
+<p>In this example we don’t know if the random sample comes from a normal population, but as <span class="math inline">\(n=52\)</span> and <span class="math inline">\(\sigma^2\)</span> is unkown, we can use the z-test with <span class="math inline">\(\bar{x}=28.76\)</span>, <span class="math inline">\(s^2=150.422\)</span>.</p>
+<p><br></p>
+<p>The code to perform the test with <span class="math inline">\(\alpha=0.05\)</span> significance is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">14.1</span>,<span class="fl">14.5</span>,<span class="fl">15.5</span>,<span class="fl">16.0</span>,<span class="fl">16.0</span>,<span class="fl">16.7</span>,<span class="fl">16.9</span>,<span class="fl">17.1</span>,<span class="fl">17.5</span>,<span class="fl">17.8</span>,<span class="fl">17.8</span>,<span class="fl">18.1</span>,<span class="fl">18.2</span>,<span class="fl">18.3</span>,<span class="fl">18.3</span>,<span class="fl">19.0</span>, <span class="fl">19.2</span>,<span class="fl">19.4</span>,<span class="fl">20.0</span>,<span class="fl">20.0</span>,<span class="fl">20.8</span>,<span class="fl">20.8</span>,<span class="fl">21.0</span>,<span class="fl">21.5</span>,<span class="fl">23.5</span>,<span class="fl">27.5</span>,<span class="fl">27.5</span>,<span class="fl">28.0</span>,<span class="fl">28.3</span>,<span class="fl">30.0</span>,<span class="fl">30.0</span>,<span class="fl">31.6</span>,<span class="fl">31.7</span>, <span class="fl">31.7</span>,<span class="fl">32.5</span>,<span class="fl">33.5</span>,<span class="fl">33.9</span>,<span class="fl">35.0</span>,<span class="fl">35.0</span>,<span class="fl">35.0</span>,<span class="fl">36.7</span>,<span class="fl">40.0</span>,<span class="fl">40.0</span>,<span class="fl">41.3</span>,<span class="fl">41.7</span>,<span class="fl">47.5</span>,<span class="fl">50.0</span>,<span class="fl">51.0</span>,<span class="fl">51.8</span>,<span class="fl">54.4</span>,
+<span class="fl">55.0</span>,<span class="fl">57.0</span>)
+test2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/z.test.html">z.test</a></span>(<span class="dt">x=</span>x, <span class="dt">sigma2=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">var</a></span>(x), <span class="dt">mu=</span><span class="dv">30</span>, <span class="dt">alternative=</span><span class="st">'less'</span>)
+test2
+## 
+##  One Sample z-test
+## 
+## data:  x
+## Z = -0.72816, p-value = 0.2333
+## alternative hypothesis: true mean is less than 30
+## 95 percent confidence interval:
+##      -Inf 31.55912
+## sample estimates:
+## mean of x 
+##  28.76154
+<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(test2, <span class="dt">shade.col=</span><span class="st">'firebrick1'</span>, <span class="dt">col=</span><span class="st">'firebrick1'</span>)</code></pre></div>
+<p><img src="univariate_tests_files/figure-html/unnamed-chunk-5-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><br></p>
 </div>
 </div>
 </div>
-<div id="t-test-for-population-mean-mu-and-for-the-difference-in-means-mu_1-mu_2" class="section level1">
-<h1 class="hasAnchor">
-<a href="#t-test-for-population-mean-mu-and-for-the-difference-in-means-mu_1-mu_2" class="anchor"></a>t-test for population mean <span class="math inline">\(\mu\)</span> and for the difference in means <span class="math inline">\(\mu_1-\mu_2\)</span>
-</h1>
-<p>The objective in this type of problems is to test <span class="math inline">\(H_0: \mu = \mu_0\)</span> against</p>
+<div id="t-test-for-population-mean-mu-and-for-the-difference-in-means-mu_1-mu_2" class="section level2">
+<h2 class="hasAnchor">
+<a href="#t-test-for-population-mean-mu-and-for-the-difference-in-means-mu_1-mu_2" class="anchor"></a>2.2) t-test for population mean <span class="math inline">\(\mu\)</span> and for the difference in means <span class="math inline">\(\mu_1-\mu_2\)</span>
+</h2>
+<p>The objective in this type of problems is to test <span class="math inline">\(H_0: \mu = \mu_0\)</span> against:</p>
 <ul>
 <li>
-<span class="math inline">\(H_a: \mu \leq \mu_0\)</span>,</li>
+<span class="math inline">\(H_a: \mu &gt; \mu_0\)</span>,</li>
+<li>
+<span class="math inline">\(H_a: \mu &lt; \mu_0\)</span>,</li>
 <li>
 <span class="math inline">\(H_a: \mu \neq \mu_0\)</span>,</li>
-<li>
-<span class="math inline">\(H_a: \mu \geq \mu_0\)</span>,</li>
 </ul>
-<p>Aqui debemos completar ….</p>
-<div id="t-test-using-t_test-function" class="section level2">
-<h2 class="hasAnchor">
-<a href="#t-test-using-t_test-function" class="anchor"></a>t-test using <code>t_test</code> function</h2>
-<p>Aqui debe ir un parrafo introductorio.</p>
-<p>A continuacion se muestran tres ejemplos de como usar la funcion <code>t_test</code>.</p>
-<div id="example-9-2-from-apellido-ano-one-population" class="section level3">
+<p>using the information of a random sample <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> from a Normal population with unknown variance <span class="math inline">\(\sigma^2\)</span>.</p>
+<p><br></p>
+<p>Also, we can test <span class="math inline">\(H_0: \mu_x-\mu_y = \delta_0\)</span> against:</p>
+<ul>
+<li>
+<span class="math inline">\(H_a: \mu_x-\mu_y &gt; \delta_0\)</span>,</li>
+<li>
+<span class="math inline">\(H_a: \mu_x-\mu_y &lt; \delta_0\)</span>,</li>
+<li>
+<span class="math inline">\(H_a: \mu_x-\mu_y \neq \delta_0\)</span>,</li>
+</ul>
+<p>using the information of two random samples <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> and <span class="math inline">\(Y_1, Y_2, \ldots, Y_n\)</span>, both from populations with normal distributions and with unknown variances <span class="math inline">\(\sigma_1^2\)</span>,<span class="math inline">\(\sigma_2^2\)</span>.</p>
+<p><br></p>
+<div id="t-test-using-t_test-function" class="section level3">
 <h3 class="hasAnchor">
-<a href="#example-9-2-from-apellido-ano-one-population" class="anchor"></a>Example 9.2 from apellido (ano), one population</h3>
-<p>The average length of time for students to register for fall classes at vertain college has been 50 minutes with a standard deviation of 10 minutes. A new registration procedure using modern computing machines is being tried. If a random sample of 12 students had an average registration time of 42 minutes with standard desviation of 11.9 minutes under the new system, test the hypothesis that the population mean is now less than 50, using a level of significance of 0.05. Assume the population of times to be normal.</p>
-<p>In this example we have <span class="math inline">\(s=11.9\)</span>, <span class="math inline">\(n=12\)</span> and <span class="math inline">\(\mu=42\)</span>. The objective is to test <span class="math inline">\(H_0: \mu = 50\)</span> minutes against <span class="math inline">\(H_a: \mu &lt; 50\)</span>.</p>
+<a href="#t-test-using-t_test-function" class="anchor"></a>2.2.1) t-test using <code>t_test</code> function</h3>
+<p>The <code>t_test</code> function can be used for students or instructors to solve textbook’s problems in which the information is summarized with values. In the next examples we show how to use this function and it’s utility.</p>
+<div id="excercise-10-29-walpole-2012-test-on-a-single-sample" class="section level4">
+<h4 class="hasAnchor">
+<a href="#excercise-10-29-walpole-2012-test-on-a-single-sample" class="anchor"></a>Excercise 10.29 (Walpole, 2012): test on a single sample</h4>
+<p>Past experience indicates that the time required for high school seniors to complete a standardized test is a normal random variable with a mean of 35 minutes. If a random sample of 20 high school seniors took an average of 33.1 minutes to complete this test with a standard deviation of 4.3 minutes, test the hypothesis, at the 0.05 level of significance, that <span class="math inline">\(\mu=35\)</span> minutes against the alternative that <span class="math inline">\(\mu&lt;35\)</span> minutes.</p>
+<p><br></p>
+<p>In this example we have: <span class="math inline">\(n=20\)</span>, <span class="math inline">\(\bar{x}=33.1\)</span>, <span class="math inline">\(s^2=18.49\)</span>. The objective is to test the next hypothesis:</p>
+<p><br></p>
+<center>
+<span class="math inline">\(H_0: \mu = 35\)</span> vs <span class="math inline">\(H_a: \mu &lt; 35\)</span>
+</center>
+<p><br></p>
+<center>
+<span class="math inline">\(\mu=\)</span> <em>True average time required for high school seniors to complete a standardized test (minutes) </em>
+</center>
+<p><br></p>
 <p>The code to perform the test with <span class="math inline">\(\alpha=0.05\)</span> significance is:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">t1 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/t_test.html">t_test</a></span>(<span class="dt">meanx=</span><span class="dv">42</span>, <span class="dt">varx=</span><span class="fl">11.9</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">nx=</span><span class="dv">12</span>, <span class="dt">mu=</span><span class="dv">50</span>, 
-              <span class="dt">alternative=</span><span class="st">'two.sided'</span>)
-t1
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/t_test.html">t_test</a></span>(<span class="dt">meanx=</span><span class="fl">33.1</span>, <span class="dt">varx=</span><span class="fl">18.49</span>, <span class="dt">nx=</span><span class="dv">20</span>, <span class="dt">mu=</span><span class="dv">35</span>, <span class="dt">alternative=</span><span class="st">'less'</span>)
+test3
 ## 
 ##  One Sample t-test
 ## 
-## data:  meanx = 42, var = 141.61 and nx = 12
-## t = -2.3288, df = 11, p-value = 0.03995
-## alternative hypothesis: true mean is not equal to 50
+## data:  meanx = 33.1, var = 18.49 and nx = 20
+## t = -1.9761, df = 19, p-value = 0.03143
+## alternative hypothesis: true mean is less than 35
 ## 95 percent confidence interval:
-##  34.4391 49.5609
+##      -Inf 34.76258
 ## sample estimates:
 ## mean of x 
-##        42
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(t1, <span class="dt">shade.col=</span><span class="st">'gray80'</span>, <span class="dt">col=</span><span class="st">'red'</span>)</code></pre></div>
+##      33.1
+<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(test3, <span class="dt">shade.col=</span><span class="st">'firebrick1'</span>, <span class="dt">col=</span><span class="st">'firebrick1'</span>)</code></pre></div>
 <p><img src="univariate_tests_files/figure-html/unnamed-chunk-6-1.png" width="576" style="display: block; margin: auto;"></p>
-<p>The result given for t-test matches with the autor result and in addition, it provides a confidence interval for the average and the p-value that will help the user in the decision making of the hypothesis test.</p>
+<p><br></p>
 </div>
-<div id="example-13-5-from-apellido-ano-two-populations-with-equal-variances" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-13-5-from-apellido-ano-two-populations-with-equal-variances" class="anchor"></a>Example 13.5 from apellido (ano), two populations with equal variances</h3>
-<p>In the comparison of two kind of paint a consumer testing service finds that four 1-gallon cans of one brand cover on the average 546 square feet with a standard deviation of 31 square feet, whereas four 1-gallon cans of another brand cover on the average 492 square feet with a estandard deviation of 26 square feet. Assuming that the two population sampled are normal and have equal variances, test the null hypothesis <span class="math inline">\(H_0: \mu_1-\mu_2 = 0\)</span> against the alternative hypothesis <span class="math inline">\(H_a: \mu_1-\mu_2 &gt; 0\)</span> at the 0.05 level of significance.</p>
-<p>The data we have is: <span class="math inline">\(s_1=31\)</span>, <span class="math inline">\(n_1=4\)</span>, <span class="math inline">\(\mu_1=546\)</span>, <span class="math inline">\(s_2=26\)</span>, <span class="math inline">\(n_2=4\)</span>, <span class="math inline">\(\mu_2=492\)</span>.</p>
-<p>The code to perform the test with <span class="math inline">\(\alpha=0.05\)</span> significance is :</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/t_test.html">t_test</a></span>(<span class="dt">meanx=</span><span class="dv">546</span>, <span class="dt">varx=</span><span class="dv">31</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">nx=</span><span class="dv">4</span>,
-       <span class="dt">meany=</span><span class="dv">492</span>, <span class="dt">vary=</span><span class="dv">26</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">ny=</span><span class="dv">4</span>,
-       <span class="dt">alternative=</span><span class="st">'two.sided'</span>, <span class="dt">var.equal=</span><span class="ot">TRUE</span>)             
+<div id="example-10-6-walpole-2012-test-on-two-samples-with-unknown-but-equal-variances" class="section level4">
+<h4 class="hasAnchor">
+<a href="#example-10-6-walpole-2012-test-on-two-samples-with-unknown-but-equal-variances" class="anchor"></a>Example 10.6 (Walpole, 2012): test on two samples with unknown but equal variances</h4>
+<p>An experiment was performed to compare the abrasive wear of two different laminated materials. Twelve pieces of material 1 were tested by exposing each piece to a machine measuring wear. Ten pieces of material 2 were similarly tested. In each case, the depth of wear was observed. The samples of material 1 gave an average (coded) wear of 85 units with a sample standard deviation of 4, while the samples of material 2 gave an average of 81 with a sample standard deviation of 5. Can we conclude at the 0.05 level of significance that the abrasive wear of material 1 exceeds that of material 2 by more than 2 units? Assume the populations to be approximately normal with equal variances.</p>
+<p><br></p>
+<p>In this example we have: <span class="math inline">\(n_1=12\)</span>, <span class="math inline">\(\bar{x}_1=85\)</span>, <span class="math inline">\(s_1^2=16\)</span>, <span class="math inline">\(n_2=10\)</span>, <span class="math inline">\(\bar{x}_2=81\)</span>, <span class="math inline">\(s_2^2=25\)</span>. The objective is to test the next hypothesis:</p>
+<p><br></p>
+<center>
+<span class="math inline">\(H_0: \mu_1-\mu_2 = 2\)</span> vs <span class="math inline">\(H_a: \mu_1-\mu_2 &gt; 2\)</span>
+</center>
+<p><br></p>
+<center>
+<span class="math inline">\(\mu_1=\)</span> <em>True average abrasive wear of material 1 (units) </em>
+</center>
+<center>
+<span class="math inline">\(\mu_2=\)</span> <em>True average abrasive wear of material 2 (units)</em>
+</center>
+<p><br></p>
+<p>The code to perform the test with <span class="math inline">\(\alpha=0.05\)</span> significance is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test4&lt;-<span class="kw"><a href="../reference/t_test.html">t_test</a></span>(<span class="dt">meanx=</span><span class="dv">85</span>, <span class="dt">varx=</span><span class="dv">16</span>, <span class="dt">nx=</span><span class="dv">12</span>,
+       <span class="dt">meany=</span><span class="dv">81</span>, <span class="dt">vary=</span><span class="dv">25</span>, <span class="dt">ny=</span><span class="dv">10</span>,
+       <span class="dt">alternative=</span><span class="st">'greater'</span>, <span class="dt">var.equal=</span><span class="ot">TRUE</span>, <span class="dt">mu=</span><span class="dv">2</span>)
+test4
 ## 
 ##  Two Sample t-test
 ## 
-## data:  meanx = 546 , nx = 4 , meany = 492 and ny = 4
-## t = 2.6693, df = 6, p-value = 0.03706
-## alternative hypothesis: true difference in means is not equal to 0
+## data:  meanx = 85 , nx = 12 , meany = 81 and ny = 10
+## t = 1.0432, df = 20, p-value = 0.1547
+## alternative hypothesis: true difference in means is greater than 2
 ## 95 percent confidence interval:
-##    4.499149 103.500851
+##  0.6932903       Inf
 ## sample estimates:
 ## mean of x mean of y 
-##       546       492</code></pre></div>
+##        85        81
+<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(test4, <span class="dt">shade.col=</span><span class="st">'firebrick1'</span>, <span class="dt">col=</span><span class="st">'firebrick1'</span>)</code></pre></div>
+<p><img src="univariate_tests_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><br></p>
 </div>
-<div id="example-9-12-from-ugarte-ano-two-populations-with-unequal-variances" class="section level3">
+</div>
+<div id="t-test-using-t-test-function" class="section level3">
 <h3 class="hasAnchor">
-<a href="#example-9-12-from-ugarte-ano-two-populations-with-unequal-variances" class="anchor"></a>Example 9.12 from Ugarte (ano), two populations with unequal variances</h3>
-<p>A bottle water company acquires irs water from two independet sources, X and Y. The company suspects that the sodium content in the water from source X is less than the sodium content for water from source Y. An independent agency measures the sodium content in 20 samples from source X and 10 samples from source Y and stores them in data frame water. Is there statistical evidence to suggest the average sodium content in the water from source X is less than the average sodium content in the water from source Y? The measurements for the sodium values are mg/L. Use an <span class="math inline">\(\alpha\)</span> level of 0.05 to test the appropiate hypotheses.</p>
-<p>In this problem we have <span class="math inline">\(S_{x}^2=122.78\)</span> <span class="math inline">\(S_{Y}^2=5.29\)</span>, <span class="math inline">\(\mu_X=76.4\)</span> <span class="math inline">\(\mu_Y=81.2\)</span>.</p>
-<p>we have to test the hypothesis: <span class="math inline">\(H_0:\mu_X-\mu_Y = 0\)</span> versus <span class="math inline">\(H_1:\mu_X-\mu_Y &lt; 0\)</span></p>
-<p>using the function <code>t_test</code> we obtain the next result.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/t_test.html">t_test</a></span>(<span class="dt">meanx=</span><span class="fl">76.4</span>, <span class="dt">varx=</span><span class="fl">122.78</span>, <span class="dt">nx=</span><span class="dv">20</span>,
-       <span class="dt">meany=</span><span class="fl">81.2</span>, <span class="dt">vary=</span><span class="fl">5.29</span>, <span class="dt">ny=</span><span class="dv">10</span>,
-       <span class="dt">alternative=</span><span class="st">'less'</span>, <span class="dt">mu=</span><span class="dv">0</span>, <span class="dt">var.equal=</span><span class="ot">FALSE</span>)             
+<a href="#t-test-using-t-test-function" class="anchor"></a>2.2.2) t-test using <code>t.test</code> function</h3>
+<p>The <code>t.test</code> function can be used to solve problems in which we have the raw data as a vector. In the next examples we show how to use this function.</p>
+<div id="example-8-9-devore-2016" class="section level4">
+<h4 class="hasAnchor">
+<a href="#example-8-9-devore-2016" class="anchor"></a>Example 8.9 (Devore, 2016)</h4>
+<p>Glycerol is a major by-product of ethanol fermentation in wine production and contributes to the sweetness, body, and fullness of wines. The article “A Rapid and Simple Method for Simultaneous Determination of Glycerol, Fructose, and Glucose in Wine” (American J. of Enology and Viticulture, 2007: 279-283) includes the following observations on glycerol concentration (mg/mL) for samples of standard-quality (uncertified) white wines:</p>
+<p><br></p>
+<center>
+<em>2.67, 4.62, 4.14, 3.81, 3.83</em>
+</center>
+<p><br></p>
+<p>Does the sample data suggest that true average concentration is something other than the desired value? (Assume that the population distribution of glycerol concentration is normal)</p>
+<p><br></p>
+<p>In this example we have: <span class="math inline">\(n=5\)</span>. The objective is to test the next hypothesis:</p>
+<p><br></p>
+<center>
+<span class="math inline">\(H_0: \mu = 4\)</span> vs <span class="math inline">\(H_a: \mu \neq 4\)</span>
+</center>
+<p><br></p>
+<center>
+<span class="math inline">\(\mu=\)</span> <em>True average glycerol concentration (mg/mL)</em>
+</center>
+<p><br></p>
+<p>The code to perform the test with <span class="math inline">\(\alpha=0.05\)</span> significance is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">2.67</span>, <span class="fl">4.62</span>, <span class="fl">4.14</span>, <span class="fl">3.81</span>, <span class="fl">3.83</span>)
+test5 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/t.test">t.test</a></span>(<span class="dt">x=</span>x, <span class="dt">sigma2=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/cor">var</a></span>(x), <span class="dt">mu=</span><span class="dv">4</span>, <span class="dt">alternative=</span><span class="st">'two.sided'</span>)
+test5
 ## 
-##  Welch Two Sample t-test
+##  One Sample t-test
 ## 
-## data:  meanx = 76.4, nx = 20, meany = 81.2 and ny = 10
-## t = -1.8588, df = 22.07, p-value = 0.03822
-## alternative hypothesis: true difference in means is less than 0
+## data:  x
+## t = -0.57886, df = 4, p-value = 0.5937
+## alternative hypothesis: true mean is not equal to 4
 ## 95 percent confidence interval:
-##       -Inf -0.366523
+##  2.921875 4.706125
 ## sample estimates:
-## mean of x mean of y 
-##      76.4      81.2</code></pre></div>
-<p>And we obtain the same results of the author.</p>
+## mean of x 
+##     3.814
+<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(test5, <span class="dt">shade.col=</span><span class="st">'firebrick1'</span>, <span class="dt">col=</span><span class="st">'firebrick1'</span>)</code></pre></div>
+<p><img src="univariate_tests_files/figure-html/unnamed-chunk-8-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><br></p>
 </div>
 </div>
-<div id="t-test-using-t-test-function" class="section level2">
+</div>
+<div id="chi2-test-for-population-variance-sigma2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#t-test-using-t-test-function" class="anchor"></a>t-test using <code>t.test</code> function</h2>
-<p>Aqui debe ir un parrafo introductorio.</p>
-<div id="example-numero-tal-from-fulanito-1256" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-numero-tal-from-fulanito-1256" class="anchor"></a>Example numero tal from fulanito (1256)</h3>
-<p>Aqui el enunciado de un ejemplo de un libro con respuesta para replicarlos usando la funcion de esta seccion.</p>
-</div>
-</div>
-</div>
-<div id="chi2-test-for-population-variance-sigma2" class="section level1">
-<h1 class="hasAnchor">
-<a href="#chi2-test-for-population-variance-sigma2" class="anchor"></a><span class="math inline">\(\chi^2\)</span>-test for population variance <span class="math inline">\(\sigma^2\)</span>
-</h1>
-<p>The objective in this type of problems is to test <span class="math inline">\(H_0: \sigma^2 = \sigma^2_0\)</span> against</p>
+<a href="#chi2-test-for-population-variance-sigma2" class="anchor"></a>2.3) <span class="math inline">\(\chi^2\)</span>-test for population variance <span class="math inline">\(\sigma^2\)</span>
+</h2>
+<p>The objective in this type of problems is to test <span class="math inline">\(H_0: \sigma^2 = \sigma^2_0\)</span> against:</p>
 <ul>
+<li>
+<span class="math inline">\(H_a: \sigma^2 &gt; \sigma_0^2\)</span>,</li>
 <li>
 <span class="math inline">\(H_a: \sigma^2 &lt; \sigma_0^2\)</span>,</li>
 <li>
 <span class="math inline">\(H_a: \sigma^2 \neq \sigma_0^2\)</span>,</li>
-<li>
-<span class="math inline">\(H_a: \sigma^2 &gt; \sigma_0^2\)</span>,</li>
 </ul>
-<p>using the information of a random sample <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> from a population distributed as <span class="math inline">\(N(\mu, \sigma^2)\)</span>.</p>
-<div id="chi2-test-using-var_test-function" class="section level2">
-<h2 class="hasAnchor">
-<a href="#chi2-test-using-var_test-function" class="anchor"></a><span class="math inline">\(\chi^2\)</span>-test using <code>var_test</code> function</h2>
-<p>The <code>var_test</code> function can be used to solve textbook’s problems in which the information is summarized with values. In next examples we show the utility of this function.</p>
-<div id="example-7-7-1-from-wayne-chad-2013" class="section level3">
+<p>using the information of a random sample <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> from a population with normal distribution.</p>
+<p><br></p>
+<div id="chi2-test-using-var_test-function" class="section level3">
 <h3 class="hasAnchor">
-<a href="#example-7-7-1-from-wayne-chad-2013" class="anchor"></a>Example 7.7.1 from Wayne &amp; Chad (2013)</h3>
+<a href="#chi2-test-using-var_test-function" class="anchor"></a>2.3.1) <span class="math inline">\(\chi^2\)</span>-test using <code>var_test</code> function</h3>
+<p>The <code>var_test</code> function can be used to solve textbook’s problems in which the information is summarized with values. In next examples we show the utility of this function.</p>
+<div id="example-7-7-1-wayne-chad-2013" class="section level4">
+<h4 class="hasAnchor">
+<a href="#example-7-7-1-wayne-chad-2013" class="anchor"></a>Example 7.7.1 (Wayne &amp; Chad, 2013)</h4>
 <p>The purpose of a study by Wilkins et al. (A-28) was to measure the effectiveness of recombinant human growth hormone (rhGH) on children with total body surface area burns &gt; 40 percent. In this study, 16 subjects received daily injections at home of rhGH. At baseline, the researchers wanted to know the current levels of insulin-like growth factor (IGF-I) prior to administration of rhGH. The sample variance of IGF-I levels (in ng/ml) was 670.81. We wish to know if we may conclude from these data that the population variance is not 600.</p>
-<p>In this example we have <span class="math inline">\(s^2=670.81\)</span>, <span class="math inline">\(n=16\)</span>. The objective is to test <span class="math inline">\(H_0: \sigma^2 = 600\)</span> against <span class="math inline">\(H_a: \sigma^2 \neq 600\)</span>.</p>
-<p>The code to perform the test is:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/var_test.html">var_test</a></span>(<span class="dt">varx=</span><span class="fl">670.81</span>, <span class="dt">nx=</span><span class="dv">16</span>, <span class="dt">null.value=</span><span class="dv">600</span>, <span class="dt">alternative=</span><span class="st">'two.sided'</span>)
-res3
+<p><br></p>
+<p>In this example we have: <span class="math inline">\(n=16\)</span>, <span class="math inline">\(s^2=670.81\)</span>. The objective is to test the next hypothesis:</p>
+<p><br></p>
+<center>
+<span class="math inline">\(H_0: \sigma^2 = 600\)</span> vs <span class="math inline">\(H_a: \sigma^2 \neq 600\)</span>
+</center>
+<p><br></p>
+<center>
+<span class="math inline">\(\sigma^2=\)</span> <em>True population variance of IGF-I levels</em>
+</center>
+<p><br></p>
+<p>The code to perform the test with <span class="math inline">\(\alpha=0.05\)</span> significance is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test6 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/var_test.html">var_test</a></span>(<span class="dt">varx=</span><span class="fl">670.81</span>, <span class="dt">nx=</span><span class="dv">16</span>, <span class="dt">null.value=</span><span class="dv">600</span>, <span class="dt">alternative=</span><span class="st">'two.sided'</span>)
+test6
 ## 
 ##  X-squared test for variance
 ## 
@@ -331,57 +419,170 @@ res3
 ## sample estimates:
 ## variance of x 
 ##        670.81
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(res3, <span class="dt">shade.col=</span><span class="st">'darkorange1'</span>, <span class="dt">col=</span><span class="st">'darkorange1'</span>)</code></pre></div>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(test6, <span class="dt">shade.col=</span><span class="st">'firebrick1'</span>, <span class="dt">col=</span><span class="st">'firebrick1'</span>)</code></pre></div>
 <p><img src="univariate_tests_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><br></p>
 </div>
 </div>
-<div id="chi2-test-using-var-test-function" class="section level2">
+<div id="chi2-test-using-var-test-function" class="section level3">
+<h3 class="hasAnchor">
+<a href="#chi2-test-using-var-test-function" class="anchor"></a>2.3.2) <span class="math inline">\(\chi^2\)</span>-test using <code>var.test</code> function</h3>
+<p>The <code>var.test</code> function can be used to solve problems in which we have the raw data as a vector. In the next examples we show how to use this function.</p>
+<div id="exercise-10-67-walpole-2012" class="section level4">
+<h4 class="hasAnchor">
+<a href="#exercise-10-67-walpole-2012" class="anchor"></a>Exercise 10.67 (Walpole, 2012)</h4>
+<p>The content of containers of a particular lubricant is known to be normally distributed with a variance of 0.03 liter. Test the hypothesis that <span class="math inline">\(\sigma^2 = 0.03\)</span> against the alternative that <span class="math inline">\(\sigma^2 \neq 0.03\)</span> for the random sample of 10 containers:</p>
+<p><br></p>
+<center>
+<em>10.2, 9.7, 10.1, 10.3, 10.1, 9.8, 9.9, 10.4, 10.3, 9.8</em>
+</center>
+<p><br></p>
+<p>In this example we have: <span class="math inline">\(n=10\)</span>. The objective is to test the next hypothesis:</p>
+<p><br></p>
+<center>
+<span class="math inline">\(H_0: \sigma^2 = 0.03\)</span> vs <span class="math inline">\(H_a: \sigma^2 \neq 0.03\)</span>
+</center>
+<p>where,</p>
+<center>
+<span class="math inline">\(\sigma^2=\)</span> <em>True population variance of container content of a particular lubricant</em>
+</center>
+<p><br></p>
+<p>The code to perform the test with <span class="math inline">\(\alpha=0.05\)</span> significance is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">10.2</span>, <span class="fl">9.7</span>, <span class="fl">10.1</span>, <span class="fl">10.3</span>, <span class="fl">10.1</span>, <span class="fl">9.8</span>, <span class="fl">9.9</span>, <span class="fl">10.4</span>, <span class="fl">10.3</span>, <span class="fl">9.8</span>)
+test7 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/var.test.html">var.test</a></span>(<span class="dt">x=</span>x, <span class="dt">null.value=</span><span class="fl">0.03</span>, <span class="dt">alternative=</span><span class="st">'two.sided'</span>)
+test7
+## 
+##  X-squared test for variance
+## 
+## data:  x
+## X-squared = 18.133, df = 9, p-value = 0.06732
+## alternative hypothesis: true variance is not equal to 0.03
+## 95 percent confidence interval:
+##  0.02859731 0.20145242
+## sample estimates:
+## variance of x 
+##    0.06044444
+<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(test7, <span class="dt">shade.col=</span><span class="st">'firebrick1'</span>, <span class="dt">col=</span><span class="st">'firebrick1'</span>)</code></pre></div>
+<p><img src="univariate_tests_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><br></p>
+</div>
+</div>
+</div>
+<div id="f-test-for-equality-of-variances" class="section level2">
 <h2 class="hasAnchor">
-<a href="#chi2-test-using-var-test-function" class="anchor"></a><span class="math inline">\(\chi^2\)</span>-test using <code>var.test</code> function</h2>
-<p>The <code>var.test</code> function can be used to solve bla bla bla.</p>
-<div id="example-numero-tal-from-fulanito-1256-1" class="section level3">
+<a href="#f-test-for-equality-of-variances" class="anchor"></a>2.4) F-test for equality of variances</h2>
+<p>The objective in this type of problems is to test <span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span> against:</p>
+<ul>
+<li>
+<span class="math inline">\(H_a: \sigma_x^2 &gt; \sigma_y^2\)</span>,</li>
+<li>
+<span class="math inline">\(H_a: \sigma_x^2 &lt; \sigma_y^2\)</span>,</li>
+<li>
+<span class="math inline">\(H_a: \sigma_x^2 \neq \sigma_y^2\)</span>,</li>
+</ul>
+<p>using the information of two random samples <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> and <span class="math inline">\(Y_1, Y_2, \ldots, Y_n\)</span>, both from populations with normal distributions and with unknown variances <span class="math inline">\(\sigma_x^2\)</span>,<span class="math inline">\(\sigma_y^2\)</span>.</p>
+<p><br></p>
+<div id="f-test-using-var_test-function" class="section level3">
 <h3 class="hasAnchor">
-<a href="#example-numero-tal-from-fulanito-1256-1" class="anchor"></a>Example numero tal from fulanito (1256)</h3>
-<p>Aqui el enunciado de un ejemplo de un libro con respuesta para replicarlos usando la funcion de esta seccion. El ejemplo debe ser con raw data.</p>
+<a href="#f-test-using-var_test-function" class="anchor"></a>2.4.1) F-test using <code>var_test</code> function</h3>
+<p>The <code>var_test</code> function can be used for students or instructors to solve textbook’s problems in which the information is summarized with values. In the next examples we show how to use this function and it’s utility.</p>
+<div id="example-9-14-devore-2016" class="section level4">
+<h4 class="hasAnchor">
+<a href="#example-9-14-devore-2016" class="anchor"></a>Example 9.14 (Devore, 2016)</h4>
+<p>On the basis of data reported in the article “Serum Ferritin in an Elderly Population” (J. of Gerontology, 1979: 521-524), the authors concluded that the ferritin distribution in the elderly had a smaller variance than in the younger adults. (Serum ferritin is used in diagnosing iron deficiency.) For a sample of 28 elderly men, the sample standard deviation of serum ferritin (mg/L) was 52.6; for 26 young men, the sample standard deviation was 84.2. Does this data support the conclusion as applied to men?</p>
+<p><br></p>
+<p>In this example we have: <span class="math inline">\(n_x=28\)</span>, <span class="math inline">\(s_x^2=2766.76\)</span>, <span class="math inline">\(n_y=26\)</span>, <span class="math inline">\(s_y^2=7089.64\)</span>. The objective is to test the next hypothesis: <br></p>
+<center>
+<span class="math inline">\(H_0: \sigma_x^2 = \sigma_y^2\)</span> vs <span class="math inline">\(H_a: \sigma_x^2 &lt; \sigma_y^2\)</span>
+</center>
+<p><br></p>
+<center>
+<span class="math inline">\(\sigma_x^2=\)</span> <em>True population variance of serum ferritin in elderly men</em>
+</center>
+<center>
+<span class="math inline">\(\sigma_y^2=\)</span> <em>True population variance of serum ferritin in young men</em>
+</center>
+<p><br></p>
+<p>The code to perform the test with <span class="math inline">\(\alpha=0.01\)</span> significance is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">test8 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/var_test.html">var_test</a></span>(<span class="dt">varx=</span><span class="fl">2766.76</span>, <span class="dt">nx=</span><span class="dv">28</span>, <span class="dt">vary=</span><span class="fl">7089.64</span>, <span class="dt">ny=</span><span class="dv">26</span>, <span class="dt">null.value =</span> <span class="dv">1</span>, <span class="dt">alternative=</span><span class="st">'less'</span>,<span class="dt">conf.level=</span><span class="fl">0.99</span>)
+test8
+## 
+##  F test to compare two variances
+## 
+## data:  varx = 2766.76 , nx = 28 , vary = 7089.64 and ny = 26
+## F = 0.39025, num df = 27, denom df = 25, p-value = 0.00935
+## alternative hypothesis: true ratio of variances is less than 1
+## 99 percent confidence interval:
+##  0.0000000 0.9896927
+## sample estimates:
+## ratio of variances 
+##          0.3902539
+<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(test8, <span class="dt">shade.col=</span><span class="st">'firebrick1'</span>, <span class="dt">col=</span><span class="st">'firebrick1'</span>)</code></pre></div>
+<p><img src="univariate_tests_files/figure-html/unnamed-chunk-11-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><br></p>
+</div>
+</div>
+<div id="f-test-using-var-test-function" class="section level3">
+<h3 class="hasAnchor">
+<a href="#f-test-using-var-test-function" class="anchor"></a>2.4.2) F-test using <code>var.test</code> function</h3>
+<p>The <code>var.test</code> function can be used to solve problems in which we have the raw data as a vector. In the next examples we show how to use this function.</p>
+<div id="exercise-10-77-walpole-2012" class="section level4">
+<h4 class="hasAnchor">
+<a href="#exercise-10-77-walpole-2012" class="anchor"></a>Exercise 10.77 (Walpole, 2012)</h4>
+<p>An experiment was conducted to compare the alcohol content of soy sauce on two different production lines. Production was monitored eight times a day.The data are shown here:</p>
+<p><br></p>
+<center>
+Production line 1: <em>0.48, 0.39, 0.42, 0.52, 0.40, 0.48, 0.52, 0.52</em>
+</center>
+<center>
+Production line 2: <em>0.38, 0.37, 0.39, 0.41, 0.38, 0.39, 0.40, 0.39</em>
+</center>
+<p><br></p>
+<p>Assume both populations are normal. It is suspected that production line 1 is not producing as consistently as production line 2 in terms of alcohol content. Test the hypothesis that <span class="math inline">\(\sigma_1^2 = \sigma_2^2\)</span> against the alternative that <span class="math inline">\(\sigma_1^2 \neq \sigma_2^2\)</span>.</p>
+<p><br></p>
+<p>In this example we have: <span class="math inline">\(n_1=8\)</span>, <span class="math inline">\(n_2=8\)</span>. The objective is to test the next hypothesis: <br></p>
+<center>
+<span class="math inline">\(H_0: \sigma_1^2 = \sigma_2^2\)</span> vs <span class="math inline">\(H_a: \sigma_1^2 \neq \sigma_2^2\)</span>
+</center>
+<p><br></p>
+<center>
+<span class="math inline">\(\sigma_1^2=\)</span> <em>True population variance of alcohol content in Production line 1</em>
+</center>
+<center>
+<span class="math inline">\(\sigma_2^2=\)</span> <em>True population variance of alcohol content in Production line 2</em>
+</center>
+<p><br></p>
+<p>The code to perform the test with <span class="math inline">\(\alpha=0.05\)</span> significance is:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">line1&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.48</span>, <span class="fl">0.39</span>, <span class="fl">0.42</span>, <span class="fl">0.52</span>, <span class="fl">0.40</span>, <span class="fl">0.48</span>, <span class="fl">0.52</span>, <span class="fl">0.52</span>)
+line2&lt;-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.38</span>, <span class="fl">0.37</span>, <span class="fl">0.39</span>, <span class="fl">0.41</span>, <span class="fl">0.38</span>, <span class="fl">0.39</span>, <span class="fl">0.40</span>, <span class="fl">0.39</span>)
+test9 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/var.test.html">var.test</a></span>(<span class="dt">x=</span>line1, <span class="dt">y=</span>line2, <span class="dt">null.value =</span> <span class="dv">1</span>, <span class="dt">alternative=</span><span class="st">'two.sided'</span>)
+test9
+## 
+##  F test to compare two variances
+## 
+## data:  line1  and  line2
+## F = 19.667, num df = 7, denom df = 7, p-value = 0.0008435
+## alternative hypothesis: true ratio of variances is not equal to 1
+## 95 percent confidence interval:
+##   3.937342 98.233215
+## sample estimates:
+## ratio of variances 
+##           19.66667
+<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(test9, <span class="dt">shade.col=</span><span class="st">'firebrick1'</span>, <span class="dt">col=</span><span class="st">'firebrick1'</span>)</code></pre></div>
+<p><img src="univariate_tests_files/figure-html/unnamed-chunk-12-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><br></p>
 </div>
 </div>
 </div>
-<div id="f-test-for-equality-of-variances" class="section level1">
-<h1 class="hasAnchor">
-<a href="#f-test-for-equality-of-variances" class="anchor"></a><span class="math inline">\(F\)</span>-test for equality of variances</h1>
-<p>The objective in this type of problems is to test bla bla bla.</p>
-<div id="f-test-using-var_test-function" class="section level2">
+<div id="references" class="section level2">
 <h2 class="hasAnchor">
-<a href="#f-test-using-var_test-function" class="anchor"></a><span class="math inline">\(F\)</span>-test using <code>var_test</code> function</h2>
-<div id="example-numero-tal-from-fulanito-1256-2" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-numero-tal-from-fulanito-1256-2" class="anchor"></a>Example numero tal from fulanito (1256)</h3>
-<p>Aqui el enunciado de un ejemplo de un libro con respuesta para replicarlos usando la funcion de esta seccion.</p>
-</div>
-</div>
-<div id="f-test-using-var-test-function" class="section level2">
-<h2 class="hasAnchor">
-<a href="#f-test-using-var-test-function" class="anchor"></a><span class="math inline">\(F\)</span>-test using <code>var.test</code> function</h2>
-<div id="example-numero-tal-from-fulanito-1256-3" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-numero-tal-from-fulanito-1256-3" class="anchor"></a>Example numero tal from fulanito (1256)</h3>
-<p>Aqui el enunciado de un ejemplo de un libro con respuesta para replicarlos usando la funcion de esta seccion.</p>
-</div>
-<div id="ejemplo-xxx-de-fulanito-2156-prueba-de-hipotesis-para-el-cociente-de-varianzas-" class="section level3">
-<h3 class="hasAnchor">
-<a href="#ejemplo-xxx-de-fulanito-2156-prueba-de-hipotesis-para-el-cociente-de-varianzas-" class="anchor"></a>Ejemplo xxx de fulanito (2156), prueba de hipotesis para el cociente de varianzas.</h3>
-</div>
-</div>
-</div>
-<div id="references" class="section level1">
-<h1 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h1>
+<a href="#references" class="anchor"></a>3) References</h2>
 <ul>
 <li>Devore, J. L. (2016), Probability and Statistics for engineering and the sciences, Cengage.</li>
 <li>Walpole, R. E., Myers, R. H., Myers, S. L. &amp; Ye, K. (2012), Probability &amp; Statistics for Engineers &amp; Scientists, Prentice Hall.</li>
 <li>Wayne, D. &amp; Chad, C. (2013), BIOSTATISTICS: A Foundation for Analysis in the Health Sciences, Wiley.</li>
-<li>Ugarte, M.L., Militino, A.F., Arnholt, A.T. (2008), Probability and statistics with R, CRC Press.</li>
 </ul>
+<p><br></p>
 </div>
   </div>
 
@@ -390,33 +591,13 @@ res3
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#introduction">Introduction</a></li>
-      <li><a href="#stests-package"><code>stests</code> package</a></li>
-      <li>
-<a href="#z-test-for-population-mean-mu">z-test for population mean <span class="math inline">\(\mu\)</span></a><ul class="nav nav-pills nav-stacked">
-<li><a href="#z-test-using-z_test-function">z-test using <code>z_test</code> function</a></li>
-      <li><a href="#z-test-using-z-test-function">z-test using <code>z.test</code> function</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#t-test-for-population-mean-mu-and-for-the-difference-in-means-mu_1-mu_2">t-test for population mean <span class="math inline">\(\mu\)</span> and for the difference in means <span class="math inline">\(\mu_1-\mu_2\)</span></a><ul class="nav nav-pills nav-stacked">
-<li><a href="#t-test-using-t_test-function">t-test using <code>t_test</code> function</a></li>
-      <li><a href="#t-test-using-t-test-function">t-test using <code>t.test</code> function</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#chi2-test-for-population-variance-sigma2"><span class="math inline">\(\chi^2\)</span>-test for population variance <span class="math inline">\(\sigma^2\)</span></a><ul class="nav nav-pills nav-stacked">
-<li><a href="#chi2-test-using-var_test-function"><span class="math inline">\(\chi^2\)</span>-test using <code>var_test</code> function</a></li>
-      <li><a href="#chi2-test-using-var-test-function"><span class="math inline">\(\chi^2\)</span>-test using <code>var.test</code> function</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#f-test-for-equality-of-variances"><span class="math inline">\(F\)</span>-test for equality of variances</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#f-test-using-var_test-function"><span class="math inline">\(F\)</span>-test using <code>var_test</code> function</a></li>
-      <li><a href="#f-test-using-var-test-function"><span class="math inline">\(F\)</span>-test using <code>var.test</code> function</a></li>
-      </ul>
-</li>
-      <li><a href="#references">References</a></li>
+<li><a href="#introduction">1) Introduction</a></li>
+      <li><a href="#stests-package">2) <code>stests</code> package</a></li>
+      <li><a href="#z-test-for-population-mean-mu">2.1) z-test for population mean <span class="math inline">\(\mu\)</span></a></li>
+      <li><a href="#t-test-for-population-mean-mu-and-for-the-difference-in-means-mu_1-mu_2">2.2) t-test for population mean <span class="math inline">\(\mu\)</span> and for the difference in means <span class="math inline">\(\mu_1-\mu_2\)</span></a></li>
+      <li><a href="#chi2-test-for-population-variance-sigma2">2.3) <span class="math inline">\(\chi^2\)</span>-test for population variance <span class="math inline">\(\sigma^2\)</span></a></li>
+      <li><a href="#f-test-for-equality-of-variances">2.4) F-test for equality of variances</a></li>
+      <li><a href="#references">3) References</a></li>
       </ul>
 </div>
       </div>
@@ -429,7 +610,7 @@ res3
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
 </div>
