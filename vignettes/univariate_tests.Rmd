@@ -344,8 +344,7 @@ In this example we have: $n=10$. The objective is to test the next hypothesis:
  
 <center>$H_0: \sigma^2 = 0.03$ vs $H_a: \sigma^2 \neq 0.03$</center>
 
-where, 
-<<<<<<< HEAD
+<br>
 
 <center>$\sigma^2=$ *True population variance of container content of a particular lubricant*</center>
 
