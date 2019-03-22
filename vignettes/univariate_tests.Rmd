@@ -171,7 +171,6 @@ Also, we can test $H_0: \mu_x-\mu_y = \delta_0$ against:
 - $H_a: \mu_x-\mu_y > \delta_0$, 
 - $H_a: \mu_x-\mu_y < \delta_0$, 
 - $H_a: \mu_x-\mu_y \neq \delta_0$, 
-<<<<<<< HEAD
 
 using the information of two random samples $X_1, X_2, \ldots, X_n$ and $Y_1, Y_2, \ldots, Y_n$, both from populations with normal distributions and with unknown variances $\sigma_1^2$,$\sigma_2^2$.
 
