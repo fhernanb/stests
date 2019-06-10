@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Test for \(\mu\) in a \(Np(\mu, \Sigma)\) — one_mean_vector_test" />
 
-<meta property="og:description" content="This function can be used to test \(H_0: \mu = \mu_0\) versus \(H_1: \mu\) not = \(\mu_0\)." />
+<meta property="og:description" content="This function can be used to test \(H_0: \mu = \mu_0\) versus \(H_1: \mu\) not = \(\mu_0\) under \(\Sigma\) known or unkwon." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -118,7 +118,7 @@
 
     <div class="ref-description">
     
-    <p>This function can be used to test \(H_0: \mu = \mu_0\) versus \(H_1: \mu\) not = \(\mu_0\).</p>
+    <p>This function can be used to test \(H_0: \mu = \mu_0\) versus \(H_1: \mu\) not = \(\mu_0\) under \(\Sigma\) known or unkwon.</p>
     
     </div>
 
@@ -184,13 +184,22 @@
 <span class='no'>x2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>153</span>, <span class='fl'>175</span>, <span class='fl'>155</span>, <span class='fl'>135</span>, <span class='fl'>172</span>, <span class='fl'>150</span>, <span class='fl'>115</span>, <span class='fl'>137</span>, <span class='fl'>200</span>, <span class='fl'>130</span>,
         <span class='fl'>140</span>, <span class='fl'>265</span>, <span class='fl'>185</span>, <span class='fl'>112</span>, <span class='fl'>140</span>, <span class='fl'>150</span>, <span class='fl'>165</span>, <span class='fl'>185</span>, <span class='fl'>210</span>, <span class='fl'>220</span>)
 <span class='no'>dt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='no'>x1</span>, <span class='no'>x2</span>)
-
 <span class='no'>mu0</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>70</span>, <span class='fl'>170</span>)
-<span class='no'>Sigma</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>100</span>,
-                  <span class='fl'>100</span>, <span class='fl'>1000</span>), <span class='kw'>byrow</span><span class='kw'>=</span><span class='fl'>TRUE</span>, <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>2</span>)
+<span class='no'>Sigma</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>100</span>, <span class='fl'>100</span>, <span class='fl'>1000</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>nrow</span><span class='kw'>=</span><span class='fl'>2</span>)
+
 <span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>one_mean_vector_test</span>(<span class='kw'>mu0</span><span class='kw'>=</span><span class='no'>mu0</span>, <span class='kw'>xbar</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colSums'>colMeans</a></span>(<span class='no'>dt</span>),
                              <span class='kw'>n</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/nrow'>nrow</a></span>(<span class='no'>dt</span>), <span class='kw'>Sigma</span><span class='kw'>=</span><span class='no'>Sigma</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>res2</span>, <span class='kw'>from</span><span class='kw'>=</span><span class='fl'>4</span>, <span class='kw'>to</span><span class='kw'>=</span><span class='fl'>10</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'lightpink1'</span>)</div><div class='img'><img src='one_mean_vector_test-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='no'>res2</span></div><div class='output co'>#&gt; 
+#&gt; 	X2 test for mean vector
+#&gt; 
+#&gt; data:  this test uses summarized data
+#&gt; X2 = 8.4026, df = 2, p-value = 0.01498
+#&gt; alternative hypothesis: true mean vector is not equal to (70, 170) 
+#&gt; 
+#&gt; sample estimates:
+#&gt; xbar_1 xbar_2 
+#&gt;  71.45 164.70 
+#&gt; </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>res2</span>, <span class='kw'>from</span><span class='kw'>=</span><span class='fl'>4</span>, <span class='kw'>to</span><span class='kw'>=</span><span class='fl'>10</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'lightpink1'</span>)</div><div class='img'><img src='one_mean_vector_test-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Example 5.2 from Johnson and Wichern (2012) page 214</span>
 <span class='co'># Test H0: mu = (4, 50, 10) versus H1: mu != (4, 50, 10)</span>
 <span class='co'># with unknown Sigma</span>

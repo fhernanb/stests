@@ -1,6 +1,6 @@
 #' Test for \eqn{\mu} in a \eqn{Np(\mu, \Sigma)}
 #'
-#' This function can be used to test \eqn{H_0: \mu = \mu_0} versus \eqn{H_1: \mu} not = \eqn{\mu_0}.
+#' This function can be used to test \eqn{H_0: \mu = \mu_0} versus \eqn{H_1: \mu} not = \eqn{\mu_0} under \eqn{\Sigma} known or unkwon.
 #'
 #' @param mu0 a vector indicating the hypothesized value of the mean.
 #' @param xbar a vector with the sample mean.
@@ -30,12 +30,12 @@
 #' x2 <- c(153, 175, 155, 135, 172, 150, 115, 137, 200, 130,
 #'         140, 265, 185, 112, 140, 150, 165, 185, 210, 220)
 #' dt <- data.frame(x1, x2)
-#'
 #' mu0 <- c(70, 170)
-#' Sigma <- matrix(c(20, 100,
-#'                   100, 1000), byrow=TRUE, ncol=2)
+#' Sigma <- matrix(c(20, 100, 100, 1000), ncol=2, nrow=2)
+#'
 #' res2 <- one_mean_vector_test(mu0=mu0, xbar=colMeans(dt),
 #'                              n=nrow(dt), Sigma=Sigma)
+#' res2
 #' plot(res2, from=4, to=10, shade.col='lightpink1')
 #'
 #' # Example 5.2 from Johnson and Wichern (2012) page 214
