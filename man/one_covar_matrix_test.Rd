@@ -66,3 +66,6 @@ plot(res3, from=0, to=20, shade.col='aquamarine3')
 \seealso{
 \link{one_mean_vector_test} for test \eqn{\mu} in a \eqn{Np(\mu, \Sigma)}.
 }
+\author{
+Freddy Hernandez
+}

@@ -19,6 +19,7 @@
 #'
 #' @seealso \link{one_mean_vector_test} for test \eqn{\mu} in a \eqn{Np(\mu, \Sigma)}.
 #'
+#' @author Freddy Hernandez
 #' @examples
 #' # Example 5.3.2 from Mardia (1979) page 127
 #' # Test H0: Sigma = diag(100, 100) versus H1: Sigma != diag(100, 100)
