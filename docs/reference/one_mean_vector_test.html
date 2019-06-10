@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Test for \(\mu\) in a \(Np(\mu, \Sigma)\) — one_mean_vector_test" />
 
-<meta property="og:description" content="This function can be used to test \(H0: \mu = \mu0\) versus \(H1: \mu\) not = \(\mu0\)." />
+<meta property="og:description" content="This function can be used to test \(H_0: \mu = \mu_0\) versus \(H_1: \mu\) not = \(\mu_0\)." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -118,7 +118,7 @@
 
     <div class="ref-description">
     
-    <p>This function can be used to test \(H0: \mu = \mu0\) versus \(H1: \mu\) not = \(\mu0\).</p>
+    <p>This function can be used to test \(H_0: \mu = \mu_0\) versus \(H_1: \mu\) not = \(\mu_0\).</p>
     
     </div>
 
@@ -156,10 +156,6 @@
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The user must provide only one matrix, S to perform the T2 test or Sigma to perform the X2 test.</p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p>[one_covar_matrix_test()] for test \(\Sigma\) in a \(Np(\mu, \Sigma)\).</p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -210,7 +206,7 @@
 <span class='no'>delivery.x</span> <span class='kw'>&lt;-</span> <span class='no'>delivery</span>[, <span class='fl'>1</span>:<span class='fl'>2</span>]
 
 <span class='co'># Using T2.test from rrcov package</span>
-<span class='fu'>T2.test</span>(<span class='no'>delivery.x</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/rrcov/topics/T2.test'>T2.test</a></span>(<span class='no'>delivery.x</span>)
 
 <span class='fu'>one_mean_vector_test</span>(<span class='kw'>mu0</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>), <span class='kw'>xbar</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/colSums'>colMeans</a></span>(<span class='no'>delivery.x</span>),
                      <span class='kw'>n</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>S</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/cor'>var</a></span>(<span class='no'>delivery.x</span>))
@@ -225,8 +221,6 @@
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

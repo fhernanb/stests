@@ -1,6 +1,6 @@
 #' Test for \eqn{\mu} in a \eqn{Np(\mu, \Sigma)}
 #'
-#' This function can be used to test \eqn{H0: \mu = \mu0} versus \eqn{H1: \mu} not = \eqn{\mu0}.
+#' This function can be used to test \eqn{H_0: \mu = \mu_0} versus \eqn{H_1: \mu} not = \eqn{\mu_0}.
 #'
 #' @param mu0 a vector indicating the hypothesized value of the mean.
 #' @param xbar a vector with the sample mean.
@@ -9,8 +9,6 @@
 #' @param Sigma the matrix \eqn{\Sigma} if known.
 #'
 #' @details The user must provide only one matrix, S to perform the T2 test or Sigma to perform the X2 test.
-#'
-#' @seealso [one_covar_matrix_test()] for test \eqn{\Sigma} in a \eqn{Np(\mu, \Sigma)}.
 #'
 #' @return A list with class \code{"htest"}.
 #' @author Freddy Hernandez

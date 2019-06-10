@@ -21,7 +21,7 @@ one_mean_vector_test(mu0, xbar, n, S = NULL, Sigma = NULL)
 A list with class \code{"htest"}.
 }
 \description{
-This function can be used to test \eqn{H0: \mu = \mu0} versus \eqn{H1: \mu} not = \eqn{\mu0}.
+This function can be used to test \eqn{H_0: \mu = \mu_0} versus \eqn{H_1: \mu} not = \eqn{\mu_0}.
 }
 \details{
 The user must provide only one matrix, S to perform the T2 test or Sigma to perform the X2 test.
@@ -64,9 +64,6 @@ one_mean_vector_test(mu0=c(0, 0), xbar=colMeans(delivery.x),
                      n=25, S=var(delivery.x))
 }
 
-}
-\seealso{
-[one_covar_matrix_test()] for test \eqn{\Sigma} in a \eqn{Np(\mu, \Sigma)}.
 }
 \author{
 Freddy Hernandez

@@ -77,7 +77,7 @@
       <h1>D-value</h1>
                         <h4 class="author">Freddy Hernandez and Karen Rivera</h4>
             
-            <h4 class="date">2019-03-22</h4>
+            <h4 class="date">2019-06-10</h4>
       
       
       <div class="hidden name"><code>d_value.Rmd</code></div>
@@ -90,22 +90,22 @@
 <h1 class="hasAnchor">
 <a href="#p-value-for-example-1-of-demidenko-2016" class="anchor"></a>P-value for example 1 of Demidenko (2016)</h1>
 <p>In this section we will replicate the example 1 of Demidenko (2016) using the function <code>t_test</code> of the package ‘stests’ as shown below.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(stests)
-
-<span class="kw"><a href="../reference/t_test.html">t_test</a></span>(<span class="dt">meanx=</span><span class="dv">249</span>, <span class="dt">varx=</span><span class="dv">20</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">nx=</span><span class="dv">10000</span>,
-       <span class="dt">meany=</span><span class="dv">250</span>, <span class="dt">vary=</span><span class="dv">20</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">ny=</span><span class="dv">10000</span>,
-       <span class="dt">alternative=</span><span class="st">'less'</span>, <span class="dt">mu=</span><span class="dv">0</span>, <span class="dt">var.equal=</span><span class="ot">TRUE</span>)
-## 
-##  Two Sample t-test
-## 
-## data:  meanx = 249 , nx = 10000 , meany = 250 and ny = 10000
-## t = -3.5355, df = 19998, p-value = 0.0002039
-## alternative hypothesis: true difference in means is less than 0
-## 95 percent confidence interval:
-##        -Inf -0.5347436
-## sample estimates:
-## mean of x mean of y 
-##       249       250</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(stests)</a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="../reference/t_test.html">t_test</a></span>(<span class="dt">meanx=</span><span class="dv">249</span>, <span class="dt">varx=</span><span class="dv">20</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">nx=</span><span class="dv">10000</span>,</a>
+<a class="sourceLine" id="cb1-4" title="4">       <span class="dt">meany=</span><span class="dv">250</span>, <span class="dt">vary=</span><span class="dv">20</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">ny=</span><span class="dv">10000</span>,</a>
+<a class="sourceLine" id="cb1-5" title="5">       <span class="dt">alternative=</span><span class="st">'less'</span>, <span class="dt">mu=</span><span class="dv">0</span>, <span class="dt">var.equal=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb1-6" title="6"><span class="co">## </span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="co">##  Two Sample t-test</span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="co">## </span></a>
+<a class="sourceLine" id="cb1-9" title="9"><span class="co">## data:  meanx = 249 , nx = 10000 , meany = 250 and ny = 10000</span></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="co">## t = -3.5355, df = 19998, p-value = 0.0002039</span></a>
+<a class="sourceLine" id="cb1-11" title="11"><span class="co">## alternative hypothesis: true difference in means is less than 0</span></a>
+<a class="sourceLine" id="cb1-12" title="12"><span class="co">## 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="co">##        -Inf -0.5347436</span></a>
+<a class="sourceLine" id="cb1-14" title="14"><span class="co">## sample estimates:</span></a>
+<a class="sourceLine" id="cb1-15" title="15"><span class="co">## mean of x mean of y </span></a>
+<a class="sourceLine" id="cb1-16" title="16"><span class="co">##       249       250</span></a></code></pre></div>
 <p>The results obtained by the function <code>t_test</code> are the same obtained by Demidenko</p>
 </div>
 <div id="how-does-the-sample-size-n-of-each-group-influence-the-p-value" class="section level1">
@@ -118,20 +118,20 @@
 <h1 class="hasAnchor">
 <a href="#p-value-for-example-2-of-demidenko-2016" class="anchor"></a>P-value for example 2 of Demidenko (2016)</h1>
 <p>In this section we will replicate the example 2 of Demidenko (2016) using the function <code>t_test</code> of the package ‘stests’ as shown below.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/t_test.html">t_test</a></span>(<span class="dt">meanx=</span><span class="dv">15</span>, <span class="dt">varx=</span><span class="dv">6</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">nx=</span><span class="dv">7</span>,
-       <span class="dt">meany=</span><span class="dv">10</span>, <span class="dt">vary=</span><span class="dv">6</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">ny=</span><span class="dv">7</span>,
-       <span class="dt">alternative=</span><span class="st">'greater'</span>, <span class="dt">mu=</span><span class="dv">0</span>, <span class="dt">var.equal=</span><span class="ot">TRUE</span>)
-## 
-##  Two Sample t-test
-## 
-## data:  meanx = 15 , nx = 7 , meany = 10 and ny = 7
-## t = 1.559, df = 12, p-value = 0.07248
-## alternative hypothesis: true difference in means is greater than 0
-## 95 percent confidence interval:
-##  -0.7160366        Inf
-## sample estimates:
-## mean of x mean of y 
-##        15        10</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="../reference/t_test.html">t_test</a></span>(<span class="dt">meanx=</span><span class="dv">15</span>, <span class="dt">varx=</span><span class="dv">6</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">nx=</span><span class="dv">7</span>,</a>
+<a class="sourceLine" id="cb2-2" title="2">       <span class="dt">meany=</span><span class="dv">10</span>, <span class="dt">vary=</span><span class="dv">6</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">ny=</span><span class="dv">7</span>,</a>
+<a class="sourceLine" id="cb2-3" title="3">       <span class="dt">alternative=</span><span class="st">'greater'</span>, <span class="dt">mu=</span><span class="dv">0</span>, <span class="dt">var.equal=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="co">## </span></a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="co">##  Two Sample t-test</span></a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="co">## </span></a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="co">## data:  meanx = 15 , nx = 7 , meany = 10 and ny = 7</span></a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="co">## t = 1.559, df = 12, p-value = 0.07248</span></a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="co">## alternative hypothesis: true difference in means is greater than 0</span></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co">## 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb2-11" title="11"><span class="co">##  -0.7160366        Inf</span></a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="co">## sample estimates:</span></a>
+<a class="sourceLine" id="cb2-13" title="13"><span class="co">## mean of x mean of y </span></a>
+<a class="sourceLine" id="cb2-14" title="14"><span class="co">##        15        10</span></a></code></pre></div>
 <p>We see that the statistics coincide with what is obtained in the article, the value of P within the function <code>t_test</code> is calculated with a <span class="math inline">\(t\)</span>-student distribution whereas in the article it is obtained through the normal distribution, on the other hand, the size of the sample is small (<span class="math inline">\(n=6\)</span>) because of this is the difference between the methods.</p>
 </div>
 <div id="how-does-the-sample-size-of-each-group-influence-the-p-value" class="section level1">
@@ -157,40 +157,40 @@
 </li>
 </ul>
 <p>The function <code>d_meantest</code> presented below is to calculate the D-value by simulation for the case of comparison of two means from normal populations.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(stests)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/args">args</a></span>(d_meantest)
-## function (meanx, varx, meany, vary, alternative = "less", nrep = 1e+06) 
-## NULL</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">require</a></span>(stests)</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/args">args</a></span>(d_meantest)</a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="co">## function (meanx, varx, meany, vary, alternative = "less", nrep = 1e+06) </span></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="co">## NULL</span></a></code></pre></div>
 </div>
 <div id="d-value-for-example-1-of-demidenko-2016" class="section level1">
 <h1 class="hasAnchor">
 <a href="#d-value-for-example-1-of-demidenko-2016" class="anchor"></a>D-value for example 1 of Demidenko (2016)</h1>
 <p>We will replicate the example 1 of Demidenko (2016) using the function <code>d_meantest</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw"><a href="../reference/d_meantest.html">d_meantest</a></span>(<span class="dt">meanx=</span><span class="dv">250</span>,<span class="dt">meany=</span><span class="dv">249</span>, <span class="dt">varx=</span><span class="dv">20</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">vary=</span><span class="dv">20</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">alternative=</span><span class="st">'less'</span>)
-## 
-##  Two Sample d.test
-## 
-## data:  The D-value was calculated using nrep= 1e+06
-## d.value = 0.48573
-## alternative hypothesis: less
-## sample estimates:
-## mean of x mean of y 
-##       250       249</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"> <span class="kw"><a href="../reference/d_meantest.html">d_meantest</a></span>(<span class="dt">meanx=</span><span class="dv">250</span>,<span class="dt">meany=</span><span class="dv">249</span>, <span class="dt">varx=</span><span class="dv">20</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">vary=</span><span class="dv">20</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">alternative=</span><span class="st">'less'</span>)</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="co">## </span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co">##  Two Sample d.test</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">## </span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co">## data:  The D-value was calculated using nrep= 1e+06</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">## d.value = 0.48553</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">## alternative hypothesis: less</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co">## sample estimates:</span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">## mean of x mean of y </span></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="co">##       250       249</span></a></code></pre></div>
 </div>
 <div id="d-value-for-the-example-2-of-demidenko-2016" class="section level1">
 <h1 class="hasAnchor">
 <a href="#d-value-for-the-example-2-of-demidenko-2016" class="anchor"></a>D-value for the example 2 of Demidenko (2016)</h1>
 <p>We will replicate the example 2 of Demidenko (2016) using the function <code>d_meantest</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/d_meantest.html">d_meantest</a></span>(<span class="dt">meanx=</span><span class="dv">10</span>, <span class="dt">meany=</span><span class="dv">15</span>, <span class="dt">varx =</span><span class="dv">6</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">vary=</span><span class="dv">6</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">alternative=</span><span class="st">'less'</span>)
-## 
-##  Two Sample d.test
-## 
-## data:  The D-value was calculated using nrep= 1e+06
-## d.value = 0.72248
-## alternative hypothesis: less
-## sample estimates:
-## mean of x mean of y 
-##        10        15</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="../reference/d_meantest.html">d_meantest</a></span>(<span class="dt">meanx=</span><span class="dv">10</span>, <span class="dt">meany=</span><span class="dv">15</span>, <span class="dt">varx =</span><span class="dv">6</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">vary=</span><span class="dv">6</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">alternative=</span><span class="st">'less'</span>)</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="co">## </span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="co">##  Two Sample d.test</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="co">## </span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="co">## data:  The D-value was calculated using nrep= 1e+06</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="co">## d.value = 0.72166</span></a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="co">## alternative hypothesis: less</span></a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="co">## sample estimates:</span></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="co">## mean of x mean of y </span></a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="co">##        10        15</span></a></code></pre></div>
 </div>
 <div id="how-to-change-the-d-value-for-the-different-values-of-barx-y-bary" class="section level1">
 <h1 class="hasAnchor">
