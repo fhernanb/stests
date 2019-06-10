@@ -2,13 +2,13 @@
 #'
 #' This function can be used to test \eqn{H_0: \mu = \mu_0} versus \eqn{H_1: \mu} not = \eqn{\mu_0} under \eqn{\Sigma} known or unkwon.
 #'
-#' @param mu0 a vector indicating the hypothesized value of the mean.
+#' @param mu0 a vector indicating the hypothesized value of \eqn{\mu}.
 #' @param xbar a vector with the sample mean.
 #' @param n sample size.
 #' @param S a matrix with sample variances and covariances.
 #' @param Sigma the matrix \eqn{\Sigma} if known.
 #'
-#' @details The user must provide only one matrix, S to perform the T2 test or Sigma to perform the X2 test.
+#' @details The user must provide only one matrix, S to perform the T2 test or \eqn{\Sigma} to perform the X2 test. When \eqn{\Sigma} is unkwon, T2 is perform and two values are provided in the print output, the T2 and F value.
 #'
 #' @return A list with class \code{"htest"}.
 #' @author Freddy Hernandez
