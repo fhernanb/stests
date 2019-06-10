@@ -10,7 +10,16 @@
 #'
 #' @details The user must provide only one matrix, S to perform the T2 test or \eqn{\Sigma} to perform the X2 test. When \eqn{\Sigma} is unkwon, T2 is perform and two values are provided in the print output, the T2 and F value.
 #'
-#' @return A list with class \code{"htest"}.
+#' @seealso \link{one_covar_matrix_test} for test \eqn{\Sigma} in a \eqn{Np(\mu, \Sigma)}.
+#'
+#' @return A list with class \code{"htest"} containing the following components:
+#' \item{statistic}{the value of the statistic.}
+#' \item{parameter}{the degrees of freedom for the test.}
+#' \item{p.value}{the p-value for the test.}
+#' \item{estimate}{the estimated covariance matrix S.}
+#' \item{alternative}{a character string describing the alternative hypothesis.}
+#' \item{method}{a character string indicating what type of test was performed.}
+#'
 #' @author Freddy Hernandez
 #' @examples
 #' # Example 5.2.2 from Rencher & Christensen (2012) page 127

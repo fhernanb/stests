@@ -1,9 +1,9 @@
 #' Test for \eqn{\Sigma} in a \eqn{Np(\mu, \Sigma)}
 #'
-#' This function can be used to test \eqn{H0: \Sigma = \Sigma0} versus \eqn{H1: \Sigma} not = \eqn{\Sigma0}.
+#' This function can be used to test \eqn{H_0: \Sigma = \Sigma_0} versus \eqn{H_1: \Sigma} not = \eqn{\Sigma_0}.
 #'
 #' @param Sigma0 a matrix indicating the hypothesized value of the covariance matrix \eqn{\Sigma}.
-#' @param S a matrix with the sample variances matrix.
+#' @param S a matrix with sample variances and covariances.
 #' @param n sample size.
 #' @param method a character string specifying the method, it must be one of \code{"lrt"} (default), \code{"modlrt1"} (modified LRT test) or \code{"modlrt2"} (modified LRT test for moderate \code{"n"}). You can specify just the initial letter. See details.
 #'
@@ -15,9 +15,9 @@
 #' \item{method}{a character string indicating the type of test performed.}
 #'
 #' @details
-#' When \code{method="lrt"} (default) the function performs the LRT test given in Mardia et. al (1979),page 126, expression 5.2.7. For \code{method="modlrt1"} or \code{method="modlrt2"} the function performs the LRT test given in Rencher and Christensen (2012), page 260, expressions 7.2 and 7.4.
+#' When \code{method="lrt"} (default) the function performs the LRT test given in Mardia et. al (1979), page 126, expression 5.2.7. For \code{method="modlrt1"} or \code{method="modlrt2"} the function performs the LRT test given in Rencher and Christensen (2012), page 260, expressions 7.2 and 7.4.
 #'
-#' @seealso [one_mean_vector_test()] for test \eqn{\mu} in a \eqn{Np(\mu, \Sigma)}.
+#' @seealso \link{one_mean_vector_test} for test \eqn{\mu} in a \eqn{Np(\mu, \Sigma)}.
 #'
 #' @examples
 #' # Example 5.3.2 from Mardia (1979) page 127

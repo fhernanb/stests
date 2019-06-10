@@ -9,7 +9,7 @@ one_covar_matrix_test(Sigma0, S, n, method = "lrt")
 \arguments{
 \item{Sigma0}{a matrix indicating the hypothesized value of the covariance matrix \eqn{\Sigma}.}
 
-\item{S}{a matrix with the sample variances matrix.}
+\item{S}{a matrix with sample variances and covariances.}
 
 \item{n}{sample size.}
 
@@ -24,10 +24,10 @@ A list with class \code{"htest"} containing the following components:
 \item{method}{a character string indicating the type of test performed.}
 }
 \description{
-This function can be used to test \eqn{H0: \Sigma = \Sigma0} versus \eqn{H1: \Sigma} not = \eqn{\Sigma0}.
+This function can be used to test \eqn{H_0: \Sigma = \Sigma_0} versus \eqn{H_1: \Sigma} not = \eqn{\Sigma_0}.
 }
 \details{
-When \code{method="lrt"} (default) the function performs the LRT test given in Mardia et. al (1979),page 126, expression 5.2.7. For \code{method="modlrt1"} or \code{method="modlrt2"} the function performs the LRT test given in Rencher and Christensen (2012), page 260, expressions 7.2 and 7.4.
+When \code{method="lrt"} (default) the function performs the LRT test given in Mardia et. al (1979), page 126, expression 5.2.7. For \code{method="modlrt1"} or \code{method="modlrt2"} the function performs the LRT test given in Rencher and Christensen (2012), page 260, expressions 7.2 and 7.4.
 }
 \examples{
 # Example 5.3.2 from Mardia (1979) page 127
@@ -64,5 +64,5 @@ plot(res3, from=0, to=20, shade.col='aquamarine3')
 
 }
 \seealso{
-[one_mean_vector_test()] for test \eqn{\mu} in a \eqn{Np(\mu, \Sigma)}.
+\link{one_mean_vector_test} for test \eqn{\mu} in a \eqn{Np(\mu, \Sigma)}.
 }
