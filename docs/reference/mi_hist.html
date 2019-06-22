@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • stests</title>
+<title>Crea un histograma rosado — mi_hist • stests</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Crea un histograma rosado — mi_hist" />
+
+<meta property="og:description" content="Sirve para construir un histograma de una muestra de una poblacion normal." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -50,7 +52,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -107,120 +109,51 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Crea un histograma rosado</h1>
+    
+    <div class="hidden name"><code>mi_hist.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Sirve para construir un histograma de una muestra de una poblacion normal.</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="d.meantest.html">d.meantest()</a></code> </p>
-        </td>
-        <td><p>D-value for hypothesis test using vectors</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="d_meantest.html">d_meantest()</a></code> </p>
-        </td>
-        <td><p>D-value for hypothesis test using values</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mi_hist.html">mi_hist()</a></code> </p>
-        </td>
-        <td><p>Crea un histograma rosado</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mvn_test.html">mvn_test()</a></code> </p>
-        </td>
-        <td><p>Modified Nel and Van der Merwe test</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="one_covar_matrix_test.html">one_covar_matrix_test()</a></code> </p>
-        </td>
-        <td><p>Test for \(\Sigma\) in a \(Np(\mu, \Sigma)\)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="one_mean_vector_test.html">one_mean_vector_test()</a></code> </p>
-        </td>
-        <td><p>Test for \(\mu\) in a \(Np(\mu, \Sigma)\)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.htest.html">plot(<i>&lt;htest&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>To plot p-value area</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="shade.dist.html">shade.dist()</a></code> </p>
-        </td>
-        <td><p>Shade for continuous distributions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="shade.norm.html">shade.norm()</a></code> <code><a href="shade.norm.html">shade.t()</a></code> <code><a href="shade.norm.html">shade.F()</a></code> <code><a href="shade.norm.html">shade.chi()</a></code> </p>
-        </td>
-        <td><p>Shading functions for interpretation of pdf probabilities</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="t_test.html">t_test()</a></code> </p>
-        </td>
-        <td><p>Student's t-Test using values</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="var.test.html">var.test()</a></code> </p>
-        </td>
-        <td><p>Variance test using vectors</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="var_test.html">var_test()</a></code> </p>
-        </td>
-        <td><p>Variance test using values</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="z.test.html">z.test()</a></code> </p>
-        </td>
-        <td><p>Mean test using vector</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="z_test.html">z_test()</a></code> </p>
-        </td>
-        <td><p>Mean test using values</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>mi_hist</span>(<span class='no'>n</span>, <span class='no'>media</span>, <span class='no'>varianza</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>n</th>
+      <td><p>tamano de muestra.</p></td>
+    </tr>
+    <tr>
+      <th>media</th>
+      <td><p>es la media de la poblacion.</p></td>
+    </tr>
+    <tr>
+      <th>varianza</th>
+      <td><p>es la varianza de la poblacion.</p></td>
+    </tr>
     </table>
-  </div>
+    
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>mi_hist</span>(<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>10</span>, <span class='kw'>media</span><span class='kw'>=</span><span class='fl'>15</span>, <span class='kw'>varianza</span><span class='kw'>=</span><span class='fl'>3</span>)</div><div class='img'><img src='mi_hist-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>mi_hist</span>(<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>100</span>, <span class='kw'>media</span><span class='kw'>=</span><span class='fl'>45</span>, <span class='kw'>varianza</span><span class='kw'>=</span><span class='fl'>12</span>)</div><div class='img'><img src='mi_hist-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+            
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 
