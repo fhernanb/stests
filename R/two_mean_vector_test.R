@@ -68,3 +68,34 @@ two_mean_vector_test_T2 <- function(xbar1, Sigma1, n1,
   return(list(sp=sp, T2=T2, p.value=p.value,
               critic.value=critic.value))
 }
+#' @importFrom stats pf qf
+two_mean_vector_test_james <- function(xbar1, Sigma1, n1,
+                                       xbar2, Sigma2, n2,
+                                       delta0=NULL, alpha=0.05) {
+  p <- ncol(Sigma1)
+  xbar1 <- matrix(xbar1, ncol=1)
+  xbar2 <- matrix(xbar2, ncol=1)
+
+  S1 <- Sigma1/n1 # Represents S1 tilde
+  S2 <- Sigma2/n2 # Represents S2 tilde
+  S <- S1 + S2    # Represents S tilde
+
+  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
+  T2 <- as.numeric(T2)
+
+  # To obtain delta
+  Sinv <- solve(S)
+  b1 <- Sinv %*% S1
+  b2 <- Sinv %*% S2
+  trb1 <- sum(diag(b1))
+  trb2 <- sum(diag(b2))
+  A <- 1 + (trb1^2/(n1 - 1) + trb2^2/(n2 - 1))/(2 * p)
+  B <- (sum(b1^2)/(n1 - 1) + sum(b2^2)/(n2 - 1) + 0.5 *
+          trb1^2/(n1 - 1) + 0.5 * trb2^2/(n2 - 1))/(p * (p + 2))
+  x2 <- qchisq(1 - alpha, p)
+  delta <- (A + B * x2)
+  twoha <- x2 * delta
+  p.value <- pchisq(q=T2/delta, df=p, lower.tail=FALSE)
+
+  return(list(T2=T2, p.value=p.value))
+}
