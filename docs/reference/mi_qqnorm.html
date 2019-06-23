@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>To plot p-value area — plot.htest • stests</title>
+<title>Crea un grafico qqnorm — mi_qqnorm • stests</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="To plot p-value area — plot.htest" />
+<meta property="og:title" content="Crea un grafico qqnorm — mi_qqnorm" />
 
-<meta property="og:description" content="This is a generic function to depict the p-value area for a object with class htest." />
+<meta property="og:description" content="Sirve para explorar la normalidad de una muestra mediante un gráfico cuantil cuantil" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -111,87 +111,46 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>To plot p-value area</h1>
+    <h1>Crea un grafico qqnorm</h1>
     
-    <div class="hidden name"><code>plot.htest.Rd</code></div>
+    <div class="hidden name"><code>mi_qqnorm.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This is a generic function to depict the p-value area for a object with class <code>htest</code>.</p>
+    <p>Sirve para explorar la normalidad de una muestra mediante un gráfico cuantil cuantil</p>
     
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for htest</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>shade.col</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>0.8</span>,
-  <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>mi_qqnorm</span>(<span class='no'>n</span>, <span class='no'>media</span>, <span class='no'>varianza</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>Object of class &#8220;htest&#8221;.</p></td>
+      <th>n</th>
+      <td><p>tamano de muestra</p></td>
     </tr>
     <tr>
-      <th>col</th>
-      <td><p>color for the observed statistic.</p></td>
+      <th>media</th>
+      <td><p>media de la poblacion</p></td>
     </tr>
     <tr>
-      <th>shade.col</th>
-      <td><p>color for the shaded area.</p></td>
-    </tr>
-    <tr>
-      <th>cex</th>
-      <td><p>a numerical value giving the amount by which plotting the p-value.</p></td>
-    </tr>
-    <tr>
-      <th>from</th>
-      <td><p>the minimum value of the X-axis.</p></td>
-    </tr>
-    <tr>
-      <th>to</th>
-      <td><p>the maximum value of the X-axis.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Other plotting parameters to affect the plot.</p></td>
+      <th>varianza</th>
+      <td><p>varianza de la poblacion</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>None. Function produces a plot.</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># Example</span>
-<span class='co'># H0: mu = 170</span>
-<span class='co'># Ha: mu != 170 with sigma2=25</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>80</span>, <span class='kw'>mean</span><span class='kw'>=</span><span class='fl'>171</span>, <span class='kw'>sd</span><span class='kw'>=</span><span class='fl'>5</span>)
-<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='z.test.html'>z.test</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>x</span>, <span class='kw'>mu</span><span class='kw'>=</span><span class='fl'>170</span>, <span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'two.sided'</span>)
-<span class='no'>res</span></div><div class='output co'>#&gt; 
-#&gt; 	One Sample z-test
-#&gt; 
-#&gt; data:  x
-#&gt; Z = 1.3264, p-value = 0.1847
-#&gt; alternative hypothesis: true mean is not equal to 170
-#&gt; 95 percent confidence interval:
-#&gt;  169.6458 171.8371
-#&gt; sample estimates:
-#&gt; mean of x 
-#&gt;  170.7415 
-#&gt; </div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='no'>res</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'tomato'</span>)</div><div class='img'><img src='plot.htest-1.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='fu'>mi_qqnorm</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>media</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>varianza</span> <span class='kw'>=</span> <span class='fl'>4</span>)</div><div class='img'><img src='mi_qqnorm-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'>mi_qqnorm</span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>media</span> <span class='kw'>=</span> <span class='fl'>25</span>, <span class='kw'>varianza</span> <span class='kw'>=</span> <span class='fl'>12</span>)</div><div class='img'><img src='mi_qqnorm-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 
