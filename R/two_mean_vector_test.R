@@ -17,8 +17,8 @@
 #' @author Freddy Hernandez
 #' @examples
 #' # Ejemplo 3.5.2 de Diaz y Morales (2005).
-#' Valentina y Jean Paul, debemos buscar mejor un ejemplo
-#' de un libro en ingles.
+#' # Valentina y Jean Paul, debemos buscar mejor un ejemplo
+#' # de un libro en ingles.
 #' x1_barra <- c(15.97, 15.91, 27.19, 22.75)
 #' x2_barra <- c(12.34, 13.91, 16.59, 21.94)
 #' s1 <- matrix(c(5.192, 4.545, 6.522, 5.25, 4.545, 13.184, 6.76, 6.266, 6.522,
