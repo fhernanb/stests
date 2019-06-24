@@ -46,6 +46,17 @@ s2 <- matrix(c(9.136, 7.549, 5.531, 4.151, 7.549, 18.6, 5.446, 5.446, 5.531,
 two_mean_vector_test(xbar1=x1_barra, Sigma1=s1, n1=32,
                      xbar2=x2_barra, Sigma2=s2, n2=32)
 
+# Example 5.4.2 from Rencher & Christensen (2012) page 137.
+x1_barra <- c(15.97, 15.91, 27.19, 22.75)
+x2_barra <- c(12.34, 13.91, 16.66, 21.94)
+s1 <- matrix(c(5.192, 4.545, 6.522, 5.25, 4.545, 13.18, 6.76, 6.266, 6.522,
+               6.76, 28.67, 14.47, 5.25, 6.266, 14.47, 16.65), ncol = 4)
+s2 <- matrix(c(9.136, 7.549, 4.864, 4.151, 7.549, 18.6, 10.22, 5.446, 4.864,
+               10.22, 30.04, 13.49, 4.151, 5.446, 13.49, 28), ncol = 4)
+
+two_mean_vector_test(xbar1=x1_barra, Sigma1=s1, n1=32,
+                     xbar2=x2_barra, Sigma2=s2, n2=32, alpha = 0.01)
+
 }
 \author{
 Freddy Hernandez
