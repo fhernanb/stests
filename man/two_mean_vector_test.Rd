@@ -2,7 +2,7 @@
 % Please edit documentation in R/two_mean_vector_test.R
 \name{two_mean_vector_test}
 \alias{two_mean_vector_test}
-\title{prueba de hipotesis para}
+\title{Test for two mean vectors}
 \usage{
 two_mean_vector_test(xbar1, Sigma1, n1, xbar2, Sigma2, n2, delta0 = NULL,
   alpha = 0.05, method = "T2")
@@ -56,6 +56,19 @@ s2 <- matrix(c(9.136, 7.549, 4.864, 4.151, 7.549, 18.6, 10.22, 5.446, 4.864,
 
 two_mean_vector_test(xbar1=x1_barra, Sigma1=s1, n1=32,
                      xbar2=x2_barra, Sigma2=s2, n2=32, alpha = 0.01)
+
+# Example 3.7 from Seber (1984) page 116.
+# using the James first order test (1954).
+n1 <- 16
+xb1 <- c(9.82, 15.06)
+s1 <- matrix(c(120, -16.3, -16.3, 17.8), ncol = 2)
+
+n2 <- 11
+xb2 <- c(13.05, 22.57)
+s2 <- matrix(c(81.8, 32.1, 32.1, 53.8), ncol = 2)
+two_mean_vector_test(xbar1 = xb1, Sigma1 = s1, n1 = n1,
+                     xbar2 = xb2, Sigma2 = s2, n2 = n2,
+                     method = 'james')
 
 }
 \author{
