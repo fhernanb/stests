@@ -199,6 +199,31 @@
 #&gt; $critic.value
 #&gt; [1] 10.62578
 #&gt; </div><div class='input'>
+<span class='co'># Example 5.4.2 from Rencher &amp; Christensen (2012) page 137.</span>
+<span class='no'>x1_barra</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>15.97</span>, <span class='fl'>15.91</span>, <span class='fl'>27.19</span>, <span class='fl'>22.75</span>)
+<span class='no'>x2_barra</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>12.34</span>, <span class='fl'>13.91</span>, <span class='fl'>16.66</span>, <span class='fl'>21.94</span>)
+<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>5.192</span>, <span class='fl'>4.545</span>, <span class='fl'>6.522</span>, <span class='fl'>5.25</span>, <span class='fl'>4.545</span>, <span class='fl'>13.18</span>, <span class='fl'>6.76</span>, <span class='fl'>6.266</span>, <span class='fl'>6.522</span>,
+               <span class='fl'>6.76</span>, <span class='fl'>28.67</span>, <span class='fl'>14.47</span>, <span class='fl'>5.25</span>, <span class='fl'>6.266</span>, <span class='fl'>14.47</span>, <span class='fl'>16.65</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+<span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>9.136</span>, <span class='fl'>7.549</span>, <span class='fl'>4.864</span>, <span class='fl'>4.151</span>, <span class='fl'>7.549</span>, <span class='fl'>18.6</span>, <span class='fl'>10.22</span>, <span class='fl'>5.446</span>, <span class='fl'>4.864</span>,
+               <span class='fl'>10.22</span>, <span class='fl'>30.04</span>, <span class='fl'>13.49</span>, <span class='fl'>4.151</span>, <span class='fl'>5.446</span>, <span class='fl'>13.49</span>, <span class='fl'>28</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+
+<span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span><span class='kw'>=</span><span class='no'>x1_barra</span>, <span class='kw'>Sigma1</span><span class='kw'>=</span><span class='no'>s1</span>, <span class='kw'>n1</span><span class='kw'>=</span><span class='fl'>32</span>,
+                     <span class='kw'>xbar2</span><span class='kw'>=</span><span class='no'>x2_barra</span>, <span class='kw'>Sigma2</span><span class='kw'>=</span><span class='no'>s2</span>, <span class='kw'>n2</span><span class='kw'>=</span><span class='fl'>32</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.01</span>)</div><div class='output co'>#&gt; $sp
+#&gt;        [,1]   [,2]   [,3]    [,4]
+#&gt; [1,] 7.1640  6.047  5.693  4.7005
+#&gt; [2,] 6.0470 15.890  8.490  5.8560
+#&gt; [3,] 5.6930  8.490 29.355 13.9800
+#&gt; [4,] 4.7005  5.856 13.980 22.3250
+#&gt; 
+#&gt; $T2
+#&gt; [1] 97.67827
+#&gt; 
+#&gt; $p.value
+#&gt; [1] 1.444111e-11
+#&gt; 
+#&gt; $critic.value
+#&gt; [1] 15.36323
+#&gt; </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
