@@ -22,7 +22,7 @@ two_mean_vector_test(xbar1, Sigma1, n1, xbar2, Sigma2, n2, delta0 = NULL,
 
 \item{delta0}{que es esto}
 
-\item{alpha}{yo creo que este parametro lo debemos quita, que opinan?}
+\item{alpha}{yo creo que este parametro lo debemos quitar, que opinan?}
 
 \item{method}{tipo de prueba de hipotesis a usar. Las opciones disponibles son T2, bla bla. Por defecto es T2.}
 }
@@ -33,29 +33,16 @@ por ahora retorna una lista de cosas, debemos hacer que la salida sea htest y qu
 This function implements the test for \eqn{H0: \mu 1 = \mu 2} versus \eqn{H1: \mu1} not = \eqn{\mu2}. Muchachos, por favor revisar si los argumentos estan bien escritos.
 }
 \examples{
-# Ejemplo 3.5.2 de Diaz y Morales (2005).
-# Valentina y Jean Paul, debemos buscar mejor un ejemplo
-# de un libro en ingles.
-x1_barra <- c(15.97, 15.91, 27.19, 22.75)
-x2_barra <- c(12.34, 13.91, 16.59, 21.94)
-s1 <- matrix(c(5.192, 4.545, 6.522, 5.25, 4.545, 13.184, 6.76, 6.266, 6.522,
-               6.76, 28.67, 14.468, 5.25, 6.266, 14.468, 16.645), ncol = 4)
-s2 <- matrix(c(9.136, 7.549, 5.531, 4.151, 7.549, 18.6, 5.446, 5.446, 5.531,
-               5.446, 13.55, 13.55, 4.151, 5.446, 13.55, 28), ncol = 4)
-
-two_mean_vector_test(xbar1=x1_barra, Sigma1=s1, n1=32,
-                     xbar2=x2_barra, Sigma2=s2, n2=32)
-
 # Example 5.4.2 from Rencher & Christensen (2012) page 137.
-x1_barra <- c(15.97, 15.91, 27.19, 22.75)
-x2_barra <- c(12.34, 13.91, 16.66, 21.94)
+x1bar <- c(15.97, 15.91, 27.19, 22.75)
+x2bar <- c(12.34, 13.91, 16.66, 21.94)
 s1 <- matrix(c(5.192, 4.545, 6.522, 5.25, 4.545, 13.18, 6.76, 6.266, 6.522,
                6.76, 28.67, 14.47, 5.25, 6.266, 14.47, 16.65), ncol = 4)
 s2 <- matrix(c(9.136, 7.549, 4.864, 4.151, 7.549, 18.6, 10.22, 5.446, 4.864,
                10.22, 30.04, 13.49, 4.151, 5.446, 13.49, 28), ncol = 4)
 
-two_mean_vector_test(xbar1=x1_barra, Sigma1=s1, n1=32,
-                     xbar2=x2_barra, Sigma2=s2, n2=32, alpha = 0.01)
+two_mean_vector_test(xbar1=x1bar, Sigma1=s1, n1=32,
+                     xbar2=x2bar, Sigma2=s2, n2=32, alpha = 0.01)
 
 # Example 3.7 from Seber (1984) page 116.
 # using the James first order test (1954).
