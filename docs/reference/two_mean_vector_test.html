@@ -130,39 +130,39 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>xbar1</th>
-      <td><p>a vector with the sample mean from population 1.</p></td>
+      <td><p>A vector with the sample mean from population 1.</p></td>
     </tr>
     <tr>
       <th>Sigma1</th>
-      <td><p>a matrix with sample variances and covariances from population 1.</p></td>
+      <td><p>A matrix with sample variances and covariances from population 1.</p></td>
     </tr>
     <tr>
       <th>n1</th>
-      <td><p>sample size 1.</p></td>
+      <td><p>Sample size 1.</p></td>
     </tr>
     <tr>
       <th>xbar2</th>
-      <td><p>a vector with the sample mean from population 2.</p></td>
+      <td><p>A vector with the sample mean from population 2.</p></td>
     </tr>
     <tr>
       <th>Sigma2</th>
-      <td><p>a matrix with sample variances and covariances from population 2.</p></td>
+      <td><p>A matrix with sample variances and covariances from population 2.</p></td>
     </tr>
     <tr>
       <th>n2</th>
-      <td><p>sample size 2.</p></td>
+      <td><p>Sample size 2.</p></td>
     </tr>
     <tr>
       <th>delta0</th>
-      <td><p>que es esto</p></td>
+      <td><p>A number indicating the true value of the difference in means.</p></td>
     </tr>
     <tr>
       <th>alpha</th>
-      <td><p>yo creo que este parametro lo debemos quitar, que opinan?</p></td>
+      <td><p>The significance level, by default its value is 0.05.</p></td>
     </tr>
     <tr>
       <th>method</th>
-      <td><p>tipo de prueba de hipotesis a usar. Las opciones disponibles son T2, bla bla. Por defecto es T2.</p></td>
+      <td><p>A character string indicating the type of test performed. It must be one of <code>"T2"</code> (default), <code>"james"</code> (James first order test), <code>"yao"</code> (Yao test), <code>"johansen"</code> (Johansen test), ...</p></td>
     </tr>
     </table>
     
@@ -173,15 +173,18 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Example 5.4.2 from Rencher &amp; Christensen (2012) page 137.</span>
-<span class='no'>x1bar</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>15.97</span>, <span class='fl'>15.91</span>, <span class='fl'>27.19</span>, <span class='fl'>22.75</span>)
-<span class='no'>x2bar</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>12.34</span>, <span class='fl'>13.91</span>, <span class='fl'>16.66</span>, <span class='fl'>21.94</span>)
+<span class='no'>n1</span> <span class='kw'>&lt;-</span> <span class='fl'>32</span>
+<span class='no'>xbar1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>15.97</span>, <span class='fl'>15.91</span>, <span class='fl'>27.19</span>, <span class='fl'>22.75</span>)
 <span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>5.192</span>, <span class='fl'>4.545</span>, <span class='fl'>6.522</span>, <span class='fl'>5.25</span>, <span class='fl'>4.545</span>, <span class='fl'>13.18</span>, <span class='fl'>6.76</span>, <span class='fl'>6.266</span>, <span class='fl'>6.522</span>,
                <span class='fl'>6.76</span>, <span class='fl'>28.67</span>, <span class='fl'>14.47</span>, <span class='fl'>5.25</span>, <span class='fl'>6.266</span>, <span class='fl'>14.47</span>, <span class='fl'>16.65</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>4</span>)
+
+<span class='no'>n2</span> <span class='kw'>&lt;-</span> <span class='fl'>32</span>
+<span class='no'>xbar2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>12.34</span>, <span class='fl'>13.91</span>, <span class='fl'>16.66</span>, <span class='fl'>21.94</span>)
 <span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>9.136</span>, <span class='fl'>7.549</span>, <span class='fl'>4.864</span>, <span class='fl'>4.151</span>, <span class='fl'>7.549</span>, <span class='fl'>18.6</span>, <span class='fl'>10.22</span>, <span class='fl'>5.446</span>, <span class='fl'>4.864</span>,
                <span class='fl'>10.22</span>, <span class='fl'>30.04</span>, <span class='fl'>13.49</span>, <span class='fl'>4.151</span>, <span class='fl'>5.446</span>, <span class='fl'>13.49</span>, <span class='fl'>28</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>4</span>)
 
-<span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span><span class='kw'>=</span><span class='no'>x1bar</span>, <span class='kw'>Sigma1</span><span class='kw'>=</span><span class='no'>s1</span>, <span class='kw'>n1</span><span class='kw'>=</span><span class='fl'>32</span>,
-                     <span class='kw'>xbar2</span><span class='kw'>=</span><span class='no'>x2bar</span>, <span class='kw'>Sigma2</span><span class='kw'>=</span><span class='no'>s2</span>, <span class='kw'>n2</span><span class='kw'>=</span><span class='fl'>32</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.01</span>)</div><div class='output co'>#&gt; $sp
+<span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>Sigma1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
+                     <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xbar2</span>, <span class='kw'>Sigma2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.01</span>)</div><div class='output co'>#&gt; $sp
 #&gt;        [,1]   [,2]   [,3]    [,4]
 #&gt; [1,] 7.1640  6.047  5.693  4.7005
 #&gt; [2,] 6.0470 15.890  8.490  5.8560
@@ -200,14 +203,15 @@
 <span class='co'># Example 3.7 from Seber (1984) page 116.</span>
 <span class='co'># using the James first order test (1954).</span>
 <span class='no'>n1</span> <span class='kw'>&lt;-</span> <span class='fl'>16</span>
-<span class='no'>xb1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>9.82</span>, <span class='fl'>15.06</span>)
+<span class='no'>xbar1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>9.82</span>, <span class='fl'>15.06</span>)
 <span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>120</span>, -<span class='fl'>16.3</span>, -<span class='fl'>16.3</span>, <span class='fl'>17.8</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
 <span class='no'>n2</span> <span class='kw'>&lt;-</span> <span class='fl'>11</span>
-<span class='no'>xb2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>13.05</span>, <span class='fl'>22.57</span>)
+<span class='no'>xbar2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>13.05</span>, <span class='fl'>22.57</span>)
 <span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>81.8</span>, <span class='fl'>32.1</span>, <span class='fl'>32.1</span>, <span class='fl'>53.8</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-<span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xb1</span>, <span class='kw'>Sigma1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
-                     <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xb2</span>, <span class='kw'>Sigma2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>,
+
+<span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>Sigma1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
+                     <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xbar2</span>, <span class='kw'>Sigma2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>,
                      <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>'james'</span>)</div><div class='output co'>#&gt; $T2
 #&gt; [1] 9.445541
 #&gt; 
