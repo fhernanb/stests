@@ -32,7 +32,7 @@
 #'
 #' # Hypothesis testing
 #' #   H0: sigma2 = 100
-#' #   H1: sigma > 100
+#' #   H1: sigma2 > 100
 #' weight <- c(775, 780, 781, 795, 803, 810, 823)
 #' var.test(x=weight, alternative='greater', null.value=100)
 #'

@@ -8,23 +8,23 @@ two_mean_vector_test(xbar1, Sigma1, n1, xbar2, Sigma2, n2, delta0 = NULL,
   alpha = 0.05, method = "T2")
 }
 \arguments{
-\item{xbar1}{a vector with the sample mean from population 1.}
+\item{xbar1}{A vector with the sample mean from population 1.}
 
-\item{Sigma1}{a matrix with sample variances and covariances from population 1.}
+\item{Sigma1}{A matrix with sample variances and covariances from population 1.}
 
-\item{n1}{sample size 1.}
+\item{n1}{Sample size 1.}
 
-\item{xbar2}{a vector with the sample mean from population 2.}
+\item{xbar2}{A vector with the sample mean from population 2.}
 
-\item{Sigma2}{a matrix with sample variances and covariances from population 2.}
+\item{Sigma2}{A matrix with sample variances and covariances from population 2.}
 
-\item{n2}{sample size 2.}
+\item{n2}{Sample size 2.}
 
-\item{delta0}{que es esto}
+\item{delta0}{A number indicating the true value of the difference in means.}
 
-\item{alpha}{yo creo que este parametro lo debemos quitar, que opinan?}
+\item{alpha}{The significance level, by default its value is 0.05.}
 
-\item{method}{tipo de prueba de hipotesis a usar. Las opciones disponibles son T2, bla bla. Por defecto es T2.}
+\item{method}{A character string indicating the type of test performed. It must be one of \code{"T2"} (default), \code{"james"} (James first order test), \code{"yao"} (Yao test), ...}
 }
 \value{
 por ahora retorna una lista de cosas, debemos hacer que la salida sea htest y que entregue lo que se necesita.
@@ -34,27 +34,31 @@ This function implements the test for \eqn{H0: \mu 1 = \mu 2} versus \eqn{H1: \m
 }
 \examples{
 # Example 5.4.2 from Rencher & Christensen (2012) page 137.
-x1bar <- c(15.97, 15.91, 27.19, 22.75)
-x2bar <- c(12.34, 13.91, 16.66, 21.94)
+n1 <- 32
+xbar1 <- c(15.97, 15.91, 27.19, 22.75)
 s1 <- matrix(c(5.192, 4.545, 6.522, 5.25, 4.545, 13.18, 6.76, 6.266, 6.522,
                6.76, 28.67, 14.47, 5.25, 6.266, 14.47, 16.65), ncol = 4)
+
+n2 <- 32
+xbar2 <- c(12.34, 13.91, 16.66, 21.94)
 s2 <- matrix(c(9.136, 7.549, 4.864, 4.151, 7.549, 18.6, 10.22, 5.446, 4.864,
                10.22, 30.04, 13.49, 4.151, 5.446, 13.49, 28), ncol = 4)
 
-two_mean_vector_test(xbar1=x1bar, Sigma1=s1, n1=32,
-                     xbar2=x2bar, Sigma2=s2, n2=32, alpha = 0.01)
+two_mean_vector_test(xbar1 = xbar1, Sigma1 = s1, n1 = n1,
+                     xbar2 = xbar2, Sigma2 = s2, n2 = n2, alpha = 0.01)
 
 # Example 3.7 from Seber (1984) page 116.
 # using the James first order test (1954).
 n1 <- 16
-xb1 <- c(9.82, 15.06)
+xbar1 <- c(9.82, 15.06)
 s1 <- matrix(c(120, -16.3, -16.3, 17.8), ncol = 2)
 
 n2 <- 11
-xb2 <- c(13.05, 22.57)
+xbar2 <- c(13.05, 22.57)
 s2 <- matrix(c(81.8, 32.1, 32.1, 53.8), ncol = 2)
-two_mean_vector_test(xbar1 = xb1, Sigma1 = s1, n1 = n1,
-                     xbar2 = xb2, Sigma2 = s2, n2 = n2,
+
+two_mean_vector_test(xbar1 = xbar1, Sigma1 = s1, n1 = n1,
+                     xbar2 = xbar2, Sigma2 = s2, n2 = n2,
                      method = 'james')
 
 }
