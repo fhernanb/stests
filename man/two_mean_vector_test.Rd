@@ -24,7 +24,7 @@ two_mean_vector_test(xbar1, Sigma1, n1, xbar2, Sigma2, n2, delta0 = NULL,
 
 \item{alpha}{The significance level, by default its value is 0.05.}
 
-\item{method}{A character string indicating the type of test performed. It must be one of \code{"T2"} (default), \code{"james"} (James first order test), \code{"yao"} (Yao test), ...}
+\item{method}{A character string indicating the type of test performed. It must be one of \code{"T2"} (default), \code{"james"} (James first order test), \code{"yao"} (Yao test), \code{"johansen"} (Johansen test), ...}
 }
 \value{
 por ahora retorna una lista de cosas, debemos hacer que la salida sea htest y que entregue lo que se necesita.

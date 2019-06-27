@@ -10,7 +10,7 @@
 #' @param n2 Sample size 2.
 #' @param delta0 A number indicating the true value of the difference in means.
 #' @param alpha The significance level, by default its value is 0.05.
-#' @param method A character string indicating the type of test performed. It must be one of \code{"T2"} (default), \code{"james"} (James first order test), \code{"yao"} (Yao test), ...
+#' @param method A character string indicating the type of test performed. It must be one of \code{"T2"} (default), \code{"james"} (James first order test), \code{"yao"} (Yao test), \code{"johansen"} (Johansen test), ...
 #'
 #' @return por ahora retorna una lista de cosas, debemos hacer que la salida sea htest y que entregue lo que se necesita.
 #'
@@ -29,7 +29,6 @@
 #'
 #' two_mean_vector_test(xbar1 = xbar1, Sigma1 = s1, n1 = n1,
 #'                      xbar2 = xbar2, Sigma2 = s2, n2 = n2, alpha = 0.01)
-
 #'
 #' # Example 3.7 from Seber (1984) page 116.
 #' # using the James first order test (1954).
