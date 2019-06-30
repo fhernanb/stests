@@ -162,13 +162,19 @@
     </tr>
     <tr>
       <th>method</th>
-      <td><p>A character string indicating the type of test performed. It must be one of <code>"T2"</code> (default), <code>"james"</code> (James first order test), <code>"yao"</code> (Yao test), <code>"johansen"</code> (Johansen test), ...</p></td>
+      <td><p>A character string specifying the method, it must be one of <code>"T2"</code> (default), <code>"james"</code> (James first order test), <code>"yao"</code> (Yao test), <code>"johansen"</code> (Johansen test), ...</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>por ahora retorna una lista de cosas, debemos hacer que la salida sea htest y que entregue lo que se necesita.</p>
+    <p>A list with class <code>"htest"</code> containing the following components:</p>
+<dt>statistic</dt><dd><p>the value of the statistic.</p></dd>
+<dt>parameter</dt><dd><p>the degrees of freedom for the test.</p></dd>
+<dt>p.value</dt><dd><p>the p-value for the test.</p></dd>
+<dt>estimate</dt><dd><p>the estimated mean vectors.</p></dd>
+<dt>method</dt><dd><p>a character string indicating the type of test performed.</p></dd>
+
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
