@@ -24,10 +24,15 @@ two_mean_vector_test(xbar1, Sigma1, n1, xbar2, Sigma2, n2, delta0 = NULL,
 
 \item{alpha}{The significance level, by default its value is 0.05.}
 
-\item{method}{A character string indicating the type of test performed. It must be one of \code{"T2"} (default), \code{"james"} (James first order test), \code{"yao"} (Yao test), \code{"johansen"} (Johansen test), ...}
+\item{method}{A character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James first order test), \code{"yao"} (Yao test), \code{"johansen"} (Johansen test), ...}
 }
 \value{
-por ahora retorna una lista de cosas, debemos hacer que la salida sea htest y que entregue lo que se necesita.
+A list with class \code{"htest"} containing the following components:
+\item{statistic}{the value of the statistic.}
+\item{parameter}{the degrees of freedom for the test.}
+\item{p.value}{the p-value for the test.}
+\item{estimate}{the estimated mean vectors.}
+\item{method}{a character string indicating the type of test performed.}
 }
 \description{
 This function implements the test for \eqn{H0: \mu 1 = \mu 2} versus \eqn{H1: \mu1} not = \eqn{\mu2}. Muchachos, por favor revisar si los argumentos estan bien escritos.

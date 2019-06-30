@@ -10,9 +10,14 @@
 #' @param n2 Sample size 2.
 #' @param delta0 A number indicating the true value of the difference in means.
 #' @param alpha The significance level, by default its value is 0.05.
-#' @param method A character string indicating the type of test performed. It must be one of \code{"T2"} (default), \code{"james"} (James first order test), \code{"yao"} (Yao test), \code{"johansen"} (Johansen test), ...
+#' @param method A character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James first order test), \code{"yao"} (Yao test), \code{"johansen"} (Johansen test), ...
 #'
-#' @return por ahora retorna una lista de cosas, debemos hacer que la salida sea htest y que entregue lo que se necesita.
+#' @return A list with class \code{"htest"} containing the following components:
+#' \item{statistic}{the value of the statistic.}
+#' \item{parameter}{the degrees of freedom for the test.}
+#' \item{p.value}{the p-value for the test.}
+#' \item{estimate}{the estimated mean vectors.}
+#' \item{method}{a character string indicating the type of test performed.}
 #'
 #' @author Freddy Hernandez
 #' @examples
