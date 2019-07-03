@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Test for two mean vectors — two_mean_vector_test" />
 
-<meta property="og:description" content="This function implements the test for \(H0: \mu 1 = \mu 2\) versus \(H1: \mu1\) not = \(\mu2\). Muchachos, por favor revisar si los argumentos estan bien escritos." />
+<meta property="og:description" content="This function implements the test for \(H0: \mu 1 = \mu 2\) versus \(H1: \mu1\) not = \(\mu2\)." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -118,7 +118,7 @@
 
     <div class="ref-description">
     
-    <p>This function implements the test for \(H0: \mu 1 = \mu 2\) versus \(H1: \mu1\) not = \(\mu2\). Muchachos, por favor revisar si los argumentos estan bien escritos.</p>
+    <p>This function implements the test for \(H0: \mu 1 = \mu 2\) versus \(H1: \mu1\) not = \(\mu2\).</p>
     
     </div>
 
@@ -190,24 +190,19 @@
                <span class='fl'>10.22</span>, <span class='fl'>30.04</span>, <span class='fl'>13.49</span>, <span class='fl'>4.151</span>, <span class='fl'>5.446</span>, <span class='fl'>13.49</span>, <span class='fl'>28</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>4</span>)
 
 <span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>Sigma1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
-                     <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xbar2</span>, <span class='kw'>Sigma2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.01</span>)</div><div class='output co'>#&gt; $sp
-#&gt;        [,1]   [,2]   [,3]    [,4]
-#&gt; [1,] 7.1640  6.047  5.693  4.7005
-#&gt; [2,] 6.0470 15.890  8.490  5.8560
-#&gt; [3,] 5.6930  8.490 29.355 13.9800
-#&gt; [4,] 4.7005  5.856 13.980 22.3250
+                     <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xbar2</span>, <span class='kw'>Sigma2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.01</span>)</div><div class='output co'>#&gt; 
+#&gt; 	T2 test for two mean vectors
 #&gt; 
-#&gt; $T2
-#&gt; [1] 97.67827
+#&gt; data:  this test uses summarized data
+#&gt; T2 = 97.678, F = 23.238, df1 = 4, df2 = 59, p-value = 1.444e-11
+#&gt; alternative hypothesis: mu1 is not equal to mu2 
 #&gt; 
-#&gt; $p.value
-#&gt; [1] 1.444111e-11
-#&gt; 
-#&gt; $critic.value
-#&gt; [1] 15.36323
-#&gt; 
-#&gt; $method
-#&gt; [1] "T2 test for two mean vectors"
+#&gt; sample estimates:
+#&gt;        Sample 1 Sample 2
+#&gt; xbar_1    15.97    12.34
+#&gt; xbar_2    15.91    13.91
+#&gt; xbar_3    27.19    16.66
+#&gt; xbar_4    22.75    21.94
 #&gt; </div><div class='input'>
 <span class='co'># Example 3.7 from Seber (1984) page 116.</span>
 <span class='co'># using the James first order test (1954).</span>
@@ -221,14 +216,11 @@
 
 <span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>Sigma1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
                      <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xbar2</span>, <span class='kw'>Sigma2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>,
-                     <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>'james'</span>)</div><div class='output co'>#&gt; $T2
-#&gt; [1] 9.445541
+                     <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>'james'</span>)</div><div class='output co'>#&gt; 
+#&gt; 	James test for two mean vectors
 #&gt; 
-#&gt; $p.value
-#&gt; [1] 0.02046975
-#&gt; 
-#&gt; $method
-#&gt; [1] "James test for two mean vectors"
+#&gt; data:  
+#&gt; p-value = 0.02047
 #&gt; </div><div class='input'>
 </div></pre>
   </div>
