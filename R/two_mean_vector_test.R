@@ -85,8 +85,12 @@ two_mean_vector_test_T2 <- function(xbar1, Sigma1, n1,
   T2 <- as.numeric(T2)
   p.value <- pf(q=T2 * (v-p+1) / (v*p), df1=p, df2=v-p+1, lower.tail=FALSE)
   critic.value <- qf(p=alpha, df1=p, df2=v-p+1, lower.tail=F) * (v*p) / (v-p+1)
-  return(list(sp=sp, T2=T2, p.value=p.value,
-              critic.value=critic.value))
+  method <- 'T2 test for two mean vectors'
+  return(list(sp=sp,
+              T2=T2,
+              p.value=p.value,
+              critic.value=critic.value,
+              method = method))
 }
 #' @importFrom stats pf qf
 two_mean_vector_test_james <- function(xbar1, Sigma1, n1,
@@ -116,6 +120,8 @@ two_mean_vector_test_james <- function(xbar1, Sigma1, n1,
   delta <- (A + B * x2)
   twoha <- x2 * delta
   p.value <- pchisq(q=T2/delta, df=p, lower.tail=FALSE)
-
-  return(list(T2=T2, p.value=p.value))
+  method <- 'James test for two mean vectors'
+  return(list(T2=T2,
+              p.value=p.value,
+              method = method))
 }
