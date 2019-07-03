@@ -1,6 +1,6 @@
 #' Test for two mean vectors
 #'
-#' This function implements the test for \eqn{H0: \mu 1 = \mu 2} versus \eqn{H1: \mu1} not = \eqn{\mu2}. Muchachos, por favor revisar si los argumentos estan bien escritos.
+#' This function implements the test for \eqn{H0: \mu 1 = \mu 2} versus \eqn{H1: \mu1} not = \eqn{\mu2}.
 #'
 #' @param xbar1 A vector with the sample mean from population 1.
 #' @param Sigma1 A matrix with sample variances and covariances from population 1.
@@ -68,6 +68,7 @@ two_mean_vector_test <- function(xbar1, Sigma1, n1,
 
   # To obtain the result
   result <- eval(parse(text=my_code))
+  class(result) <- "htest"
   return(result)
 }
 #' @importFrom stats pf qf
@@ -85,12 +86,27 @@ two_mean_vector_test_T2 <- function(xbar1, Sigma1, n1,
   T2 <- as.numeric(T2)
   p.value <- pf(q=T2 * (v-p+1) / (v*p), df1=p, df2=v-p+1, lower.tail=FALSE)
   critic.value <- qf(p=alpha, df1=p, df2=v-p+1, lower.tail=F) * (v*p) / (v-p+1)
+
   method <- 'T2 test for two mean vectors'
-  return(list(sp=sp,
-              T2=T2,
-              p.value=p.value,
-              critic.value=critic.value,
-              method = method))
+  statistic <- c(T2, T2 * (v-p+1) / (v*p))
+  names(statistic) <- c('T2', 'F')
+  parameter <- c(p, v-p+1)
+  names(parameter) <- c('df1', 'df2')
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep = '_')
+  data.name <- 'this test uses summarized data'
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name,
+              sp = sp,
+              critic.value = critic.value))
 }
 #' @importFrom stats pf qf
 two_mean_vector_test_james <- function(xbar1, Sigma1, n1,

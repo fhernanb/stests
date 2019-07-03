@@ -35,7 +35,7 @@ A list with class \code{"htest"} containing the following components:
 \item{method}{a character string indicating the type of test performed.}
 }
 \description{
-This function implements the test for \eqn{H0: \mu 1 = \mu 2} versus \eqn{H1: \mu1} not = \eqn{\mu2}. Muchachos, por favor revisar si los argumentos estan bien escritos.
+This function implements the test for \eqn{H0: \mu 1 = \mu 2} versus \eqn{H1: \mu1} not = \eqn{\mu2}.
 }
 \examples{
 # Example 5.4.2 from Rencher & Christensen (2012) page 137.
