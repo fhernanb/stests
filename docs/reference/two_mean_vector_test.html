@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Test for two mean vectors — two_mean_vector_test • stests</title>
+<title>Tests for Equality of Two Normal Mean Vectors — two_mean_vector_test • stests</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Test for two mean vectors — two_mean_vector_test" />
+<meta property="og:title" content="Tests for Equality of Two Normal Mean Vectors — two_mean_vector_test" />
 
-<meta property="og:description" content="This function implements the test for \(H0: \mu 1 = \mu 2\) versus \(H1: \mu1\) not = \(\mu2\)." />
+<meta property="og:description" content="Implements the test for \(H_0: \mu_1 = \mu_2\) versus \(H_1: \mu_1\) not = \(\mu_2\) when both random samples are from two p-variate normal populations \(Np(\mu_1, \Sigma_1)\) and \(Np(\mu_2, \Sigma_2)\). By default, this function performs the Hotelling test for two normal mean vectors assumming equality in the covariance matrices. Also testing the multivariate Behrens-Fisher problem, when the assumption of equal covariance matrices is violated, including James, Yao, Johansen, ... approaches." />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -111,14 +111,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Test for two mean vectors</h1>
+    <h1>Tests for Equality of Two Normal Mean Vectors</h1>
     
     <div class="hidden name"><code>two_mean_vector_test.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function implements the test for \(H0: \mu 1 = \mu 2\) versus \(H1: \mu1\) not = \(\mu2\).</p>
+    <p>Implements the test for \(H_0: \mu_1 = \mu_2\) versus \(H_1: \mu_1\) not = \(\mu_2\) when both random samples are from two p-variate normal populations \(Np(\mu_1, \Sigma_1)\) and \(Np(\mu_2, \Sigma_2)\). By default, this function performs the Hotelling test for two normal mean vectors assumming equality in the covariance matrices. Also testing the multivariate Behrens-Fisher problem, when the assumption of equal covariance matrices is violated, including James, Yao, Johansen, ... approaches.</p>
     
     </div>
 
@@ -130,39 +130,39 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>xbar1</th>
-      <td><p>A vector with the sample mean from population 1.</p></td>
+      <td><p>a vector with the sample mean from population 1.</p></td>
     </tr>
     <tr>
       <th>Sigma1</th>
-      <td><p>A matrix with sample variances and covariances from population 1.</p></td>
+      <td><p>a matrix with sample variances and covariances from population 1.</p></td>
     </tr>
     <tr>
       <th>n1</th>
-      <td><p>Sample size 1.</p></td>
+      <td><p>sample size 1.</p></td>
     </tr>
     <tr>
       <th>xbar2</th>
-      <td><p>A vector with the sample mean from population 2.</p></td>
+      <td><p>a vector with the sample mean from population 2.</p></td>
     </tr>
     <tr>
       <th>Sigma2</th>
-      <td><p>A matrix with sample variances and covariances from population 2.</p></td>
+      <td><p>a matrix with sample variances and covariances from population 2.</p></td>
     </tr>
     <tr>
       <th>n2</th>
-      <td><p>Sample size 2.</p></td>
+      <td><p>sample size 2.</p></td>
     </tr>
     <tr>
       <th>delta0</th>
-      <td><p>A number indicating the true value of the difference in means.</p></td>
+      <td><p>a number indicating the true value of the difference in means.</p></td>
     </tr>
     <tr>
       <th>alpha</th>
-      <td><p>The significance level, by default its value is 0.05.</p></td>
+      <td><p>the significance level, by default its value is 0.05.</p></td>
     </tr>
     <tr>
       <th>method</th>
-      <td><p>A character string specifying the method, it must be one of <code>"T2"</code> (default), <code>"james"</code> (James first order test), <code>"yao"</code> (Yao test), <code>"johansen"</code> (Johansen test), ...</p></td>
+      <td><p>a character string specifying the method, it must be one of <code>"T2"</code> (default), <code>"james"</code> (James first order test), <code>"yao"</code> (Yao test), <code>"johansen"</code> (Johansen test), ...</p></td>
     </tr>
     </table>
     
