@@ -1,16 +1,16 @@
-#' Test for two mean vectors
+#' Tests for Equality of Two Normal Mean Vectors
 #'
-#' This function implements the test for \eqn{H0: \mu 1 = \mu 2} versus \eqn{H1: \mu1} not = \eqn{\mu2}.
+#' Implements the test for \eqn{H_0: \mu_1 = \mu_2} versus \eqn{H_1: \mu_1} not = \eqn{\mu_2} when both random samples are from two p-variate normal populations \eqn{Np(\mu_1, \Sigma_1)} and \eqn{Np(\mu_2, \Sigma_2)}. By default, this function performs the Hotelling test for two normal mean vectors assumming equality in the covariance matrices. Also testing the multivariate Behrens-Fisher problem, when the assumption of equal covariance matrices is violated, including James, Yao, Johansen, ... approaches.
 #'
-#' @param xbar1 A vector with the sample mean from population 1.
-#' @param Sigma1 A matrix with sample variances and covariances from population 1.
-#' @param n1 Sample size 1.
-#' @param xbar2 A vector with the sample mean from population 2.
-#' @param Sigma2 A matrix with sample variances and covariances from population 2.
-#' @param n2 Sample size 2.
-#' @param delta0 A number indicating the true value of the difference in means.
-#' @param alpha The significance level, by default its value is 0.05.
-#' @param method A character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James first order test), \code{"yao"} (Yao test), \code{"johansen"} (Johansen test), ...
+#' @param xbar1 a vector with the sample mean from population 1.
+#' @param Sigma1 a matrix with sample variances and covariances from population 1.
+#' @param n1 sample size 1.
+#' @param xbar2 a vector with the sample mean from population 2.
+#' @param Sigma2 a matrix with sample variances and covariances from population 2.
+#' @param n2 sample size 2.
+#' @param delta0 a number indicating the true value of the difference in means.
+#' @param alpha the significance level, by default its value is 0.05.
+#' @param method a character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James first order test), \code{"yao"} (Yao test), \code{"johansen"} (Johansen test), ...
 #'
 #' @return A list with class \code{"htest"} containing the following components:
 #' \item{statistic}{the value of the statistic.}

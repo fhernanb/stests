@@ -2,29 +2,29 @@
 % Please edit documentation in R/two_mean_vector_test.R
 \name{two_mean_vector_test}
 \alias{two_mean_vector_test}
-\title{Test for two mean vectors}
+\title{Tests for Equality of Two Normal Mean Vectors}
 \usage{
 two_mean_vector_test(xbar1, Sigma1, n1, xbar2, Sigma2, n2, delta0 = NULL,
   alpha = 0.05, method = "T2")
 }
 \arguments{
-\item{xbar1}{A vector with the sample mean from population 1.}
+\item{xbar1}{a vector with the sample mean from population 1.}
 
-\item{Sigma1}{A matrix with sample variances and covariances from population 1.}
+\item{Sigma1}{a matrix with sample variances and covariances from population 1.}
 
-\item{n1}{Sample size 1.}
+\item{n1}{sample size 1.}
 
-\item{xbar2}{A vector with the sample mean from population 2.}
+\item{xbar2}{a vector with the sample mean from population 2.}
 
-\item{Sigma2}{A matrix with sample variances and covariances from population 2.}
+\item{Sigma2}{a matrix with sample variances and covariances from population 2.}
 
-\item{n2}{Sample size 2.}
+\item{n2}{sample size 2.}
 
-\item{delta0}{A number indicating the true value of the difference in means.}
+\item{delta0}{a number indicating the true value of the difference in means.}
 
-\item{alpha}{The significance level, by default its value is 0.05.}
+\item{alpha}{the significance level, by default its value is 0.05.}
 
-\item{method}{A character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James first order test), \code{"yao"} (Yao test), \code{"johansen"} (Johansen test), ...}
+\item{method}{a character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James first order test), \code{"yao"} (Yao test), \code{"johansen"} (Johansen test), ...}
 }
 \value{
 A list with class \code{"htest"} containing the following components:
@@ -35,7 +35,7 @@ A list with class \code{"htest"} containing the following components:
 \item{method}{a character string indicating the type of test performed.}
 }
 \description{
-This function implements the test for \eqn{H0: \mu 1 = \mu 2} versus \eqn{H1: \mu1} not = \eqn{\mu2}.
+Implements the test for \eqn{H_0: \mu_1 = \mu_2} versus \eqn{H_1: \mu_1} not = \eqn{\mu_2} when both random samples are from two p-variate normal populations \eqn{Np(\mu_1, \Sigma_1)} and \eqn{Np(\mu_2, \Sigma_2)}. By default, this function performs the Hotelling test for two normal mean vectors assumming equality in the covariance matrices. Also testing the multivariate Behrens-Fisher problem, when the assumption of equal covariance matrices is violated, including James, Yao, Johansen, ... approaches.
 }
 \examples{
 # Example 5.4.2 from Rencher & Christensen (2012) page 137.
