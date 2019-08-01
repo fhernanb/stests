@@ -136,8 +136,22 @@ two_mean_vector_test_james <- function(xbar1, Sigma1, n1,
   delta <- (A + B * x2)
   twoha <- x2 * delta
   p.value <- pchisq(q=T2/delta, df=p, lower.tail=FALSE)
+
   method <- 'James test for two mean vectors'
-  return(list(T2=T2,
-              p.value=p.value,
-              method = method))
+  statistic <- c(T2,T2/delta)
+  names(statistic) <- c('T2', 'X-squared')
+  parameter <- p
+  names(parameter) <- 'df'
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep = '_')
+  data.name <- 'this test uses summarized data'
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name))
 }
