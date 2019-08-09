@@ -228,6 +228,31 @@
 #&gt; xbar_1     9.82    13.05
 #&gt; xbar_2    15.06    22.57
 #&gt; </div><div class='input'>
+<span class='co'># Example 4.1 from Nel and Van de Merwe (1986) page 3729</span>
+<span class='co'># Test H0: mu1 = mu2 versus H1: mu1 != mu2</span>
+<span class='no'>n1</span> <span class='kw'>&lt;-</span> <span class='fl'>45</span>
+<span class='no'>xbar1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>204.4</span>, <span class='fl'>556.6</span>)
+<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>13825.3</span>, <span class='fl'>23823.4</span>, <span class='fl'>23823.4</span>, <span class='fl'>73107.4</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>2</span>)
+
+<span class='no'>n2</span> <span class='kw'>&lt;-</span> <span class='fl'>55</span>
+<span class='no'>xbar2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>130.0</span>, <span class='fl'>355.0</span>)
+<span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/matrix'>matrix</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>8632.0</span>, <span class='fl'>19616.7</span>, <span class='fl'>19616.7</span>, <span class='fl'>55964.5</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>2</span>)
+
+<span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>Sigma1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
+                     <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xbar2</span>, <span class='kw'>Sigma2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>,
+                     <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>'mvn'</span>)</div><div class='output co'>#&gt; 
+#&gt; 	Modified Nel and Van der Merwe test for two mean vectors
+#&gt; 
+#&gt; data:  this test uses summarized data
+#&gt; T2 = 15.6585, F = 7.7284, df1 = 2.000, df2 = 76.592, p-value =
+#&gt; 0.0008763
+#&gt; alternative hypothesis: mu1 is not equal to mu2 
+#&gt; 
+#&gt; sample estimates:
+#&gt;        Sample 1 Sample 2
+#&gt; xbar_1    204.4      130
+#&gt; xbar_2    556.6      355
+#&gt; </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
