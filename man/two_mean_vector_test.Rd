@@ -66,6 +66,20 @@ two_mean_vector_test(xbar1 = xbar1, Sigma1 = s1, n1 = n1,
                      xbar2 = xbar2, Sigma2 = s2, n2 = n2,
                      method = 'james')
 
+# Example 4.1 from Nel and Van de Merwe (1986) page 3729
+# Test H0: mu1 = mu2 versus H1: mu1 != mu2
+n1 <- 45
+xbar1 <- c(204.4, 556.6)
+s1 <- matrix(c(13825.3, 23823.4, 23823.4, 73107.4), ncol=2)
+
+n2 <- 55
+xbar2 <- c(130.0, 355.0)
+s2 <- matrix(c(8632.0, 19616.7, 19616.7, 55964.5), ncol=2)
+
+two_mean_vector_test(xbar1 = xbar1, Sigma1 = s1, n1 = n1,
+                     xbar2 = xbar2, Sigma2 = s2, n2 = n2,
+                     method = 'mvn')
+
 }
 \author{
 Freddy Hernandez
