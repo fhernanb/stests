@@ -41,26 +41,33 @@ Implements the test for \eqn{H_0: \mu_1 = \mu_2} versus \eqn{H_1: \mu_1} not = \
 # Example 5.4.2 from Rencher & Christensen (2012) page 137.
 n1 <- 32
 xbar1 <- c(15.97, 15.91, 27.19, 22.75)
-s1 <- matrix(c(5.192, 4.545, 6.522, 5.25, 4.545, 13.18, 6.76, 6.266, 6.522,
-               6.76, 28.67, 14.47, 5.25, 6.266, 14.47, 16.65), ncol = 4)
+s1 <- matrix(c(5.192, 4.545, 6.522, 5.25,
+               4.545, 13.18, 6.76, 6.266,
+               6.522, 6.76, 28.67, 14.47,
+               5.25, 6.266, 14.47, 16.65), ncol = 4)
 
 n2 <- 32
 xbar2 <- c(12.34, 13.91, 16.66, 21.94)
-s2 <- matrix(c(9.136, 7.549, 4.864, 4.151, 7.549, 18.6, 10.22, 5.446, 4.864,
-               10.22, 30.04, 13.49, 4.151, 5.446, 13.49, 28), ncol = 4)
+s2 <- matrix(c(9.136, 7.549, 4.864, 4.151,
+               7.549, 18.6, 10.22, 5.446,
+               4.864, 10.22, 30.04, 13.49,
+               4.151, 5.446, 13.49, 28), ncol = 4)
 
 two_mean_vector_test(xbar1 = xbar1, Sigma1 = s1, n1 = n1,
-                     xbar2 = xbar2, Sigma2 = s2, n2 = n2, alpha = 0.01)
+                     xbar2 = xbar2, Sigma2 = s2, n2 = n2,
+                     method = "T2")
 
 # Example 3.7 from Seber (1984) page 116.
 # using the James first order test (1954).
 n1 <- 16
 xbar1 <- c(9.82, 15.06)
-s1 <- matrix(c(120, -16.3, -16.3, 17.8), ncol = 2)
+s1 <- matrix(c(120, -16.3,
+               -16.3, 17.8), ncol = 2)
 
 n2 <- 11
 xbar2 <- c(13.05, 22.57)
-s2 <- matrix(c(81.8, 32.1, 32.1, 53.8), ncol = 2)
+s2 <- matrix(c(81.8, 32.1,
+               32.1, 53.8), ncol = 2)
 
 two_mean_vector_test(xbar1 = xbar1, Sigma1 = s1, n1 = n1,
                      xbar2 = xbar2, Sigma2 = s2, n2 = n2,
@@ -70,11 +77,13 @@ two_mean_vector_test(xbar1 = xbar1, Sigma1 = s1, n1 = n1,
 # Test H0: mu1 = mu2 versus H1: mu1 != mu2
 n1 <- 45
 xbar1 <- c(204.4, 556.6)
-s1 <- matrix(c(13825.3, 23823.4, 23823.4, 73107.4), ncol=2)
+s1 <- matrix(c(13825.3, 23823.4,
+               23823.4, 73107.4), ncol=2)
 
 n2 <- 55
 xbar2 <- c(130.0, 355.0)
-s2 <- matrix(c(8632.0, 19616.7, 19616.7, 55964.5), ncol=2)
+s2 <- matrix(c(8632.0, 19616.7,
+               19616.7, 55964.5), ncol=2)
 
 two_mean_vector_test(xbar1 = xbar1, Sigma1 = s1, n1 = n1,
                      xbar2 = xbar2, Sigma2 = s2, n2 = n2,
