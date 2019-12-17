@@ -4,19 +4,19 @@
 \alias{two_mean_vector_test}
 \title{Tests for Equality of Two Normal Mean Vectors}
 \usage{
-two_mean_vector_test(xbar1, Sigma1, n1, xbar2, Sigma2, n2, delta0 = NULL,
+two_mean_vector_test(xbar1, s1, n1, xbar2, s2, n2, delta0 = NULL,
   alpha = 0.05, method = "T2")
 }
 \arguments{
 \item{xbar1}{a vector with the sample mean from population 1.}
 
-\item{Sigma1}{a matrix with sample variances and covariances from population 1.}
+\item{s1}{a matrix with sample variances and covariances from population 1.}
 
 \item{n1}{sample size 1.}
 
 \item{xbar2}{a vector with the sample mean from population 2.}
 
-\item{Sigma2}{a matrix with sample variances and covariances from population 2.}
+\item{s2}{a matrix with sample variances and covariances from population 2.}
 
 \item{n2}{sample size 2.}
 
@@ -53,8 +53,8 @@ s2 <- matrix(c(9.136, 7.549, 4.864, 4.151,
                4.864, 10.22, 30.04, 13.49,
                4.151, 5.446, 13.49, 28), ncol = 4)
 
-two_mean_vector_test(xbar1 = xbar1, Sigma1 = s1, n1 = n1,
-                     xbar2 = xbar2, Sigma2 = s2, n2 = n2,
+two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+                     xbar2 = xbar2, s2 = s2, n2 = n2,
                      method = "T2")
 
 # Example 3.7 from Seber (1984) page 116.
@@ -69,8 +69,8 @@ xbar2 <- c(13.05, 22.57)
 s2 <- matrix(c(81.8, 32.1,
                32.1, 53.8), ncol = 2)
 
-two_mean_vector_test(xbar1 = xbar1, Sigma1 = s1, n1 = n1,
-                     xbar2 = xbar2, Sigma2 = s2, n2 = n2,
+two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+                     xbar2 = xbar2, s2 = s2, n2 = n2,
                      method = 'james')
 
 # Example 4.1 from Nel and Van de Merwe (1986) page 3729
@@ -85,8 +85,8 @@ xbar2 <- c(130.0, 355.0)
 s2 <- matrix(c(8632.0, 19616.7,
                19616.7, 55964.5), ncol=2)
 
-two_mean_vector_test(xbar1 = xbar1, Sigma1 = s1, n1 = n1,
-                     xbar2 = xbar2, Sigma2 = s2, n2 = n2,
+two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+                     xbar2 = xbar2, s2 = s2, n2 = n2,
                      method = 'mvn')
 
 }

@@ -132,7 +132,7 @@
     <p>Implements the test for \(H_0: \mu_1 = \mu_2\) versus \(H_1: \mu_1\) not = \(\mu_2\) when both random samples are from two p-variate normal populations \(Np(\mu_1, \Sigma_1)\) and \(Np(\mu_2, \Sigma_2)\). By default, this function performs the Hotelling test for two normal mean vectors assumming equality in the covariance matrices. Also testing the multivariate Behrens-Fisher problem, when the assumption of equal covariance matrices is violated, including James, Yao, Johansen, ... approaches.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>two_mean_vector_test</span>(<span class='no'>xbar1</span>, <span class='no'>Sigma1</span>, <span class='no'>n1</span>, <span class='no'>xbar2</span>, <span class='no'>Sigma2</span>, <span class='no'>n2</span>, <span class='kw'>delta0</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>two_mean_vector_test</span>(<span class='no'>xbar1</span>, <span class='no'>s1</span>, <span class='no'>n1</span>, <span class='no'>xbar2</span>, <span class='no'>s2</span>, <span class='no'>n2</span>, <span class='kw'>delta0</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"T2"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -143,7 +143,7 @@
       <td><p>a vector with the sample mean from population 1.</p></td>
     </tr>
     <tr>
-      <th>Sigma1</th>
+      <th>s1</th>
       <td><p>a matrix with sample variances and covariances from population 1.</p></td>
     </tr>
     <tr>
@@ -155,7 +155,7 @@
       <td><p>a vector with the sample mean from population 2.</p></td>
     </tr>
     <tr>
-      <th>Sigma2</th>
+      <th>s2</th>
       <td><p>a matrix with sample variances and covariances from population 2.</p></td>
     </tr>
     <tr>
@@ -202,8 +202,8 @@
                <span class='fl'>4.864</span>, <span class='fl'>10.22</span>, <span class='fl'>30.04</span>, <span class='fl'>13.49</span>,
                <span class='fl'>4.151</span>, <span class='fl'>5.446</span>, <span class='fl'>13.49</span>, <span class='fl'>28</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>4</span>)
 
-<span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>Sigma1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
-                     <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xbar2</span>, <span class='kw'>Sigma2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>,
+<span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>s1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
+                     <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xbar2</span>, <span class='kw'>s2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>,
                      <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"T2"</span>)</div><div class='output co'>#&gt; 
 #&gt; 	T2 test for two mean vectors
 #&gt; 
@@ -230,8 +230,8 @@
 <span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>81.8</span>, <span class='fl'>32.1</span>,
                <span class='fl'>32.1</span>, <span class='fl'>53.8</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
-<span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>Sigma1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
-                     <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xbar2</span>, <span class='kw'>Sigma2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>,
+<span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>s1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
+                     <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xbar2</span>, <span class='kw'>s2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>,
                      <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>'james'</span>)</div><div class='output co'>#&gt; 
 #&gt; 	James test for two mean vectors
 #&gt; 
@@ -256,8 +256,8 @@
 <span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>8632.0</span>, <span class='fl'>19616.7</span>,
                <span class='fl'>19616.7</span>, <span class='fl'>55964.5</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>2</span>)
 
-<span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>Sigma1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
-                     <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xbar2</span>, <span class='kw'>Sigma2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>,
+<span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>s1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
+                     <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xbar2</span>, <span class='kw'>s2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>,
                      <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>'mvn'</span>)</div><div class='output co'>#&gt; 
 #&gt; 	Modified Nel and Van der Merwe test for two mean vectors
 #&gt; 

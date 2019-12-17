@@ -3,10 +3,10 @@
 #' Implements the test for \eqn{H_0: \mu_1 = \mu_2} versus \eqn{H_1: \mu_1} not = \eqn{\mu_2} when both random samples are from two p-variate normal populations \eqn{Np(\mu_1, \Sigma_1)} and \eqn{Np(\mu_2, \Sigma_2)}. By default, this function performs the Hotelling test for two normal mean vectors assumming equality in the covariance matrices. Also testing the multivariate Behrens-Fisher problem, when the assumption of equal covariance matrices is violated, including James, Yao, Johansen, ... approaches.
 #'
 #' @param xbar1 a vector with the sample mean from population 1.
-#' @param Sigma1 a matrix with sample variances and covariances from population 1.
+#' @param s1 a matrix with sample variances and covariances from population 1.
 #' @param n1 sample size 1.
 #' @param xbar2 a vector with the sample mean from population 2.
-#' @param Sigma2 a matrix with sample variances and covariances from population 2.
+#' @param s2 a matrix with sample variances and covariances from population 2.
 #' @param n2 sample size 2.
 #' @param delta0 a number indicating the true value of the difference in means.
 #' @param alpha the significance level, by default its value is 0.05.
@@ -36,8 +36,8 @@
 #'                4.864, 10.22, 30.04, 13.49,
 #'                4.151, 5.446, 13.49, 28), ncol = 4)
 #'
-#' two_mean_vector_test(xbar1 = xbar1, Sigma1 = s1, n1 = n1,
-#'                      xbar2 = xbar2, Sigma2 = s2, n2 = n2,
+#' two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                      xbar2 = xbar2, s2 = s2, n2 = n2,
 #'                      method = "T2")
 #'
 #' # Example 3.7 from Seber (1984) page 116.
@@ -52,8 +52,8 @@
 #' s2 <- matrix(c(81.8, 32.1,
 #'                32.1, 53.8), ncol = 2)
 #'
-#' two_mean_vector_test(xbar1 = xbar1, Sigma1 = s1, n1 = n1,
-#'                      xbar2 = xbar2, Sigma2 = s2, n2 = n2,
+#' two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                      xbar2 = xbar2, s2 = s2, n2 = n2,
 #'                      method = 'james')
 #'
 #' # Example 4.1 from Nel and Van de Merwe (1986) page 3729
@@ -68,26 +68,26 @@
 #' s2 <- matrix(c(8632.0, 19616.7,
 #'                19616.7, 55964.5), ncol=2)
 #'
-#' two_mean_vector_test(xbar1 = xbar1, Sigma1 = s1, n1 = n1,
-#'                      xbar2 = xbar2, Sigma2 = s2, n2 = n2,
+#' two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                      xbar2 = xbar2, s2 = s2, n2 = n2,
 #'                      method = 'mvn')
 #'
 #' @importFrom stats pf
 #' @export
-two_mean_vector_test <- function(xbar1, Sigma1, n1,
-                                 xbar2, Sigma2, n2,
+two_mean_vector_test <- function(xbar1, s1, n1,
+                                 xbar2, s2, n2,
                                  delta0=NULL, alpha=0.05,
                                  method="T2") {
 
-  if (! identical(dim(Sigma1), dim(Sigma2)))
-    stop("The matrices Sigma1 and Sigma2 do not have same dimension")
+  if (! identical(dim(s1), dim(s2)))
+    stop("The matrices s1 and s2 do not have same dimension")
 
   method <- match.arg(arg=method,
                       choices=c("T2", "james", "mvn"))
 
   # To generate the code for evaluating, without using cases
   my_code <- paste0("two_mean_vector_test_", method,
-                    "(xbar1, Sigma1, n1, xbar2, Sigma2, n2, delta0=delta0, alpha=alpha)")
+                    "(xbar1, s1, n1, xbar2, s2, n2, delta0=delta0, alpha=alpha)")
 
   # To obtain the result
   result <- eval(parse(text=my_code))
@@ -95,16 +95,16 @@ two_mean_vector_test <- function(xbar1, Sigma1, n1,
   return(result)
 }
 #' @importFrom stats pf qf
-two_mean_vector_test_T2 <- function(xbar1, Sigma1, n1,
-                                    xbar2, Sigma2, n2,
+two_mean_vector_test_T2 <- function(xbar1, s1, n1,
+                                    xbar2, s2, n2,
                                     delta0=NULL, alpha=0.05) {
-  p <- ncol(Sigma1)
+  p <- ncol(s1)
   v <- n1 + n2 - 2
   if (is.null(delta0)) delta0 <- matrix(0, ncol=1, nrow=p)
   xbar1 <- matrix(xbar1, ncol=1)
   xbar2 <- matrix(xbar2, ncol=1)
 
-  sp <- ((n1 - 1) * Sigma1 + (n2 - 1) * Sigma2) / (n1 + n2 - 2)
+  sp <- ((n1 - 1) * s1 + (n2 - 1) * s2) / (n1 + n2 - 2)
   T2 <- t(xbar1-xbar2-delta0) %*% solve(sp * (1/n1+1/n2)) %*% (xbar1-xbar2-delta0)
   T2 <- as.numeric(T2)
   p.value <- pf(q=T2 * (v-p+1) / (v*p), df1=p, df2=v-p+1, lower.tail=FALSE)
@@ -130,16 +130,16 @@ two_mean_vector_test_T2 <- function(xbar1, Sigma1, n1,
               sp = sp))
 }
 #' @importFrom stats pf qf
-two_mean_vector_test_james <- function(xbar1, Sigma1, n1,
-                                       xbar2, Sigma2, n2,
+two_mean_vector_test_james <- function(xbar1, s1, n1,
+                                       xbar2, s2, n2,
                                        delta0=NULL, alpha=0.05) {
-  p <- ncol(Sigma1)
+  p <- ncol(s1)
   xbar1 <- matrix(xbar1, ncol=1)
   xbar2 <- matrix(xbar2, ncol=1)
 
-  S1 <- Sigma1/n1 # Represents S1 tilde
-  S2 <- Sigma2/n2 # Represents S2 tilde
-  S <- S1 + S2    # Represents S tilde
+  S1 <- s1/n1    # Represents S1 tilde, uppercase
+  S2 <- s2/n2    # Represents S2 tilde, uppercase
+  S  <- S1 + S2  # Represents S tilde
 
   T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
   T2 <- as.numeric(T2)
@@ -154,12 +154,12 @@ two_mean_vector_test_james <- function(xbar1, Sigma1, n1,
   B <- (sum(b1^2)/(n1 - 1) + sum(b2^2)/(n2 - 1) + 0.5 *
           trb1^2/(n1 - 1) + 0.5 * trb2^2/(n2 - 1))/(p * (p + 2))
   x2 <- qchisq(1 - alpha, p)
-  delta <- (A + B * x2)
+  delta <- A + B * x2
   twoha <- x2 * delta
   p.value <- pchisq(q=T2/delta, df=p, lower.tail=FALSE)
 
   method <- 'James test for two mean vectors'
-  statistic <- c(T2,T2/delta)
+  statistic <- c(T2, T2/delta)
   names(statistic) <- c('T2', 'X-squared')
   parameter <- p
   names(parameter) <- 'df'
@@ -168,6 +168,7 @@ two_mean_vector_test_james <- function(xbar1, Sigma1, n1,
   colnames(estimate) <- c('Sample 1', 'Sample 2')
   rownames(estimate) <- paste('xbar', 1:p, sep = '_')
   data.name <- 'this test uses summarized data'
+
   return(list(statistic = statistic,
               parameter = parameter,
               p.value = p.value,
@@ -177,17 +178,17 @@ two_mean_vector_test_james <- function(xbar1, Sigma1, n1,
               data.name = data.name))
 }
 #' @importFrom stats pf
-two_mean_vector_test_mvn <- function(xbar1, Sigma1, n1,
-                                     xbar2, Sigma2, n2,
+two_mean_vector_test_mvn <- function(xbar1, s1, n1,
+                                     xbar2, s2, n2,
                                      delta0=NULL, alpha=0.05) {
 
-  p <- ncol(Sigma1)
+  p <- ncol(s1)
   xbar1 <- matrix(xbar1, ncol=1)
   xbar2 <- matrix(xbar2, ncol=1)
 
-  S1 <- Sigma1/n1 # Represents S1 tilde
-  S2 <- Sigma2/n2 # Represents S2 tilde
-  S <- S1 + S2    # Represents S tilde
+  S1 <- s1/n1    # Represents S1 tilde
+  S2 <- s2/n2    # Represents S2 tilde
+  S  <- S1 + S2  # Represents S tilde
 
   T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
   T2 <- as.numeric(T2)
