@@ -54,9 +54,11 @@
 #' s2 <- matrix(c(81.8, 32.1,
 #'                32.1, 53.8), ncol = 2)
 #'
-#' two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
-#'                      xbar2 = xbar2, s2 = s2, n2 = n2,
-#'                      method = 'james')
+#' res2 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                              xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                              method = 'james')
+#' res2
+#' plot(res2, from=5, to=10, shade.col="lightgreen")
 #'
 #' # Example 4.1 from Nel and Van de Merwe (1986) page 3729
 #' # Test H0: mu1 = mu2 versus H1: mu1 != mu2
@@ -164,7 +166,7 @@ two_mean_vector_test_james <- function(xbar1, s1, n1,
 
   method <- 'James test for two mean vectors'
   statistic <- c(T2, T2/delta)
-  names(statistic) <- c('T2', 'X-squared')
+  names(statistic) <- c('T2', 'X2')
   parameter <- p
   names(parameter) <- 'df'
   alternative <- "mu1 is not equal to mu2 \n"
