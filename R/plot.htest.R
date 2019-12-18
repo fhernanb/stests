@@ -169,7 +169,7 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8,
   }
 
   # Tests for mean vector with F DISTRIBUTION
-  if (x$method %in% c('T2 test for mean vector',
+  if (x$method %in% c('T2 test for two mean vectors',
                       'Modified Nel and Van der Merwe test for two mean vectors')) {
 
     df1 <- x$parameter[1]

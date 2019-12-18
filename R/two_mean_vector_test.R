@@ -36,9 +36,11 @@
 #'                4.864, 10.22, 30.04, 13.49,
 #'                4.151, 5.446, 13.49, 28), ncol = 4)
 #'
-#' two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
-#'                      xbar2 = xbar2, s2 = s2, n2 = n2,
-#'                      method = "T2")
+#' res1 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                              xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                              method = "T2")
+#' res1
+#' plot(res1, from=21, to=25, shade.col='tomato')
 #'
 #' # Example 3.7 from Seber (1984) page 116.
 #' # using the James first order test (1954).
@@ -68,9 +70,11 @@
 #' s2 <- matrix(c(8632.0, 19616.7,
 #'                19616.7, 55964.5), ncol=2)
 #'
-#' two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
-#'                      xbar2 = xbar2, s2 = s2, n2 = n2,
-#'                      method = 'mvn')
+#' res3 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                              xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                              method = 'mvn')
+#' res3
+#' plot(res3, from=6, to=10, shade.col='pink')
 #'
 #' @importFrom stats pf
 #' @export
