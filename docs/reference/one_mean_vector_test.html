@@ -239,7 +239,7 @@
 #&gt; sample estimates:
 #&gt; xbar_1 xbar_2 xbar_3 
 #&gt;  4.640 45.400  9.965 
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res3</span>, <span class='kw'>from</span><span class='kw'>=</span><span class='fl'>0</span>, <span class='kw'>to</span><span class='kw'>=</span><span class='fl'>5</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'aquamarine3'</span>)
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/rrcov/man/Cov-class.html'>plot</a></span>(<span class='no'>res3</span>, <span class='kw'>from</span><span class='kw'>=</span><span class='fl'>0</span>, <span class='kw'>to</span><span class='kw'>=</span><span class='fl'>5</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'aquamarine3'</span>)
 
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>rrcov</span>)
@@ -247,7 +247,7 @@
 <span class='no'>delivery.x</span> <span class='kw'>&lt;-</span> <span class='no'>delivery</span>[, <span class='fl'>1</span>:<span class='fl'>2</span>]
 
 <span class='co'># Using T2.test from rrcov package</span>
-<span class='fu'>T2.test</span>(<span class='no'>delivery.x</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/rrcov/man/T2.test.html'>T2.test</a></span>(<span class='no'>delivery.x</span>)
 
 <span class='fu'>one_mean_vector_test</span>(<span class='kw'>mu0</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>), <span class='kw'>xbar</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></span>(<span class='no'>delivery.x</span>),
                      <span class='kw'>n</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>S</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span>(<span class='no'>delivery.x</span>))
