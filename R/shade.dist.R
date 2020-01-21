@@ -95,7 +95,7 @@ shade.dist <- function(dist='dnorm', param=list(mean=0, sd=1),
   cord.y2 <- c(0, do.call(dist, c(list(x=y), param)), 0)
 
   # First curve
-  curve(do.call(dist, c(list(x), param)), ylab=ylab, from=from, to=to, axes=F)
+  curve(do.call(dist, c(list(x), param)), ylab=ylab, from=from, to=to, axes=F, ...)
 
   # Shade if type == 'two'
   if (type == 'two') {
@@ -108,7 +108,7 @@ shade.dist <- function(dist='dnorm', param=list(mean=0, sd=1),
 
   # Second curve to avoid the borders
   curve(do.call(dist, c(list(x), param)), add=TRUE,
-        lwd=lwd, col=col.line)
+        lwd=lwd, col=col.line, ...)
   Axis(side=1)
   Axis(side=2)
   box(bty='l')
