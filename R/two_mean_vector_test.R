@@ -156,13 +156,15 @@ two_mean_vector_test_james <- function(xbar1, s1, n1,
   b2 <- Sinv %*% S2
   trb1 <- sum(diag(b1))
   trb2 <- sum(diag(b2))
-  A <- 1 + (trb1^2/(n1 - 1) + trb2^2/(n2 - 1))/(2 * p)
-  B <- (sum(b1^2)/(n1 - 1) + sum(b2^2)/(n2 - 1) + 0.5 *
-          trb1^2/(n1 - 1) + 0.5 * trb2^2/(n2 - 1))/(p * (p + 2))
-  x2 <- qchisq(1 - alpha, p)
+  A <- 1 + ( trb1^2/(n1 - 1) + trb2^2/(n2 - 1) ) / (2 * p)
+  B <- (sum(diag(b1%*%b1))/(n1 - 1) + sum(diag(b2%*%b2))/(n2 - 1) +
+          0.5 * trb1^2/(n1 - 1) + 0.5 * trb2^2/(n2 - 1)) / (p * (p + 2))
+
+  x2 <- qchisq(p=1 - alpha, df=p)
   delta <- A + B * x2
-  twoha <- x2 * delta
+  critic_value <- x2 * delta
   p.value <- pchisq(q=T2/delta, df=p, lower.tail=FALSE)
+  p.value <- NULL
 
   method <- 'James test for two mean vectors'
   statistic <- c(T2, T2/delta)
@@ -181,7 +183,9 @@ two_mean_vector_test_james <- function(xbar1, s1, n1,
               estimate = estimate,
               alternative = alternative,
               method = method,
-              data.name = data.name))
+              data.name = data.name,
+              critic_value = critic_value
+              ))
 }
 #' @importFrom stats pf
 two_mean_vector_test_mvn <- function(xbar1, s1, n1,
