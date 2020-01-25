@@ -4,15 +4,8 @@
 \alias{var_test}
 \title{Variance test using values}
 \usage{
-var_test(
-  varx,
-  nx,
-  vary = NULL,
-  ny = NULL,
-  alternative = "two.sided",
-  null.value = 1,
-  conf.level = 0.95
-)
+var_test(varx, nx, vary = NULL, ny = NULL, alternative = "two.sided",
+  null.value = 1, conf.level = 0.95)
 }
 \arguments{
 \item{varx}{sample variance for sample x.}

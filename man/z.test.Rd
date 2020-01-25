@@ -4,7 +4,8 @@
 \alias{z.test}
 \title{Mean test using vector}
 \usage{
-z.test(x, sigma2, alternative = "two.sided", mu = 0, conf.level = 0.95)
+z.test(x, sigma2, alternative = "two.sided", mu = 0,
+  conf.level = 0.95)
 }
 \arguments{
 \item{x}{a (non-empty) numeric vector of data values.}

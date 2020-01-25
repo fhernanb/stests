@@ -4,13 +4,8 @@
 \alias{var.test}
 \title{Variance test using vectors}
 \usage{
-var.test(
-  x,
-  y = NULL,
-  alternative = "two.sided",
-  null.value = 1,
-  conf.level = 0.95
-)
+var.test(x, y = NULL, alternative = "two.sided", null.value = 1,
+  conf.level = 0.95)
 }
 \arguments{
 \item{x}{a (non-empty) numeric vector of data values.}

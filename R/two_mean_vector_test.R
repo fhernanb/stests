@@ -9,8 +9,10 @@
 #' @param s2 a matrix with sample variances and covariances from population 2.
 #' @param n2 sample size 2.
 #' @param delta0 a number indicating the true value of the difference in means.
-#' @param alpha the significance level, by default its value is 0.05.
+#' @param alpha the significance level for method \code{"james"}, by default its value is 0.05.
 #' @param method a character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James first order test), \code{"yao"} (Yao test), \code{"johansen"} (Johansen test), ...
+#'
+#' @details For James test the critic value is reported, if T2 > critic_value we reject H0.
 #'
 #' @return A list with class \code{"htest"} containing the following components:
 #' \item{statistic}{the value of the statistic.}
@@ -142,7 +144,6 @@ two_mean_vector_test_james <- function(xbar1, s1, n1,
   p <- ncol(s1)
   xbar1 <- matrix(xbar1, ncol=1)
   xbar2 <- matrix(xbar2, ncol=1)
-
   S1 <- s1/n1    # Represents S1 tilde, uppercase
   S2 <- s2/n2    # Represents S2 tilde, uppercase
   S  <- S1 + S2  # Represents S tilde
@@ -150,7 +151,6 @@ two_mean_vector_test_james <- function(xbar1, s1, n1,
   T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
   T2 <- as.numeric(T2)
 
-  # To obtain delta
   Sinv <- solve(S)
   b1 <- Sinv %*% S1
   b2 <- Sinv %*% S2
@@ -159,16 +159,13 @@ two_mean_vector_test_james <- function(xbar1, s1, n1,
   A <- 1 + ( trb1^2/(n1 - 1) + trb2^2/(n2 - 1) ) / (2 * p)
   B <- (sum(diag(b1%*%b1))/(n1 - 1) + sum(diag(b2%*%b2))/(n2 - 1) +
           0.5 * trb1^2/(n1 - 1) + 0.5 * trb2^2/(n2 - 1)) / (p * (p + 2))
-
   x2 <- qchisq(p=1 - alpha, df=p)
   delta <- A + B * x2
   critic_value <- x2 * delta
-  p.value <- pchisq(q=T2/delta, df=p, lower.tail=FALSE)
   p.value <- NULL
-
   method <- 'James test for two mean vectors'
-  statistic <- c(T2, T2/delta)
-  names(statistic) <- c('T2', 'X2')
+  statistic <- c(T2, critic_value)
+  names(statistic) <- c('T2', 'critic_value')
   parameter <- p
   names(parameter) <- 'df'
   alternative <- "mu1 is not equal to mu2 \n"
