@@ -9,8 +9,8 @@
 #' @param s2 a matrix with sample variances and covariances from population 2.
 #' @param n2 sample size 2.
 #' @param delta0 a number indicating the true value of the difference in means.
-#' @param alpha the significance level for method \code{"james"}, by default its value is 0.05.
 #' @param method a character string specifying the method, it must be one of \code{"T2"} (default), \code{"yao"} (Yao test), \code{"james"} (James first order test), \code{"johansen"} (Johansen test), ...
+#' @param alpha the significance level for method \code{"james"}, by default its value is 0.05.
 #'
 #' @details For James test the critic value is reported, if T2 > critic_value we reject H0.
 #'
@@ -23,7 +23,8 @@
 #'
 #' @author Freddy Hernandez
 #' @examples
-#' # Example 5.4.2 from Rencher & Christensen (2012) page 137.
+#' # Example 5.4.2 from Rencher & Christensen (2012) page 137,
+#' # using Hotelling's test
 #' n1 <- 32
 #' xbar1 <- c(15.97, 15.91, 27.19, 22.75)
 #' s1 <- matrix(c(5.192, 4.545, 6.522, 5.25,
@@ -44,8 +45,10 @@
 #' res1
 #' plot(res1, from=21, to=25, shade.col='tomato')
 #'
-#' # Example 3.7 from Seber (1984) page 116.
-#' # using the James first order test (1954).
+#'
+#' # Example from page 141 from Yao (1965),
+#' # using Yao's test
+#'
 #' n1 <- 16
 #' xbar1 <- c(9.82, 15.06)
 #' s1 <- matrix(c(120, -16.3,
@@ -58,9 +61,29 @@
 #'
 #' res2 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
 #'                              xbar2 = xbar2, s2 = s2, n2 = n2,
-#'                              method = 'james')
+#'                              method = 'yao')
 #' res2
-#' plot(res2, from=5, to=10, shade.col="lightgreen")
+#' plot(res2, from=0, to=5, shade.col="pink")
+#'
+#'
+#' # Example 3.7 from Seber (1984) page 116.
+#' # using the James first order test (1954).
+#' n1 <- 16
+#' xbar1 <- c(9.82, 15.06)
+#' s1 <- matrix(c(120, -16.3,
+#'                -16.3, 17.8), ncol = 2)
+#'
+#' n2 <- 11
+#' xbar2 <- c(13.05, 22.57)
+#' s2 <- matrix(c(81.8, 32.1,
+#'                32.1, 53.8), ncol = 2)
+#'
+#' res3 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                              xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                              method = 'james')
+#' res3
+#' plot(res3, from=5, to=10, shade.col="lightgreen")
+#'
 #'
 #' # Example 4.1 from Nel and Van de Merwe (1986) page 3729
 #' # Test H0: mu1 = mu2 versus H1: mu1 != mu2
@@ -74,11 +97,11 @@
 #' s2 <- matrix(c(8632.0, 19616.7,
 #'                19616.7, 55964.5), ncol=2)
 #'
-#' res3 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#' res4 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
 #'                              xbar2 = xbar2, s2 = s2, n2 = n2,
 #'                              method = 'mvn')
-#' res3
-#' plot(res3, from=6, to=10, shade.col='pink')
+#' res4
+#' plot(res4, from=6, to=10, shade.col='pink')
 #'
 #' @importFrom stats pf
 #' @export
