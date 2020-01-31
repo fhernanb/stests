@@ -1,6 +1,6 @@
 #' Tests for Equality of Two Normal Mean Vectors
 #'
-#' Implements the test for \eqn{H_0: \mu_1 = \mu_2} versus \eqn{H_1: \mu_1} not = \eqn{\mu_2} when both random samples are from two p-variate normal populations \eqn{Np(\mu_1, \Sigma_1)} and \eqn{Np(\mu_2, \Sigma_2)}. By default, this function performs the Hotelling test for two normal mean vectors assumming equality in the covariance matrices. Also testing the multivariate Behrens-Fisher problem, when the assumption of equal covariance matrices is violated, including James, Yao, Johansen, ... approaches.
+#' Implements the test for \eqn{H_0: \mu_1 = \mu_2} versus \eqn{H_1: \mu_1} not = \eqn{\mu_2} when both random samples are from two p-variate normal populations \eqn{Np(\mu_1, \Sigma_1)} and \eqn{Np(\mu_2, \Sigma_2)}. By default, this function performs the Hotelling test for two normal mean vectors assumming equality in the covariance matrices. Tests for the multivariate Behrens-Fisher problem are also implemented, the tests are James, Yao, Johansen, Nel and Van der Merwe.
 #'
 #' @param xbar1 a vector with the sample mean from population 1.
 #' @param s1 a matrix with sample variances and covariances from population 1.
@@ -9,7 +9,7 @@
 #' @param s2 a matrix with sample variances and covariances from population 2.
 #' @param n2 sample size 2.
 #' @param delta0 a number indicating the true value of the difference in means.
-#' @param method a character string specifying the method, it must be one of \code{"T2"} (default), \code{"yao"} (Yao test), \code{"james"} (James first order test), \code{"johansen"} (Johansen test), ...
+#' @param method a character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James' first order test), \code{"yao"} (Yao's test), \code{"johansen"} (Johansen's test), \code{"nvm"} (Nel and Van Der Merwe test).
 #' @param alpha the significance level for method \code{"james"}, by default its value is 0.05.
 #'
 #' @details For James test the critic value is reported, if T2 > critic_value we reject H0.
@@ -21,7 +21,7 @@
 #' \item{estimate}{the estimated mean vectors.}
 #' \item{method}{a character string indicating the type of test performed.}
 #'
-#' @author Freddy Hernandez
+#' @author Freddy Hernandez, Jean Paul Piedrahita, Valentina Garcia.
 #' @examples
 #' # Example 5.4.2 from Rencher & Christensen (2012) page 137,
 #' # using Hotelling's test
@@ -46,6 +46,25 @@
 #' plot(res1, from=21, to=25, shade.col='tomato')
 #'
 #'
+#' # Example 3.7 from Seber (1984) page 116.
+#' # using the James first order test (1954).
+#' n1 <- 16
+#' xbar1 <- c(9.82, 15.06)
+#' s1 <- matrix(c(120, -16.3,
+#'                -16.3, 17.8), ncol = 2)
+#'
+#' n2 <- 11
+#' xbar2 <- c(13.05, 22.57)
+#' s2 <- matrix(c(81.8, 32.1,
+#'                32.1, 53.8), ncol = 2)
+#'
+#' res2 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                              xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                              method = 'james')
+#' res2
+#' plot(res2, from=5, to=10, shade.col="lightgreen")
+#'
+#'
 #' # Example from page 141 from Yao (1965),
 #' # using Yao's test
 #'
@@ -59,31 +78,21 @@
 #' s2 <- matrix(c(81.8, 32.1,
 #'                32.1, 53.8), ncol = 2)
 #'
-#' res2 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
-#'                              xbar2 = xbar2, s2 = s2, n2 = n2,
-#'                              method = 'yao')
-#' res2
-#' plot(res2, from=0, to=5, shade.col="pink")
-#'
-#'
-#' # Example 3.7 from Seber (1984) page 116.
-#' # using the James first order test (1954).
-#' n1 <- 16
-#' xbar1 <- c(9.82, 15.06)
-#' s1 <- matrix(c(120, -16.3,
-#'                -16.3, 17.8), ncol = 2)
-#'
-#' n2 <- 11
-#' xbar2 <- c(13.05, 22.57)
-#' s2 <- matrix(c(81.8, 32.1,
-#'                32.1, 53.8), ncol = 2)
-#'
 #' res3 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
 #'                              xbar2 = xbar2, s2 = s2, n2 = n2,
-#'                              method = 'james')
+#'                              method = 'yao')
 #' res3
-#' plot(res3, from=5, to=10, shade.col="lightgreen")
+#' plot(res3, from=2, to=6, shade.col="pink")
 #'
+#'
+#' # Example for Johansen's test using the data from
+#' # Example from page 141 from Yao (1965)
+#'
+#' res4 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                              xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                              method = 'johansen')
+#' res4
+#' plot(res4, from=2, to=6, shade.col="aquamarine1")
 #'
 #' # Example 4.1 from Nel and Van de Merwe (1986) page 3729
 #' # Test H0: mu1 = mu2 versus H1: mu1 != mu2
@@ -97,24 +106,23 @@
 #' s2 <- matrix(c(8632.0, 19616.7,
 #'                19616.7, 55964.5), ncol=2)
 #'
-#' res4 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#' res5 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
 #'                              xbar2 = xbar2, s2 = s2, n2 = n2,
-#'                              method = 'mvn')
-#' res4
-#' plot(res4, from=6, to=10, shade.col='pink')
+#'                              method = 'nvm')
+#' res5
+#' plot(res5, from=6, to=10, shade.col='pink')
 #'
 #' @importFrom stats pf
 #' @export
-two_mean_vector_test <- function(xbar1, s1, n1,
-                                 xbar2, s2, n2,
-                                 delta0=NULL, alpha=0.05,
-                                 method="T2") {
+two_mean_vector_test <- function(xbar1, s1, n1, xbar2, s2, n2,
+                                 delta0=NULL, method="T2", alpha=0.05) {
 
   if (! identical(dim(s1), dim(s2)))
     stop("The matrices s1 and s2 do not have same dimension")
 
   method <- match.arg(arg=method,
-                      choices=c("T2", "james", "yao", "mvn"))
+                      choices=c("T2", "james", "yao", "johansen",
+                                "nvm"))
 
   # To generate the code for evaluating, without using cases
   my_code <- paste0("two_mean_vector_test_", method,
@@ -208,54 +216,6 @@ two_mean_vector_test_james <- function(xbar1, s1, n1,
               ))
 }
 #' @importFrom stats pf
-two_mean_vector_test_mvn <- function(xbar1, s1, n1,
-                                     xbar2, s2, n2,
-                                     delta0=NULL, alpha=0.05) {
-
-  p <- ncol(s1)
-  xbar1 <- matrix(xbar1, ncol=1)
-  xbar2 <- matrix(xbar2, ncol=1)
-
-  S1 <- s1/n1    # Represents S1 tilde
-  S2 <- s2/n2    # Represents S2 tilde
-  S  <- S1 + S2  # Represents S tilde
-
-  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
-  T2 <- as.numeric(T2)
-
-  tr <- function(x) sum(diag(x)) # To obtain the trace easily
-
-  # To obtain v
-  b1 <- S1 %*% solve(S) # An auxiliar element
-  b2 <- S2 %*% solve(S) # An auxiliar element
-  v1 <- tr(b1 %*% b1) + (tr(b1))^2
-  v1 <- v1 / n1
-  v2 <- tr(b2 %*% b2) + (tr(b2))^2
-  v2 <- v2 / n2
-  v <- (p + p^2) / (v1 + v2)
-
-  p.value <- pf(q=T2*(v-p+1)/(v*p), df1=p, df2=v-p+1, lower.tail=FALSE)
-
-  method <- 'Modified Nel and Van der Merwe test for two mean vectors'
-  statistic <- c(T2, T2*(v-p+1)/(v*p))
-  names(statistic) <- c('T2', 'F')
-  parameter <- c(p, v-p+1)
-  names(parameter) <- c('df1', 'df2')
-  alternative <- "mu1 is not equal to mu2 \n"
-  estimate <- cbind(xbar1, xbar2)
-  colnames(estimate) <- c('Sample 1', 'Sample 2')
-  rownames(estimate) <- paste('xbar', 1:p, sep='_')
-  data.name <- 'this test uses summarized data'
-
-  return(list(statistic = statistic,
-              parameter = parameter,
-              p.value = p.value,
-              estimate = estimate,
-              alternative = alternative,
-              method = method,
-              data.name = data.name))
-}
-#' @importFrom stats pf
 two_mean_vector_test_yao <- function(xbar1, s1, n1,
                                      xbar2, s2, n2,
                                      delta0=NULL, alpha=0.05) {
@@ -301,6 +261,102 @@ two_mean_vector_test_yao <- function(xbar1, s1, n1,
               estimate = estimate,
               alternative = alternative,
               method = method,
-              data.name = data.name,
-              v = v))
+              data.name = data.name))
+}
+#' @importFrom stats pf
+two_mean_vector_test_johansen <- function(xbar1, s1, n1,
+                                          xbar2, s2, n2,
+                                          delta0=NULL, alpha=0.05) {
+
+  p <- ncol(s1)
+  xbar1 <- matrix(xbar1, ncol=1)
+  xbar2 <- matrix(xbar2, ncol=1)
+
+  S1 <- s1/n1    # Represents S1 tilde
+  S2 <- s2/n2    # Represents S2 tilde
+  S  <- S1 + S2  # Represents S tilde
+
+  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
+  T2 <- as.numeric(T2)
+
+  tr <- function(x) sum(diag(x)) # To obtain the trace easily
+
+  # To obtain q, v and D
+  b1 <- diag(p) - solve(solve(S1) + solve(S2)) %*% solve(S1)  # An auxiliar element
+  b2 <- diag(p) - solve(solve(S1) + solve(S2)) %*% solve(S2)  # An auxiliar element
+  d1 <- tr(b1 %*% b1) + (tr(b1))^2
+  d1 <- d1/(n1-1)
+  d2 <- tr(b2 %*% b2) + (tr(b2))^2
+  d2 <- d2/(n2-1)
+  D <- (d1 + d2)/2
+  v <- (p*(p+2))/(3*D)
+  q <- p + 2*D - (6*D)/(p*(p-1) + 2)
+  p.value <- pf(q = T2/q, df1 = p, df2 = v, lower.tail = FALSE)
+
+  method <- 'Johansen test for two mean vectors'
+  statistic <- c(T2, T2/q)
+  names(statistic) <- c('T2', 'F')
+  parameter <- c(p, v-p+1)
+  names(parameter) <- c('df1', 'df2')
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep='_')
+  data.name <- 'this test uses summarized data'
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name))
+}
+#' @importFrom stats pf
+two_mean_vector_test_nvm <- function(xbar1, s1, n1,
+                                     xbar2, s2, n2,
+                                     delta0=NULL, alpha=0.05) {
+
+  p <- ncol(s1)
+  xbar1 <- matrix(xbar1, ncol=1)
+  xbar2 <- matrix(xbar2, ncol=1)
+
+  S1 <- s1/n1    # Represents S1 tilde
+  S2 <- s2/n2    # Represents S2 tilde
+  S  <- S1 + S2  # Represents S tilde
+
+  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
+  T2 <- as.numeric(T2)
+
+  tr <- function(x) sum(diag(x)) # To obtain the trace easily
+
+  # To obtain v
+  b1 <- S1 %*% solve(S) # An auxiliar element
+  b2 <- S2 %*% solve(S) # An auxiliar element
+  v1 <- tr(b1 %*% b1) + (tr(b1))^2
+  v1 <- v1 / n1
+  v2 <- tr(b2 %*% b2) + (tr(b2))^2
+  v2 <- v2 / n2
+  v <- (p + p^2) / (v1 + v2)
+
+  p.value <- pf(q=T2*(v-p+1)/(v*p), df1=p, df2=v-p+1, lower.tail=FALSE)
+
+  method <- 'Modified Nel and Van der Merwe test for two mean vectors'
+  statistic <- c(T2, T2*(v-p+1)/(v*p))
+  names(statistic) <- c('T2', 'F')
+  parameter <- c(p, v-p+1)
+  names(parameter) <- c('df1', 'df2')
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep='_')
+  data.name <- 'this test uses summarized data'
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name))
 }

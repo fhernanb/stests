@@ -43,7 +43,7 @@
 
 
 <meta property="og:title" content="Tests for Equality of Two Normal Mean Vectors — two_mean_vector_test" />
-<meta property="og:description" content="Implements the test for \(H_0: \mu_1 = \mu_2\) versus \(H_1: \mu_1\) not = \(\mu_2\) when both random samples are from two p-variate normal populations \(Np(\mu_1, \Sigma_1)\) and \(Np(\mu_2, \Sigma_2)\). By default, this function performs the Hotelling test for two normal mean vectors assumming equality in the covariance matrices. Also testing the multivariate Behrens-Fisher problem, when the assumption of equal covariance matrices is violated, including James, Yao, Johansen, ... approaches." />
+<meta property="og:description" content="Implements the test for \(H_0: \mu_1 = \mu_2\) versus \(H_1: \mu_1\) not = \(\mu_2\) when both random samples are from two p-variate normal populations \(Np(\mu_1, \Sigma_1)\) and \(Np(\mu_2, \Sigma_2)\). By default, this function performs the Hotelling test for two normal mean vectors assumming equality in the covariance matrices. Tests for the multivariate Behrens-Fisher problem are also implemented, the tests are James, Yao, Johansen, Nel and Van der Merwe." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -129,7 +129,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Implements the test for \(H_0: \mu_1 = \mu_2\) versus \(H_1: \mu_1\) not = \(\mu_2\) when both random samples are from two p-variate normal populations \(Np(\mu_1, \Sigma_1)\) and \(Np(\mu_2, \Sigma_2)\). By default, this function performs the Hotelling test for two normal mean vectors assumming equality in the covariance matrices. Also testing the multivariate Behrens-Fisher problem, when the assumption of equal covariance matrices is violated, including James, Yao, Johansen, ... approaches.</p>
+    <p>Implements the test for \(H_0: \mu_1 = \mu_2\) versus \(H_1: \mu_1\) not = \(\mu_2\) when both random samples are from two p-variate normal populations \(Np(\mu_1, \Sigma_1)\) and \(Np(\mu_2, \Sigma_2)\). By default, this function performs the Hotelling test for two normal mean vectors assumming equality in the covariance matrices. Tests for the multivariate Behrens-Fisher problem are also implemented, the tests are James, Yao, Johansen, Nel and Van der Merwe.</p>
     </div>
 
     <pre class="usage"><span class='fu'>two_mean_vector_test</span>(
@@ -140,8 +140,8 @@
   <span class='no'>s2</span>,
   <span class='no'>n2</span>,
   <span class='kw'>delta0</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"T2"</span>
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"T2"</span>,
+  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -176,12 +176,12 @@
       <td><p>a number indicating the true value of the difference in means.</p></td>
     </tr>
     <tr>
-      <th>alpha</th>
-      <td><p>the significance level for method <code>"james"</code>, by default its value is 0.05.</p></td>
+      <th>method</th>
+      <td><p>a character string specifying the method, it must be one of <code>"T2"</code> (default), <code>"james"</code> (James' first order test), <code>"yao"</code> (Yao's test), <code>"johansen"</code> (Johansen's test), <code>"nvm"</code> (Nel and Van Der Merwe test).</p></td>
     </tr>
     <tr>
-      <th>method</th>
-      <td><p>a character string specifying the method, it must be one of <code>"T2"</code> (default), <code>"yao"</code> (Yao test), <code>"james"</code> (James first order test), <code>"johansen"</code> (Johansen test), ...</p></td>
+      <th>alpha</th>
+      <td><p>the significance level for method <code>"james"</code>, by default its value is 0.05.</p></td>
     </tr>
     </table>
 
@@ -233,6 +233,34 @@
 #&gt; xbar_4    22.75    21.94
 #&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res1</span>, <span class='kw'>from</span><span class='kw'>=</span><span class='fl'>21</span>, <span class='kw'>to</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'tomato'</span>)</div><div class='img'><img src='two_mean_vector_test-1.png' alt='' width='700' height='433' /></div><div class='input'>
 
+<span class='co'># Example 3.7 from Seber (1984) page 116.</span>
+<span class='co'># using the James first order test (1954).</span>
+<span class='no'>n1</span> <span class='kw'>&lt;-</span> <span class='fl'>16</span>
+<span class='no'>xbar1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>9.82</span>, <span class='fl'>15.06</span>)
+<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>120</span>, -<span class='fl'>16.3</span>,
+               -<span class='fl'>16.3</span>, <span class='fl'>17.8</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+
+<span class='no'>n2</span> <span class='kw'>&lt;-</span> <span class='fl'>11</span>
+<span class='no'>xbar2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>13.05</span>, <span class='fl'>22.57</span>)
+<span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>81.8</span>, <span class='fl'>32.1</span>,
+               <span class='fl'>32.1</span>, <span class='fl'>53.8</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+
+<span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>s1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
+                             <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xbar2</span>, <span class='kw'>s2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>,
+                             <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>'james'</span>)
+<span class='no'>res2</span></div><div class='output co'>#&gt; 
+#&gt; 	James test for two mean vectors
+#&gt; 
+#&gt; data:  this test uses summarized data
+#&gt; T2 = 9.4455, critic_value = 7.2308, df = 2
+#&gt; alternative hypothesis: mu1 is not equal to mu2 
+#&gt; 
+#&gt; sample estimates:
+#&gt;        Sample 1 Sample 2
+#&gt; xbar_1     9.82    13.05
+#&gt; xbar_2    15.06    22.57
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res2</span>, <span class='kw'>from</span><span class='kw'>=</span><span class='fl'>5</span>, <span class='kw'>to</span><span class='kw'>=</span><span class='fl'>10</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>"lightgreen"</span>)</div><div class='img'><img src='two_mean_vector_test-2.png' alt='' width='700' height='433' /></div><div class='input'>
+
 <span class='co'># Example from page 141 from Yao (1965),</span>
 <span class='co'># using Yao's test</span>
 
@@ -246,10 +274,10 @@
 <span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>81.8</span>, <span class='fl'>32.1</span>,
                <span class='fl'>32.1</span>, <span class='fl'>53.8</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 
-<span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>s1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
+<span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>s1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
                              <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xbar2</span>, <span class='kw'>s2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>,
                              <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>'yao'</span>)
-<span class='no'>res2</span></div><div class='output co'>#&gt; 
+<span class='no'>res3</span></div><div class='output co'>#&gt; 
 #&gt; 	Yao test for two mean vectors
 #&gt; 
 #&gt; data:  this test uses summarized data
@@ -260,36 +288,26 @@
 #&gt;        Sample 1 Sample 2
 #&gt; xbar_1     9.82    13.05
 #&gt; xbar_2    15.06    22.57
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res2</span>, <span class='kw'>from</span><span class='kw'>=</span><span class='fl'>0</span>, <span class='kw'>to</span><span class='kw'>=</span><span class='fl'>5</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>"pink"</span>)</div><div class='img'><img src='two_mean_vector_test-2.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res3</span>, <span class='kw'>from</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>to</span><span class='kw'>=</span><span class='fl'>6</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>"pink"</span>)</div><div class='img'><img src='two_mean_vector_test-3.png' alt='' width='700' height='433' /></div><div class='input'>
 
-<span class='co'># Example 3.7 from Seber (1984) page 116.</span>
-<span class='co'># using the James first order test (1954).</span>
-<span class='no'>n1</span> <span class='kw'>&lt;-</span> <span class='fl'>16</span>
-<span class='no'>xbar1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>9.82</span>, <span class='fl'>15.06</span>)
-<span class='no'>s1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>120</span>, -<span class='fl'>16.3</span>,
-               -<span class='fl'>16.3</span>, <span class='fl'>17.8</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+<span class='co'># Example for Johansen's test using the data from</span>
+<span class='co'># Example from page 141 from Yao (1965)</span>
 
-<span class='no'>n2</span> <span class='kw'>&lt;-</span> <span class='fl'>11</span>
-<span class='no'>xbar2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>13.05</span>, <span class='fl'>22.57</span>)
-<span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>81.8</span>, <span class='fl'>32.1</span>,
-               <span class='fl'>32.1</span>, <span class='fl'>53.8</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-
-<span class='no'>res3</span> <span class='kw'>&lt;-</span> <span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>s1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
+<span class='no'>res4</span> <span class='kw'>&lt;-</span> <span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>s1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
                              <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xbar2</span>, <span class='kw'>s2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>,
-                             <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>'james'</span>)
-<span class='no'>res3</span></div><div class='output co'>#&gt; 
-#&gt; 	James test for two mean vectors
+                             <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>'johansen'</span>)
+<span class='no'>res4</span></div><div class='output co'>#&gt; 
+#&gt; 	Johansen test for two mean vectors
 #&gt; 
 #&gt; data:  this test uses summarized data
-#&gt; T2 = 9.4455, critic_value = 7.2308, df = 2
+#&gt; T2 = 9.4455, F = 4.5476, df1 = 2.000, df2 = 16.309, p-value = 0.02587
 #&gt; alternative hypothesis: mu1 is not equal to mu2 
 #&gt; 
 #&gt; sample estimates:
 #&gt;        Sample 1 Sample 2
 #&gt; xbar_1     9.82    13.05
 #&gt; xbar_2    15.06    22.57
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res3</span>, <span class='kw'>from</span><span class='kw'>=</span><span class='fl'>5</span>, <span class='kw'>to</span><span class='kw'>=</span><span class='fl'>10</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>"lightgreen"</span>)</div><div class='img'><img src='two_mean_vector_test-3.png' alt='' width='700' height='433' /></div><div class='input'>
-
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res4</span>, <span class='kw'>from</span><span class='kw'>=</span><span class='fl'>2</span>, <span class='kw'>to</span><span class='kw'>=</span><span class='fl'>6</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>"aquamarine1"</span>)</div><div class='img'><img src='two_mean_vector_test-4.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Example 4.1 from Nel and Van de Merwe (1986) page 3729</span>
 <span class='co'># Test H0: mu1 = mu2 versus H1: mu1 != mu2</span>
 <span class='no'>n1</span> <span class='kw'>&lt;-</span> <span class='fl'>45</span>
@@ -302,10 +320,10 @@
 <span class='no'>s2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>8632.0</span>, <span class='fl'>19616.7</span>,
                <span class='fl'>19616.7</span>, <span class='fl'>55964.5</span>), <span class='kw'>ncol</span><span class='kw'>=</span><span class='fl'>2</span>)
 
-<span class='no'>res4</span> <span class='kw'>&lt;-</span> <span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>s1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
+<span class='no'>res5</span> <span class='kw'>&lt;-</span> <span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>s1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
                              <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xbar2</span>, <span class='kw'>s2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>,
-                             <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>'mvn'</span>)
-<span class='no'>res4</span></div><div class='output co'>#&gt; 
+                             <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>'nvm'</span>)
+<span class='no'>res5</span></div><div class='output co'>#&gt; 
 #&gt; 	Modified Nel and Van der Merwe test for two mean vectors
 #&gt; 
 #&gt; data:  this test uses summarized data
@@ -317,7 +335,7 @@
 #&gt;        Sample 1 Sample 2
 #&gt; xbar_1    204.4      130
 #&gt; xbar_2    556.6      355
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res4</span>, <span class='kw'>from</span><span class='kw'>=</span><span class='fl'>6</span>, <span class='kw'>to</span><span class='kw'>=</span><span class='fl'>10</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'pink'</span>)</div><div class='img'><img src='two_mean_vector_test-4.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res5</span>, <span class='kw'>from</span><span class='kw'>=</span><span class='fl'>6</span>, <span class='kw'>to</span><span class='kw'>=</span><span class='fl'>10</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'pink'</span>)</div><div class='img'><img src='two_mean_vector_test-5.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -330,7 +348,7 @@
     </ul>
 
     <h2>Author</h2>
-    <p>Freddy Hernandez</p>
+    <p>Freddy Hernandez, Jean Paul Piedrahita, Valentina Garcia.</p>
   </div>
 </div>
 

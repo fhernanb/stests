@@ -12,8 +12,8 @@ two_mean_vector_test(
   s2,
   n2,
   delta0 = NULL,
-  alpha = 0.05,
-  method = "T2"
+  method = "T2",
+  alpha = 0.05
 )
 }
 \arguments{
@@ -31,9 +31,9 @@ two_mean_vector_test(
 
 \item{delta0}{a number indicating the true value of the difference in means.}
 
-\item{alpha}{the significance level for method \code{"james"}, by default its value is 0.05.}
+\item{method}{a character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James' first order test), \code{"yao"} (Yao's test), \code{"johansen"} (Johansen's test), \code{"nvm"} (Nel and Van Der Merwe test).}
 
-\item{method}{a character string specifying the method, it must be one of \code{"T2"} (default), \code{"yao"} (Yao test), \code{"james"} (James first order test), \code{"johansen"} (Johansen test), ...}
+\item{alpha}{the significance level for method \code{"james"}, by default its value is 0.05.}
 }
 \value{
 A list with class \code{"htest"} containing the following components:
@@ -44,7 +44,7 @@ A list with class \code{"htest"} containing the following components:
 \item{method}{a character string indicating the type of test performed.}
 }
 \description{
-Implements the test for \eqn{H_0: \mu_1 = \mu_2} versus \eqn{H_1: \mu_1} not = \eqn{\mu_2} when both random samples are from two p-variate normal populations \eqn{Np(\mu_1, \Sigma_1)} and \eqn{Np(\mu_2, \Sigma_2)}. By default, this function performs the Hotelling test for two normal mean vectors assumming equality in the covariance matrices. Also testing the multivariate Behrens-Fisher problem, when the assumption of equal covariance matrices is violated, including James, Yao, Johansen, ... approaches.
+Implements the test for \eqn{H_0: \mu_1 = \mu_2} versus \eqn{H_1: \mu_1} not = \eqn{\mu_2} when both random samples are from two p-variate normal populations \eqn{Np(\mu_1, \Sigma_1)} and \eqn{Np(\mu_2, \Sigma_2)}. By default, this function performs the Hotelling test for two normal mean vectors assumming equality in the covariance matrices. Tests for the multivariate Behrens-Fisher problem are also implemented, the tests are James, Yao, Johansen, Nel and Van der Merwe.
 }
 \details{
 For James test the critic value is reported, if T2 > critic_value we reject H0.
@@ -73,6 +73,25 @@ res1
 plot(res1, from=21, to=25, shade.col='tomato')
 
 
+# Example 3.7 from Seber (1984) page 116.
+# using the James first order test (1954).
+n1 <- 16
+xbar1 <- c(9.82, 15.06)
+s1 <- matrix(c(120, -16.3,
+               -16.3, 17.8), ncol = 2)
+
+n2 <- 11
+xbar2 <- c(13.05, 22.57)
+s2 <- matrix(c(81.8, 32.1,
+               32.1, 53.8), ncol = 2)
+
+res2 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+                             xbar2 = xbar2, s2 = s2, n2 = n2,
+                             method = 'james')
+res2
+plot(res2, from=5, to=10, shade.col="lightgreen")
+
+
 # Example from page 141 from Yao (1965),
 # using Yao's test
 
@@ -86,31 +105,21 @@ xbar2 <- c(13.05, 22.57)
 s2 <- matrix(c(81.8, 32.1,
                32.1, 53.8), ncol = 2)
 
-res2 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
-                             xbar2 = xbar2, s2 = s2, n2 = n2,
-                             method = 'yao')
-res2
-plot(res2, from=0, to=5, shade.col="pink")
-
-
-# Example 3.7 from Seber (1984) page 116.
-# using the James first order test (1954).
-n1 <- 16
-xbar1 <- c(9.82, 15.06)
-s1 <- matrix(c(120, -16.3,
-               -16.3, 17.8), ncol = 2)
-
-n2 <- 11
-xbar2 <- c(13.05, 22.57)
-s2 <- matrix(c(81.8, 32.1,
-               32.1, 53.8), ncol = 2)
-
 res3 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
                              xbar2 = xbar2, s2 = s2, n2 = n2,
-                             method = 'james')
+                             method = 'yao')
 res3
-plot(res3, from=5, to=10, shade.col="lightgreen")
+plot(res3, from=2, to=6, shade.col="pink")
 
+
+# Example for Johansen's test using the data from
+# Example from page 141 from Yao (1965)
+
+res4 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+                             xbar2 = xbar2, s2 = s2, n2 = n2,
+                             method = 'johansen')
+res4
+plot(res4, from=2, to=6, shade.col="aquamarine1")
 
 # Example 4.1 from Nel and Van de Merwe (1986) page 3729
 # Test H0: mu1 = mu2 versus H1: mu1 != mu2
@@ -124,13 +133,13 @@ xbar2 <- c(130.0, 355.0)
 s2 <- matrix(c(8632.0, 19616.7,
                19616.7, 55964.5), ncol=2)
 
-res4 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+res5 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
                              xbar2 = xbar2, s2 = s2, n2 = n2,
-                             method = 'mvn')
-res4
-plot(res4, from=6, to=10, shade.col='pink')
+                             method = 'nvm')
+res5
+plot(res5, from=6, to=10, shade.col='pink')
 
 }
 \author{
-Freddy Hernandez
+Freddy Hernandez, Jean Paul Piedrahita, Valentina Garcia.
 }
