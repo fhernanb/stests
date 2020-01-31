@@ -87,7 +87,7 @@ s2 <- matrix(c(81.8, 32.1,
 
 res2 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
                              xbar2 = xbar2, s2 = s2, n2 = n2,
-                             method = 'james')
+                             method = 'james', alpha=0.05)
 res2
 plot(res2, from=5, to=10, shade.col="lightgreen")
 
