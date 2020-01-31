@@ -10,7 +10,7 @@
 #' @param n2 sample size 2.
 #' @param delta0 a number indicating the true value of the difference in means.
 #' @param alpha the significance level for method \code{"james"}, by default its value is 0.05.
-#' @param method a character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James first order test), \code{"yao"} (Yao test), \code{"johansen"} (Johansen test), ...
+#' @param method a character string specifying the method, it must be one of \code{"T2"} (default), \code{"yao"} (Yao test), \code{"james"} (James first order test), \code{"johansen"} (Johansen test), ...
 #'
 #' @details For James test the critic value is reported, if T2 > critic_value we reject H0.
 #'
@@ -91,7 +91,7 @@ two_mean_vector_test <- function(xbar1, s1, n1,
     stop("The matrices s1 and s2 do not have same dimension")
 
   method <- match.arg(arg=method,
-                      choices=c("T2", "james", "mvn"))
+                      choices=c("T2", "james", "yao", "mvn"))
 
   # To generate the code for evaluating, without using cases
   my_code <- paste0("two_mean_vector_test_", method,
@@ -210,6 +210,7 @@ two_mean_vector_test_mvn <- function(xbar1, s1, n1,
   v2 <- tr(b2 %*% b2) + (tr(b2))^2
   v2 <- v2 / n2
   v <- (p + p^2) / (v1 + v2)
+
   p.value <- pf(q=T2*(v-p+1)/(v*p), df1=p, df2=v-p+1, lower.tail=FALSE)
 
   method <- 'Modified Nel and Van der Merwe test for two mean vectors'
@@ -230,4 +231,53 @@ two_mean_vector_test_mvn <- function(xbar1, s1, n1,
               alternative = alternative,
               method = method,
               data.name = data.name))
+}
+#' @importFrom stats pf
+two_mean_vector_test_yao <- function(xbar1, s1, n1,
+                                     xbar2, s2, n2,
+                                     delta0=NULL, alpha=0.05) {
+
+  p <- ncol(s1)
+  xbar1 <- matrix(xbar1, ncol=1)
+  xbar2 <- matrix(xbar2, ncol=1)
+
+  S1 <- s1/n1    # Represents S1 tilde
+  S2 <- s2/n2    # Represents S2 tilde
+  S  <- S1 + S2  # Represents S tilde
+
+  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
+  T2 <- as.numeric(T2)
+
+  tr <- function(x) sum(diag(x)) # To obtain the trace easily
+
+  # To obtain v
+  b1 <- solve(S) %*% S1 %*% solve(S)  # An auxiliar element
+  b2 <- solve(S) %*% S2 %*% solve(S)  # An auxiliar element
+  v1 <- (t(xbar1-xbar2) %*% b1 %*% (xbar1-xbar2))/T2
+  v1 <- v1^2/(n1-1)
+  v2 <- (t(xbar1-xbar2) %*% b2 %*% (xbar1-xbar2))/T2
+  v2 <- v2^2/(n2-1)
+  v <- as.numeric(1/(v1+v2))
+
+  p.value <- pf(q=T2*(v-p+1)/(v*p), df1=p, df2=v-p+1, lower.tail=FALSE)
+
+  method <- 'Yao test for two mean vectors'
+  statistic <- c(T2, T2*(v-p+1)/(v*p))
+  names(statistic) <- c('T2', 'F')
+  parameter <- c(p, v-p+1)
+  names(parameter) <- c('df1', 'df2')
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep='_')
+  data.name <- 'this test uses summarized data'
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name,
+              v = v))
 }

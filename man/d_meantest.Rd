@@ -4,8 +4,7 @@
 \alias{d_meantest}
 \title{D-value for hypothesis test using values}
 \usage{
-d_meantest(meanx, varx, meany, vary, alternative = "less",
-  nrep = 1e+06)
+d_meantest(meanx, varx, meany, vary, alternative = "less", nrep = 1e+06)
 }
 \arguments{
 \item{meanx}{sample mean for sample x.}

@@ -4,9 +4,18 @@
 \alias{t_test}
 \title{Student's t-Test using values}
 \usage{
-t_test(meanx, varx, nx, meany = NULL, vary = NULL, ny = NULL,
-  alternative = "two.sided", mu = 0, conf.level = 0.95,
-  var.equal = FALSE)
+t_test(
+  meanx,
+  varx,
+  nx,
+  meany = NULL,
+  vary = NULL,
+  ny = NULL,
+  alternative = "two.sided",
+  mu = 0,
+  conf.level = 0.95,
+  var.equal = FALSE
+)
 }
 \arguments{
 \item{meanx}{sample mean for sample x.}

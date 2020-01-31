@@ -132,23 +132,69 @@
     <p>Creates plots with lower, upper, two-tailed, and middle of the distribution shading for popular pdfs.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>shade.norm</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sigma</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>mu</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>tail</span> <span class='kw'>=</span> <span class='st'>"lower"</span>, <span class='kw'>show.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>show.d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>show.dist</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>legend.cex</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>shade.col</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='no'>...</span>)
+    <pre class="usage"><span class='fu'>shade.norm</span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>sigma</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>mu</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>tail</span> <span class='kw'>=</span> <span class='st'>"lower"</span>,
+  <span class='kw'>show.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>show.d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>show.dist</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>legend.cex</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
+  <span class='kw'>shade.col</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
+  <span class='no'>...</span>
+)
 
-<span class='fu'>shade.t</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nu</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>tail</span> <span class='kw'>=</span> <span class='st'>"lower"</span>,
-  <span class='kw'>show.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>show.d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>show.dist</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>legend.cex</span> <span class='kw'>=</span> <span class='fl'>0.9</span>, <span class='kw'>shade.col</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='no'>...</span>)
+<span class='fu'>shade.t</span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>nu</span> <span class='kw'>=</span> <span class='fl'>3</span>,
+  <span class='kw'>tail</span> <span class='kw'>=</span> <span class='st'>"lower"</span>,
+  <span class='kw'>show.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>show.d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>show.dist</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>legend.cex</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
+  <span class='kw'>shade.col</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
+  <span class='no'>...</span>
+)
 
-<span class='fu'>shade.F</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nu1</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>nu2</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>tail</span> <span class='kw'>=</span> <span class='st'>"lower"</span>, <span class='kw'>show.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>show.d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>show.dist</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>prob.to.each.tail</span> <span class='kw'>=</span> <span class='fl'>0.025</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>legend.cex</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
-  <span class='kw'>shade.col</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='no'>...</span>)
+<span class='fu'>shade.F</span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>nu1</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>nu2</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>tail</span> <span class='kw'>=</span> <span class='st'>"lower"</span>,
+  <span class='kw'>show.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>show.d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>show.dist</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>prob.to.each.tail</span> <span class='kw'>=</span> <span class='fl'>0.025</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>legend.cex</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
+  <span class='kw'>shade.col</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
+  <span class='no'>...</span>
+)
 
-<span class='fu'>shade.chi</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>nu</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>tail</span> <span class='kw'>=</span> <span class='st'>"lower"</span>, <span class='kw'>show.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>show.d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>show.dist</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>prob.to.each.tail</span> <span class='kw'>=</span> <span class='fl'>0.025</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>legend.cex</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
-  <span class='kw'>shade.col</span> <span class='kw'>=</span> <span class='st'>"gray"</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>shade.chi</span>(
+  <span class='kw'>x</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>nu</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>tail</span> <span class='kw'>=</span> <span class='st'>"lower"</span>,
+  <span class='kw'>show.p</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>show.d</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>show.dist</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>prob.to.each.tail</span> <span class='kw'>=</span> <span class='fl'>0.025</span>,
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>legend.cex</span> <span class='kw'>=</span> <span class='fl'>0.9</span>,
+  <span class='kw'>shade.col</span> <span class='kw'>=</span> <span class='st'>"gray"</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

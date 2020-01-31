@@ -4,8 +4,17 @@
 \alias{two_mean_vector_test}
 \title{Tests for Equality of Two Normal Mean Vectors}
 \usage{
-two_mean_vector_test(xbar1, s1, n1, xbar2, s2, n2, delta0 = NULL,
-  alpha = 0.05, method = "T2")
+two_mean_vector_test(
+  xbar1,
+  s1,
+  n1,
+  xbar2,
+  s2,
+  n2,
+  delta0 = NULL,
+  alpha = 0.05,
+  method = "T2"
+)
 }
 \arguments{
 \item{xbar1}{a vector with the sample mean from population 1.}
@@ -24,7 +33,7 @@ two_mean_vector_test(xbar1, s1, n1, xbar2, s2, n2, delta0 = NULL,
 
 \item{alpha}{the significance level for method \code{"james"}, by default its value is 0.05.}
 
-\item{method}{a character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James first order test), \code{"yao"} (Yao test), \code{"johansen"} (Johansen test), ...}
+\item{method}{a character string specifying the method, it must be one of \code{"T2"} (default), \code{"yao"} (Yao test), \code{"james"} (James first order test), \code{"johansen"} (Johansen test), ...}
 }
 \value{
 A list with class \code{"htest"} containing the following components:
