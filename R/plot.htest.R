@@ -231,7 +231,7 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8,
     legend("top", bty="n", adj=0.5, legend=leg)
 
     # To print the main title and the statistic
-    title(main='Shaded area corresponds to p-value')
+    title(main='Shaded area corresponds to alpha')
     mtext(text=round(st, digits=4), side=1, at=st, col=col, cex=cex, adj=0.5)
   }
 
