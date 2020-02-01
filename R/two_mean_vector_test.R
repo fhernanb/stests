@@ -21,7 +21,7 @@
 #' \item{estimate}{the estimated mean vectors.}
 #' \item{method}{a character string indicating the type of test performed.}
 #'
-#' @author Freddy Hernandez, Jean Paul Piedrahita, Valentina Garcia.
+#' @author Freddy Hernandez, Jean Paul Piedrahita, Valentina García.
 #' @examples
 #' # Example 5.4.2 from Rencher & Christensen (2012) page 137,
 #' # using Hotelling's test

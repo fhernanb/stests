@@ -4,7 +4,8 @@
 \alias{plot.htest}
 \title{To plot p-value area}
 \usage{
-\method{plot}{htest}(x, col = "red", shade.col = "red", cex = 0.8, from = NULL, to = NULL, ...)
+\method{plot}{htest}(x, col = "red", shade.col = "red", cex = 0.8,
+  from = NULL, to = NULL, ...)
 }
 \arguments{
 \item{x}{Object of class \dQuote{htest}.}
