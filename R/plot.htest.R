@@ -195,6 +195,7 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8,
 
   # Tests for 2 mean vectors with F DISTRIBUTION
   if (x$method %in% c('T2 test for two mean vectors',
+                      'Nel and Van der Merwe test for two mean vectors',
                       'Modified Nel and Van der Merwe test for two mean vectors',
                       'Yao test for two mean vectors',
                       'Johansen test for two mean vectors')) {

@@ -9,8 +9,8 @@
 #' @param s2 a matrix with sample variances and covariances from population 2.
 #' @param n2 sample size 2.
 #' @param delta0 a number indicating the true value of the difference in means.
-#' @param method a character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James' first order test), \code{"yao"} (Yao's test), \code{"johansen"} (Johansen's test), \code{"nvm"} (Nel and Van Der Merwe test).
-#' @param alpha the significance level for method \code{"james"}, by default its value is 0.05.
+#' @param method a character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James' first order test), \code{"yao"} (Yao's test), \code{"johansen"} (Johansen's test), \code{"nvm"} (Nel and Van der Merwe test), \code{"mnvm"} (modified Nel and Van der Merwe test).
+#' @param alpha the significance level only for method \code{"james"}, by default its value is 0.05.
 #'
 #' @details For James test the critic value is reported, if T2 > critic_value we reject H0.
 #'
@@ -21,7 +21,7 @@
 #' \item{estimate}{the estimated mean vectors.}
 #' \item{method}{a character string indicating the type of test performed.}
 #'
-#' @author Freddy Hernandez, Jean Paul Piedrahita, Valentina García.
+#' @author Freddy Hernandez, Jean Paul Piedrahita, Valentina Garcia.
 #' @examples
 #' # Example 5.4.2 from Rencher & Christensen (2012) page 137,
 #' # using Hotelling's test
@@ -110,7 +110,14 @@
 #'                              xbar2 = xbar2, s2 = s2, n2 = n2,
 #'                              method = 'nvm')
 #' res5
-#' plot(res5, from=6, to=10, shade.col='pink')
+#' plot(res5, from=6, to=10, shade.col='cyan2')
+#'
+#' # using mnvm method for same data
+#' res6 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                              xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                              method = 'mnvm')
+#' res6
+#' plot(res6, from=6, to=10, shade.col='lightgoldenrodyellow')
 #'
 #' @importFrom stats pf
 #' @export
@@ -122,7 +129,7 @@ two_mean_vector_test <- function(xbar1, s1, n1, xbar2, s2, n2,
 
   method <- match.arg(arg=method,
                       choices=c("T2", "james", "yao", "johansen",
-                                "nvm"))
+                                "nvm", "mnvm"))
 
   # To generate the code for evaluating, without using cases
   my_code <- paste0("two_mean_vector_test_", method,
@@ -331,12 +338,59 @@ two_mean_vector_test_nvm <- function(xbar1, s1, n1,
   tr <- function(x) sum(diag(x)) # To obtain the trace easily
 
   # To obtain v
+  v1 <- tr(S1 %*% S1) + (tr(S1))^2
+  v1 <- v1 / (n1-1)
+  v2 <- tr(S2 %*% S2) + (tr(S2))^2
+  v2 <- v2 / (n2-1)
+  v <- (tr(S %*% S) + tr(S)^2) / (v1 + v2)
+
+  p.value <- pf(q=T2*(v-p+1)/(v*p), df1=p, df2=v-p+1, lower.tail=FALSE)
+
+  method <- 'Nel and Van der Merwe test for two mean vectors'
+  statistic <- c(T2, T2*(v-p+1)/(v*p))
+  names(statistic) <- c('T2', 'F')
+  parameter <- c(p, v-p+1)
+  names(parameter) <- c('df1', 'df2')
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep='_')
+  data.name <- 'this test uses summarized data'
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name,
+              v=v))
+}
+#' @importFrom stats pf
+two_mean_vector_test_mnvm <- function(xbar1, s1, n1,
+                                      xbar2, s2, n2,
+                                      delta0=NULL, alpha=0.05) {
+
+  p <- ncol(s1)
+  xbar1 <- matrix(xbar1, ncol=1)
+  xbar2 <- matrix(xbar2, ncol=1)
+
+  S1 <- s1/n1    # Represents S1 tilde
+  S2 <- s2/n2    # Represents S2 tilde
+  S  <- S1 + S2  # Represents S tilde
+
+  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
+  T2 <- as.numeric(T2)
+
+  tr <- function(x) sum(diag(x)) # To obtain the trace easily
+
+  # To obtain v
   b1 <- S1 %*% solve(S) # An auxiliar element
   b2 <- S2 %*% solve(S) # An auxiliar element
   v1 <- tr(b1 %*% b1) + (tr(b1))^2
-  v1 <- v1 / n1
+  v1 <- v1 / (n1-1)
   v2 <- tr(b2 %*% b2) + (tr(b2))^2
-  v2 <- v2 / n2
+  v2 <- v2 / (n2-1)
   v <- (p + p^2) / (v1 + v2)
 
   p.value <- pf(q=T2*(v-p+1)/(v*p), df1=p, df2=v-p+1, lower.tail=FALSE)

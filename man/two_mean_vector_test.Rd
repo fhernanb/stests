@@ -4,8 +4,17 @@
 \alias{two_mean_vector_test}
 \title{Tests for Equality of Two Normal Mean Vectors}
 \usage{
-two_mean_vector_test(xbar1, s1, n1, xbar2, s2, n2, delta0 = NULL,
-  method = "T2", alpha = 0.05)
+two_mean_vector_test(
+  xbar1,
+  s1,
+  n1,
+  xbar2,
+  s2,
+  n2,
+  delta0 = NULL,
+  method = "T2",
+  alpha = 0.05
+)
 }
 \arguments{
 \item{xbar1}{a vector with the sample mean from population 1.}
@@ -22,9 +31,9 @@ two_mean_vector_test(xbar1, s1, n1, xbar2, s2, n2, delta0 = NULL,
 
 \item{delta0}{a number indicating the true value of the difference in means.}
 
-\item{method}{a character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James' first order test), \code{"yao"} (Yao's test), \code{"johansen"} (Johansen's test), \code{"nvm"} (Nel and Van Der Merwe test).}
+\item{method}{a character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James' first order test), \code{"yao"} (Yao's test), \code{"johansen"} (Johansen's test), \code{"nvm"} (Nel and Van der Merwe test), \code{"mnvm"} (modified Nel and Van der Merwe test).}
 
-\item{alpha}{the significance level for method \code{"james"}, by default its value is 0.05.}
+\item{alpha}{the significance level only for method \code{"james"}, by default its value is 0.05.}
 }
 \value{
 A list with class \code{"htest"} containing the following components:
@@ -128,9 +137,16 @@ res5 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
                              xbar2 = xbar2, s2 = s2, n2 = n2,
                              method = 'nvm')
 res5
-plot(res5, from=6, to=10, shade.col='pink')
+plot(res5, from=6, to=10, shade.col='cyan2')
+
+# using mnvm method for same data
+res6 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+                             xbar2 = xbar2, s2 = s2, n2 = n2,
+                             method = 'mnvm')
+res6
+plot(res6, from=6, to=10, shade.col='lightgoldenrodyellow')
 
 }
 \author{
-Freddy Hernandez, Jean Paul Piedrahita, Valentina García.
+Freddy Hernandez, Jean Paul Piedrahita, Valentina Garcia.
 }

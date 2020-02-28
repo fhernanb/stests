@@ -4,8 +4,14 @@
 \alias{z_test}
 \title{Mean test using values}
 \usage{
-z_test(meanx, nx, sigma2 = NULL, alternative = "two.sided", mu = 0,
-  conf.level = 0.95)
+z_test(
+  meanx,
+  nx,
+  sigma2 = NULL,
+  alternative = "two.sided",
+  mu = 0,
+  conf.level = 0.95
+)
 }
 \arguments{
 \item{meanx}{sample mean for sample x.}
