@@ -44,7 +44,7 @@ A list with class \code{"htest"} containing the following components:
 \item{method}{a character string indicating the type of test performed.}
 }
 \description{
-Implements the test for \eqn{H_0: \mu_1 = \mu_2} versus \eqn{H_1: \mu_1} not = \eqn{\mu_2} when both random samples are from two p-variate normal populations \eqn{Np(\mu_1, \Sigma_1)} and \eqn{Np(\mu_2, \Sigma_2)}. By default, this function performs the Hotelling test for two normal mean vectors assumming equality in the covariance matrices. Tests for the multivariate Behrens-Fisher problem are also implemented, the tests are James, Yao, Johansen, Nel and Van der Merwe.
+The function implements the test for \eqn{H_0: \mu_1 = \mu_2} versus \eqn{H_1: \mu_1} not = \eqn{\mu_2} when two random samples are obtained from two p-variate normal populations \eqn{Np(\mu_1, \Sigma_1)} and \eqn{Np(\mu_2, \Sigma_2)} respectively. By default, the function performs the Hotelling test for two normal mean vectors assumming equality in the covariance matrices. Other tests for the multivariate Behrens-Fisher problem are also implemented, see the argument \code{method} below.
 }
 \details{
 For James test the critic value is reported, if T2 > critic_value we reject H0.
