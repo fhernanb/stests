@@ -363,8 +363,7 @@ two_mean_vector_test_nvm <- function(xbar1, s1, n1,
               estimate = estimate,
               alternative = alternative,
               method = method,
-              data.name = data.name,
-              v=v))
+              data.name = data.name))
 }
 #' @importFrom stats pf
 two_mean_vector_test_mnvm <- function(xbar1, s1, n1,
