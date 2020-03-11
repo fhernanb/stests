@@ -217,6 +217,29 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8,
     mtext(text=round(st, digits=4), side=1, at=st, col=col, cex=cex, adj=0.5)
   }
 
+  # Tests for 2 mean vectors with Gamage test
+  if (x$method %in% c('Gamage test for two mean vectors')) {
+
+    st  <- x$statistic[1]
+    if (is.null(from)) from <- 0
+    if (is.null(to))     to <- 2 * st # Para sombrear hasta 2*stat
+
+    my_density <- density(x$T1)
+    f <- approxfun(my_density, rule=2)
+    curve(f(x), lwd=3, from=from, to=to,
+         xlab='x', ylab='Density', main='', ...)
+
+    # To include the shaded area
+    x1 <- min(which(my_density$x >= st))
+    x2 <- which.max(my_density$x)
+    with(my_density, polygon(x=c(x[c(x1, x1:x2, x2)]),
+                             y=c(0, y[x1:x2], 0), col=shade.col))
+
+    # To print the main title and the statistic
+    title(main='Shaded area corresponds to p-value')
+    mtext(text=round(st, digits=4), side=1, at=st, col=col, cex=cex, adj=0.5)
+  }
+
   # Test for 2 mean vectors with X2 distribution
   if (x$method %in% c('James test for two mean vectors')) {
 

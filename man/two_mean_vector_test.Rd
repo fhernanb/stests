@@ -31,7 +31,7 @@ two_mean_vector_test(
 
 \item{delta0}{a number indicating the true value of the difference in means.}
 
-\item{method}{a character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James' first order test), \code{"yao"} (Yao's test), \code{"johansen"} (Johansen's test), \code{"nvm"} (Nel and Van der Merwe test), \code{"mnvm"} (modified Nel and Van der Merwe test).}
+\item{method}{a character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James' first order test), \code{"yao"} (Yao's test), \code{"johansen"} (Johansen's test), \code{"nvm"} (Nel and Van der Merwe test), \code{"mnvm"} (modified Nel and Van der Merwe test), \code{"gamage"} (Gamage's test).}
 
 \item{alpha}{the significance level only for method \code{"james"}, by default its value is 0.05.}
 }
@@ -145,6 +145,15 @@ res6 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
                              method = 'mnvm')
 res6
 plot(res6, from=6, to=10, shade.col='lightgoldenrodyellow')
+
+# using gamage method for same data
+res7 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+                             xbar2 = xbar2, s2 = s2, n2 = n2,
+                             method = 'gamage')
+res7
+plot(res7, from=0 , to=20, shade.col='mediumpurple4')
+text(x=10, y=0.30, "The curve corresponds to an empirical density",
+     col='orange')
 
 }
 \author{

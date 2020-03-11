@@ -9,7 +9,7 @@
 #' @param s2 a matrix with sample variances and covariances from population 2.
 #' @param n2 sample size 2.
 #' @param delta0 a number indicating the true value of the difference in means.
-#' @param method a character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James' first order test), \code{"yao"} (Yao's test), \code{"johansen"} (Johansen's test), \code{"nvm"} (Nel and Van der Merwe test), \code{"mnvm"} (modified Nel and Van der Merwe test).
+#' @param method a character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James' first order test), \code{"yao"} (Yao's test), \code{"johansen"} (Johansen's test), \code{"nvm"} (Nel and Van der Merwe test), \code{"mnvm"} (modified Nel and Van der Merwe test), \code{"gamage"} (Gamage's test).
 #' @param alpha the significance level only for method \code{"james"}, by default its value is 0.05.
 #'
 #' @details For James test the critic value is reported, if T2 > critic_value we reject H0.
@@ -119,6 +119,15 @@
 #' res6
 #' plot(res6, from=6, to=10, shade.col='lightgoldenrodyellow')
 #'
+#' # using gamage method for same data
+#' res7 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                              xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                              method = 'gamage')
+#' res7
+#' plot(res7, from=0 , to=20, shade.col='mediumpurple4')
+#' text(x=10, y=0.30, "The curve corresponds to an empirical density",
+#'      col='orange')
+#'
 #' @importFrom stats pf
 #' @export
 two_mean_vector_test <- function(xbar1, s1, n1, xbar2, s2, n2,
@@ -129,7 +138,7 @@ two_mean_vector_test <- function(xbar1, s1, n1, xbar2, s2, n2,
 
   method <- match.arg(arg=method,
                       choices=c("T2", "james", "yao", "johansen",
-                                "nvm", "mnvm"))
+                                "nvm", "mnvm", "gamage"))
 
   # To generate the code for evaluating, without using cases
   my_code <- paste0("two_mean_vector_test_", method,
@@ -412,4 +421,63 @@ two_mean_vector_test_mnvm <- function(xbar1, s1, n1,
               alternative = alternative,
               method = method,
               data.name = data.name))
+}
+#' @importFrom stats rchisq
+two_mean_vector_test_gamage <- function(xbar1, s1, n1,
+                                        xbar2, s2, n2,
+                                        nrep=2000,
+                                        delta0=NULL, alpha=0.05) {
+
+  p <- ncol(s1)
+  xbar1 <- matrix(xbar1, ncol=1)
+  xbar2 <- matrix(xbar2, ncol=1)
+  S1 <- s1/n1    # Represents S1 tilde, uppercase
+  S2 <- s2/n2    # Represents S2 tilde, uppercase
+  S  <- S1 + S2  # Represents S tilde
+
+  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
+  T2 <- as.numeric(T2)
+
+  # The next function computes the square root of the positive definite matrix
+  my_sqrt <- function(A) {
+    L <- diag(eigen(A)$values)
+    P <- eigen(A)$vectors
+    P %*% L %*% t(P)  # Este producto da como resultado la matriz A
+    A_raiz_cuadrada <- P %*% L^0.5 %*% t(P)
+    A_raiz_cuadrada
+  }
+
+  # The next function implements pvalue given in expression 3.9 of Gamage (2004)
+  one_gen_pvalue <- function(v1, n1, n2, p) {
+    d <- eigen(v1)$values
+    z0i2 <- rchisq(n=p, df=1)
+    Q1 <- rchisq(n=1, df=n1-p)
+    Q2 <- rchisq(n=1, df=n2-p)
+    T1 <- sum(d * z0i2) / Q1 + sum((1-d/(n1-1)) * z0i2) * (n2-1) / Q2
+    T1
+  }
+
+  v1 <- ((n1-1)/n1) * solve(my_sqrt(S)) %*% S1 %*% solve(my_sqrt(S))
+  T1 <- replicate(n=2000, one_gen_pvalue(v1, n1, n2, p))
+  p.value <- mean(T1 > T2)
+
+  method <- 'Gamage test for two mean vectors'
+  statistic <- c(T2)
+  names(statistic) <- c('T2')
+  parameter <- NULL
+  names(parameter) <- NULL
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep='_')
+  data.name <- 'this test uses summarized data'
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name,
+              T1 = T1))
 }
