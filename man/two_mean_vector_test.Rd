@@ -155,6 +155,13 @@ plot(res7, from=0 , to=20, shade.col='mediumpurple4')
 text(x=10, y=0.30, "The curve corresponds to an empirical density",
      col='orange')
 
+# using Yanagihara and Yuan method for same data
+
+res8 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+                             xbar2 = xbar2, s2 = s2, n2 = n2,
+                             method = 'yy')
+res8
+
 }
 \author{
 Freddy Hernandez, Jean Paul Piedrahita, Valentina Garcia.
