@@ -135,6 +135,14 @@
 #'                              method = 'yy')
 #' res8
 #'
+#' # using Bartlett Correction method for same data
+#'
+#' res9 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                              xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                              method = 'byy')
+#'
+#' res9
+#'
 #' @importFrom stats pf
 #' @export
 two_mean_vector_test <- function(xbar1, s1, n1, xbar2, s2, n2,
@@ -145,7 +153,7 @@ two_mean_vector_test <- function(xbar1, s1, n1, xbar2, s2, n2,
 
   method <- match.arg(arg=method,
                       choices=c("T2", "james", "yao", "johansen",
-                                "nvm", "mnvm", "gamage", "yy"))
+                                "nvm", "mnvm", "gamage", "yy", "byy"))
 
   # To generate the code for evaluating, without using cases
   my_code <- paste0("two_mean_vector_test_", method,
@@ -191,7 +199,7 @@ two_mean_vector_test_T2 <- function(xbar1, s1, n1,
               data.name = data.name,
               sp = sp))
 }
-#' @importFrom stats pf qf
+#' @importFrom stats qchisq
 two_mean_vector_test_james <- function(xbar1, s1, n1,
                                        xbar2, s2, n2,
                                        delta0=NULL, alpha=0.05) {
@@ -554,4 +562,66 @@ two_mean_vector_test_yy <- function(xbar1, s1, n1,
               alternative = alternative,
               method = method,
               data.name = data.name))
+}
+#' @importFrom stats pchisq
+two_mean_vector_test_byy <- function(xbar1, s1, n1,
+                                     xbar2, s2, n2,
+                                     delta0=NULL, alpha=0.05) {
+
+  p <- ncol(s1)
+  xbar1 <- matrix(xbar1, ncol=1)
+  xbar2 <- matrix(xbar2, ncol=1)
+
+  S1 <- s1/n1    # Represents S1 tilde
+  S2 <- s2/n2    # Represents S2 tilde
+  S  <- S1 + S2  # Represents S tilde
+
+  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
+  T2 <- as.numeric(T2)
+
+  tr <- function(x) sum(diag(x)) # To obtain the trace easily
+
+  n <- n1+n2
+  N <- n-2
+
+  Sl1 <- (n2/n) * s1      # Represents S1 line
+  Sl2 <- (n1/n) * s2      # Represents S2 line
+  Sl <- Sl1 + Sl2         # Represents S line
+
+  # Auxiliar elements
+  a1 <- (n2^2 * (n-2))/(n^2 * (n1-1))
+  a2 <- (n1^2 * (n-2))/(n^2 * (n2-1))
+  b1 <- s1 %*% solve(Sl)
+  b2 <- s2 %*% solve(Sl)
+
+  # To obtain psi1 and psi2
+  psi1 <- a1 * tr(b1)^2 + a2 * tr(b2)^2
+  psi2 <- a1 * tr(b1%*%b1) + a2 * tr(b2%*%b2)
+
+  # To obtain c1 and c2
+  c1 <- (psi1+psi2)/p
+  c2 <- 2*(p+3)*psi1 + 2*(p+4)*psi2
+  c2 <- c2/(p*(p+2))
+
+  p.value <- pchisq(q=T2*(N-c1)/N, df=p, lower.tail=FALSE)
+
+  method <- 'Bartlett Correction test for two mean vectors'
+  statistic <- c(T2, T2*(N-c1)/N)
+  names(statistic) <- c('T2', 'X-squared')
+  parameter <- p
+  names(parameter) <- 'df'
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep='_')
+  data.name <- 'this test uses summarized data'
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name))
+
 }

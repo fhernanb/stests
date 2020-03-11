@@ -162,6 +162,14 @@ res8 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
                              method = 'yy')
 res8
 
+# using Bartlett Correction method for same data
+
+res9 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+                             xbar2 = xbar2, s2 = s2, n2 = n2,
+                             method = 'byy')
+
+res9
+
 }
 \author{
 Freddy Hernandez, Jean Paul Piedrahita, Valentina Garcia.
