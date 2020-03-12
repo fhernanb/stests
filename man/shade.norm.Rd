@@ -7,69 +7,23 @@
 \alias{shade.chi}
 \title{Shading functions for interpretation of pdf probabilities}
 \usage{
-shade.norm(
-  x = NULL,
-  from = NULL,
-  to = NULL,
-  sigma = 1,
-  mu = 0,
-  tail = "lower",
-  show.p = TRUE,
-  show.d = FALSE,
-  show.dist = TRUE,
-  digits = 5,
-  legend.cex = 0.9,
-  shade.col = "gray",
-  ...
-)
+shade.norm(x = NULL, from = NULL, to = NULL, sigma = 1, mu = 0,
+  tail = "lower", show.p = TRUE, show.d = FALSE, show.dist = TRUE,
+  digits = 5, legend.cex = 0.9, shade.col = "gray", ...)
 
-shade.t(
-  x = NULL,
-  from = NULL,
-  to = NULL,
-  nu = 3,
-  tail = "lower",
-  show.p = TRUE,
-  show.d = FALSE,
-  show.dist = TRUE,
-  digits = 5,
-  legend.cex = 0.9,
-  shade.col = "gray",
-  ...
-)
+shade.t(x = NULL, from = NULL, to = NULL, nu = 3, tail = "lower",
+  show.p = TRUE, show.d = FALSE, show.dist = TRUE, digits = 5,
+  legend.cex = 0.9, shade.col = "gray", ...)
 
-shade.F(
-  x = NULL,
-  from = NULL,
-  to = NULL,
-  nu1 = 1,
-  nu2 = 5,
-  tail = "lower",
-  show.p = TRUE,
-  show.d = FALSE,
-  show.dist = TRUE,
-  prob.to.each.tail = 0.025,
-  digits = 5,
-  legend.cex = 0.9,
-  shade.col = "gray",
-  ...
-)
+shade.F(x = NULL, from = NULL, to = NULL, nu1 = 1, nu2 = 5,
+  tail = "lower", show.p = TRUE, show.d = FALSE, show.dist = TRUE,
+  prob.to.each.tail = 0.025, digits = 5, legend.cex = 0.9,
+  shade.col = "gray", ...)
 
-shade.chi(
-  x = NULL,
-  from = NULL,
-  to = NULL,
-  nu = 1,
-  tail = "lower",
-  show.p = TRUE,
-  show.d = FALSE,
-  show.dist = TRUE,
-  prob.to.each.tail = 0.025,
-  digits = 5,
-  legend.cex = 0.9,
-  shade.col = "gray",
-  ...
-)
+shade.chi(x = NULL, from = NULL, to = NULL, nu = 1,
+  tail = "lower", show.p = TRUE, show.d = FALSE, show.dist = TRUE,
+  prob.to.each.tail = 0.025, digits = 5, legend.cex = 0.9,
+  shade.col = "gray", ...)
 }
 \arguments{
 \item{x}{A quantile, i.e. \eqn{X = x}, or if \code{tail = "two.custom"} ins \code{shade.norm}, a two element vector specifying the upper bound of the lower tail and the lower bound of the upper tail.}

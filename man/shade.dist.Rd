@@ -4,22 +4,9 @@
 \alias{shade.dist}
 \title{Shade for continuous distributions}
 \usage{
-shade.dist(
-  dist = "dnorm",
-  param = list(mean = 0, sd = 1),
-  a = NULL,
-  b = NULL,
-  type = "lower",
-  from,
-  to,
-  col.shadow = "skyblue",
-  col.line = "black",
-  lwd = 3,
-  nbreaks = 1000,
-  ylab = NULL,
-  x,
-  ...
-)
+shade.dist(dist = "dnorm", param = list(mean = 0, sd = 1), a = NULL,
+  b = NULL, type = "lower", from, to, col.shadow = "skyblue",
+  col.line = "black", lwd = 3, nbreaks = 1000, ylab = NULL, x, ...)
 }
 \arguments{
 \item{dist}{the distribution name as \code{'dnorm'}, \code{'dt'}, \code{'dbeta'} or any pdf available in the current session. Remember, only for CONTINUOUS probability distribution.}

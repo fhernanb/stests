@@ -218,7 +218,7 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8,
     mtext(text=round(st, digits=4), side=1, at=st, col=col, cex=cex, adj=0.5)
   }
 
-  # Tests for 2 mean vectors with Gamage test
+  # Tests for 2 mean vectors with Gamage's test
   if (x$method %in% c('Gamage test for two mean vectors')) {
 
     st  <- x$statistic[1]
@@ -241,7 +241,7 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8,
     mtext(text=round(st, digits=4), side=1, at=st, col=col, cex=cex, adj=0.5)
   }
 
-  # Test for 2 mean vectors with X2 distribution
+  # Test for 2 mean vectors with X2 distribution only for James's test
   if (x$method %in% c('James test for two mean vectors')) {
 
     df  <- x$parameter

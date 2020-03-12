@@ -9,10 +9,10 @@
 #' @param s2 a matrix with sample variances and covariances from population 2.
 #' @param n2 sample size 2.
 #' @param delta0 a number indicating the true value of the difference in means.
-#' @param method a character string specifying the method, it must be one of \code{"T2"} (default), \code{"james"} (James' first order test), \code{"yao"} (Yao's test), \code{"johansen"} (Johansen's test), \code{"nvm"} (Nel and Van der Merwe test), \code{"mnvm"} (modified Nel and Van der Merwe test), \code{"gamage"} (Gamage's test), \code{"yy"} (Yanagihara and Yuan test), \code{"byy"} (Bartlett Correction test).
+#' @param method a character string specifying the method, \code{"T2"} (default), \code{"james"} (James' first order test), please see the details section for other methods.
 #' @param alpha the significance level only for method \code{"james"}, by default its value is 0.05.
 #'
-#' @details For James test the critic value is reported, if T2 > critic_value we reject H0.
+#' @details the \code{"method"} must be one of \code{"T2"} (default), \code{"james"} (James' first order test), \code{"yao"} (Yao's test), \code{"johansen"} (Johansen's test), \code{"nvm"} (Nel and Van der Merwe test), \code{"mnvm"} (modified Nel and Van der Merwe test), \code{"gamage"} (Gamage's test), \code{"yy"} (Yanagihara and Yuan test), \code{"byy"} (Bartlett Correction test). For James test the critic value is reported, we reject H0 if T2 > critic_value.
 #'
 #' @return A list with class \code{"htest"} containing the following components:
 #' \item{statistic}{the value of the statistic.}
