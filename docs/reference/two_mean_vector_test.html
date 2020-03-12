@@ -177,7 +177,7 @@
     </tr>
     <tr>
       <th>method</th>
-      <td><p>a character string specifying the method, it must be one of <code>"T2"</code> (default), <code>"james"</code> (James' first order test), <code>"yao"</code> (Yao's test), <code>"johansen"</code> (Johansen's test), <code>"nvm"</code> (Nel and Van der Merwe test), <code>"mnvm"</code> (modified Nel and Van der Merwe test), <code>"gamage"</code> (Gamage's test).</p></td>
+      <td><p>a character string specifying the method, it must be one of <code>"T2"</code> (default), <code>"james"</code> (James' first order test), <code>"yao"</code> (Yao's test), <code>"johansen"</code> (Johansen's test), <code>"nvm"</code> (Nel and Van der Merwe test), <code>"mnvm"</code> (modified Nel and Van der Merwe test), <code>"gamage"</code> (Gamage's test), <code>"yy"</code> (Yanagihara and Yuan test), <code>"byy"</code> (Bartlett Correction test).</p></td>
     </tr>
     <tr>
       <th>alpha</th>
@@ -392,12 +392,28 @@
 <span class='no'>res9</span> <span class='kw'>&lt;-</span> <span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>s1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
                              <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xbar2</span>, <span class='kw'>s2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>,
                              <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>'byy'</span>)
-
 <span class='no'>res9</span></div><div class='output co'>#&gt; 
 #&gt; 	Bartlett Correction test for two mean vectors
 #&gt; 
 #&gt; data:  this test uses summarized data
 #&gt; T2 = 15.659, X-squared = 15.040, df = 2, p-value = 0.0005422
+#&gt; alternative hypothesis: mu1 is not equal to mu2 
+#&gt; 
+#&gt; sample estimates:
+#&gt;        Sample 1 Sample 2
+#&gt; xbar_1    204.4      130
+#&gt; xbar_2    556.6      355
+#&gt; </div><div class='input'>
+<span class='co'># using modified Bartlett Correction method for same data</span>
+
+<span class='no'>res10</span> <span class='kw'>&lt;-</span> <span class='fu'>two_mean_vector_test</span>(<span class='kw'>xbar1</span> <span class='kw'>=</span> <span class='no'>xbar1</span>, <span class='kw'>s1</span> <span class='kw'>=</span> <span class='no'>s1</span>, <span class='kw'>n1</span> <span class='kw'>=</span> <span class='no'>n1</span>,
+                              <span class='kw'>xbar2</span> <span class='kw'>=</span> <span class='no'>xbar2</span>, <span class='kw'>s2</span> <span class='kw'>=</span> <span class='no'>s2</span>, <span class='kw'>n2</span> <span class='kw'>=</span> <span class='no'>n2</span>,
+                              <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>'mbyy'</span>)
+<span class='no'>res10</span></div><div class='output co'>#&gt; 
+#&gt; 	Modified Bartlett Correction test for two mean vectors
+#&gt; 
+#&gt; data:  this test uses summarized data
+#&gt; T2 = 15.659, X-squared = 14.044, df = 2, p-value = 0.000892
 #&gt; alternative hypothesis: mu1 is not equal to mu2 
 #&gt; 
 #&gt; sample estimates:
