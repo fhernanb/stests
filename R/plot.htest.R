@@ -22,6 +22,7 @@
 #' plot(res, col='blue', shade.col='tomato')
 #'
 #' @importFrom graphics mtext title
+#' @importFrom stats density approxfun
 #' @export
 plot.htest <- function(x, col='red', shade.col='red', cex=0.8,
                        from=NULL, to=NULL, ...) {
