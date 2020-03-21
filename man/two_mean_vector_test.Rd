@@ -4,8 +4,17 @@
 \alias{two_mean_vector_test}
 \title{Tests for Equality of Two Normal Mean Vectors}
 \usage{
-two_mean_vector_test(xbar1, s1, n1, xbar2, s2, n2, delta0 = NULL,
-  method = "T2", alpha = 0.05)
+two_mean_vector_test(
+  xbar1,
+  s1,
+  n1,
+  xbar2,
+  s2,
+  n2,
+  delta0 = NULL,
+  method = "T2",
+  alpha = 0.05
+)
 }
 \arguments{
 \item{xbar1}{a vector with the sample mean from population 1.}

@@ -132,8 +132,17 @@
     <p>The function implements the test for \(H_0: \mu_1 = \mu_2\) versus \(H_1: \mu_1\) not = \(\mu_2\) when two random samples are obtained from two p-variate normal populations \(Np(\mu_1, \Sigma_1)\) and \(Np(\mu_2, \Sigma_2)\) respectively. By default, the function performs the Hotelling test for two normal mean vectors assumming equality in the covariance matrices. Other tests for the multivariate Behrens-Fisher problem are also implemented, see the argument <code>method</code> below.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>two_mean_vector_test</span>(<span class='no'>xbar1</span>, <span class='no'>s1</span>, <span class='no'>n1</span>, <span class='no'>xbar2</span>, <span class='no'>s2</span>, <span class='no'>n2</span>, <span class='kw'>delta0</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"T2"</span>, <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>)</pre>
+    <pre class="usage"><span class='fu'>two_mean_vector_test</span>(
+  <span class='no'>xbar1</span>,
+  <span class='no'>s1</span>,
+  <span class='no'>n1</span>,
+  <span class='no'>xbar2</span>,
+  <span class='no'>s2</span>,
+  <span class='no'>n2</span>,
+  <span class='kw'>delta0</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"T2"</span>,
+  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.05</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
