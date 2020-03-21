@@ -40,9 +40,26 @@ n2 <- 23
 n3 <- 25
 s <- list(s1, s2, s3)
 n <- list(n1, n2, n3)
+
 res <- mult_var_matrices_test(s, n, method="box")
 res
 plot(res, shade.col='tomato')
+
+# Example 5.3.4 from Mardia (1979) page 141
+s1 <- matrix(c(132.99, 75.85, 35.82,
+75.85, 47.96, 20.75,
+35.82, 20.75, 10.79), ncol=3, nrow=3)
+s2 <- matrix(c(432.85, 259.87, 161.67,
+               259.87, 164.57, 98.99,
+               161.67, 98.99, 63.87), ncol=3, nrow=3)
+n1 <- 24
+n2 <- 24
+s <- list(s1, s2)
+n <- list(n1, n2)
+
+res <- mult_var_matrices_test(s, n, method="box")
+res
+plot(res, from=20, to=30, shade.col='pink')
 
 }
 \author{
