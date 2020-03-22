@@ -36,9 +36,9 @@
 #'
 #' # Example 5.3.4 from Mardia (1979) page 141
 #' s1 <- matrix(c(132.99, 75.85, 35.82,
-#' 75.85, 47.96, 20.75,
-#' 35.82, 20.75, 10.79), ncol=3, nrow=3)
-#' s2 <- matrix(c(432.85, 259.87, 161.67,
+#'                75.85, 47.96, 20.75,
+#'                35.82, 20.75, 10.79), ncol=3, nrow=3)
+#' s2 <- matrix(c(432.58, 259.87, 161.67,
 #'                259.87, 164.57, 98.99,
 #'                161.67, 98.99, 63.87), ncol=3, nrow=3)
 #' n1 <- 24
@@ -75,12 +75,12 @@ mult_var_matrices_test <- function(s, n, method='box') {
 #' @importFrom stats pchisq
 mult_var_matrices_test_box <- function(s, n) {
   p <- nrow(s[[1]])   # number of variables
-  q <- length(s)      # number of groups
+  g <- length(s)      # number of groups
   N <- sum(unlist(n))
-  v <- N - q
+  v <- N - g
   vg <- unlist(n) - 1
   aux1 <- sum(1/vg) - 1/v
-  rho <- 1 - (2*p^2+3*p-1) * aux1 / (6*(p+1)*(q-1))
+  rho <- 1 - (2*p^2+3*p-1) * aux1 / (6*(p+1)*(g-1))
   # To obtian log(lambda)
   aux2 <- Map("*", s, vg)
   Sp <- Reduce("+", aux2) / v
@@ -88,12 +88,12 @@ mult_var_matrices_test_box <- function(s, n) {
   log_lambda <- (v * log(det(Sp)) - aux3) / (-2)
   # The statistic
   fi <- -2 * rho * log_lambda
-  p.value <- pchisq(q=fi, df=p*(p+1)*(q-1)/2, lower.tail=FALSE)
+  p.value <- pchisq(q=fi, df=p*(p+1)*(g-1)/2, lower.tail=FALSE)
 
   method <- 'Box test for homogeneity of covariances'
   statistic <- fi
   names(statistic) <- c('phi')
-  parameter <- c(p*(p+1)*(q-1)/2)
+  parameter <- c(p*(p+1)*(g-1)/2)
   names(parameter) <- c('df')
   alternative <- "at least one covariance matrix is different \n"
   estimate <- NULL
