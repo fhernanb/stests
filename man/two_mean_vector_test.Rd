@@ -47,7 +47,7 @@ A list with class \code{"htest"} containing the following components:
 The function implements the test for \eqn{H_0: \mu_1 = \mu_2} versus \eqn{H_1: \mu_1} not = \eqn{\mu_2} when two random samples are obtained from two p-variate normal populations \eqn{Np(\mu_1, \Sigma_1)} and \eqn{Np(\mu_2, \Sigma_2)} respectively. By default, the function performs the Hotelling test for two normal mean vectors assumming equality in the covariance matrices. Other tests for the multivariate Behrens-Fisher problem are also implemented, see the argument \code{method} below.
 }
 \details{
-the \code{"method"} must be one of \code{"T2"} (default), \code{"james"} (James' first order test), \code{"yao"} (Yao's test), \code{"johansen"} (Johansen's test), \code{"nvm"} (Nel and Van der Merwe test), \code{"mnvm"} (modified Nel and Van der Merwe test), \code{"gamage"} (Gamage's test), \code{"yy"} (Yanagihara and Yuan test), \code{"byy"} (Bartlett Correction test). For James test the critic value is reported, we reject H0 if T2 > critic_value.
+the \code{"method"} must be one of \code{"T2"} (default), \code{"james"} (James' first order test), \code{"yao"} (Yao's test), \code{"johansen"} (Johansen's test), \code{"nvm"} (Nel and Van der Merwe test), \code{"mnvm"} (modified Nel and Van der Merwe test), \code{"gamage"} (Gamage's test), \code{"yy"} (Yanagihara and Yuan test), \code{"byy"} (Bartlett Correction test), \code{"ks1"} (Kawasaki and Seo). For James test the critic value is reported, we reject H0 if T2 > critic_value.
 }
 \examples{
 # Example 5.4.2 from Rencher & Christensen (2012) page 137,
@@ -175,6 +175,13 @@ res10 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
                               xbar2 = xbar2, s2 = s2, n2 = n2,
                               method = 'mbyy')
 res10
+
+# using second order (Kawasaki and Seo) method for same data
+
+res11 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+                              xbar2 = xbar2, s2 = s2, n2 = n2,
+                              method = 'ks1')
+res11
 
 }
 \author{

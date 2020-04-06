@@ -12,7 +12,7 @@
 #' @param method a character string specifying the method, \code{"T2"} (default), \code{"james"} (James' first order test), please see the details section for other methods.
 #' @param alpha the significance level only for method \code{"james"}, by default its value is 0.05.
 #'
-#' @details the \code{"method"} must be one of \code{"T2"} (default), \code{"james"} (James' first order test), \code{"yao"} (Yao's test), \code{"johansen"} (Johansen's test), \code{"nvm"} (Nel and Van der Merwe test), \code{"mnvm"} (modified Nel and Van der Merwe test), \code{"gamage"} (Gamage's test), \code{"yy"} (Yanagihara and Yuan test), \code{"byy"} (Bartlett Correction test). For James test the critic value is reported, we reject H0 if T2 > critic_value.
+#' @details the \code{"method"} must be one of \code{"T2"} (default), \code{"james"} (James' first order test), \code{"yao"} (Yao's test), \code{"johansen"} (Johansen's test), \code{"nvm"} (Nel and Van der Merwe test), \code{"mnvm"} (modified Nel and Van der Merwe test), \code{"gamage"} (Gamage's test), \code{"yy"} (Yanagihara and Yuan test), \code{"byy"} (Bartlett Correction test), \code{"ks1"} (Kawasaki and Seo). For James test the critic value is reported, we reject H0 if T2 > critic_value.
 #'
 #' @return A list with class \code{"htest"} containing the following components:
 #' \item{statistic}{the value of the statistic.}
@@ -149,6 +149,13 @@
 #'                               method = 'mbyy')
 #' res10
 #'
+#' # using second order (Kawasaki and Seo) method for same data
+#'
+#' res11 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                               xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                               method = 'ks1')
+#' res11
+#'
 #' @importFrom stats pf
 #' @export
 two_mean_vector_test <- function(xbar1, s1, n1, xbar2, s2, n2,
@@ -160,7 +167,7 @@ two_mean_vector_test <- function(xbar1, s1, n1, xbar2, s2, n2,
   method <- match.arg(arg=method,
                       choices=c("T2", "james", "yao", "johansen",
                                 "nvm", "mnvm", "gamage", "yy",
-                                "byy", "mbyy"))
+                                "byy", "mbyy", "ks1"))
 
   # To generate the code for evaluating, without using cases
   my_code <- paste0("two_mean_vector_test_", method,
@@ -684,6 +691,174 @@ two_mean_vector_test_mbyy <- function(xbar1, s1, n1,
   names(statistic) <- c('T2', 'X-squared')
   parameter <- p
   names(parameter) <- 'df'
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep='_')
+  data.name <- 'this test uses summarized data'
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name))
+
+}
+#' @importFrom stats pchisq
+#' @importFrom expm %^%
+two_mean_vector_test_ks1 <- function(xbar1, s1, n1,
+                                     xbar2, s2, n2,
+                                     delta0=NULL, alpha=0.05) {
+
+  p <- ncol(s1)
+  xbar1 <- matrix(xbar1, ncol=1)
+  xbar2 <- matrix(xbar2, ncol=1)
+
+  S1 <- s1/n1    # Represents S1 tilde
+  S2 <- s2/n2    # Represents S2 tilde
+  S  <- S1 + S2  # Represents S tilde
+
+  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
+  T2 <- as.numeric(T2)
+
+  tr <- function(x) sum(diag(x))   # To obtain the trace easily
+
+  n <- n1+n2
+  N <- n-2
+
+  Sl1 <- (n2/n) * s1      # Represents S1 line
+  Sl2 <- (n1/n) * s2      # Represents S2 line
+  Sl <- Sl1 + Sl2         # Represents S line
+
+  # Auxiliar elements
+  x1 <- s1 %*% solve(Sl)
+  x2 <- s2 %*% solve(Sl)
+
+  # Function a (return a number)
+  a <- function(i, l){
+    if (i == 1){
+      res <- tr(x1)^l
+    }
+
+    else if (i == 2){
+      res <- tr(x2)^l
+    }
+
+    return(res)
+  }
+
+  # Function b (return a number)
+  b <- function(q, r, s){
+    #library(expm)
+    res <- tr((x1 %^% q) %*% (x2 %^% r))
+    res <- res^s
+    return(res)
+  }
+
+  # c values (numbers)
+  c1 <- (n - n1)^2 * (n-2)
+  c1 <- c1/(n^2 * (n1-1))
+
+  c2 <- (n - n2)^2 * (n-2)
+  c2 <- c2/(n^2 * (n2-1))
+
+  # d values (numbers)
+  d1 <- (n - n1)^3 * (n-2)^2
+  d1 <- d1/(n^3 * (n1-1)^2)
+
+  d2 <- (n - n2)^3 * (n-2)^2
+  d2 <- d2/(n^3 * (n2-1)^2)
+
+  # psi values
+  psi1 <- c1 * c2 * (a(1,1)*b(1,2,1) + a(2,1)*b(2,1,1))
+  psi2 <- c1 * c2 * b(2,2,1)
+  psi3 <- c1 * c2 * a(1,1) * a(2,1) * b(1,1,1)
+  psi4 <- c1 * c2 * a(1,2) * a(2,2)
+  psi5 <- c1 * c2 * (a(1,2)*a(2,1)^2 + a(1,1)^2*a(2,2))
+  psi6 <- c1 * c2 * b(1,1,1)^2
+  psi7 <- c1 * c2 * a(1,1)^2 * a(2,1)^2
+  psi8 <- c1 * c2 * b(1,1,2)
+
+  # --------------------------------------------------------------------------
+  # theta values (numbers)
+
+  # theta1
+  theta1 <- c1 * (p*a(1,1)^2 + (p-2)*a(1,2)) + c2 * (p*a(2,1)^2 + (p-2)*a(2,2))
+  theta1 <- theta1/(p*(p+2))
+
+  # theta2
+  th2_1 <- d1 * (4*p^2 * a(1,3) + (p-2)*(3*p + 4)*a(1,1)*a(1,2) + p*(p+2)*a(1,1)^3)
+  th2_2 <- d2 * (4*p^2 * a(2,3) + (p-2)*(3*p + 4)*a(2,1)*a(2,2) + p*(p+2)*a(2,1)^3)
+  theta2 <- (th2_1 + th2_2)/(p*(p+2)*(p+4))
+
+  # theta3
+  th3_1 <- p^2*(5*p + 14)*a(1,4) + 4*(p+3)*(p+2)*(p-2)*a(1,1)*a(1,3)
+  th3_1 <- th3_1 + p*(p+3)*(p-2)*a(1,2)^2 + 2*(p^3 + 5*p^2 + 7*p + 6)*a(1,2)*a(1,1)^2
+  th3_1 <- th3_1 - p*(p+4)*a(1,1)^4
+  th3_1 <- c1^2 * (th3_1)
+
+  th3_2 <- p^2*(5*p + 14)*a(2,4) + 4*(p+3)*(p+2)*(p-2)*a(2,1)*a(2,3)
+  th3_2 <- th3_2 + p*(p+3)*(p-2)*a(2,2)^2 + 2*(p^3 + 5*p^2 + 7*p + 6)*a(2,2)*a(2,1)^2
+  th3_2 <- th3_2 - p*(p+4)*a(2,1)^4
+  th3_2 <- c2^2 * (th3_2)
+
+  aux3 <- 4*(p+3)*(p+2)*(p-2)*psi1 + 4*p*(p+2)*(p-2)*psi2
+  aux3 <- aux3 + 4*p*(p+4)*(p+2)*psi3 - 2*p*(p-2)*psi4 - 2*(p+3)*(p-2)*psi5
+  aux3 <- aux3 + 2*p*(p+4)*(p-2)*psi6 - 2*p*(p+4)*psi7 + 2*p*(p+4)*(3*p + 2)*psi8
+
+  theta3 <- th3_1 + th3_2 + aux3
+  theta3 <- theta3/(p*(p+2)*(p+4)*(p+6))
+
+  # theta4
+  theta4 <- c1 * (a(1,1)^2 + 2*a(1,2)) + c2 * (a(2,1)^2 + 2*a(2,2))
+  theta4 <- theta4/(p*(p+2))
+
+  # theta5
+  th5_1 <- 4*(p^2 - 3*p + 4)*a(1,3) + 3*p*(p-4)*a(1,1)*a(1,2) + p^2*a(1,1)^3
+  th5_1 <- d1*th5_1
+
+  th5_2 <- 4*(p^2 - 3*p + 4)*a(2,3) + 3*p*(p-4)*a(2,1)*a(2,2) + p^2*a(2,1)^3
+  th5_2 <- d2*th5_2
+
+  theta5 <- (th5_1 + th5_2)/(p*(p+2)*(p+4))
+
+  # theta6
+  th6_1 <- 2*(p+1)*(5*p^2 - 14*p + 24)*a(1,4)
+  th6_1 <- th6_1 + 4*(p-4)*(2*p^2 + 5*p + 6)*a(1,1)*a(1,3) + (p-2)*(p-4)*(2*p + 3)*a(1,2)^2
+  th6_1 <- th6_1 + 2*(p+2)*(2*p^2 - p + 12)*a(1,2)*a(1,1)^2 - 3*(p^2 + 2*p - 4)*a(1,1)^4
+  th6_1 <- c1^2 * th6_1
+
+  th6_2 <- 2*(p+1)*(5*p^2 - 14*p + 24)*a(2,4)
+  th6_2 <- th6_2 + 4*(p-4)*(2*p^2 + 5*p + 6)*a(2,1)*a(2,3) + (p-2)*(p-4)*(2*p + 3)*a(2,2)^2
+  th6_2 <- th6_2 + 2*(p+2)*(2*p^2 - p + 12)*a(2,2)*a(2,1)^2 - 3*(p^2 + 2*p - 4)*a(2,1)^4
+  th6_2 <- c2^2 * th6_2
+
+  aux6 <- 4*(p-4)*(2*p^2 + 5*p + 6)*psi1 + 8*p*(p-2)*(p-4)*psi2 + 8*p*(p^2 + 4*p + 2)*psi3
+  aux6 <- aux6 - 6*(p-2)*(p-4)*psi4 - 6*(p-4)*(p+2)*psi5 + 4*(p+3)*(p-2)*(p-4)*psi6
+  aux6 <- aux6 - 6*(p^2 + 2*p - 4)*psi7 + 12*(p^3 + p^2 - 2*p + 8)*psi8
+
+  theta6 <- th6_1 + th6_2 + aux6
+  theta6 <- theta6/(p*(p+2)*(p+4)*(p+6))
+
+  # To obtain Vs
+  Vs1 <- 2*(N^2 - N*theta1 + theta2 - theta3)^2
+  Vs2 <- N^2 * (N^2 - 2*N*theta1 + 2*N*theta4 + 2*theta5 - theta6)
+  Vs3 <- (N^2 - N*theta1 + theta2 - theta3)^2
+  Vs <- Vs1/(Vs2 - Vs3)
+
+  # To obtain psi_s
+  psi_s <- N^2 * Vs
+  psi_s <- psi_s/(N^2 - N*theta1 + theta2 - theta3)
+
+  p.value <- pf(q=T2*Vs/(p*psi_s), df1=p, df2=Vs, lower.tail=FALSE)
+
+  method <- 'Kawasaki and Seo (Second order) test for two mean vectors'
+  statistic <- c(T2, T2*Vs/(p*psi_s))
+  names(statistic) <- c('T2', 'F')
+  parameter <- c(p, Vs)
+  names(parameter) <- c('df1', 'df2')
   alternative <- "mu1 is not equal to mu2 \n"
   estimate <- cbind(xbar1, xbar2)
   colnames(estimate) <- c('Sample 1', 'Sample 2')
