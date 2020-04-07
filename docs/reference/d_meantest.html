@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mean test using vector — z.test • stests</title>
+<title>D-value for hypothesis test using values — d_meantest • stests</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="Mean test using vector — z.test" />
-<meta property="og:description" content="This function performs the mean test using raw data (vector)." />
+<meta property="og:title" content="D-value for hypothesis test using values — d_meantest" />
+<meta property="og:description" content="This function shows the D-value of a hypothesis test for two samples using summarized values, not the vectors." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -108,93 +108,73 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Mean test using vector</h1>
+    <h1>D-value for hypothesis test using values</h1>
     
-    <div class="hidden name"><code>z.test.Rd</code></div>
+    <div class="hidden name"><code>d_meantest.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function performs the mean test using raw data (vector).</p>
+    <p>This function shows the D-value of a hypothesis test for two samples using summarized values, not the vectors.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>z.test</span>(<span class='no'>x</span>, <span class='no'>sigma2</span>, <span class='kw'>alternative</span> <span class='kw'>=</span> <span class='st'>"two.sided"</span>, <span class='kw'>mu</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>)</pre>
+    <pre class="usage"><span class='fu'>d_meantest</span>(<span class='no'>meanx</span>, <span class='no'>varx</span>, <span class='no'>meany</span>, <span class='no'>vary</span>, <span class='kw'>alternative</span> <span class='kw'>=</span> <span class='st'>"less"</span>, <span class='kw'>nrep</span> <span class='kw'>=</span> <span class='fl'>1e+06</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>a (non-empty) numeric vector of data values.</p></td>
+      <th>meanx</th>
+      <td><p>sample mean for sample x.</p></td>
     </tr>
     <tr>
-      <th>sigma2</th>
-      <td><p>population variance which is known.</p></td>
+      <th>varx</th>
+      <td><p>sample variance for sample x.</p></td>
+    </tr>
+    <tr>
+      <th>meany</th>
+      <td><p>sample mean for sample y.</p></td>
+    </tr>
+    <tr>
+      <th>vary</th>
+      <td><p>sample variance for sample y.</p></td>
     </tr>
     <tr>
       <th>alternative</th>
-      <td><p>a character string specifying the alternative
-hypothesis, must be one of <code>two.sided</code> (default),
-<code>greater</code> or <code>less</code>. You can specify just the initial letter.</p></td>
+      <td><p>a character string specifying the alternative hypothesis, must be one of <code>"less"</code> (default), <code>"greater"</code> or <code>"two.sided"</code>. You can specify just the initial letter.</p></td>
     </tr>
     <tr>
-      <th>mu</th>
-      <td><p>the hypothesized number in the null hypothesis.</p></td>
-    </tr>
-    <tr>
-      <th>conf.level</th>
-      <td><p>confidence level of the interval, by default its value is 0.95.</p></td>
+      <th>nrep</th>
+      <td><p>number of repetions to obtain the D-value, by default is 1000000</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list with class <code>htest</code> containing the following
+    <p>A list with class <code>"htest"</code> containing the following 
  components:</p>
-<dt>statistic</dt><dd><p>the value of the statistic.</p></dd>
-<dt>p.value</dt><dd><p>the p-value for the test.</p></dd>
-<dt>conf.int</dt><dd><p>a confidence interval for the variance.</p></dd>
-<dt>estimate</dt><dd><p>the estimated mean.</p></dd>
-<dt>null.value</dt><dd><p>the specified hypothesized value for alternative hypothesis.</p></dd>
+<dt>d.value</dt><dd><p>the d-value for the test.</p></dd>
+<dt>estimate</dt><dd><p>the estimated mean or difference in means depending
+      on whether it was a one-sample test or a two-sample test.</p></dd>
 <dt>alternative</dt><dd><p>a character string describing the alternative hypothesis.</p></dd>
 <dt>method</dt><dd><p>a character string indicating the type of test performed.</p></dd>
-<dt>data.name</dt><dd><p>a character string giving the name of the data.</p></dd>
 
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>In this case, it is important to explain that the sample size is assumed as n = 1 
+because the D-value provides an individual analysis.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Example 1</span>
-<span class='co'># H0: mu = 350</span>
-<span class='co'># Ha: mu &lt; 350 with sigma2=25</span>
-<span class='no'>content</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>355</span>, <span class='fl'>353</span>, <span class='fl'>352</span>, <span class='fl'>346</span>, <span class='fl'>345</span>, <span class='fl'>345</span>, <span class='fl'>353</span>, <span class='fl'>353</span>, <span class='fl'>344</span>, <span class='fl'>350</span>)
-<span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>z.test</span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>content</span>, <span class='kw'>mu</span><span class='kw'>=</span><span class='fl'>350</span>, <span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'less'</span>)
-<span class='no'>res1</span></div><div class='output co'>#&gt; 
-#&gt; 	One Sample z-test
+    <pre class="examples"><div class='input'><span class='co'># --- Examples with TWO-SAMPLES and equal variances ---</span>
+<span class='fu'>d_meantest</span>(<span class='kw'>meanx</span><span class='kw'>=</span><span class='fl'>250</span>, <span class='kw'>varx</span><span class='kw'>=</span><span class='fl'>20</span>^<span class='fl'>2</span>, <span class='kw'>meany</span><span class='kw'>=</span><span class='fl'>249</span>, <span class='kw'>vary</span><span class='kw'>=</span><span class='fl'>20</span>^<span class='fl'>2</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'greater'</span>)</div><div class='output co'>#&gt; 
+#&gt; 	Two Sample d.test
 #&gt; 
-#&gt; data:  content
-#&gt; Z = -0.25298, p-value = 0.4001
-#&gt; alternative hypothesis: true mean is less than 350
-#&gt; 95 percent confidence interval:
-#&gt;      -Inf 352.2007
+#&gt; data:  The D-value was calculated using nrep= 1e+06
+#&gt; d.value = 0.51389
+#&gt; alternative hypothesis: greater
 #&gt; sample estimates:
-#&gt; mean of content 
-#&gt;           349.6 
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res1</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'deepskyblue'</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'deepskyblue'</span>)</div><div class='img'><img src='z.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Example 2</span>
-<span class='co'># H0: mu = 170</span>
-<span class='co'># Ha: mu != 170 with sigma2=25</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>80</span>, <span class='kw'>mean</span><span class='kw'>=</span><span class='fl'>171</span>, <span class='kw'>sd</span><span class='kw'>=</span><span class='fl'>5</span>)
-<span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>z.test</span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>x</span>, <span class='kw'>mu</span><span class='kw'>=</span><span class='fl'>170</span>, <span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'two.sided'</span>)
-<span class='no'>res2</span></div><div class='output co'>#&gt; 
-#&gt; 	One Sample z-test
-#&gt; 
-#&gt; data:  x
-#&gt; Z = 2.1469, p-value = 0.0318
-#&gt; alternative hypothesis: true mean is not equal to 170
-#&gt; 95 percent confidence interval:
-#&gt;  170.1045 172.2958
-#&gt; sample estimates:
-#&gt; mean of x 
-#&gt;  171.2001 
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res2</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'indianred1'</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'indianred1'</span>)</div><div class='img'><img src='z.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; mean of x mean of y 
+#&gt;       250       249 
+#&gt; </div><div class='input'> 
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -202,6 +182,7 @@ hypothesis, must be one of <code>two.sided</code> (default),
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
+      <li><a href="#details">Details</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

@@ -45,7 +45,116 @@
 #' res1
 #' plot(res1, from=21, to=25, shade.col='tomato')
 #'
-
+#'
+#' # Example 3.7 from Seber (1984) page 116.
+#' # using the James first order test (1954).
+#' n1 <- 16
+#' xbar1 <- c(9.82, 15.06)
+#' s1 <- matrix(c(120, -16.3,
+#'                -16.3, 17.8), ncol = 2)
+#'
+#' n2 <- 11
+#' xbar2 <- c(13.05, 22.57)
+#' s2 <- matrix(c(81.8, 32.1,
+#'                32.1, 53.8), ncol = 2)
+#'
+#' res2 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                              xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                              method = 'james', alpha=0.05)
+#' res2
+#' plot(res2, from=5, to=10, shade.col="lightgreen")
+#'
+#'
+#' # Example from page 141 from Yao (1965),
+#' # using Yao's test
+#'
+#' n1 <- 16
+#' xbar1 <- c(9.82, 15.06)
+#' s1 <- matrix(c(120, -16.3,
+#'                -16.3, 17.8), ncol = 2)
+#'
+#' n2 <- 11
+#' xbar2 <- c(13.05, 22.57)
+#' s2 <- matrix(c(81.8, 32.1,
+#'                32.1, 53.8), ncol = 2)
+#'
+#' res3 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                              xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                              method = 'yao')
+#' res3
+#' plot(res3, from=2, to=6, shade.col="pink")
+#'
+#'
+#' # Example for Johansen's test using the data from
+#' # Example from page 141 from Yao (1965)
+#'
+#' res4 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                              xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                              method = 'johansen')
+#' res4
+#' plot(res4, from=2, to=6, shade.col="aquamarine1")
+#'
+#' # Example 4.1 from Nel and Van de Merwe (1986) page 3729
+#' # Test H0: mu1 = mu2 versus H1: mu1 != mu2
+#' n1 <- 45
+#' xbar1 <- c(204.4, 556.6)
+#' s1 <- matrix(c(13825.3, 23823.4,
+#'                23823.4, 73107.4), ncol=2)
+#'
+#' n2 <- 55
+#' xbar2 <- c(130.0, 355.0)
+#' s2 <- matrix(c(8632.0, 19616.7,
+#'                19616.7, 55964.5), ncol=2)
+#'
+#' res5 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                              xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                              method = 'nvm')
+#' res5
+#' plot(res5, from=6, to=10, shade.col='cyan2')
+#'
+#' # using mnvm method for same data
+#' res6 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                              xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                              method = 'mnvm')
+#' res6
+#' plot(res6, from=6, to=10, shade.col='lightgoldenrodyellow')
+#'
+#' # using gamage method for same data
+#' res7 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                              xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                              method = 'gamage')
+#' res7
+#' plot(res7, from=0 , to=20, shade.col='mediumpurple4')
+#' text(x=10, y=0.30, "The curve corresponds to an empirical density",
+#'      col='orange')
+#'
+#' # using Yanagihara and Yuan method for same data
+#'
+#' res8 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                              xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                              method = 'yy')
+#' res8
+#'
+#' # using Bartlett Correction method for same data
+#'
+#' res9 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                              xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                              method = 'byy')
+#' res9
+#'
+#' # using modified Bartlett Correction method for same data
+#'
+#' res10 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                               xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                               method = 'mbyy')
+#' res10
+#'
+#' # using second order (Kawasaki and Seo) method for same data
+#'
+#' res11 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
+#'                               xbar2 = xbar2, s2 = s2, n2 = n2,
+#'                               method = 'ks1')
+#' res11
 #'
 #' @importFrom stats pf
 #' @export
@@ -103,5 +212,664 @@ two_mean_vector_test_T2 <- function(xbar1, s1, n1,
               method = method,
               data.name = data.name,
               sp = sp))
+}
+#' @importFrom stats qchisq
+two_mean_vector_test_james <- function(xbar1, s1, n1,
+                                       xbar2, s2, n2,
+                                       delta0=NULL, alpha=0.05) {
+  p <- ncol(s1)
+  xbar1 <- matrix(xbar1, ncol=1)
+  xbar2 <- matrix(xbar2, ncol=1)
+  S1 <- s1/n1    # Represents S1 tilde, uppercase
+  S2 <- s2/n2    # Represents S2 tilde, uppercase
+  S  <- S1 + S2  # Represents S tilde
+
+  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
+  T2 <- as.numeric(T2)
+
+  Sinv <- solve(S)
+  b1 <- Sinv %*% S1
+  b2 <- Sinv %*% S2
+  trb1 <- sum(diag(b1))
+  trb2 <- sum(diag(b2))
+  A <- 1 + ( trb1^2/(n1 - 1) + trb2^2/(n2 - 1) ) / (2 * p)
+  B <- (sum(diag(b1%*%b1))/(n1 - 1) + sum(diag(b2%*%b2))/(n2 - 1) +
+          0.5 * trb1^2/(n1 - 1) + 0.5 * trb2^2/(n2 - 1)) / (p * (p + 2))
+  x2 <- qchisq(p=1 - alpha, df=p)
+  delta <- A + B * x2
+  critic_value <- x2 * delta
+  p.value <- NULL
+  method <- 'James test for two mean vectors'
+  statistic <- c(T2, critic_value)
+  names(statistic) <- c('T2', 'critic_value')
+  parameter <- p
+  names(parameter) <- 'df'
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep = '_')
+  data.name <- 'this test uses summarized data'
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name,
+              critic_value = critic_value
+  ))
+}
+
+#' @importFrom stats pf
+two_mean_vector_test_yao <- function(xbar1, s1, n1,
+                                     xbar2, s2, n2,
+                                     delta0=NULL, alpha=0.05) {
+
+  p <- ncol(s1)
+  xbar1 <- matrix(xbar1, ncol=1)
+  xbar2 <- matrix(xbar2, ncol=1)
+
+  S1 <- s1/n1    # Represents S1 tilde
+  S2 <- s2/n2    # Represents S2 tilde
+  S  <- S1 + S2  # Represents S tilde
+
+  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
+  T2 <- as.numeric(T2)
+
+  tr <- function(x) sum(diag(x)) # To obtain the trace easily
+
+  # To obtain v
+  b1 <- solve(S) %*% S1 %*% solve(S)  # An auxiliar element
+  b2 <- solve(S) %*% S2 %*% solve(S)  # An auxiliar element
+  v1 <- (t(xbar1-xbar2) %*% b1 %*% (xbar1-xbar2))/T2
+  v1 <- v1^2/(n1-1)
+  v2 <- (t(xbar1-xbar2) %*% b2 %*% (xbar1-xbar2))/T2
+  v2 <- v2^2/(n2-1)
+  v <- as.numeric(1/(v1+v2))
+
+  p.value <- pf(q=T2*(v-p+1)/(v*p), df1=p, df2=v-p+1, lower.tail=FALSE)
+
+  method <- 'Yao test for two mean vectors'
+  statistic <- c(T2, T2*(v-p+1)/(v*p))
+  names(statistic) <- c('T2', 'F')
+  parameter <- c(p, v-p+1)
+  names(parameter) <- c('df1', 'df2')
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep='_')
+  data.name <- 'this test uses summarized data'
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name))
+}
+#' @importFrom stats pf
+two_mean_vector_test_johansen <- function(xbar1, s1, n1,
+                                          xbar2, s2, n2,
+                                          delta0=NULL, alpha=0.05) {
+
+  p <- ncol(s1)
+  xbar1 <- matrix(xbar1, ncol=1)
+  xbar2 <- matrix(xbar2, ncol=1)
+
+  S1 <- s1/n1    # Represents S1 tilde
+  S2 <- s2/n2    # Represents S2 tilde
+  S  <- S1 + S2  # Represents S tilde
+
+  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
+  T2 <- as.numeric(T2)
+
+  tr <- function(x) sum(diag(x)) # To obtain the trace easily
+
+  # To obtain q, v and D
+  b1 <- diag(p) - solve(solve(S1) + solve(S2)) %*% solve(S1)  # An auxiliar element
+  b2 <- diag(p) - solve(solve(S1) + solve(S2)) %*% solve(S2)  # An auxiliar element
+  d1 <- tr(b1 %*% b1) + (tr(b1))^2
+  d1 <- d1/(n1-1)
+  d2 <- tr(b2 %*% b2) + (tr(b2))^2
+  d2 <- d2/(n2-1)
+  D <- (d1 + d2)/2
+  v <- (p*(p+2))/(3*D)
+  q <- p + 2*D - (6*D)/(p*(p-1) + 2)
+  p.value <- pf(q = T2/q, df1 = p, df2 = v, lower.tail = FALSE)
+
+  method <- 'Johansen test for two mean vectors'
+  statistic <- c(T2, T2/q)
+  names(statistic) <- c('T2', 'F')
+  parameter <- c(p, v-p+1)
+  names(parameter) <- c('df1', 'df2')
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep='_')
+  data.name <- 'this test uses summarized data'
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name))
+}
+#' @importFrom stats pf
+two_mean_vector_test_nvm <- function(xbar1, s1, n1,
+                                     xbar2, s2, n2,
+                                     delta0=NULL, alpha=0.05) {
+
+  p <- ncol(s1)
+  xbar1 <- matrix(xbar1, ncol=1)
+  xbar2 <- matrix(xbar2, ncol=1)
+
+  S1 <- s1/n1    # Represents S1 tilde
+  S2 <- s2/n2    # Represents S2 tilde
+  S  <- S1 + S2  # Represents S tilde
+
+  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
+  T2 <- as.numeric(T2)
+
+  tr <- function(x) sum(diag(x)) # To obtain the trace easily
+
+  # To obtain v
+  v1 <- tr(S1 %*% S1) + (tr(S1))^2
+  v1 <- v1 / (n1-1)
+  v2 <- tr(S2 %*% S2) + (tr(S2))^2
+  v2 <- v2 / (n2-1)
+  v <- (tr(S %*% S) + tr(S)^2) / (v1 + v2)
+
+  p.value <- pf(q=T2*(v-p+1)/(v*p), df1=p, df2=v-p+1, lower.tail=FALSE)
+
+  method <- 'Nel and Van der Merwe test for two mean vectors'
+  statistic <- c(T2, T2*(v-p+1)/(v*p))
+  names(statistic) <- c('T2', 'F')
+  parameter <- c(p, v-p+1)
+  names(parameter) <- c('df1', 'df2')
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep='_')
+  data.name <- 'this test uses summarized data'
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name))
+}
+#' @importFrom stats pf
+two_mean_vector_test_mnvm <- function(xbar1, s1, n1,
+                                      xbar2, s2, n2,
+                                      delta0=NULL, alpha=0.05) {
+
+  p <- ncol(s1)
+  xbar1 <- matrix(xbar1, ncol=1)
+  xbar2 <- matrix(xbar2, ncol=1)
+
+  S1 <- s1/n1    # Represents S1 tilde
+  S2 <- s2/n2    # Represents S2 tilde
+  S  <- S1 + S2  # Represents S tilde
+
+  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
+  T2 <- as.numeric(T2)
+
+  tr <- function(x) sum(diag(x)) # To obtain the trace easily
+
+  # To obtain v
+  b1 <- S1 %*% solve(S) # An auxiliar element
+  b2 <- S2 %*% solve(S) # An auxiliar element
+  v1 <- tr(b1 %*% b1) + (tr(b1))^2
+  v1 <- v1 / (n1-1)
+  v2 <- tr(b2 %*% b2) + (tr(b2))^2
+  v2 <- v2 / (n2-1)
+  v <- (p + p^2) / (v1 + v2)
+
+  p.value <- pf(q=T2*(v-p+1)/(v*p), df1=p, df2=v-p+1, lower.tail=FALSE)
+
+  method <- 'Modified Nel and Van der Merwe test for two mean vectors'
+  statistic <- c(T2, T2*(v-p+1)/(v*p))
+  names(statistic) <- c('T2', 'F')
+  parameter <- c(p, v-p+1)
+  names(parameter) <- c('df1', 'df2')
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep='_')
+  data.name <- 'this test uses summarized data'
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name))
+}
+#' @importFrom stats rchisq
+two_mean_vector_test_gamage <- function(xbar1, s1, n1,
+                                        xbar2, s2, n2,
+                                        nrep=2000,
+                                        delta0=NULL, alpha=0.05) {
+
+  p <- ncol(s1)
+  xbar1 <- matrix(xbar1, ncol=1)
+  xbar2 <- matrix(xbar2, ncol=1)
+  S1 <- s1/n1    # Represents S1 tilde, uppercase
+  S2 <- s2/n2    # Represents S2 tilde, uppercase
+  S  <- S1 + S2  # Represents S tilde
+
+  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
+  T2 <- as.numeric(T2)
+
+  # The next function computes the square root of the positive definite matrix
+  my_sqrt <- function(A) {
+    L <- diag(eigen(A)$values)
+    P <- eigen(A)$vectors
+    P %*% L %*% t(P)  # Este producto da como resultado la matriz A
+    A_raiz_cuadrada <- P %*% L^0.5 %*% t(P)
+    A_raiz_cuadrada
+  }
+
+  # The next function implements pvalue given in expression 3.9 of Gamage (2004)
+  one_gen_pvalue <- function(v1, n1, n2, p) {
+    d <- eigen(v1)$values
+    z0i2 <- rchisq(n=p, df=1)
+    Q1 <- rchisq(n=1, df=n1-p)
+    Q2 <- rchisq(n=1, df=n2-p)
+    T1 <- sum(d * z0i2) / Q1 + sum((1-d/(n1-1)) * z0i2) * (n2-1) / Q2
+    T1
+  }
+
+  v1 <- ((n1-1)/n1) * solve(my_sqrt(S)) %*% S1 %*% solve(my_sqrt(S))
+  T1 <- replicate(n=2000, one_gen_pvalue(v1, n1, n2, p))
+  p.value <- mean(T1 > T2)
+
+  method <- 'Gamage test for two mean vectors'
+  statistic <- c(T2)
+  names(statistic) <- c('T2')
+  parameter <- NULL
+  names(parameter) <- NULL
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep='_')
+  data.name <- 'this test uses summarized data'
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name,
+              T1 = T1))
+}
+#' @importFrom stats pf
+two_mean_vector_test_yy <- function(xbar1, s1, n1,
+                                    xbar2, s2, n2,
+                                    delta0=NULL, alpha=0.05) {
+
+  p <- ncol(s1)
+  xbar1 <- matrix(xbar1, ncol=1)
+  xbar2 <- matrix(xbar2, ncol=1)
+
+  S1 <- s1/n1    # Represents S1 tilde
+  S2 <- s2/n2    # Represents S2 tilde
+  S  <- S1 + S2  # Represents S tilde
+
+  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
+  T2 <- as.numeric(T2)
+
+  tr <- function(x) sum(diag(x)) # To obtain the trace easily
+
+  n <- n1+n2
+  N <- n-2
+
+  Sl1 <- (n2/n) * s1      # Represents S1 line
+  Sl2 <- (n1/n) * s2      # Represents S2 line
+  Sl <- Sl1 + Sl2         # Represents S line
+
+  # Auxiliar elements
+  a1 <- (n2^2 * (n-2))/(n^2 * (n1-1))
+  a2 <- (n1^2 * (n-2))/(n^2 * (n2-1))
+  b1 <- s1 %*% solve(Sl)
+  b2 <- s2 %*% solve(Sl)
+
+  # To obtain psi1 and psi2
+  psi1 <- a1 * tr(b1)^2 + a2 * tr(b2)^2
+  psi2 <- a1 * tr(b1%*%b1) + a2 * tr(b2%*%b2)
+
+  # To obtain theta1 and theta2
+  theta1 <- p * psi1 + (p-2)*psi2
+  theta1 <- theta1/(p*(p+2))
+  theta2 <- psi1 + 2*psi2
+  theta2 <- theta2/(p*(p+2))
+
+  # To obtain the v
+  v1 <- (n-2-theta1)^2
+  v2 <- (n-2)*theta2 - theta1
+  v <- v1/v2
+
+  p.value <- pf(q=T2*(n-2-theta1)/((n-2)*p), df1=p, df2=v, lower.tail=FALSE)
+
+  method <- 'Yanagihara and Yuan test for two mean vectors'
+  statistic <- c(T2, T2*(n-2-theta1)/((n-2)*p))
+  names(statistic) <- c('T2', 'F')
+  parameter <- c(p, v)
+  names(parameter) <- c('df1', 'df2')
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep='_')
+  data.name <- 'this test uses summarized data'
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name))
+}
+#' @importFrom stats pchisq
+two_mean_vector_test_byy <- function(xbar1, s1, n1,
+                                     xbar2, s2, n2,
+                                     delta0=NULL, alpha=0.05) {
+
+  p <- ncol(s1)
+  xbar1 <- matrix(xbar1, ncol=1)
+  xbar2 <- matrix(xbar2, ncol=1)
+
+  S1 <- s1/n1    # Represents S1 tilde
+  S2 <- s2/n2    # Represents S2 tilde
+  S  <- S1 + S2  # Represents S tilde
+
+  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
+  T2 <- as.numeric(T2)
+
+  tr <- function(x) sum(diag(x)) # To obtain the trace easily
+
+  n <- n1+n2
+  N <- n-2
+
+  Sl1 <- (n2/n) * s1      # Represents S1 line
+  Sl2 <- (n1/n) * s2      # Represents S2 line
+  Sl <- Sl1 + Sl2         # Represents S line
+
+  # Auxiliar elements
+  a1 <- (n2^2 * (n-2))/(n^2 * (n1-1))
+  a2 <- (n1^2 * (n-2))/(n^2 * (n2-1))
+  b1 <- s1 %*% solve(Sl)
+  b2 <- s2 %*% solve(Sl)
+
+  # To obtain psi1 and psi2
+  psi1 <- a1 * tr(b1)^2 + a2 * tr(b2)^2
+  psi2 <- a1 * tr(b1%*%b1) + a2 * tr(b2%*%b2)
+
+  # To obtain c1 and c2
+  c1 <- (psi1+psi2)/p
+  c2 <- 2*(p+3)*psi1 + 2*(p+4)*psi2
+  c2 <- c2/(p*(p+2))
+
+  p.value <- pchisq(q=T2*(N-c1)/N, df=p, lower.tail=FALSE)
+
+  method <- 'Bartlett Correction test for two mean vectors'
+  statistic <- c(T2, T2*(N-c1)/N)
+  names(statistic) <- c('T2', 'X-squared')
+  parameter <- p
+  names(parameter) <- 'df'
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep='_')
+  data.name <- 'this test uses summarized data'
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name))
+}
+#' @importFrom stats pchisq
+two_mean_vector_test_mbyy <- function(xbar1, s1, n1,
+                                      xbar2, s2, n2,
+                                      delta0=NULL, alpha=0.05) {
+
+  p <- ncol(s1)
+  xbar1 <- matrix(xbar1, ncol=1)
+  xbar2 <- matrix(xbar2, ncol=1)
+
+  S1 <- s1/n1    # Represents S1 tilde
+  S2 <- s2/n2    # Represents S2 tilde
+  S  <- S1 + S2  # Represents S tilde
+
+  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
+  T2 <- as.numeric(T2)
+
+  tr <- function(x) sum(diag(x)) # To obtain the trace easily
+
+  n <- n1+n2
+  N <- n-2
+
+  Sl1 <- (n2/n) * s1      # Represents S1 line
+  Sl2 <- (n1/n) * s2      # Represents S2 line
+  Sl <- Sl1 + Sl2         # Represents S line
+
+  # Auxiliar elements
+  a1 <- (n2^2 * (n-2))/(n^2 * (n1-1))
+  a2 <- (n1^2 * (n-2))/(n^2 * (n2-1))
+  b1 <- s1 %*% solve(Sl)
+  b2 <- s2 %*% solve(Sl)
+
+  # To obtain psi1 and psi2
+  psi1 <- a1 * tr(b1)^2 + a2 * tr(b2)^2
+  psi2 <- a1 * tr(b1%*%b1) + a2 * tr(b2%*%b2)
+
+  # To obtain c1 and c2
+  c1 <- (psi1+psi2)/p
+  c2 <- 2*(p+3)*psi1 + 2*(p+4)*psi2
+  c2 <- c2/(p*(p+2))
+
+  # To obtain beta1 y beta2
+  beta1 <- 2/(c2 - 2*c1)
+  beta2 <- (p+2)*c2 - 2*(p+4)*c1
+  beta2 <- beta2/(2*(c2 - 2*c1))
+
+  p.value <- pchisq(q=(N*beta1 + beta2)*log(1 + T2/(N*beta1)), df=p, lower.tail=FALSE)
+
+  method <- 'Modified Bartlett Correction test for two mean vectors'
+  statistic <- c(T2, (N*beta1 + beta2)*log(1 + T2/(N*beta1)))
+  names(statistic) <- c('T2', 'X-squared')
+  parameter <- p
+  names(parameter) <- 'df'
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep='_')
+  data.name <- 'this test uses summarized data'
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name))
+}
+#' @importFrom stats pchisq
+#' @importFrom expm %^%
+two_mean_vector_test_ks1 <- function(xbar1, s1, n1,
+                                     xbar2, s2, n2,
+                                     delta0=NULL, alpha=0.05) {
+
+  p <- ncol(s1)
+  xbar1 <- matrix(xbar1, ncol=1)
+  xbar2 <- matrix(xbar2, ncol=1)
+
+  S1 <- s1/n1    # Represents S1 tilde
+  S2 <- s2/n2    # Represents S2 tilde
+  S  <- S1 + S2  # Represents S tilde
+
+  T2 <- t(xbar1-xbar2) %*% solve(S) %*% (xbar1-xbar2)
+  T2 <- as.numeric(T2)
+
+  tr <- function(x) sum(diag(x))   # To obtain the trace easily
+
+  n <- n1+n2
+  N <- n-2
+
+  Sl1 <- (n2/n) * s1      # Represents S1 line
+  Sl2 <- (n1/n) * s2      # Represents S2 line
+  Sl <- Sl1 + Sl2         # Represents S line
+
+  # Auxiliar elements
+  x1 <- s1 %*% solve(Sl)
+  x2 <- s2 %*% solve(Sl)
+
+  # Function a (return a number)
+  a <- function(i, l){
+    if (i == 1){
+      res <- tr(x1)^l
+    }
+
+    else if (i == 2){
+      res <- tr(x2)^l
+    }
+
+    return(res)
+  }
+
+  # Function b (return a number)
+  b <- function(q, r, s){
+    #library(expm)
+    res <- tr((x1 %^% q) %*% (x2 %^% r))
+    res <- res^s
+    return(res)
+  }
+
+  # c values (numbers)
+  c1 <- (n - n1)^2 * (n-2)
+  c1 <- c1/(n^2 * (n1-1))
+
+  c2 <- (n - n2)^2 * (n-2)
+  c2 <- c2/(n^2 * (n2-1))
+
+  # d values (numbers)
+  d1 <- (n - n1)^3 * (n-2)^2
+  d1 <- d1/(n^3 * (n1-1)^2)
+
+  d2 <- (n - n2)^3 * (n-2)^2
+  d2 <- d2/(n^3 * (n2-1)^2)
+
+  # psi values
+  psi1 <- c1 * c2 * (a(1,1)*b(1,2,1) + a(2,1)*b(2,1,1))
+  psi2 <- c1 * c2 * b(2,2,1)
+  psi3 <- c1 * c2 * a(1,1) * a(2,1) * b(1,1,1)
+  psi4 <- c1 * c2 * a(1,2) * a(2,2)
+  psi5 <- c1 * c2 * (a(1,2)*a(2,1)^2 + a(1,1)^2*a(2,2))
+  psi6 <- c1 * c2 * b(1,1,1)^2
+  psi7 <- c1 * c2 * a(1,1)^2 * a(2,1)^2
+  psi8 <- c1 * c2 * b(1,1,2)
+
+  # --------------------------------------------------------------------------
+  # theta values (numbers)
+
+  # theta1
+  theta1 <- c1 * (p*a(1,1)^2 + (p-2)*a(1,2)) + c2 * (p*a(2,1)^2 + (p-2)*a(2,2))
+  theta1 <- theta1/(p*(p+2))
+
+  # theta2
+  th2_1 <- d1 * (4*p^2 * a(1,3) + (p-2)*(3*p + 4)*a(1,1)*a(1,2) + p*(p+2)*a(1,1)^3)
+  th2_2 <- d2 * (4*p^2 * a(2,3) + (p-2)*(3*p + 4)*a(2,1)*a(2,2) + p*(p+2)*a(2,1)^3)
+  theta2 <- (th2_1 + th2_2)/(p*(p+2)*(p+4))
+
+  # theta3
+  th3_1 <- p^2*(5*p + 14)*a(1,4) + 4*(p+3)*(p+2)*(p-2)*a(1,1)*a(1,3)
+  th3_1 <- th3_1 + p*(p+3)*(p-2)*a(1,2)^2 + 2*(p^3 + 5*p^2 + 7*p + 6)*a(1,2)*a(1,1)^2
+  th3_1 <- th3_1 - p*(p+4)*a(1,1)^4
+  th3_1 <- c1^2 * (th3_1)
+
+  th3_2 <- p^2*(5*p + 14)*a(2,4) + 4*(p+3)*(p+2)*(p-2)*a(2,1)*a(2,3)
+  th3_2 <- th3_2 + p*(p+3)*(p-2)*a(2,2)^2 + 2*(p^3 + 5*p^2 + 7*p + 6)*a(2,2)*a(2,1)^2
+  th3_2 <- th3_2 - p*(p+4)*a(2,1)^4
+  th3_2 <- c2^2 * (th3_2)
+
+  aux3 <- 4*(p+3)*(p+2)*(p-2)*psi1 + 4*p*(p+2)*(p-2)*psi2
+  aux3 <- aux3 + 4*p*(p+4)*(p+2)*psi3 - 2*p*(p-2)*psi4 - 2*(p+3)*(p-2)*psi5
+  aux3 <- aux3 + 2*p*(p+4)*(p-2)*psi6 - 2*p*(p+4)*psi7 + 2*p*(p+4)*(3*p + 2)*psi8
+
+  theta3 <- th3_1 + th3_2 + aux3
+  theta3 <- theta3/(p*(p+2)*(p+4)*(p+6))
+
+  # theta4
+  theta4 <- c1 * (a(1,1)^2 + 2*a(1,2)) + c2 * (a(2,1)^2 + 2*a(2,2))
+  theta4 <- theta4/(p*(p+2))
+
+  # theta5
+  th5_1 <- 4*(p^2 - 3*p + 4)*a(1,3) + 3*p*(p-4)*a(1,1)*a(1,2) + p^2*a(1,1)^3
+  th5_1 <- d1*th5_1
+
+  th5_2 <- 4*(p^2 - 3*p + 4)*a(2,3) + 3*p*(p-4)*a(2,1)*a(2,2) + p^2*a(2,1)^3
+  th5_2 <- d2*th5_2
+
+  theta5 <- (th5_1 + th5_2)/(p*(p+2)*(p+4))
+
+  # theta6
+  th6_1 <- 2*(p+1)*(5*p^2 - 14*p + 24)*a(1,4)
+  th6_1 <- th6_1 + 4*(p-4)*(2*p^2 + 5*p + 6)*a(1,1)*a(1,3) + (p-2)*(p-4)*(2*p + 3)*a(1,2)^2
+  th6_1 <- th6_1 + 2*(p+2)*(2*p^2 - p + 12)*a(1,2)*a(1,1)^2 - 3*(p^2 + 2*p - 4)*a(1,1)^4
+  th6_1 <- c1^2 * th6_1
+
+  th6_2 <- 2*(p+1)*(5*p^2 - 14*p + 24)*a(2,4)
+  th6_2 <- th6_2 + 4*(p-4)*(2*p^2 + 5*p + 6)*a(2,1)*a(2,3) + (p-2)*(p-4)*(2*p + 3)*a(2,2)^2
+  th6_2 <- th6_2 + 2*(p+2)*(2*p^2 - p + 12)*a(2,2)*a(2,1)^2 - 3*(p^2 + 2*p - 4)*a(2,1)^4
+  th6_2 <- c2^2 * th6_2
+
+  aux6 <- 4*(p-4)*(2*p^2 + 5*p + 6)*psi1 + 8*p*(p-2)*(p-4)*psi2 + 8*p*(p^2 + 4*p + 2)*psi3
+  aux6 <- aux6 - 6*(p-2)*(p-4)*psi4 - 6*(p-4)*(p+2)*psi5 + 4*(p+3)*(p-2)*(p-4)*psi6
+  aux6 <- aux6 - 6*(p^2 + 2*p - 4)*psi7 + 12*(p^3 + p^2 - 2*p + 8)*psi8
+
+  theta6 <- th6_1 + th6_2 + aux6
+  theta6 <- theta6/(p*(p+2)*(p+4)*(p+6))
+
+  # To obtain Vs
+  Vs1 <- 2*(N^2 - N*theta1 + theta2 - theta3)^2
+  Vs2 <- N^2 * (N^2 - 2*N*theta1 + 2*N*theta4 + 2*theta5 - theta6)
+  Vs3 <- (N^2 - N*theta1 + theta2 - theta3)^2
+  Vs <- Vs1/(Vs2 - Vs3)
+
+  # To obtain psi_s
+  psi_s <- N^2 * Vs
+  psi_s <- psi_s/(N^2 - N*theta1 + theta2 - theta3)
+
+  p.value <- pf(q=T2*Vs/(p*psi_s), df1=p, df2=Vs, lower.tail=FALSE)
+
+  method <- 'Kawasaki and Seo (Second order) test for two mean vectors'
+  statistic <- c(T2, T2*Vs/(p*psi_s))
+  names(statistic) <- c('T2', 'F')
+  parameter <- c(p, Vs)
+  names(parameter) <- c('df1', 'df2')
+  alternative <- "mu1 is not equal to mu2 \n"
+  estimate <- cbind(xbar1, xbar2)
+  colnames(estimate) <- c('Sample 1', 'Sample 2')
+  rownames(estimate) <- paste('xbar', 1:p, sep='_')
+  data.name <- 'this test uses summarized data'
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name))
 }
 
