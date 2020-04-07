@@ -1,0 +1,157 @@
+---
+title: "D-value"
+author: "Freddy Hernandez and Karen Rivera"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{D value}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "##"
+)
+```
+
+# P-value for example 1 of Demidenko (2016)
+
+In this section we will replicate the example 1 of Demidenko (2016) using the function `t_test` of the package 'stests' as shown below.
+
+```{r, message=FALSE}
+require(stests)
+
+t_test(meanx=249, varx=20^2, nx=10000,
+       meany=250, vary=20^2, ny=10000,
+       alternative='less', mu=0, var.equal=TRUE)
+```
+
+The results obtained by the function `t_test` are the same obtained by Demidenko
+
+# How does the sample size $n$ of each group influence the P-value?
+
+In the following figure the P-value is calculated for many values of $n$, in which it is evident that the P-value decreases and then in $n=2000$, this parameter is below the level of usual significance of 5%
+
+```{r, echo=FALSE}
+p1 <- function(n) {
+  t_test(meanx=249, varx=20^2, nx=n,
+         meany=250, vary=20^2, ny=n,
+         alternative='less', mu=0, var.equal=TRUE)$p.value
+}
+p1 <- Vectorize(p1)
+n <- seq(from=5, to=10000, by=100)
+plot(x=n, y=p1(n), pch=20, ylab='P-value', las=1, ylim=c(0, 0.5))
+abline(h=0.05, lty='dashed', col='tomato')
+text(x=4000, y=0.07, '0.05', col='tomato')
+
+```
+
+# P-value for example 2 of Demidenko (2016)
+
+In this section we will replicate the example 2 of Demidenko (2016) using the function `t_test` of the package 'stests' as shown below.
+
+```{r, message=FALSE}
+t_test(meanx=15, varx=6^2, nx=7,
+       meany=10, vary=6^2, ny=7,
+       alternative='greater', mu=0, var.equal=TRUE)
+```
+
+We see that the statistics coincide with what is obtained in the article, the value of P within the function `t_test` is calculated with a $t$-student distribution whereas in the article it is obtained through the normal distribution, on the other hand, the size of the sample is small ($n=6$) because of this is the difference between the methods.
+
+# How does the sample size of each group influence the P-value?
+
+In the following figure the P-value is calculated for many values of $n$, in which it is evident that the P-value decreases and then in $n=9$, this parameter is below the level of usual significance of 5%.
+
+```{r, echo=FALSE}
+p2 <- function(n) {
+  t_test(meanx=15, varx=6^2, nx=n,
+         meany=10, vary=6^2, ny=n,
+         alternative='greater', mu=0, var.equal=TRUE)$p.value
+}
+p2 <- Vectorize(p2)
+n <- seq(from=7, to=20, by=1)
+plot(x=n, y=p2(n), pch=20, ylab='P-value', las=1, ylim=c(0, 0.1))
+abline(h=0.05, lty='dashed', col='tomato')
+text(x=14, y=0.06, '0.05', col='tomato')
+```
+
+# Function to calculate the D-value
+
+Hypothesis testing:
+
+- The null hypothesis is :
+
+$$H_0: \mu_1 = \mu_2$$
+
+
+- The alternative hypothesis can be:
+
+    $$H_A: \mu_1 < \mu_2$$
+
+    $$H_A: \mu_1 \neq \mu_2$$
+
+    $$H_A: \mu_1 > \mu_2$$
+
+The function `d_meantest` presented below is to calculate the D-value by simulation for the case of comparison of two means from normal populations.
+
+```{r}
+require(stests)
+args(d_meantest)
+```
+
+# D-value for example 1 of Demidenko (2016)
+
+We will replicate the example 1 of Demidenko (2016) using the function `d_meantest`.
+
+```{r}
+ d_meantest(meanx=250,meany=249, varx=20^2, vary=20^2, alternative='less')
+```
+
+# D-value for the example 2 of Demidenko (2016)
+
+We will replicate the example  2 of Demidenko (2016) using the function `d_meantest`.
+
+```{r}
+d_meantest(meanx=10, meany=15, varx =6^2, vary=6^2, alternative='less')
+```
+
+# How to change the D-value for the different values of $\bar{x}$ y $\bar{y}$?
+
+To answer this question we will take the data from example 1 of Demidenko (2016), the value of $x = 249$ will be fixed while the value of $\bar{y}$ will be moving away from $\bar{x}$. Recall that the value of $\bar{y}$ represents the average weight of patients who consumed the drug to lose weight. The value of the sample desviation $s$ for each group will remain constant at 20 lbs.
+
+The following figure shows the evolution of the D-value as the weight changes $\bar{y}$ for the group of people who did take the medication.
+
+```{r, echo=FALSE}
+d_mtest1 <- function(meanx, varx, meany, vary,
+        alternative='less', nrep=1000000) {
+  x <- rnorm(n=nrep, mean=meanx, sd=sqrt(varx))
+  y <- rnorm(n=nrep, mean=meany, sd=sqrt(vary))
+  if (alternative == 'less')
+    dvalue <-  mean(y > x)
+  if (alternative == 'greater')
+    dvalue <-  mean(y < x)
+  if (alternative == 'two.sided') {
+    dvalue1 <-  mean(y > x)
+    dvalue2 <-  mean(y < x)
+    dvalue <- 2 * min(c(dvalue1, dvalue2))
+  }
+  return(dvalue)
+}
+means <- 320:180
+aux_function <- function(x)
+  d_mtest1(meanx=250, meany=x, varx=20^2, vary=20^2, alternative='less', nrep=100000)
+aux_function <- Vectorize(aux_function)
+
+deltas <- aux_function(means)
+
+plot(x=means, y=deltas, type='b', las=1, pch=19, cex=0.4,
+     xlab=expression(bar(y)), ylab='D-value')
+abline(v=250, lty='dashed', col='green4')
+text(x=269, y=0.04, col='green4',
+     'Sample mean of patients in the placebo group')
+```
+
+# References
+- Demidenko, E. (2016). The p-Value You Can't Buy. The American Statistician, 70(1): 33-38.
