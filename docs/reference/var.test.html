@@ -190,7 +190,18 @@ hypothesis, must be one of <code>two.sided</code> (default),
 <span class='co'>#   H1: sigma2 &gt; 100</span>
 <span class='no'>weight</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>775</span>, <span class='fl'>780</span>, <span class='fl'>781</span>, <span class='fl'>795</span>, <span class='fl'>803</span>, <span class='fl'>810</span>, <span class='fl'>823</span>)
 <span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/var.test.html'>var.test</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>weight</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'greater'</span>, <span class='kw'>null.value</span><span class='kw'>=</span><span class='fl'>100</span>)
-<span class='no'>res2</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): objeto 'res2' no encontrado</span></div><div class='input'><span class='co'># Using the plot function</span>
+<span class='no'>res1</span></div><div class='output co'>#&gt; 
+#&gt; 	X-squared test for variance
+#&gt; 
+#&gt; data:  weight
+#&gt; X-squared = 18.934, df = 6, p-value = 0.004276
+#&gt; alternative hypothesis: true variance is greater than 100
+#&gt; 95 percent confidence interval:
+#&gt;     0.000 1157.789
+#&gt; sample estimates:
+#&gt; variance of x 
+#&gt;      315.5714 
+#&gt; </div><div class='input'><span class='co'># Using the plot function</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res1</span>)</div><div class='img'><img src='var.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Two samples -----</span>
 
