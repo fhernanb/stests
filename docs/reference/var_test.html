@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mean test using vector — z.test • stests</title>
+<title>Variance test using values — var_test • stests</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="Mean test using vector — z.test" />
-<meta property="og:description" content="This function performs the mean test using raw data (vector)." />
+<meta property="og:title" content="Variance test using values — var_test" />
+<meta property="og:description" content="This function performs the test for a single variance or two variances using values, not the vectors." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -108,27 +108,43 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Mean test using vector</h1>
+    <h1>Variance test using values</h1>
     
-    <div class="hidden name"><code>z.test.Rd</code></div>
+    <div class="hidden name"><code>var_test.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function performs the mean test using raw data (vector).</p>
+    <p>This function performs the test for a single variance or two variances using values, not the vectors.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>z.test</span>(<span class='no'>x</span>, <span class='no'>sigma2</span>, <span class='kw'>alternative</span> <span class='kw'>=</span> <span class='st'>"two.sided"</span>, <span class='kw'>mu</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>)</pre>
+    <pre class="usage"><span class='fu'>var_test</span>(
+  <span class='no'>varx</span>,
+  <span class='no'>nx</span>,
+  <span class='kw'>vary</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>ny</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>alternative</span> <span class='kw'>=</span> <span class='st'>"two.sided"</span>,
+  <span class='kw'>null.value</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>a (non-empty) numeric vector of data values.</p></td>
+      <th>varx</th>
+      <td><p>sample variance for sample x.</p></td>
     </tr>
     <tr>
-      <th>sigma2</th>
-      <td><p>population variance which is known.</p></td>
+      <th>nx</th>
+      <td><p>sample size for sample x.</p></td>
+    </tr>
+    <tr>
+      <th>vary</th>
+      <td><p>sample variance for sample y.</p></td>
+    </tr>
+    <tr>
+      <th>ny</th>
+      <td><p>sample size for sample y.</p></td>
     </tr>
     <tr>
       <th>alternative</th>
@@ -137,8 +153,8 @@ hypothesis, must be one of <code>two.sided</code> (default),
 <code>greater</code> or <code>less</code>. You can specify just the initial letter.</p></td>
     </tr>
     <tr>
-      <th>mu</th>
-      <td><p>the hypothesized number in the null hypothesis.</p></td>
+      <th>null.value</th>
+      <td><p>the hypothesized number (variance or ratio of the variances) in the null hypothesis.</p></td>
     </tr>
     <tr>
       <th>conf.level</th>
@@ -153,48 +169,84 @@ hypothesis, must be one of <code>two.sided</code> (default),
 <dt>statistic</dt><dd><p>the value of the statistic.</p></dd>
 <dt>p.value</dt><dd><p>the p-value for the test.</p></dd>
 <dt>conf.int</dt><dd><p>a confidence interval for the variance.</p></dd>
-<dt>estimate</dt><dd><p>the estimated mean.</p></dd>
+<dt>estimate</dt><dd><p>the sample variance (or ratio of the sample variances)</p></dd>
 <dt>null.value</dt><dd><p>the specified hypothesized value for alternative hypothesis.</p></dd>
 <dt>alternative</dt><dd><p>a character string describing the alternative hypothesis.</p></dd>
 <dt>method</dt><dd><p>a character string indicating the type of test performed.</p></dd>
-<dt>data.name</dt><dd><p>a character string giving the name of the data.</p></dd>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Example 1</span>
-<span class='co'># H0: mu = 350</span>
-<span class='co'># Ha: mu &lt; 350 with sigma2=25</span>
-<span class='no'>content</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>355</span>, <span class='fl'>353</span>, <span class='fl'>352</span>, <span class='fl'>346</span>, <span class='fl'>345</span>, <span class='fl'>345</span>, <span class='fl'>353</span>, <span class='fl'>353</span>, <span class='fl'>344</span>, <span class='fl'>350</span>)
-<span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>z.test</span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>content</span>, <span class='kw'>mu</span><span class='kw'>=</span><span class='fl'>350</span>, <span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'less'</span>)
-<span class='no'>res1</span></div><div class='output co'>#&gt; 
-#&gt; 	One Sample z-test
+    <pre class="examples"><div class='input'><span class='co'># Examples with ONE sample</span>
+
+<span class='co'># Example 7.7.1 from Wayne (2013), http://tinyurl.com/y6z49hrw</span>
+<span class='fu'>var_test</span>(<span class='kw'>varx</span><span class='kw'>=</span><span class='fl'>670.81</span>, <span class='kw'>nx</span><span class='kw'>=</span><span class='fl'>16</span>, <span class='kw'>null.value</span><span class='kw'>=</span><span class='fl'>600</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'two.sided'</span>)</div><div class='output co'>#&gt; 
+#&gt; 	X-squared test for variance
 #&gt; 
-#&gt; data:  content
-#&gt; Z = -0.25298, p-value = 0.4001
-#&gt; alternative hypothesis: true mean is less than 350
+#&gt; data:  varx = 670.81 and nx = 16
+#&gt; X-squared = 16.77, df = 15, p-value = 0.6656
+#&gt; alternative hypothesis: true variance is not equal to 600
 #&gt; 95 percent confidence interval:
-#&gt;      -Inf 352.2007
+#&gt;   366.0509 1606.8235
 #&gt; sample estimates:
-#&gt; mean of content 
-#&gt;           349.6 
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res1</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'deepskyblue'</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'deepskyblue'</span>)</div><div class='img'><img src='z.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Example 2</span>
-<span class='co'># H0: mu = 170</span>
-<span class='co'># Ha: mu != 170 with sigma2=25</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>80</span>, <span class='kw'>mean</span><span class='kw'>=</span><span class='fl'>171</span>, <span class='kw'>sd</span><span class='kw'>=</span><span class='fl'>5</span>)
-<span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>z.test</span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>x</span>, <span class='kw'>mu</span><span class='kw'>=</span><span class='fl'>170</span>, <span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'two.sided'</span>)
-<span class='no'>res2</span></div><div class='output co'>#&gt; 
-#&gt; 	One Sample z-test
+#&gt; variance of x 
+#&gt;        670.81 
+#&gt; </div><div class='input'>
+<span class='co'># Exercise 7.7.5 from Wayne (2013), http://tinyurl.com/y6z49hrw</span>
+<span class='fu'>var_test</span>(<span class='kw'>varx</span><span class='kw'>=</span><span class='fl'>30</span>, <span class='kw'>nx</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>null.value</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'greater'</span>)</div><div class='output co'>#&gt; 
+#&gt; 	X-squared test for variance
 #&gt; 
-#&gt; data:  x
-#&gt; Z = 1.8377, p-value = 0.06611
-#&gt; alternative hypothesis: true mean is not equal to 170
+#&gt; data:  varx = 30 and nx = 25
+#&gt; X-squared = 28.8, df = 24, p-value = 0.2277
+#&gt; alternative hypothesis: true variance is greater than 25
 #&gt; 95 percent confidence interval:
-#&gt;  169.9316 172.1229
+#&gt;   0.00000 51.99147
 #&gt; sample estimates:
-#&gt; mean of x 
-#&gt;  171.0273 
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res2</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'indianred1'</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'indianred1'</span>)</div><div class='img'><img src='z.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; variance of x 
+#&gt;            30 
+#&gt; </div><div class='input'>
+<span class='co'># Using the plot to illustrate Hypothesis Test</span>
+<span class='no'>mytest1</span> <span class='kw'>&lt;-</span> <span class='fu'>var_test</span>(<span class='kw'>varx</span><span class='kw'>=</span><span class='fl'>30</span>, <span class='kw'>nx</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>null.value</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'greater'</span>)
+<span class='no'>mytest1</span></div><div class='output co'>#&gt; 
+#&gt; 	X-squared test for variance
+#&gt; 
+#&gt; data:  varx = 30 and nx = 25
+#&gt; X-squared = 28.8, df = 24, p-value = 0.2277
+#&gt; alternative hypothesis: true variance is greater than 25
+#&gt; 95 percent confidence interval:
+#&gt;   0.00000 51.99147
+#&gt; sample estimates:
+#&gt; variance of x 
+#&gt;            30 
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mytest1</span>)</div><div class='img'><img src='var_test-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Examples with TWO samples</span>
+
+<span class='co'># Example 7.8 from Montgomery (1996)</span>
+<span class='fu'>var_test</span>(<span class='kw'>varx</span><span class='kw'>=</span><span class='fl'>5.1</span>^<span class='fl'>2</span>, <span class='kw'>nx</span><span class='kw'>=</span><span class='fl'>12</span>, <span class='kw'>vary</span><span class='kw'>=</span><span class='fl'>4.7</span>^<span class='fl'>2</span>, <span class='kw'>ny</span><span class='kw'>=</span><span class='fl'>15</span>, <span class='kw'>conf.level</span><span class='kw'>=</span><span class='fl'>0.90</span>)</div><div class='output co'>#&gt; 
+#&gt; 	F test to compare two variances
+#&gt; 
+#&gt; data:  varx = 26.01 , nx = 12 , vary = 22.09 and ny = 15
+#&gt; F = 1.1775, num df = 11, denom df = 14, p-value = 0.7605
+#&gt; alternative hypothesis: true ratio of variances is not equal to 1
+#&gt; 90 percent confidence interval:
+#&gt;  0.4589581 3.2246374
+#&gt; sample estimates:
+#&gt; ratio of variances 
+#&gt;           1.177456 
+#&gt; </div><div class='input'>
+<span class='co'># Example 8.17 from Montgomery (1996)</span>
+<span class='no'>mytest2</span> <span class='kw'>&lt;-</span> <span class='fu'>var_test</span>(<span class='kw'>varx</span><span class='kw'>=</span><span class='fl'>3.84</span>, <span class='kw'>nx</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>vary</span><span class='kw'>=</span><span class='fl'>4.54</span>, <span class='kw'>ny</span><span class='kw'>=</span><span class='fl'>20</span>)
+<span class='no'>mytest2</span></div><div class='output co'>#&gt; 
+#&gt; 	F test to compare two variances
+#&gt; 
+#&gt; data:  varx = 3.84 , nx = 20 , vary = 4.54 and ny = 20
+#&gt; F = 0.84581, num df = 19, denom df = 19, p-value = 0.7189
+#&gt; alternative hypothesis: true ratio of variances is not equal to 1
+#&gt; 95 percent confidence interval:
+#&gt;  0.3347839 2.1369100
+#&gt; sample estimates:
+#&gt; ratio of variances 
+#&gt;           0.845815 
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mytest2</span>)</div><div class='img'><img src='var_test-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

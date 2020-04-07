@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mean test using vector — z.test • stests</title>
+<title>Variance test using vectors — var.test • stests</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,8 +42,8 @@
 
 
 
-<meta property="og:title" content="Mean test using vector — z.test" />
-<meta property="og:description" content="This function performs the mean test using raw data (vector)." />
+<meta property="og:title" content="Variance test using vectors — var.test" />
+<meta property="og:description" content="This function performs the test for a single variance or two variances given the vectors. This function is a generalization of var.test function from stats package." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -108,16 +108,22 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Mean test using vector</h1>
+    <h1>Variance test using vectors</h1>
     
-    <div class="hidden name"><code>z.test.Rd</code></div>
+    <div class="hidden name"><code>var.test.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function performs the mean test using raw data (vector).</p>
+    <p>This function performs the test for a single variance or two variances given the vectors. This function is a generalization of <code>var.test</code> function from <code>stats</code> package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>z.test</span>(<span class='no'>x</span>, <span class='no'>sigma2</span>, <span class='kw'>alternative</span> <span class='kw'>=</span> <span class='st'>"two.sided"</span>, <span class='kw'>mu</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>)</pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/stats/var.test.html'>var.test</a></span>(
+  <span class='no'>x</span>,
+  <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>alternative</span> <span class='kw'>=</span> <span class='st'>"two.sided"</span>,
+  <span class='kw'>null.value</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>conf.level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -127,8 +133,8 @@
       <td><p>a (non-empty) numeric vector of data values.</p></td>
     </tr>
     <tr>
-      <th>sigma2</th>
-      <td><p>population variance which is known.</p></td>
+      <th>y</th>
+      <td><p>an optional (non-empty) numeric vector of data values.</p></td>
     </tr>
     <tr>
       <th>alternative</th>
@@ -137,8 +143,8 @@ hypothesis, must be one of <code>two.sided</code> (default),
 <code>greater</code> or <code>less</code>. You can specify just the initial letter.</p></td>
     </tr>
     <tr>
-      <th>mu</th>
-      <td><p>the hypothesized number in the null hypothesis.</p></td>
+      <th>null.value</th>
+      <td><p>the hypothesized number (variance or ratio of the variances) in the null hypothesis.</p></td>
     </tr>
     <tr>
       <th>conf.level</th>
@@ -153,7 +159,7 @@ hypothesis, must be one of <code>two.sided</code> (default),
 <dt>statistic</dt><dd><p>the value of the statistic.</p></dd>
 <dt>p.value</dt><dd><p>the p-value for the test.</p></dd>
 <dt>conf.int</dt><dd><p>a confidence interval for the variance.</p></dd>
-<dt>estimate</dt><dd><p>the estimated mean.</p></dd>
+<dt>estimate</dt><dd><p>the sample variance (or ratio of the sample variances)</p></dd>
 <dt>null.value</dt><dd><p>the specified hypothesized value for alternative hypothesis.</p></dd>
 <dt>alternative</dt><dd><p>a character string describing the alternative hypothesis.</p></dd>
 <dt>method</dt><dd><p>a character string indicating the type of test performed.</p></dd>
@@ -161,40 +167,51 @@ hypothesis, must be one of <code>two.sided</code> (default),
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Example 1</span>
-<span class='co'># H0: mu = 350</span>
-<span class='co'># Ha: mu &lt; 350 with sigma2=25</span>
-<span class='no'>content</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>355</span>, <span class='fl'>353</span>, <span class='fl'>352</span>, <span class='fl'>346</span>, <span class='fl'>345</span>, <span class='fl'>345</span>, <span class='fl'>353</span>, <span class='fl'>353</span>, <span class='fl'>344</span>, <span class='fl'>350</span>)
-<span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>z.test</span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>content</span>, <span class='kw'>mu</span><span class='kw'>=</span><span class='fl'>350</span>, <span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'less'</span>)
-<span class='no'>res1</span></div><div class='output co'>#&gt; 
-#&gt; 	One Sample z-test
+    <pre class="examples"><div class='input'><span class='co'># One sample -----</span>
+
+<span class='co'># Interval confidence</span>
+<span class='no'>duration</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1470</span>, <span class='fl'>1510</span>, <span class='fl'>1690</span>, <span class='fl'>1740</span>, <span class='fl'>1900</span>, <span class='fl'>2000</span>, <span class='fl'>2030</span>,
+              <span class='fl'>2010</span>, <span class='fl'>2190</span>, <span class='fl'>2200</span>, <span class='fl'>2290</span>, <span class='fl'>2380</span>, <span class='fl'>2390</span>, <span class='fl'>2480</span>,
+              <span class='fl'>2500</span>, <span class='fl'>2580</span>, <span class='fl'>2700</span>)
+<span class='fu'><a href='https://rdrr.io/r/stats/var.test.html'>var.test</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>duration</span>, <span class='kw'>conf.level</span><span class='kw'>=</span><span class='fl'>0.95</span>)</div><div class='output co'>#&gt; 
+#&gt; 	X-squared test for variance
 #&gt; 
-#&gt; data:  content
-#&gt; Z = -0.25298, p-value = 0.4001
-#&gt; alternative hypothesis: true mean is less than 350
+#&gt; data:  duration
+#&gt; X-squared = 2209576, df = 16, p-value &lt; 2.2e-16
+#&gt; alternative hypothesis: true variance is not equal to 1
 #&gt; 95 percent confidence interval:
-#&gt;      -Inf 352.2007
+#&gt;   76600.78 319873.17
 #&gt; sample estimates:
-#&gt; mean of content 
-#&gt;           349.6 
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res1</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'deepskyblue'</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'deepskyblue'</span>)</div><div class='img'><img src='z.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Example 2</span>
-<span class='co'># H0: mu = 170</span>
-<span class='co'># Ha: mu != 170 with sigma2=25</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>80</span>, <span class='kw'>mean</span><span class='kw'>=</span><span class='fl'>171</span>, <span class='kw'>sd</span><span class='kw'>=</span><span class='fl'>5</span>)
-<span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>z.test</span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>x</span>, <span class='kw'>mu</span><span class='kw'>=</span><span class='fl'>170</span>, <span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'two.sided'</span>)
+#&gt; variance of x 
+#&gt;      138098.5 
+#&gt; </div><div class='input'>
+<span class='co'># Hypothesis testing</span>
+<span class='co'>#   H0: sigma2 = 100</span>
+<span class='co'>#   H1: sigma2 &gt; 100</span>
+<span class='no'>weight</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>775</span>, <span class='fl'>780</span>, <span class='fl'>781</span>, <span class='fl'>795</span>, <span class='fl'>803</span>, <span class='fl'>810</span>, <span class='fl'>823</span>)
+<span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/var.test.html'>var.test</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>weight</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'greater'</span>, <span class='kw'>null.value</span><span class='kw'>=</span><span class='fl'>100</span>)
+<span class='no'>res2</span></div><div class='output co'>#&gt; <span class='error'>Error in eval(expr, envir, enclos): objeto 'res2' no encontrado</span></div><div class='input'><span class='co'># Using the plot function</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res1</span>)</div><div class='img'><img src='var.test-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Two samples -----</span>
+
+<span class='co'># Hypothesis testing</span>
+<span class='co'>#   H0: sigma1/sigma2 = 1</span>
+<span class='co'>#   H1: sigma1/sigma2 != 1</span>
+<span class='no'>x1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>50</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>2</span>)
+<span class='no'>x2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>30</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>)
+<span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/var.test.html'>var.test</a></span>(<span class='no'>x1</span>, <span class='no'>x2</span>)
 <span class='no'>res2</span></div><div class='output co'>#&gt; 
-#&gt; 	One Sample z-test
+#&gt; 	F test to compare two variances
 #&gt; 
-#&gt; data:  x
-#&gt; Z = 1.8377, p-value = 0.06611
-#&gt; alternative hypothesis: true mean is not equal to 170
+#&gt; data:  x1  and  x2
+#&gt; F = 4.6244, num df = 49, denom df = 29, p-value = 3.563e-05
+#&gt; alternative hypothesis: true ratio of variances is not equal to 1
 #&gt; 95 percent confidence interval:
-#&gt;  169.9316 172.1229
+#&gt;  2.323410 8.700438
 #&gt; sample estimates:
-#&gt; mean of x 
-#&gt;  171.0273 
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res2</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'indianred1'</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'indianred1'</span>)</div><div class='img'><img src='z.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; ratio of variances 
+#&gt;           4.624408 
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res2</span>)</div><div class='img'><img src='var.test-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
