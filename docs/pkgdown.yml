@@ -1,7 +1,0 @@
-pandoc: 2.7.2
-pkgdown: 1.4.1
-pkgdown_sha: ~
-articles:
-  d_value: d_value.html
-  univariate_tests: univariate_tests.html
-
