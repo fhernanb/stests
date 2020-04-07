@@ -17,6 +17,8 @@
 #' @param ... Arguments to be passed to methods, such as graphical parameters (see par).
 #' @param x it is nothing.
 #'
+#' @author Freddy Hernandez
+#'
 #' @examples
 #' # With normal distribution
 #' shade.dist(dist='dnorm', param=list(mean=0, sd=1),

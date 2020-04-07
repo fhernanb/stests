@@ -86,3 +86,6 @@ shade.dist(dist='dbeta', param=list(shape1=2, shape2=5),
 
 
 }
+\author{
+Freddy Hernandez
+}

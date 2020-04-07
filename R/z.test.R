@@ -27,7 +27,7 @@
 #' content <- c(355, 353, 352, 346, 345, 345, 353, 353, 344, 350)
 #' res1 <- z.test(x=content, mu=350, sigma2=25, alternative='less')
 #' res1
-#' #plot(res1, shade.col='deepskyblue', col='deepskyblue')
+#' plot(res1, shade.col='deepskyblue', col='deepskyblue')
 #'
 #' # Example 2
 #' # H0: mu = 170
