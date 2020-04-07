@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • stests</title>
+<title>To plot p-value area — plot.htest • stests</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -42,7 +42,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="To plot p-value area — plot.htest" />
+<meta property="og:description" content="This is a generic function to depict the p-value area for a object with class htest." />
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
 
@@ -63,7 +64,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -105,66 +106,86 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>To plot p-value area</h1>
+    
+    <div class="hidden name"><code>plot.htest.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>This is a generic function to depict the p-value area for a object with class <code>htest</code>.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='co'># S3 method for htest</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>x</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>shade.col</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>cex</span> <span class='kw'>=</span> <span class='fl'>0.8</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="plot.htest.html">plot(<i>&lt;htest&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>To plot p-value area</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="shade.dist.html">shade.dist()</a></code> </p>
-        </td>
-        <td><p>Shade for continuous distributions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="shade.norm.html">shade.norm()</a></code> <code><a href="shade.norm.html">shade.t()</a></code> <code><a href="shade.norm.html">shade.F()</a></code> <code><a href="shade.norm.html">shade.chi()</a></code> </p>
-        </td>
-        <td><p>Shading functions for interpretation of pdf probabilities</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="suma.html">suma()</a></code> </p>
-        </td>
-        <td><p>suma</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="z.test.html">z.test()</a></code> </p>
-        </td>
-        <td><p>Mean test using vector</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>Object of class &#8220;htest&#8221;.</p></td>
+    </tr>
+    <tr>
+      <th>col</th>
+      <td><p>color for the observed statistic.</p></td>
+    </tr>
+    <tr>
+      <th>shade.col</th>
+      <td><p>color for the shaded area.</p></td>
+    </tr>
+    <tr>
+      <th>cex</th>
+      <td><p>a numerical value giving the amount by which plotting the p-value.</p></td>
+    </tr>
+    <tr>
+      <th>from</th>
+      <td><p>the minimum value of the X-axis.</p></td>
+    </tr>
+    <tr>
+      <th>to</th>
+      <td><p>the maximum value of the X-axis.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Other plotting parameters to affect the plot.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>None. Function produces a plot.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='co'># Example</span>
+<span class='co'># H0: mu = 170</span>
+<span class='co'># Ha: mu != 170 with sigma2=25</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>80</span>, <span class='kw'>mean</span><span class='kw'>=</span><span class='fl'>171</span>, <span class='kw'>sd</span><span class='kw'>=</span><span class='fl'>5</span>)
+<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='z.test.html'>z.test</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>x</span>, <span class='kw'>mu</span><span class='kw'>=</span><span class='fl'>170</span>, <span class='kw'>sigma2</span><span class='kw'>=</span><span class='fl'>25</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'two.sided'</span>)
+<span class='no'>res</span></div><div class='output co'>#&gt; 
+#&gt; 	One Sample z-test
+#&gt; 
+#&gt; data:  x
+#&gt; Z = 1.614, p-value = 0.1065
+#&gt; alternative hypothesis: true mean is not equal to 170
+#&gt; 95 percent confidence interval:
+#&gt;  169.8066 171.9979
+#&gt; sample estimates:
+#&gt; mean of x 
+#&gt;  170.9022 
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>res</span>, <span class='kw'>col</span><span class='kw'>=</span><span class='st'>'blue'</span>, <span class='kw'>shade.col</span><span class='kw'>=</span><span class='st'>'tomato'</span>)</div><div class='img'><img src='plot.htest-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 
