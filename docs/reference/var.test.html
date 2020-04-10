@@ -132,7 +132,7 @@
     <p>This function performs the test for a single variance or two variances given the vectors. This function is a generalization of <code>var.test</code> function from <code>stats</code> package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/stats/var.test.html'>var.test</a></span>(
+    <pre class="usage"><span class='fu'>var.test</span>(
   <span class='no'>x</span>,
   <span class='kw'>y</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>alternative</span> <span class='kw'>=</span> <span class='st'>"two.sided"</span>,
@@ -188,7 +188,7 @@ hypothesis, must be one of <code>two.sided</code> (default),
 <span class='no'>duration</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1470</span>, <span class='fl'>1510</span>, <span class='fl'>1690</span>, <span class='fl'>1740</span>, <span class='fl'>1900</span>, <span class='fl'>2000</span>, <span class='fl'>2030</span>,
               <span class='fl'>2010</span>, <span class='fl'>2190</span>, <span class='fl'>2200</span>, <span class='fl'>2290</span>, <span class='fl'>2380</span>, <span class='fl'>2390</span>, <span class='fl'>2480</span>,
               <span class='fl'>2500</span>, <span class='fl'>2580</span>, <span class='fl'>2700</span>)
-<span class='fu'><a href='https://rdrr.io/r/stats/var.test.html'>var.test</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>duration</span>, <span class='kw'>conf.level</span><span class='kw'>=</span><span class='fl'>0.95</span>)</div><div class='output co'>#&gt; 
+<span class='fu'>var.test</span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>duration</span>, <span class='kw'>conf.level</span><span class='kw'>=</span><span class='fl'>0.95</span>)</div><div class='output co'>#&gt; 
 #&gt; 	X-squared test for variance
 #&gt; 
 #&gt; data:  duration
@@ -204,7 +204,7 @@ hypothesis, must be one of <code>two.sided</code> (default),
 <span class='co'>#   H0: sigma2 = 100</span>
 <span class='co'>#   H1: sigma2 &gt; 100</span>
 <span class='no'>weight</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>775</span>, <span class='fl'>780</span>, <span class='fl'>781</span>, <span class='fl'>795</span>, <span class='fl'>803</span>, <span class='fl'>810</span>, <span class='fl'>823</span>)
-<span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/var.test.html'>var.test</a></span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>weight</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'greater'</span>, <span class='kw'>null.value</span><span class='kw'>=</span><span class='fl'>100</span>)
+<span class='no'>res1</span> <span class='kw'>&lt;-</span> <span class='fu'>var.test</span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>weight</span>, <span class='kw'>alternative</span><span class='kw'>=</span><span class='st'>'greater'</span>, <span class='kw'>null.value</span><span class='kw'>=</span><span class='fl'>100</span>)
 <span class='no'>res1</span></div><div class='output co'>#&gt; 
 #&gt; 	X-squared test for variance
 #&gt; 
@@ -225,7 +225,7 @@ hypothesis, must be one of <code>two.sided</code> (default),
 <span class='co'>#   H1: sigma1/sigma2 != 1</span>
 <span class='no'>x1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>50</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>2</span>)
 <span class='no'>x2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>30</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/var.test.html'>var.test</a></span>(<span class='no'>x1</span>, <span class='no'>x2</span>)
+<span class='no'>res2</span> <span class='kw'>&lt;-</span> <span class='fu'>var.test</span>(<span class='no'>x1</span>, <span class='no'>x2</span>)
 <span class='no'>res2</span></div><div class='output co'>#&gt; 
 #&gt; 	F test to compare two variances
 #&gt; 

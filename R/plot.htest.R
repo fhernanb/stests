@@ -199,7 +199,10 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8,
                       'Nel and Van der Merwe test for two mean vectors',
                       'Modified Nel and Van der Merwe test for two mean vectors',
                       'Yao test for two mean vectors',
-                      'Johansen test for two mean vectors')) {
+                      'Johansen test for two mean vectors',
+                      'Yanagihara and Yuan test for two mean vectors',
+                      'Kawasaki and Seo (Second order) test for two mean vectors',
+                      'Kawasaki and Seo (Bias Correction) test for two mean vectors')) {
 
     df1 <- x$parameter[1]
     df2 <- x$parameter[2]

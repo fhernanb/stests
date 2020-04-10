@@ -85,7 +85,7 @@
       <h1>D-value</h1>
                         <h4 class="author">Freddy Hernandez and Karen Rivera</h4>
             
-            <h4 class="date">2020-04-07</h4>
+            <h4 class="date">2020-04-09</h4>
       
       
       <div class="hidden name"><code>d_value.Rmd</code></div>
@@ -100,7 +100,7 @@
 <p>In this section we will replicate the example 1 of Demidenko (2016) using the function <code>t_test</code> of the package ‘stests’ as shown below.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span>(stests)</a>
 <a class="sourceLine" id="cb1-2" title="2"></a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw">t_test</span>(<span class="dt">meanx=</span><span class="dv">249</span>, <span class="dt">varx=</span><span class="dv">20</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">nx=</span><span class="dv">10000</span>,</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="../reference/t_test.html">t_test</a></span>(<span class="dt">meanx=</span><span class="dv">249</span>, <span class="dt">varx=</span><span class="dv">20</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">nx=</span><span class="dv">10000</span>,</a>
 <a class="sourceLine" id="cb1-4" title="4">       <span class="dt">meany=</span><span class="dv">250</span>, <span class="dt">vary=</span><span class="dv">20</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">ny=</span><span class="dv">10000</span>,</a>
 <a class="sourceLine" id="cb1-5" title="5">       <span class="dt">alternative=</span><span class="st">'less'</span>, <span class="dt">mu=</span><span class="dv">0</span>, <span class="dt">var.equal=</span><span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb1-6" title="6"><span class="co">## </span></a>
@@ -126,7 +126,7 @@
 <h1 class="hasAnchor">
 <a href="#p-value-for-example-2-of-demidenko-2016" class="anchor"></a>P-value for example 2 of Demidenko (2016)</h1>
 <p>In this section we will replicate the example 2 of Demidenko (2016) using the function <code>t_test</code> of the package ‘stests’ as shown below.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">t_test</span>(<span class="dt">meanx=</span><span class="dv">15</span>, <span class="dt">varx=</span><span class="dv">6</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">nx=</span><span class="dv">7</span>,</a>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="../reference/t_test.html">t_test</a></span>(<span class="dt">meanx=</span><span class="dv">15</span>, <span class="dt">varx=</span><span class="dv">6</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">nx=</span><span class="dv">7</span>,</a>
 <a class="sourceLine" id="cb2-2" title="2">       <span class="dt">meany=</span><span class="dv">10</span>, <span class="dt">vary=</span><span class="dv">6</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">ny=</span><span class="dv">7</span>,</a>
 <a class="sourceLine" id="cb2-3" title="3">       <span class="dt">alternative=</span><span class="st">'greater'</span>, <span class="dt">mu=</span><span class="dv">0</span>, <span class="dt">var.equal=</span><span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb2-4" title="4"><span class="co">## </span></a>
@@ -174,12 +174,12 @@
 <h1 class="hasAnchor">
 <a href="#d-value-for-example-1-of-demidenko-2016" class="anchor"></a>D-value for example 1 of Demidenko (2016)</h1>
 <p>We will replicate the example 1 of Demidenko (2016) using the function <code>d_meantest</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"> <span class="kw">d_meantest</span>(<span class="dt">meanx=</span><span class="dv">250</span>,<span class="dt">meany=</span><span class="dv">249</span>, <span class="dt">varx=</span><span class="dv">20</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">vary=</span><span class="dv">20</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">alternative=</span><span class="st">'less'</span>)</a>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"> <span class="kw"><a href="../reference/d_meantest.html">d_meantest</a></span>(<span class="dt">meanx=</span><span class="dv">250</span>,<span class="dt">meany=</span><span class="dv">249</span>, <span class="dt">varx=</span><span class="dv">20</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">vary=</span><span class="dv">20</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">alternative=</span><span class="st">'less'</span>)</a>
 <a class="sourceLine" id="cb4-2" title="2"><span class="co">## </span></a>
 <a class="sourceLine" id="cb4-3" title="3"><span class="co">##  Two Sample d.test</span></a>
 <a class="sourceLine" id="cb4-4" title="4"><span class="co">## </span></a>
 <a class="sourceLine" id="cb4-5" title="5"><span class="co">## data:  The D-value was calculated using nrep= 1e+06</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">## d.value = 0.48519</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">## d.value = 0.48669</span></a>
 <a class="sourceLine" id="cb4-7" title="7"><span class="co">## alternative hypothesis: less</span></a>
 <a class="sourceLine" id="cb4-8" title="8"><span class="co">## sample estimates:</span></a>
 <a class="sourceLine" id="cb4-9" title="9"><span class="co">## mean of x mean of y </span></a>
@@ -189,12 +189,12 @@
 <h1 class="hasAnchor">
 <a href="#d-value-for-the-example-2-of-demidenko-2016" class="anchor"></a>D-value for the example 2 of Demidenko (2016)</h1>
 <p>We will replicate the example 2 of Demidenko (2016) using the function <code>d_meantest</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">d_meantest</span>(<span class="dt">meanx=</span><span class="dv">10</span>, <span class="dt">meany=</span><span class="dv">15</span>, <span class="dt">varx =</span><span class="dv">6</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">vary=</span><span class="dv">6</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">alternative=</span><span class="st">'less'</span>)</a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="../reference/d_meantest.html">d_meantest</a></span>(<span class="dt">meanx=</span><span class="dv">10</span>, <span class="dt">meany=</span><span class="dv">15</span>, <span class="dt">varx =</span><span class="dv">6</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">vary=</span><span class="dv">6</span><span class="op">^</span><span class="dv">2</span>, <span class="dt">alternative=</span><span class="st">'less'</span>)</a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="co">## </span></a>
 <a class="sourceLine" id="cb5-3" title="3"><span class="co">##  Two Sample d.test</span></a>
 <a class="sourceLine" id="cb5-4" title="4"><span class="co">## </span></a>
 <a class="sourceLine" id="cb5-5" title="5"><span class="co">## data:  The D-value was calculated using nrep= 1e+06</span></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="co">## d.value = 0.72196</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="co">## d.value = 0.72238</span></a>
 <a class="sourceLine" id="cb5-7" title="7"><span class="co">## alternative hypothesis: less</span></a>
 <a class="sourceLine" id="cb5-8" title="8"><span class="co">## sample estimates:</span></a>
 <a class="sourceLine" id="cb5-9" title="9"><span class="co">## mean of x mean of y </span></a>
