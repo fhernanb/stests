@@ -3,14 +3,23 @@ Type: Package
 Title: Package with useful statistical tests
 Version: 0.1.0
 Authors@R: c(
-    person("Freddy", "Hernandez", , "fhernanb@unal.edu.co", role = c("aut", "cre"), 
-      comment = c(ORCID = "0000-0001-7459-3329")),
-    person("Olga", "Usuga", , "olga.usuga@udea.edu.co", role = c("aut"),
-      comment = c(ORCID = "0000-0003-3062-1820")),
-    person("Valentina", "Garcia", , "vagarciave@unal.edu.co", role = c("aut"),
-      comment = c(ORCID = "0000-0000-0000-0000")),
-      person("Jean Paul", "Piedrahita", , "jppiedrahitag@unal.edu.co", role = c("aut"),
-      comment = c(ORCID = "0000-0000-0000-0000"))
+    person(given="Freddy",
+           family="Hernandez", 
+           email="fhernanb@unal.edu.co", 
+           role = c("aut", "cre"), 
+           comment = c(ORCID = "0000-0001-7459-3329")),
+    person(given="Olga", 
+           family="Usuga", 
+           email="olga.usuga@udea.edu.co", 
+           role = c("aut")),
+    person(given="Valentina", 
+           family="Garcia",
+           email="vagarciave@unal.edu.co", 
+           role = c("aut")),
+    person(given="Jean Paul", 
+           family="Piedrahita",
+           email="jppiedrahitag@unal.edu.co", 
+           role = c("aut"))
   )
 Maintainer: Freddy Hernandez <fhernanb@unal.edu.co>
 Description: In this package the users could find several functions to perform 
@@ -21,7 +30,7 @@ URL: https://fhernanb.github.io/stests
 BugReports: https://github.com/fhernanb/stests/issues
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Imports:
     expm
 Suggests: knitr, rmarkdown
