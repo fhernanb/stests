@@ -60,7 +60,7 @@ the \code{"method"} argument must be one of
 \code{"mbyy"} (modified Bartlett Correction test),
 \code{"ks1"} (Second Order Procedure),
 \code{"ks2"} (Bias Correction Procedure).
-For James test the critic value is reported, we reject H0 if T2 > critic_value.
+For James test the critic value is reported, we reject \eqn{H_0} if T2 > critic_value.
 }
 \examples{
 # Example 5.4.2 from Rencher & Christensen (2012) page 137,
