@@ -12,7 +12,20 @@
 #' @param method a character string specifying the method, \code{"T2"} (default), \code{"james"} (James' first order test), please see the details section for other methods.
 #' @param alpha the significance level only for method \code{"james"}, by default its value is 0.05.
 #'
-#' @details the \code{"method"} must be one of \code{"T2"} (default), \code{"james"} (James' first order test), \code{"yao"} (Yao's test), \code{"johansen"} (Johansen's test), \code{"nvm"} (Nel and Van der Merwe test), \code{"mnvm"} (modified Nel and Van der Merwe test), \code{"gamage"} (Gamage's test), \code{"yy"} (Yanagihara and Yuan test), \code{"byy"} (Bartlett Correction test), \code{"ks1"} (Second Order Procedure), \code{"ks2"} (Bias Correction Procedure). For James test the critic value is reported, we reject H0 if T2 > critic_value.
+#' @details the \code{"method"} argument must be one of
+#' \code{"T2"} (default),
+#' \code{"james"} (James' first order test),
+#' \code{"yao"} (Yao's test),
+#' \code{"johansen"} (Johansen's test),
+#' \code{"nvm"} (Nel and Van der Merwe test),
+#' \code{"mnvm"} (modified Nel and Van der Merwe test),
+#' \code{"gamage"} (Gamage's test),
+#' \code{"yy"} (Yanagihara and Yuan test),
+#' \code{"byy"} (Bartlett Correction test),
+#' \code{"mbyy"} (modified Bartlett Correction test),
+#' \code{"ks1"} (Second Order Procedure),
+#' \code{"ks2"} (Bias Correction Procedure).
+#' For James test the critic value is reported, we reject H0 if T2 > critic_value.
 #'
 #' @return A list with class \code{"htest"} containing the following components:
 #' \item{statistic}{the value of the statistic.}

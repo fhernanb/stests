@@ -113,12 +113,14 @@ res9 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
                              xbar2 = xbar2, s2 = s2, n2 = n2,
                              method = 'byy')
 res9
+plot(res9, from=12, to=20, shade.col='hotpink2')
 
 # using modified Bartlett Correction method for same data
 res10 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
                               xbar2 = xbar2, s2 = s2, n2 = n2,
                               method = 'mbyy')
 res10
+plot(res10, from=12, to=20, shade.col='green3')
 
 # using Second Order Procedure (Kawasaki and Seo (2015)) method for same data
 res11 <- two_mean_vector_test(xbar1 = xbar1, s1 = s1, n1 = n1,
