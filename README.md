@@ -1,4 +1,3 @@
-[![Travis build status](https://travis-ci.org/fhernanb/stests.svg?branch=master)](https://travis-ci.org/fhernanb/stests)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version-ago/stests)](https://cran.r-project.org/package=stests)
 [![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/stests)](https://cran.r-project.org/package=stests) 
 
