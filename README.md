@@ -1,5 +1,8 @@
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version-ago/stests)](https://cran.r-project.org/package=stests)
+<!-- badges: start -->
+  [![R-CMD-check](https://github.com/fhernanb/stests/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/fhernanb/stests/actions/workflows/R-CMD-check.yaml)
+  [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version-ago/stests)](https://cran.r-project.org/package=stests)
 [![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/stests)](https://cran.r-project.org/package=stests) 
+<!-- badges: end -->
 
 # stests <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
