@@ -26,6 +26,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -38,29 +40,26 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">stests</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/Behrens-Fisher.html">Behrens-Fisher</a>
+    </li>
+    <li>
       <a href="../articles/d_value.html">D-value</a>
     </li>
     <li>
@@ -71,8 +70,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/fhernanb/stests/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/fhernanb/stests/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -90,74 +89,94 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>D-value</h1>
-                        <h4 class="author">Freddy Hernandez and Karen Rivera</h4>
+                        <h4 data-toc-skip class="author">Freddy
+Hernandez and Karen Rivera</h4>
             
-            <h4 class="date">2020-08-14</h4>
+            <h4 data-toc-skip class="date">2023-05-19</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/fhernanb/stests/blob/master/vignettes/d_value.Rmd"><code>vignettes/d_value.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/fhernanb/stests/blob/HEAD/vignettes/d_value.Rmd" class="external-link"><code>vignettes/d_value.Rmd</code></a></small>
       <div class="hidden name"><code>d_value.Rmd</code></div>
 
     </div>
 
     
     
-<div id="p-value-for-example-1-of-demidenko-2016" class="section level1">
-<h1 class="hasAnchor">
-<a href="#p-value-for-example-1-of-demidenko-2016" class="anchor"></a>P-value for example 1 of Demidenko (2016)</h1>
-<p>In this section we will replicate the example 1 of Demidenko (2016) using the function <code>t_test</code> of the package ‘stests’ as shown below.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">stests</span>)
-
-<span class="fu"><a href="../reference/t_test.html">t_test</a></span>(<span class="kw">meanx</span><span class="kw">=</span><span class="fl">249</span>, <span class="kw">varx</span><span class="kw">=</span><span class="fl">20</span>^<span class="fl">2</span>, <span class="kw">nx</span><span class="kw">=</span><span class="fl">10000</span>,
-       <span class="kw">meany</span><span class="kw">=</span><span class="fl">250</span>, <span class="kw">vary</span><span class="kw">=</span><span class="fl">20</span>^<span class="fl">2</span>, <span class="kw">ny</span><span class="kw">=</span><span class="fl">10000</span>,
-       <span class="kw">alternative</span><span class="kw">=</span><span class="st">'less'</span>, <span class="kw">mu</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">var.equal</span><span class="kw">=</span><span class="fl">TRUE</span>)
-<span class="co">## </span>
-<span class="co">##  Two Sample t-test</span>
-<span class="co">## </span>
-<span class="co">## data:  meanx = 249 , nx = 10000 , meany = 250 and ny = 10000</span>
-<span class="co">## t = -3.5355, df = 19998, p-value = 0.0002039</span>
-<span class="co">## alternative hypothesis: true difference in means is less than 0</span>
-<span class="co">## 95 percent confidence interval:</span>
-<span class="co">##        -Inf -0.5347436</span>
-<span class="co">## sample estimates:</span>
-<span class="co">## mean of x mean of y </span>
-<span class="co">##       249       250</span></pre></body></html></div>
-<p>The results obtained by the function <code>t_test</code> are the same obtained by Demidenko</p>
+<div class="section level2">
+<h2 id="p-value-for-example-1-of-demidenko-2016">P-value for example 1 of Demidenko (2016)<a class="anchor" aria-label="anchor" href="#p-value-for-example-1-of-demidenko-2016"></a>
+</h2>
+<p>In this section we will replicate the example 1 of Demidenko (2016)
+using the function <code>t_test</code> of the package ‘stests’ as shown
+below.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://fhernanb.github.io/stests" class="external-link">stests</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/t_test.html">t_test</a></span><span class="op">(</span>meanx<span class="op">=</span><span class="fl">249</span>, varx<span class="op">=</span><span class="fl">20</span><span class="op">^</span><span class="fl">2</span>, nx<span class="op">=</span><span class="fl">10000</span>,</span>
+<span>       meany<span class="op">=</span><span class="fl">250</span>, vary<span class="op">=</span><span class="fl">20</span><span class="op">^</span><span class="fl">2</span>, ny<span class="op">=</span><span class="fl">10000</span>,</span>
+<span>       alternative<span class="op">=</span><span class="st">'less'</span>, mu<span class="op">=</span><span class="fl">0</span>, var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##  Two Sample t-test</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## data:  meanx = 249 , nx = 10000 , meany = 250 and ny = 10000</span></span>
+<span><span class="co">## t = -3.5355, df = 19998, p-value = 0.0002039</span></span>
+<span><span class="co">## alternative hypothesis: true difference in means is less than 0</span></span>
+<span><span class="co">## 95 percent confidence interval:</span></span>
+<span><span class="co">##        -Inf -0.5347436</span></span>
+<span><span class="co">## sample estimates:</span></span>
+<span><span class="co">## mean of x mean of y </span></span>
+<span><span class="co">##       249       250</span></span></code></pre></div>
+<p>The results obtained by the function <code>t_test</code> are the same
+obtained by Demidenko</p>
 </div>
-<div id="how-does-the-sample-size-n-of-each-group-influence-the-p-value" class="section level1">
-<h1 class="hasAnchor">
-<a href="#how-does-the-sample-size-n-of-each-group-influence-the-p-value" class="anchor"></a>How does the sample size <span class="math inline">\(n\)</span> of each group influence the P-value?</h1>
-<p>In the following figure the P-value is calculated for many values of <span class="math inline">\(n\)</span>, in which it is evident that the P-value decreases and then in <span class="math inline">\(n=2000\)</span>, this parameter is below the level of usual significance of 5%</p>
+<div class="section level2">
+<h2 id="how-does-the-sample-size-n-of-each-group-influence-the-p-value">How does the sample size <span class="math inline">\(n\)</span> of
+each group influence the P-value?<a class="anchor" aria-label="anchor" href="#how-does-the-sample-size-n-of-each-group-influence-the-p-value"></a>
+</h2>
+<p>In the following figure the P-value is calculated for many values of
+<span class="math inline">\(n\)</span>, in which it is evident that the
+P-value decreases and then in <span class="math inline">\(n=2000\)</span>, this parameter is below the level
+of usual significance of 5%</p>
 <p><img src="d_value_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 </div>
-<div id="p-value-for-example-2-of-demidenko-2016" class="section level1">
-<h1 class="hasAnchor">
-<a href="#p-value-for-example-2-of-demidenko-2016" class="anchor"></a>P-value for example 2 of Demidenko (2016)</h1>
-<p>In this section we will replicate the example 2 of Demidenko (2016) using the function <code>t_test</code> of the package ‘stests’ as shown below.</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="../reference/t_test.html">t_test</a></span>(<span class="kw">meanx</span><span class="kw">=</span><span class="fl">15</span>, <span class="kw">varx</span><span class="kw">=</span><span class="fl">6</span>^<span class="fl">2</span>, <span class="kw">nx</span><span class="kw">=</span><span class="fl">7</span>,
-       <span class="kw">meany</span><span class="kw">=</span><span class="fl">10</span>, <span class="kw">vary</span><span class="kw">=</span><span class="fl">6</span>^<span class="fl">2</span>, <span class="kw">ny</span><span class="kw">=</span><span class="fl">7</span>,
-       <span class="kw">alternative</span><span class="kw">=</span><span class="st">'greater'</span>, <span class="kw">mu</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">var.equal</span><span class="kw">=</span><span class="fl">TRUE</span>)
-<span class="co">## </span>
-<span class="co">##  Two Sample t-test</span>
-<span class="co">## </span>
-<span class="co">## data:  meanx = 15 , nx = 7 , meany = 10 and ny = 7</span>
-<span class="co">## t = 1.559, df = 12, p-value = 0.07248</span>
-<span class="co">## alternative hypothesis: true difference in means is greater than 0</span>
-<span class="co">## 95 percent confidence interval:</span>
-<span class="co">##  -0.7160366        Inf</span>
-<span class="co">## sample estimates:</span>
-<span class="co">## mean of x mean of y </span>
-<span class="co">##        15        10</span></pre></body></html></div>
-<p>We see that the statistics coincide with what is obtained in the article, the value of P within the function <code>t_test</code> is calculated with a <span class="math inline">\(t\)</span>-student distribution whereas in the article it is obtained through the normal distribution, on the other hand, the size of the sample is small (<span class="math inline">\(n=6\)</span>) because of this is the difference between the methods.</p>
+<div class="section level2">
+<h2 id="p-value-for-example-2-of-demidenko-2016">P-value for example 2 of Demidenko (2016)<a class="anchor" aria-label="anchor" href="#p-value-for-example-2-of-demidenko-2016"></a>
+</h2>
+<p>In this section we will replicate the example 2 of Demidenko (2016)
+using the function <code>t_test</code> of the package ‘stests’ as shown
+below.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/t_test.html">t_test</a></span><span class="op">(</span>meanx<span class="op">=</span><span class="fl">15</span>, varx<span class="op">=</span><span class="fl">6</span><span class="op">^</span><span class="fl">2</span>, nx<span class="op">=</span><span class="fl">7</span>,</span>
+<span>       meany<span class="op">=</span><span class="fl">10</span>, vary<span class="op">=</span><span class="fl">6</span><span class="op">^</span><span class="fl">2</span>, ny<span class="op">=</span><span class="fl">7</span>,</span>
+<span>       alternative<span class="op">=</span><span class="st">'greater'</span>, mu<span class="op">=</span><span class="fl">0</span>, var.equal<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##  Two Sample t-test</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## data:  meanx = 15 , nx = 7 , meany = 10 and ny = 7</span></span>
+<span><span class="co">## t = 1.559, df = 12, p-value = 0.07248</span></span>
+<span><span class="co">## alternative hypothesis: true difference in means is greater than 0</span></span>
+<span><span class="co">## 95 percent confidence interval:</span></span>
+<span><span class="co">##  -0.7160366        Inf</span></span>
+<span><span class="co">## sample estimates:</span></span>
+<span><span class="co">## mean of x mean of y </span></span>
+<span><span class="co">##        15        10</span></span></code></pre></div>
+<p>We see that the statistics coincide with what is obtained in the
+article, the value of P within the function <code>t_test</code> is
+calculated with a <span class="math inline">\(t\)</span>-student
+distribution whereas in the article it is obtained through the normal
+distribution, on the other hand, the size of the sample is small (<span class="math inline">\(n=6\)</span>) because of this is the difference
+between the methods.</p>
 </div>
-<div id="how-does-the-sample-size-of-each-group-influence-the-p-value" class="section level1">
-<h1 class="hasAnchor">
-<a href="#how-does-the-sample-size-of-each-group-influence-the-p-value" class="anchor"></a>How does the sample size of each group influence the P-value?</h1>
-<p>In the following figure the P-value is calculated for many values of <span class="math inline">\(n\)</span>, in which it is evident that the P-value decreases and then in <span class="math inline">\(n=9\)</span>, this parameter is below the level of usual significance of 5%.</p>
+<div class="section level2">
+<h2 id="how-does-the-sample-size-of-each-group-influence-the-p-value">How does the sample size of each group influence the P-value?<a class="anchor" aria-label="anchor" href="#how-does-the-sample-size-of-each-group-influence-the-p-value"></a>
+</h2>
+<p>In the following figure the P-value is calculated for many values of
+<span class="math inline">\(n\)</span>, in which it is evident that the
+P-value decreases and then in <span class="math inline">\(n=9\)</span>,
+this parameter is below the level of usual significance of 5%.</p>
 <p><img src="d_value_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 </div>
-<div id="function-to-calculate-the-d-value" class="section level1">
-<h1 class="hasAnchor">
-<a href="#function-to-calculate-the-d-value" class="anchor"></a>Function to calculate the D-value</h1>
+<div class="section level2">
+<h2 id="function-to-calculate-the-d-value">Function to calculate the D-value<a class="anchor" aria-label="anchor" href="#function-to-calculate-the-d-value"></a>
+</h2>
 <p>Hypothesis testing:</p>
 <ul>
 <li>The null hypothesis is :</li>
@@ -171,54 +190,69 @@
 <p><span class="math display">\[H_A: \mu_1 &gt; \mu_2\]</span></p>
 </li>
 </ul>
-<p>The function <code>d_meantest</code> presented below is to calculate the D-value by simulation for the case of comparison of two means from normal populations.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">stests</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/args.html">args</a></span>(<span class="no">d_meantest</span>)
-<span class="co">## function (meanx, varx, meany, vary, alternative = "less", nrep = 1e+06) </span>
-<span class="co">## NULL</span></pre></body></html></div>
+<p>The function <code>d_meantest</code> presented below is to calculate
+the D-value by simulation for the case of comparison of two means from
+normal populations.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://fhernanb.github.io/stests" class="external-link">stests</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/args.html" class="external-link">args</a></span><span class="op">(</span><span class="va">d_meantest</span><span class="op">)</span></span>
+<span><span class="co">## function (meanx, varx, meany, vary, alternative = "less", nrep = 1e+06) </span></span>
+<span><span class="co">## NULL</span></span></code></pre></div>
 </div>
-<div id="d-value-for-example-1-of-demidenko-2016" class="section level1">
-<h1 class="hasAnchor">
-<a href="#d-value-for-example-1-of-demidenko-2016" class="anchor"></a>D-value for example 1 of Demidenko (2016)</h1>
-<p>We will replicate the example 1 of Demidenko (2016) using the function <code>d_meantest</code>.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"> <span class="fu"><a href="../reference/d_meantest.html">d_meantest</a></span>(<span class="kw">meanx</span><span class="kw">=</span><span class="fl">250</span>,<span class="kw">meany</span><span class="kw">=</span><span class="fl">249</span>, <span class="kw">varx</span><span class="kw">=</span><span class="fl">20</span>^<span class="fl">2</span>, <span class="kw">vary</span><span class="kw">=</span><span class="fl">20</span>^<span class="fl">2</span>, <span class="kw">alternative</span><span class="kw">=</span><span class="st">'less'</span>)
-<span class="co">## </span>
-<span class="co">##  Two Sample d.test</span>
-<span class="co">## </span>
-<span class="co">## data:  The D-value was calculated using nrep= 1e+06</span>
-<span class="co">## d.value = 0.48544</span>
-<span class="co">## alternative hypothesis: less</span>
-<span class="co">## sample estimates:</span>
-<span class="co">## mean of x mean of y </span>
-<span class="co">##       250       249</span></pre></body></html></div>
+<div class="section level2">
+<h2 id="d-value-for-example-1-of-demidenko-2016">D-value for example 1 of Demidenko (2016)<a class="anchor" aria-label="anchor" href="#d-value-for-example-1-of-demidenko-2016"></a>
+</h2>
+<p>We will replicate the example 1 of Demidenko (2016) using the
+function <code>d_meantest</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span> <span class="fu"><a href="../reference/d_meantest.html">d_meantest</a></span><span class="op">(</span>meanx<span class="op">=</span><span class="fl">250</span>,meany<span class="op">=</span><span class="fl">249</span>, varx<span class="op">=</span><span class="fl">20</span><span class="op">^</span><span class="fl">2</span>, vary<span class="op">=</span><span class="fl">20</span><span class="op">^</span><span class="fl">2</span>, alternative<span class="op">=</span><span class="st">'less'</span><span class="op">)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##  Two Sample d.test</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## data:  The D-value was calculated using nrep= 1e+06</span></span>
+<span><span class="co">## d.value = 0.48578</span></span>
+<span><span class="co">## alternative hypothesis: less</span></span>
+<span><span class="co">## sample estimates:</span></span>
+<span><span class="co">## mean of x mean of y </span></span>
+<span><span class="co">##       250       249</span></span></code></pre></div>
 </div>
-<div id="d-value-for-the-example-2-of-demidenko-2016" class="section level1">
-<h1 class="hasAnchor">
-<a href="#d-value-for-the-example-2-of-demidenko-2016" class="anchor"></a>D-value for the example 2 of Demidenko (2016)</h1>
-<p>We will replicate the example 2 of Demidenko (2016) using the function <code>d_meantest</code>.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="../reference/d_meantest.html">d_meantest</a></span>(<span class="kw">meanx</span><span class="kw">=</span><span class="fl">10</span>, <span class="kw">meany</span><span class="kw">=</span><span class="fl">15</span>, <span class="kw">varx</span> <span class="kw">=</span><span class="fl">6</span>^<span class="fl">2</span>, <span class="kw">vary</span><span class="kw">=</span><span class="fl">6</span>^<span class="fl">2</span>, <span class="kw">alternative</span><span class="kw">=</span><span class="st">'less'</span>)
-<span class="co">## </span>
-<span class="co">##  Two Sample d.test</span>
-<span class="co">## </span>
-<span class="co">## data:  The D-value was calculated using nrep= 1e+06</span>
-<span class="co">## d.value = 0.72225</span>
-<span class="co">## alternative hypothesis: less</span>
-<span class="co">## sample estimates:</span>
-<span class="co">## mean of x mean of y </span>
-<span class="co">##        10        15</span></pre></body></html></div>
+<div class="section level2">
+<h2 id="d-value-for-the-example-2-of-demidenko-2016">D-value for the example 2 of Demidenko (2016)<a class="anchor" aria-label="anchor" href="#d-value-for-the-example-2-of-demidenko-2016"></a>
+</h2>
+<p>We will replicate the example 2 of Demidenko (2016) using the
+function <code>d_meantest</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/d_meantest.html">d_meantest</a></span><span class="op">(</span>meanx<span class="op">=</span><span class="fl">10</span>, meany<span class="op">=</span><span class="fl">15</span>, varx <span class="op">=</span><span class="fl">6</span><span class="op">^</span><span class="fl">2</span>, vary<span class="op">=</span><span class="fl">6</span><span class="op">^</span><span class="fl">2</span>, alternative<span class="op">=</span><span class="st">'less'</span><span class="op">)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">##  Two Sample d.test</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## data:  The D-value was calculated using nrep= 1e+06</span></span>
+<span><span class="co">## d.value = 0.72125</span></span>
+<span><span class="co">## alternative hypothesis: less</span></span>
+<span><span class="co">## sample estimates:</span></span>
+<span><span class="co">## mean of x mean of y </span></span>
+<span><span class="co">##        10        15</span></span></code></pre></div>
 </div>
-<div id="how-to-change-the-d-value-for-the-different-values-of-barx-y-bary" class="section level1">
-<h1 class="hasAnchor">
-<a href="#how-to-change-the-d-value-for-the-different-values-of-barx-y-bary" class="anchor"></a>How to change the D-value for the different values of <span class="math inline">\(\bar{x}\)</span> y <span class="math inline">\(\bar{y}\)</span>?</h1>
-<p>To answer this question we will take the data from example 1 of Demidenko (2016), the value of <span class="math inline">\(x = 249\)</span> will be fixed while the value of <span class="math inline">\(\bar{y}\)</span> will be moving away from <span class="math inline">\(\bar{x}\)</span>. Recall that the value of <span class="math inline">\(\bar{y}\)</span> represents the average weight of patients who consumed the drug to lose weight. The value of the sample desviation <span class="math inline">\(s\)</span> for each group will remain constant at 20 lbs.</p>
-<p>The following figure shows the evolution of the D-value as the weight changes <span class="math inline">\(\bar{y}\)</span> for the group of people who did take the medication.</p>
+<div class="section level2">
+<h2 id="how-to-change-the-d-value-for-the-different-values-of-barx-y-bary">How to change the D-value for the different values of <span class="math inline">\(\bar{x}\)</span> y <span class="math inline">\(\bar{y}\)</span>?<a class="anchor" aria-label="anchor" href="#how-to-change-the-d-value-for-the-different-values-of-barx-y-bary"></a>
+</h2>
+<p>To answer this question we will take the data from example 1 of
+Demidenko (2016), the value of <span class="math inline">\(x =
+249\)</span> will be fixed while the value of <span class="math inline">\(\bar{y}\)</span> will be moving away from <span class="math inline">\(\bar{x}\)</span>. Recall that the value of <span class="math inline">\(\bar{y}\)</span> represents the average weight of
+patients who consumed the drug to lose weight. The value of the sample
+desviation <span class="math inline">\(s\)</span> for each group will
+remain constant at 20 lbs.</p>
+<p>The following figure shows the evolution of the D-value as the weight
+changes <span class="math inline">\(\bar{y}\)</span> for the group of
+people who did take the medication.</p>
 <p><img src="d_value_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 </div>
-<div id="references" class="section level1">
-<h1 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h1>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <ul>
-<li>Demidenko, E. (2016). The p-Value You Can’t Buy. The American Statistician, 70(1): 33-38.</li>
+<li>Demidenko, E. (2016). The p-Value You Can’t Buy. The American
+Statistician, 70(1): 33-38.</li>
 </ul>
 </div>
   </div>
@@ -234,11 +268,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Freddy Hernandez, Olga Usuga, Valentina Garcia, Jean Paul Piedrahita.</p>
+  <p></p>
+<p>Developed by Freddy Hernandez, Olga Usuga, Valentina Garcia, Jean Paul Piedrahita.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -246,6 +282,8 @@
 
   
 
+
+  
 
   </body>
 </html>
