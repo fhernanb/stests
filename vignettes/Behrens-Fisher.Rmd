@@ -661,7 +661,7 @@ res
 
 We can depict the $p-$value as follows.
 
-```{r fig.align='center', fig.height=4, fig.width=6}
+```{r plot-ex-01, fig.align='center', fig.height=4, fig.width=6}
 plot(res, from=0, to=20, shade.col="lightgoldenrodyellow")
 ```
 
@@ -693,7 +693,7 @@ res
 
 We can depict the $p-$value as follows.
 
-```{r fig.align='center', fig.height=4, fig.width=6}
+```{r plot-ex-02, fig.align='center', fig.height=4, fig.width=6}
 plot(res, from=6, to=10, shade.col='gold2')
 ```
 
@@ -725,7 +725,7 @@ res
 
 We can depict the $p-$value as follows.
 
-```{r fig.align='center', fig.height=4, fig.width=6}
+```{r plot-ex-03, fig.align='center', fig.height=4, fig.width=6}
 plot(res, from=12, to=20, shade.col='hotpink2')
 ```
 
@@ -757,7 +757,7 @@ res
 
 We can depict the $p-$value as follows.
 
-```{r fig.align='center', fig.height=4, fig.width=6}
+```{r plot-ex-04, fig.align='center', fig.height=4, fig.width=6}
 plot(res, from=12, to=20, shade.col='green3')
 ```
 
@@ -789,7 +789,7 @@ res
 
 We can depict the $p-$value as follows.
 
-```{r fig.align='center', fig.height=4, fig.width=6}
+```{r plot-ex-05, fig.align='center', fig.height=4, fig.width=6}
 plot(res, from=6, to=10, shade.col='hotpink1')
 ```
 
@@ -821,7 +821,7 @@ res
 
 We can depict the $p-$value as follows.
 
-```{r fig.align='center', fig.height=4, fig.width=6}
+```{r plot-ex-06, fig.align='center', fig.height=4, fig.width=6}
 plot(res, from=6, to=10, shade.col='seagreen2')
 ```
 
