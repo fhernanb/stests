@@ -140,7 +140,11 @@ shade.F<-function(x=NULL, from=NULL, to=NULL, nu1=1, nu2=5, tail="lower",
   xv<-seq(0,sigma,sigma/1000)
   yv<-df(xv,nu1,nu2)
 
-  curve(df(x,nu1,nu2),from=0,to=sigma,xlab=expression(italic(x)),ylab=expression(paste(italic(f),"(",italic(x),")", sep = "")), ...)
+  curve(df(x,nu1,nu2),
+        from=ifelse(is.null(from), 0, from),
+        to=ifelse(is.null(to), sigma, to),
+        xlab=expression(italic(x)),
+        ylab=expression(paste(italic(f),"(",italic(x),")", sep = "")), ...)
 
   if(tail=="lower"){
     polygon(c(xv[xv<=x],x),c(yv[xv<=x],yv[xv==0]),col=shade.col)

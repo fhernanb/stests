@@ -92,7 +92,7 @@
                         <h4 data-toc-skip class="author">Freddy
 Hernandez and Jean Paul Piedrahita</h4>
             
-            <h4 data-toc-skip class="date">2023-05-19</h4>
+            <h4 data-toc-skip class="date">2023-08-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/fhernanb/stests/blob/HEAD/vignettes/Behrens-Fisher.Rmd" class="external-link"><code>vignettes/Behrens-Fisher.Rmd</code></a></small>
       <div class="hidden name"><code>Behrens-Fisher.Rmd</code></div>
@@ -108,17 +108,17 @@ Hernandez and Jean Paul Piedrahita</h4>
 a valuable tool for testing hypotheses related to the Berens-Fisher
 problem. The package is conveniently hosted on GitHub and is freely
 accessible for utilization. The core functionality of the stests package
-revolves around the two_mean_vector_test function. This function
-generates a specialized R object that allows the use of the standard
-print function, enabling easy examination of the test results.
-Furthermore, the two_mean_vector_test function offers the flexibility to
-generate informative plots showcasing the p-value alongside the
-corresponding statistics and probabilities. These visualizations provide
-a comprehensive understanding of the hypothesis testing process,
-enhancing the interpretability and usability of the stests package.
-Researchers and practitioners alike can leverage this package to conduct
-hypothesis testing for the Berens-Fisher problem effectively and
-efficiently.</p>
+revolves around the <code>two_mean_vector_test</code> function. This
+function generates a specialized R object that allows the use of the
+standard print function, enabling easy examination of the test results.
+Furthermore, the <code>two_mean_vector_test</code> function offers the
+flexibility to generate informative plots showcasing the p-value
+alongside the corresponding statistics and probabilities. These
+visualizations provide a comprehensive understanding of the hypothesis
+testing process, enhancing the interpretability and usability of the
+stests package. Researchers and practitioners alike can leverage this
+package to conduct hypothesis testing for the Berens-Fisher problem
+effectively and efficiently.</p>
 </div>
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
@@ -725,7 +725,7 @@ function using <code>method="T2"</code> as follows.</p>
 follows.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res</span>, from<span class="op">=</span><span class="fl">20</span>, to<span class="op">=</span><span class="fl">25</span>, shade.col<span class="op">=</span><span class="st">"tomato"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Behrens-Fisher_files/figure-html/unnamed-chunk-6-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="Behrens-Fisher_files/figure-html/plot-ex-01-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="first-order-james-test">First order James’ test<a class="anchor" aria-label="anchor" href="#first-order-james-test"></a>
@@ -768,7 +768,7 @@ function using <code>method="james"</code> with significance level
 follows.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res</span>, from<span class="op">=</span><span class="fl">5</span>, to<span class="op">=</span><span class="fl">10</span>, shade.col<span class="op">=</span><span class="st">"lightgreen"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Behrens-Fisher_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="Behrens-Fisher_files/figure-html/plot-ex-02-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="yaos-test">Yao’s test<a class="anchor" aria-label="anchor" href="#yaos-test"></a>
@@ -810,7 +810,7 @@ function using <code>method="yao"</code> as follows.</p>
 follows.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res</span>, from<span class="op">=</span><span class="fl">2</span>, to<span class="op">=</span><span class="fl">6</span>, shade.col<span class="op">=</span><span class="st">"pink"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Behrens-Fisher_files/figure-html/unnamed-chunk-12-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="Behrens-Fisher_files/figure-html/plot-ex-03-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="johansens-test">Johansen’s test<a class="anchor" aria-label="anchor" href="#johansens-test"></a>
@@ -850,7 +850,7 @@ function using <code>method="johansen"</code> as follows.</p>
 follows.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res</span>, from<span class="op">=</span><span class="fl">2</span>, to<span class="op">=</span><span class="fl">6</span>, shade.col<span class="op">=</span><span class="st">"aquamarine1"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Behrens-Fisher_files/figure-html/unnamed-chunk-15-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="Behrens-Fisher_files/figure-html/plot-ex-04-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="nvm-test">NVM test<a class="anchor" aria-label="anchor" href="#nvm-test"></a>
@@ -893,7 +893,7 @@ function using <code>method="nvm"</code> as follows.</p>
 follows.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res</span>, from<span class="op">=</span><span class="fl">6</span>, to<span class="op">=</span><span class="fl">10</span>, shade.col<span class="op">=</span><span class="st">"cyan2"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Behrens-Fisher_files/figure-html/unnamed-chunk-18-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="Behrens-Fisher_files/figure-html/plot-ex-05-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="modified-nvm-test">Modified NVM test<a class="anchor" aria-label="anchor" href="#modified-nvm-test"></a>
@@ -933,7 +933,7 @@ function using <code>method="mnvm"</code> as follows.</p>
 follows.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res</span>, from<span class="op">=</span><span class="fl">6</span>, to<span class="op">=</span><span class="fl">10</span>, shade.col<span class="op">=</span><span class="st">"lightgoldenrodyellow"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Behrens-Fisher_files/figure-html/unnamed-chunk-21-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="Behrens-Fisher_files/figure-html/plot-ex-06-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="gamages-test">Gamage’s test<a class="anchor" aria-label="anchor" href="#gamages-test"></a>
@@ -962,7 +962,7 @@ function using <code>method="gamage"</code> as follows.</p>
 <span><span class="co">##  Gamage test for two mean vectors</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## data:  this test uses summarized data</span></span>
-<span><span class="co">## T2 = 15.659, p-value = 0.0015</span></span>
+<span><span class="co">## T2 = 15.659, p-value = 0.001</span></span>
 <span><span class="co">## alternative hypothesis: mu1 is not equal to mu2 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## sample estimates:</span></span>
@@ -973,7 +973,7 @@ function using <code>method="gamage"</code> as follows.</p>
 follows.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res</span>, from<span class="op">=</span><span class="fl">0</span>, to<span class="op">=</span><span class="fl">20</span>, shade.col<span class="op">=</span><span class="st">"lightgoldenrodyellow"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Behrens-Fisher_files/figure-html/unnamed-chunk-24-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="Behrens-Fisher_files/figure-html/plot-ex-07-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="yanagihara-and-yuans-test">Yanagihara and Yuan’s test<a class="anchor" aria-label="anchor" href="#yanagihara-and-yuans-test"></a>
@@ -1014,7 +1014,7 @@ function using <code>method="yy"</code> as follows.</p>
 follows.</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res</span>, from<span class="op">=</span><span class="fl">6</span>, to<span class="op">=</span><span class="fl">10</span>, shade.col<span class="op">=</span><span class="st">'gold2'</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Behrens-Fisher_files/figure-html/unnamed-chunk-27-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="Behrens-Fisher_files/figure-html/plot-ex-08-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="bartlett-correction-test">Bartlett Correction test<a class="anchor" aria-label="anchor" href="#bartlett-correction-test"></a>
@@ -1054,7 +1054,7 @@ function using <code>method="byy"</code> as follows.</p>
 follows.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res</span>, from<span class="op">=</span><span class="fl">12</span>, to<span class="op">=</span><span class="fl">20</span>, shade.col<span class="op">=</span><span class="st">'hotpink2'</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Behrens-Fisher_files/figure-html/unnamed-chunk-30-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="Behrens-Fisher_files/figure-html/plot-ex-09-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="modified-bartlett-correction-test">Modified Bartlett Correction test<a class="anchor" aria-label="anchor" href="#modified-bartlett-correction-test"></a>
@@ -1094,7 +1094,7 @@ function using <code>method="mbyy"</code> as follows.</p>
 follows.</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res</span>, from<span class="op">=</span><span class="fl">12</span>, to<span class="op">=</span><span class="fl">20</span>, shade.col<span class="op">=</span><span class="st">'green3'</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Behrens-Fisher_files/figure-html/unnamed-chunk-33-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="Behrens-Fisher_files/figure-html/plot-ex-10-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="second-order-procedure-s-procedure-test">Second Order Procedure (S procedure) test<a class="anchor" aria-label="anchor" href="#second-order-procedure-s-procedure-test"></a>
@@ -1134,7 +1134,7 @@ function using <code>method="ks1"</code> as follows.</p>
 follows.</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res</span>, from<span class="op">=</span><span class="fl">6</span>, to<span class="op">=</span><span class="fl">10</span>, shade.col<span class="op">=</span><span class="st">'hotpink1'</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Behrens-Fisher_files/figure-html/unnamed-chunk-36-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="Behrens-Fisher_files/figure-html/plot-ex-11-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="bias-correction-procedure-bc-procedure-test">Bias Correction Procedure (BC Procedure) test<a class="anchor" aria-label="anchor" href="#bias-correction-procedure-bc-procedure-test"></a>
@@ -1174,7 +1174,7 @@ function using <code>method="ks2"</code> as follows.</p>
 follows.</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res</span>, from<span class="op">=</span><span class="fl">6</span>, to<span class="op">=</span><span class="fl">10</span>, shade.col<span class="op">=</span><span class="st">'seagreen2'</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Behrens-Fisher_files/figure-html/unnamed-chunk-39-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="Behrens-Fisher_files/figure-html/plot-ex-12-1.png" width="576" style="display: block; margin: auto;"></p>
 </div>
 </div>
 <div class="section level2">

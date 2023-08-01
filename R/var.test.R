@@ -48,7 +48,7 @@
 #' x2 <- rnorm(30, mean = 1, sd = 1)
 #' res2 <- var.test(x1, x2)
 #' res2
-#' plot(res2)
+#' plot(res2, from=0, to=10)
 #'
 #' @importFrom stats var
 #' @export
