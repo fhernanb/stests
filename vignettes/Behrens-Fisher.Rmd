@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 ```
 
 # Summary
-In this vignette, we introduce the stests R package, which serves as a valuable tool for testing hypotheses related to the Berens-Fisher problem. The package is conveniently hosted on GitHub and is freely accessible for utilization. The core functionality of the stests package revolves around the two_mean_vector_test function. This function generates a specialized R object that allows the use of the standard print function, enabling easy examination of the test results. Furthermore, the two_mean_vector_test function offers the flexibility to generate informative plots showcasing the p-value alongside the corresponding statistics and probabilities. These visualizations provide a comprehensive understanding of the hypothesis testing process, enhancing the interpretability and usability of the stests package. Researchers and practitioners alike can leverage this package to conduct hypothesis testing for the Berens-Fisher problem effectively and efficiently.
+In this vignette, we introduce the stests R package, which serves as a valuable tool for testing hypotheses related to the Berens-Fisher problem. The package is conveniently hosted on GitHub and is freely accessible for utilization. The core functionality of the stests package revolves around the `two_mean_vector_test` function. This function generates a specialized R object that allows the use of the standard print function, enabling easy examination of the test results. Furthermore, the `two_mean_vector_test` function offers the flexibility to generate informative plots showcasing the p-value alongside the corresponding statistics and probabilities. These visualizations provide a comprehensive understanding of the hypothesis testing process, enhancing the interpretability and usability of the stests package. Researchers and practitioners alike can leverage this package to conduct hypothesis testing for the Berens-Fisher problem effectively and efficiently.
 
 # Introduction
 The multivariate Behrens-Fisher problem deals with testing whether two mean vectors are equal or not based on two random samples obtained from two multivariate normal populations. Symbolically, the Behrens-Fisher problem can be summarized as follows.
@@ -40,8 +40,7 @@ Multiple solutions have been proposed to tackle the multivariate Behrens-Fisher 
 
 @Nel86 obtained the exact null distribution of the statistic 
 
-@Kim92 presented another extension of the Welch approximate degrees-of-freedom solution by @Yao65 but using the geometry of confidence ellipsoids 
-for the mean vectors.
+@Kim92 presented another extension of the Welch approximate degrees-of-freedom solution by @Yao65 but using the geometry of confidence ellipsoids for the mean vectors.
 
 @kris2004 proposed a new test based on a modification of the solution given by @Nel86.
 
