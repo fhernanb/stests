@@ -12,21 +12,19 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="D-value">
-<meta property="og:description" content="stests">
-<meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -52,7 +50,7 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
@@ -72,7 +70,7 @@
 <li>
   <a href="https://github.com/fhernanb/stests/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -83,7 +81,7 @@
 </div>
 <!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
@@ -92,7 +90,7 @@
                         <h4 data-toc-skip class="author">Freddy
 Hernandez and Karen Rivera</h4>
             
-            <h4 data-toc-skip class="date">2023-08-01</h4>
+            <h4 data-toc-skip class="date">2024-12-07</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/fhernanb/stests/blob/HEAD/vignettes/d_value.Rmd" class="external-link"><code>vignettes/d_value.Rmd</code></a></small>
       <div class="hidden name"><code>d_value.Rmd</code></div>
@@ -128,13 +126,15 @@ below.</p>
 obtained by Demidenko</p>
 </div>
 <div class="section level2">
-<h2 id="how-does-the-sample-size-n-of-each-group-influence-the-p-value">How does the sample size <span class="math inline">\(n\)</span> of
-each group influence the P-value?<a class="anchor" aria-label="anchor" href="#how-does-the-sample-size-n-of-each-group-influence-the-p-value"></a>
+<h2 id="how-does-the-sample-size-n-of-each-group-influence-the-p-value">How does the sample size
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
+of each group influence the P-value?<a class="anchor" aria-label="anchor" href="#how-does-the-sample-size-n-of-each-group-influence-the-p-value"></a>
 </h2>
 <p>In the following figure the P-value is calculated for many values of
-<span class="math inline">\(n\)</span>, in which it is evident that the
-P-value decreases and then in <span class="math inline">\(n=2000\)</span>, this parameter is below the level
-of usual significance of 5%</p>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>,
+in which it is evident that the P-value decreases and then in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>2000</mn></mrow><annotation encoding="application/x-tex">n=2000</annotation></semantics></math>,
+this parameter is below the level of usual significance of 5%</p>
 <p><img src="d_value_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
 </div>
 <div class="section level2">
@@ -160,17 +160,20 @@ below.</p>
 <span><span class="co">##        15        10</span></span></code></pre></div>
 <p>We see that the statistics coincide with what is obtained in the
 article, the value of P within the function <code>t_test</code> is
-calculated with a <span class="math inline">\(t\)</span>-student
+calculated with a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>-student
 distribution whereas in the article it is obtained through the normal
-distribution, on the other hand, the size of the sample is small (<span class="math inline">\(n=6\)</span>) because of this is the difference
-between the methods.</p>
+distribution, on the other hand, the size of the sample is small
+(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">n=6</annotation></semantics></math>)
+because of this is the difference between the methods.</p>
 </div>
 <div class="section level2">
 <h2 id="how-does-the-sample-size-of-each-group-influence-the-p-value">How does the sample size of each group influence the P-value?<a class="anchor" aria-label="anchor" href="#how-does-the-sample-size-of-each-group-influence-the-p-value"></a>
 </h2>
 <p>In the following figure the P-value is calculated for many values of
-<span class="math inline">\(n\)</span>, in which it is evident that the
-P-value decreases and then in <span class="math inline">\(n=9\)</span>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>,
+in which it is evident that the P-value decreases and then in
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>9</mn></mrow><annotation encoding="application/x-tex">n=9</annotation></semantics></math>,
 this parameter is below the level of usual significance of 5%.</p>
 <p><img src="d_value_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 </div>
@@ -181,13 +184,13 @@ this parameter is below the level of usual significance of 5%.</p>
 <ul>
 <li>The null hypothesis is :</li>
 </ul>
-<p><span class="math display">\[H_0: \mu_1 = \mu_2\]</span></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mn>0</mn></msub><mo>:</mo><msub><mi>μ</mi><mn>1</mn></msub><mo>=</mo><msub><mi>μ</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">H_0: \mu_1 = \mu_2</annotation></semantics></math></p>
 <ul>
 <li>
 <p>The alternative hypothesis can be:</p>
-<p><span class="math display">\[H_A: \mu_1 &lt; \mu_2\]</span></p>
-<p><span class="math display">\[H_A: \mu_1 \neq \mu_2\]</span></p>
-<p><span class="math display">\[H_A: \mu_1 &gt; \mu_2\]</span></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mi>A</mi></msub><mo>:</mo><msub><mi>μ</mi><mn>1</mn></msub><mo>&lt;</mo><msub><mi>μ</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">H_A: \mu_1 &lt; \mu_2</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mi>A</mi></msub><mo>:</mo><msub><mi>μ</mi><mn>1</mn></msub><mo>≠</mo><msub><mi>μ</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">H_A: \mu_1 \neq \mu_2</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>H</mi><mi>A</mi></msub><mo>:</mo><msub><mi>μ</mi><mn>1</mn></msub><mo>&gt;</mo><msub><mi>μ</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">H_A: \mu_1 &gt; \mu_2</annotation></semantics></math></p>
 </li>
 </ul>
 <p>The function <code>d_meantest</code> presented below is to calculate
@@ -210,7 +213,7 @@ function <code>d_meantest</code>.</p>
 <span><span class="co">##  Two Sample d.test</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## data:  The D-value was calculated using nrep= 1e+06</span></span>
-<span><span class="co">## d.value = 0.48563</span></span>
+<span><span class="co">## d.value = 0.48596</span></span>
 <span><span class="co">## alternative hypothesis: less</span></span>
 <span><span class="co">## sample estimates:</span></span>
 <span><span class="co">## mean of x mean of y </span></span>
@@ -227,24 +230,35 @@ function <code>d_meantest</code>.</p>
 <span><span class="co">##  Two Sample d.test</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## data:  The D-value was calculated using nrep= 1e+06</span></span>
-<span><span class="co">## d.value = 0.72189</span></span>
+<span><span class="co">## d.value = 0.72199</span></span>
 <span><span class="co">## alternative hypothesis: less</span></span>
 <span><span class="co">## sample estimates:</span></span>
 <span><span class="co">## mean of x mean of y </span></span>
 <span><span class="co">##        10        15</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="how-to-change-the-d-value-for-the-different-values-of-barx-y-bary">How to change the D-value for the different values of <span class="math inline">\(\bar{x}\)</span> y <span class="math inline">\(\bar{y}\)</span>?<a class="anchor" aria-label="anchor" href="#how-to-change-the-d-value-for-the-different-values-of-barx-y-bary"></a>
+<h2 id="how-to-change-the-d-value-for-the-different-values-of-barx-y-bary">How to change the D-value for the different values of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>x</mi><mo accent="true">‾</mo></mover><annotation encoding="application/x-tex">\bar{x}</annotation></semantics></math>
+y
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>y</mi><mo accent="true">‾</mo></mover><annotation encoding="application/x-tex">\bar{y}</annotation></semantics></math>?<a class="anchor" aria-label="anchor" href="#how-to-change-the-d-value-for-the-different-values-of-barx-y-bary"></a>
 </h2>
 <p>To answer this question we will take the data from example 1 of
-Demidenko (2016), the value of <span class="math inline">\(x =
-249\)</span> will be fixed while the value of <span class="math inline">\(\bar{y}\)</span> will be moving away from <span class="math inline">\(\bar{x}\)</span>. Recall that the value of <span class="math inline">\(\bar{y}\)</span> represents the average weight of
-patients who consumed the drug to lose weight. The value of the sample
-desviation <span class="math inline">\(s\)</span> for each group will
-remain constant at 20 lbs.</p>
+Demidenko (2016), the value of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mo>=</mo><mn>249</mn></mrow><annotation encoding="application/x-tex">x = 249</annotation></semantics></math>
+will be fixed while the value of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>y</mi><mo accent="true">‾</mo></mover><annotation encoding="application/x-tex">\bar{y}</annotation></semantics></math>
+will be moving away from
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>x</mi><mo accent="true">‾</mo></mover><annotation encoding="application/x-tex">\bar{x}</annotation></semantics></math>.
+Recall that the value of
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>y</mi><mo accent="true">‾</mo></mover><annotation encoding="application/x-tex">\bar{y}</annotation></semantics></math>
+represents the average weight of patients who consumed the drug to lose
+weight. The value of the sample desviation
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>
+for each group will remain constant at 20 lbs.</p>
 <p>The following figure shows the evolution of the D-value as the weight
-changes <span class="math inline">\(\bar{y}\)</span> for the group of
-people who did take the medication.</p>
+changes
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mover><mi>y</mi><mo accent="true">‾</mo></mover><annotation encoding="application/x-tex">\bar{y}</annotation></semantics></math>
+for the group of people who did take the medication.</p>
 <p><img src="d_value_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 </div>
 <div class="section level2">
@@ -259,9 +273,7 @@ Statistician, 70(1): 33-38.</li>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 
@@ -274,16 +286,16 @@ Statistician, 70(1): 33-38.</li>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer>
 </div>
 
-  
 
 
-  
+
+
 
   </body>
 </html>

@@ -1,0 +1,54 @@
+#' Confidence intervals for Binomial proportions
+#'
+#' @author Freddy Hernandez, \email{fhernanb@unal.edu.co}
+#'
+#' @description
+#' This function obtains the confidence interval for a proportion.
+#'
+#' @param x a number or a vector with the number of successes.
+#' @param n a number or a vector with the number of trials.
+#' @param conf.level confidence level for the returned confidence interval. By default is 0.95.
+#' @param intervalType type of confidence interval, possible choices are: "wald".
+#'
+#' @return A dataframe with the input information and the confidence interval.
+#'
+#' @example examples/examples_ic_p.R
+#' @export
+#'
+ic_p <- function(x, n, conf.level=0.95, intervalType="wald") {
+  # Checks
+  if (any(x < 0)) stop("x must not be negative.")
+  if (any(n < 0)) stop("n must not be negative.")
+  if (any(x > n)) stop("x must be lower than n.")
+  if (missing(x)) stop("argument 'x' is missing, with no default")
+  if (missing(n)) stop("argument 'x' is missing, with no default")
+  if (any(conf.level < 0 | conf.level > 1))
+    stop("conf.level must be between 0 and 1.")
+  # To ensure integer values
+  if (max(abs(x - round(x))) > 1e-07)
+    stop("x must be nonnegative and integer")
+  if (max(abs(n - round(n))) > 1e-07)
+    stop("n must be nonnegative and integer")
+
+  # To select the interval type
+  method <- match.arg(arg=intervalType,
+                      choices=c("wald"))
+
+  # To generate the code for evaluating, without using cases
+  my_code <- paste0("ic_p_", intervalType,
+                    "(x=x, n=n, conf.level=conf.level)")
+
+  # To obtain the result
+  result <- eval(parse(text=my_code))
+
+  # To extract the lower and upper limits
+  lower <- result[1, ]
+  upper <- result[2, ]
+
+  # To format the result
+  result <- data.frame(x=x, n=n, proportion=x/n, lower=lower,
+                       upper=upper, conf.level=conf.level)
+
+  return(result)
+}
+
