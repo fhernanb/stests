@@ -9,18 +9,18 @@
 #' @param n a number or a vector with the number of trials.
 #' @param conf.level confidence level for the returned confidence interval. By default is 0.95.
 #'
-#' @seealso \link{ic_p}.
+#' @seealso \link{ci_p}.
 #'
 #' @return A matrix with the lower and upper limits.
 #'
-#' @example examples/examples_ic_p_xxx.R
+#' @example examples/examples_ci_p_xxx.R
 #' @export
 #'
-ic_p_wald <- function(x, n, conf.level=0.95) {
+ci_p_wald <- function(x, n, conf.level=0.95) {
   q <- qnorm(p = (1 + conf.level)/2)
   p <- x/n
   lower <- max(p - q*sqrt(p*(1 - p)/n), 0)
   upper <- min(p + q*sqrt(p*(1 - p)/n), 1)
   return(c(lower, upper))
 }
-ic_p_wald <- Vectorize(ic_p_wald)
+ci_p_wald <- Vectorize(ci_p_wald)

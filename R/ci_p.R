@@ -12,10 +12,10 @@
 #'
 #' @return A dataframe with the input information and the confidence interval.
 #'
-#' @example examples/examples_ic_p.R
+#' @example examples/examples_ci_p.R
 #' @export
 #'
-ic_p <- function(x, n, conf.level=0.95, intervalType="wald") {
+ci_p <- function(x, n, conf.level=0.95, intervalType="wald") {
   # Checks
   if (any(x < 0)) stop("x must not be negative.")
   if (any(n < 0)) stop("n must not be negative.")
@@ -35,7 +35,7 @@ ic_p <- function(x, n, conf.level=0.95, intervalType="wald") {
                       choices=c("wald"))
 
   # To generate the code for evaluating, without using cases
-  my_code <- paste0("ic_p_", intervalType,
+  my_code <- paste0("ci_p_", intervalType,
                     "(x=x, n=n, conf.level=conf.level)")
 
   # To obtain the result
