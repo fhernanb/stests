@@ -9,9 +9,6 @@
 #' @param n a number or a vector with the number of trials.
 #' @param conf.level confidence level for the returned confidence interval. By default is 0.95.
 #'
-#' @references
-#' \insertRef{Wald1943}{stests}
-#'
 #' @seealso \link{ci_p}.
 #'
 #' @details
@@ -19,7 +16,11 @@
 #'
 #' \eqn{\hat{p} - z_{\alpha/2} \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}} \leq p \leq \hat{p} + z_{\alpha/2} \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}},
 #'
-#' where \eqn{\hat{p} = \frac{x}{n}} is the sample proportion, \eqn{x} the number of observed successes in the sample with size \eqn{n}. The value \eqn{z_{\alpha/2}} is the \eqn{1-\alpha/2} percentile of the standard normal distribution (e.g., \eqn{z_{0.025} = 1.96} for a 95\% confidence interval).
+#' where \eqn{\hat{p} = \frac{x}{n}} is the sample proportion, \eqn{x} the
+#' number of observed successes in the sample with size \eqn{n}. The
+#' value \eqn{z_{\alpha/2}} is the \eqn{1-\alpha/2} percentile of the
+#' standard normal distribution (e.g., \eqn{z_{0.025} = 1.96} for a 95\%
+#' confidence interval).
 #'
 #' @return A matrix with the lower and upper limits.
 #'
