@@ -8,7 +8,7 @@
 #' @param x a number or a vector with the number of successes.
 #' @param n a number or a vector with the number of trials.
 #' @param conf.level confidence level for the returned confidence interval. By default is 0.95.
-#' @param intervalType type of confidence interval, possible choices are: "wald".
+#' @param intervalType type of confidence interval, possible choices are: "wald", "agresti_coull".
 #'
 #' @return A dataframe with the input information and the confidence interval.
 #'
@@ -21,7 +21,7 @@ ci_p <- function(x, n, conf.level=0.95, intervalType="wald") {
   if (any(n < 0)) stop("n must not be negative.")
   if (any(x > n)) stop("x must be lower than n.")
   if (missing(x)) stop("argument 'x' is missing, with no default")
-  if (missing(n)) stop("argument 'x' is missing, with no default")
+  if (missing(n)) stop("argument 'n' is missing, with no default")
   if (any(conf.level < 0 | conf.level > 1))
     stop("conf.level must be between 0 and 1.")
   # To ensure integer values
@@ -32,10 +32,11 @@ ci_p <- function(x, n, conf.level=0.95, intervalType="wald") {
 
   # To select the interval type
   method <- match.arg(arg=intervalType,
-                      choices=c("wald"))
+                      choices=c("wald",
+                                "agresti_coull"))
 
   # To generate the code for evaluating, without using cases
-  my_code <- paste0("ci_p_", intervalType,
+  my_code <- paste0("ci_p_", method,
                     "(x=x, n=n, conf.level=conf.level)")
 
   # To obtain the result
