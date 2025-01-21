@@ -12,6 +12,11 @@
 #'
 #' @return A dataframe with the input information and the confidence interval.
 #'
+#' @seealso \link{ci_p_wald},
+#' \link{ci_p_agresti_coull},
+#' \link{ci_p_rindskopf},
+#' \link{ci_p_clopper_pearson}.
+#'
 #' @example examples/examples_ci_p.R
 #' @export
 #'

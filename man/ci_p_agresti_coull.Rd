@@ -32,6 +32,9 @@ where \eqn{z_{\alpha/2}} is the critical value of the standard normal distributi
 ci_p_agresti_coull(x=15, n=50, conf.level=0.95)
 
 }
+\references{
+Agresti, A., & Coull, B. A. (1998). Approximate is better than “exact” for interval estimation of binomial proportions. The American Statistician, 52(2), 119-126.
+}
 \seealso{
 \link{ci_p}.
 }

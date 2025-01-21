@@ -8,6 +8,8 @@
 <url><loc>/index.html</loc></url>
 <url><loc>/reference/ci_p.html</loc></url>
 <url><loc>/reference/ci_p_agresti_coull.html</loc></url>
+<url><loc>/reference/ci_p_clopper_pearson.html</loc></url>
+<url><loc>/reference/ci_p_rindskopf.html</loc></url>
 <url><loc>/reference/ci_p_wald.html</loc></url>
 <url><loc>/reference/d.meantest.html</loc></url>
 <url><loc>/reference/d_meantest.html</loc></url>
