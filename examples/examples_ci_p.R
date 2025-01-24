@@ -1,7 +1,15 @@
-# Examples for single values
+# Examples for Wald with single values
 ci_p(x=5, n=15, intervalType="wald", conf.level=0.90)
 ci_p(x=7, n=17, intervalType="wal", conf.level=0.95)
 ci_p(x=9, n=19, intervalType="wa", conf.level=0.97)
+
+# Examples for alternative IC
+ci_p(x=5, n=15, intervalType="wald", conf.level=0.90)
+ci_p(x=5, n=15, intervalType="agresti_coull", conf.level=0.90)
+ci_p(x=5, n=15, intervalType="rindskopf", conf.level=0.90)
+ci_p(x=5, n=15, intervalType="clopper_pearson", conf.level=0.90)
+ci_p(x=5, n=15, intervalType="arcsine_cc", conf.level=0.90)
+ci_p(x=5, n=15, intervalType="arcsine", conf.level=0.90)
 
 # Examples for multiple values
 ci_p(x=c(5, 7, 9),

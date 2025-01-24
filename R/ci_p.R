@@ -17,7 +17,9 @@
 #' \link{ci_p_rindskopf},
 #' \link{ci_p_clopper_pearson},
 #' \link{ci_p_add_4},
-#' \link{ci_p_arcsine_cc}.
+#' \link{ci_p_arcsine_cc},
+#' \link{ci_p_arcsine},
+#' \link{ci_p_arcsine_ac},
 #'
 #' @example examples/examples_ci_p.R
 #' @export
@@ -40,7 +42,12 @@ ci_p <- function(x, n, conf.level=0.95, intervalType="wald") {
   # To select the interval type
   method <- match.arg(arg=intervalType,
                       choices=c("wald",
-                                "agresti_coull"))
+                                "agresti_coull",
+                                "rindskopf",
+                                "clopper_pearson",
+                                "arcsine_cc",
+                                "arcsine",
+                                "arcsine_ac"))
 
   # To generate the code for evaluating, without using cases
   my_code <- paste0("ci_p_", method,

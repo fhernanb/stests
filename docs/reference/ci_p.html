@@ -98,9 +98,11 @@
     <div class="dont-index"><p><a href="ci_p_wald.html">ci_p_wald</a>,
 <a href="ci_p_agresti_coull.html">ci_p_agresti_coull</a>,
 <a href="ci_p_rindskopf.html">ci_p_rindskopf</a>,
-<a href="ci_p_clopper_pearson.html">ci_p_clopper_pearson</a>.
-<a href="ci_p_add_4.html">ci_p_add_4</a>.
-<a href="ci_p_arcsine_cc.html">ci_p_arcsine_cc</a>.</p></div>
+<a href="ci_p_clopper_pearson.html">ci_p_clopper_pearson</a>,
+<a href="ci_p_add_4.html">ci_p_add_4</a>,
+<a href="ci_p_arcsine_cc.html">ci_p_arcsine_cc</a>,
+<a href="ci_p_arcsine.html">ci_p_arcsine</a>,
+<a href="ci_p_arcsine_ac.html">ci_p_arcsine_ac</a>,</p></div>
     </div>
     <div id="author">
     <h2>Author</h2>
@@ -109,7 +111,7 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Examples for single values</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Examples for Wald with single values</span></span></span>
 <span class="r-in"><span><span class="fu">ci_p</span><span class="op">(</span>x<span class="op">=</span><span class="fl">5</span>, n<span class="op">=</span><span class="fl">15</span>, intervalType<span class="op">=</span><span class="st">"wald"</span>, conf.level<span class="op">=</span><span class="fl">0.90</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   x  n proportion     lower     upper conf.level</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 5 15  0.3333333 0.1331281 0.5335385        0.9</span>
@@ -119,6 +121,26 @@
 <span class="r-in"><span><span class="fu">ci_p</span><span class="op">(</span>x<span class="op">=</span><span class="fl">9</span>, n<span class="op">=</span><span class="fl">19</span>, intervalType<span class="op">=</span><span class="st">"wa"</span>, conf.level<span class="op">=</span><span class="fl">0.97</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   x  n proportion     lower     upper conf.level</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 9 19  0.4736842 0.2251028 0.7222656       0.97</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Examples for alternative IC</span></span></span>
+<span class="r-in"><span><span class="fu">ci_p</span><span class="op">(</span>x<span class="op">=</span><span class="fl">5</span>, n<span class="op">=</span><span class="fl">15</span>, intervalType<span class="op">=</span><span class="st">"wald"</span>, conf.level<span class="op">=</span><span class="fl">0.90</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   x  n proportion     lower     upper conf.level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 5 15  0.3333333 0.1331281 0.5335385        0.9</span>
+<span class="r-in"><span><span class="fu">ci_p</span><span class="op">(</span>x<span class="op">=</span><span class="fl">5</span>, n<span class="op">=</span><span class="fl">15</span>, intervalType<span class="op">=</span><span class="st">"agresti_coull"</span>, conf.level<span class="op">=</span><span class="fl">0.90</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   x  n proportion     lower     upper conf.level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 5 15  0.3333333 0.1863938 0.5504483        0.9</span>
+<span class="r-in"><span><span class="fu">ci_p</span><span class="op">(</span>x<span class="op">=</span><span class="fl">5</span>, n<span class="op">=</span><span class="fl">15</span>, intervalType<span class="op">=</span><span class="st">"rindskopf"</span>, conf.level<span class="op">=</span><span class="fl">0.90</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   x  n proportion     lower     upper conf.level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 5 15  0.3333333 0.1805812 0.5545718        0.9</span>
+<span class="r-in"><span><span class="fu">ci_p</span><span class="op">(</span>x<span class="op">=</span><span class="fl">5</span>, n<span class="op">=</span><span class="fl">15</span>, intervalType<span class="op">=</span><span class="st">"clopper_pearson"</span>, conf.level<span class="op">=</span><span class="fl">0.90</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   x  n proportion    lower     upper conf.level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 5 15  0.3333333 0.141664 0.5774437        0.9</span>
+<span class="r-in"><span><span class="fu">ci_p</span><span class="op">(</span>x<span class="op">=</span><span class="fl">5</span>, n<span class="op">=</span><span class="fl">15</span>, intervalType<span class="op">=</span><span class="st">"arcsine_cc"</span>, conf.level<span class="op">=</span><span class="fl">0.90</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   x  n proportion     lower     upper conf.level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 5 15  0.3333333 0.1289439 0.5770747        0.9</span>
+<span class="r-in"><span><span class="fu">ci_p</span><span class="op">(</span>x<span class="op">=</span><span class="fl">5</span>, n<span class="op">=</span><span class="fl">15</span>, intervalType<span class="op">=</span><span class="st">"arcsine"</span>, conf.level<span class="op">=</span><span class="fl">0.90</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   x  n proportion     lower     upper conf.level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 5 15  0.3333333 0.1538988 0.5423803        0.9</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Examples for multiple values</span></span></span>
 <span class="r-in"><span><span class="fu">ci_p</span><span class="op">(</span>x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">7</span>, <span class="fl">9</span><span class="op">)</span>,</span></span>

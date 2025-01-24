@@ -22,10 +22,18 @@ A dataframe with the input information and the confidence interval.
 This function obtains the confidence interval for a proportion.
 }
 \examples{
-# Examples for single values
+# Examples for Wald with single values
 ci_p(x=5, n=15, intervalType="wald", conf.level=0.90)
 ci_p(x=7, n=17, intervalType="wal", conf.level=0.95)
 ci_p(x=9, n=19, intervalType="wa", conf.level=0.97)
+
+# Examples for alternative IC
+ci_p(x=5, n=15, intervalType="wald", conf.level=0.90)
+ci_p(x=5, n=15, intervalType="agresti_coull", conf.level=0.90)
+ci_p(x=5, n=15, intervalType="rindskopf", conf.level=0.90)
+ci_p(x=5, n=15, intervalType="clopper_pearson", conf.level=0.90)
+ci_p(x=5, n=15, intervalType="arcsine_cc", conf.level=0.90)
+ci_p(x=5, n=15, intervalType="arcsine", conf.level=0.90)
 
 # Examples for multiple values
 ci_p(x=c(5, 7, 9),
@@ -37,9 +45,11 @@ ci_p(x=c(5, 7, 9),
 \link{ci_p_wald},
 \link{ci_p_agresti_coull},
 \link{ci_p_rindskopf},
-\link{ci_p_clopper_pearson}.
-\link{ci_p_add_4}.
-\link{ci_p_arcsine_cc}.
+\link{ci_p_clopper_pearson},
+\link{ci_p_add_4},
+\link{ci_p_arcsine_cc},
+\link{ci_p_arcsine},
+\link{ci_p_arcsine_ac},
 }
 \author{
 Freddy Hernandez, \email{fhernanb@unal.edu.co}

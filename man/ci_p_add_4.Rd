@@ -52,7 +52,7 @@ ci_p_add_4(x=50, n=50, conf.level=0.95)
 
 }
 \references{
-Falta la referencia.
+Missing reference.
 }
 \seealso{
 \link{ci_p}.

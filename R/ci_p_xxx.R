@@ -239,7 +239,7 @@ ci_p_clopper_pearson <- Vectorize(ci_p_clopper_pearson)
 #' @seealso \link{ci_p}.
 #'
 #' @references
-#' Falta la referencia.
+#' Missing reference.
 #'
 #' @details
 #' The Add-4 Wald-t confidence interval improves the performance of the Wald interval by adding 2 successes and 2 failures to the observed data, effectively modifying the estimated proportion:
@@ -305,7 +305,7 @@ ci_p_add_4 <- function(x, n, conf.level=0.95) {
   lower <- max(0, pi_tilde - t * se)
   upper <- min(1, pi_tilde + t * se)
 
-  return(c(lower = lower, upper = upper))
+  return(c(lower, upper))
 }
 ci_p_add_4 <- Vectorize(ci_p_add_4)
 #'
@@ -327,7 +327,7 @@ ci_p_add_4 <- Vectorize(ci_p_add_4)
 #' @seealso \link{ci_p}.
 #'
 #' @references
-#' Me falta la referencia.
+#' Missing reference.
 #'
 #' @details
 #' The Arcsine Wald confidence interval with continuity correction adjusts the classical Wald interval by transforming the proportion \eqn{\pi} to the arcsine scale.
@@ -368,9 +368,9 @@ ci_p_add_4 <- Vectorize(ci_p_add_4)
 #' @return A vector with the lower and upper limits of the confidence interval.
 #'
 #' @examples
-#' arcsine_wald_cc_ci(x=15, n=50, conf.level=0.95)
-#' arcsine_wald_cc_ci(x=0,  n=50, conf.level=0.95)
-#' arcsine_wald_cc_ci(x=50, n=50, conf.level=0.95)
+#' ci_p_arcsine_cc(x=15, n=50, conf.level=0.95)
+#' ci_p_arcsine_cc(x=0,  n=50, conf.level=0.95)
+#' ci_p_arcsine_cc(x=50, n=50, conf.level=0.95)
 #'
 #' @export
 #'
@@ -401,6 +401,145 @@ ci_p_arcsine_cc <- function(x, n, conf.level=0.95) {
     pi_upper <- sin(phi_upper)^2
   }
 
-  return(c(lower=pi_lower, upper=pi_upper))
+  return(c(pi_lower, pi_upper))
 }
 ci_p_arcsine_cc <- Vectorize(ci_p_arcsine_cc)
+#'
+#'
+#'
+#' ArcoSeno confidence interval for Binomial proportion
+#'
+#' @author Victor David Usuga Duque, \email{vusuga@unal.edu.co}
+#'
+#' @description
+#' This function obtains the confidence interval for a proportion. It is vectorized, so the user can evaluate it using single values or a vector.
+#'
+#' @param x a number or a vector with the number of successes.
+#' @param n a number or a vector with the number of trials.
+#' @param conf.level confidence level for the returned confidence interval. By default is 0.95.
+#'
+#' @seealso \link{ci_p}.
+#'
+#' @references
+#' Missing reference.
+#'
+#' @details
+#' The expression to obtain the confidence interval is given below:
+#'
+#' \eqn{\sin^2(\hat\phi_{ML} \pm z_{\alpha/2} \times se(\hat\phi_{ML}))},
+#'
+#' where the maximum likelihood estimator for \eqn{\phi} is
+#' \eqn{\hat\phi_{ML} = \arcsin(\sqrt{\hat \pi_{ML}})}, and its standard error is
+#' \eqn{se(\hat{\phi}_{ML}) = \frac{1}{\sqrt{4n}}}. The
+#' value \eqn{z_{\alpha/2}} is the \eqn{1-\alpha/2} percentile of the
+#' standard normal distribution (e.g., \eqn{z_{0.025} = 1.96} for a 95\%
+#' confidence interval).
+#'
+#' @return A matrix with the lower and upper limits.
+#'
+#' @examples
+#' ci_p_arcsine(x=15, n=50, conf.level=0.95)
+#' @export
+#'
+ci_p_arcsine <- function(x, n, conf.level=0.95) {
+  pi_hat <- x / n # Estimador de maxima verosimilitud para π
+  phi_hat <- asin(sqrt(pi_hat)) # Transformacion arcoseno
+  # Desviacion estandar aproximada para φ
+  se_phi <- 1 / sqrt(4*n)
+  # Valor critico z para el nivel de confianza deseado
+  z <- qnorm(1 - (1 - conf.level) / 2)
+  # Intervalo en la escala de φ
+  phi_lower <- max(0, phi_hat - z * se_phi) # Truncar a 0 si es necesario
+  phi_upper <- min(pi / 2, phi_hat + z * se_phi) # Truncar a π/2 si es necesario
+  lower <- sin(phi_lower)^2
+  upper <- sin(phi_upper)^2
+  return(c(lower, upper))
+}
+ci_p_arcsine <- Vectorize(ci_p_arcsine)
+#'
+#'
+#'
+#' Arcsine Wald Confidence Interval with Continuity Correction Anscombe for Binomial Proportion
+#'
+#' @author David Esteban Cartagena Mejía, \email{dcartagena@unal.edu.co}
+#'
+#' @description
+#' This function calculates the Arcsine Wald confidence interval with continuity correction anscombe for a Binomial proportion.
+#' It transforms the proportion to the arcsine scale, applies the Wald interval with continuity correction, and then back-transforms the result to the original scale.
+#' The method is vectorized, allowing for evaluation of single values or vectors.
+#'
+#' @param x A number or a vector with the number of successes.
+#' @param n A number or a vector with the number of trials.
+#' @param conf.level Confidence level for the returned confidence interval. By default, it is 0.95.
+#'
+#' @seealso \link{ci_p}.
+#'
+#' @references
+#' Missing reference.
+#'
+#' @details
+#' The Arcsine Wald confidence interval with continuity correction anscombe adjusts the classical Wald interval by transforming the proportion \eqn{\pi} to the arcsine scale.
+#' The parameter \eqn{\pi} represents the true proportion of successes in a Binomial experiment, defined as:
+#'
+#' \deqn{\pi = \frac{0.3875+x \pm 0.5}{n+0.75},}
+#'
+#' where \eqn{x} is the number of successes and \eqn{n} is the number of trials.
+#'
+#' On the arcsine scale, the transformed parameter is given by:
+#'
+#' \deqn{\phi = \arcsin(\sqrt{\pi}).}
+#'
+#' The standard error on the arcsine scale is constant:
+#'
+#' \deqn{\text{se}(\phi) = \frac{1}{2\sqrt{n+0.5}},}
+#'
+#' where \eqn{n} is the number of trials. The confidence interval on the arcsine scale is:
+#'
+#' \deqn{\text{Lower}(\phi) = \max\left(0, \phi - z \cdot (\phi)\right),}
+#' \deqn{\text{Upper}(\phi) = \min\left(\frac{\pi}{2}, \phi + z \cdot (\phi)\right),}
+#'
+#' where \eqn{z} is the critical value from the standard normal distribution at the specified confidence level.
+#'
+#' Back-transforming the limits to the original scale gives:
+#'
+#' \deqn{\text{Lower}(\pi) = \sin^2(\text{Lower}(\phi)),}
+#' \deqn{\text{Upper}(\pi) = \sin^2(\text{Upper}(\phi)).}
+#'
+#' Special cases are handled explicitly:
+#' - If \eqn{x = 0}, the lower limit is 0, and the upper limit is calculated as \eqn{(\alpha / 2)^{1/n}}.
+#' - If \eqn{x = n}, the upper limit is 1, and the lower limit is calculated as \eqn{1 - (\alpha / 2)^{1/n}}.
+#'
+#' These adjustments ensure that the confidence interval is valid and well-behaved, even at the boundaries of the parameter space.
+#'
+#' @return A vector with the lower and upper limits of the confidence interval.
+#'
+#' @examples
+#' ci_p_arcsine_ac(x=15, n=50, conf.level=0.95)
+#' ci_p_arcsine_ac(x= 0, n=50, conf.level=0.95)
+#' ci_p_arcsine_ac(x=50, n=50, conf.level=0.95)
+#'
+#' @export
+#'
+ci_p_arcsine_ac <- function(x, n, conf.level=0.95) {
+  alpha <- 1 - conf.level
+  pi_hat1 <- (0.375 + x - 0.5) / (n + 0.75)
+  pi_hat2 <- (0.375 + x + 0.5) / (n + 0.75)
+  phi_hat1 <- asin(sqrt(pi_hat1))
+  phi_hat2 <- asin(sqrt(pi_hat2))
+  se_phi <- 1 / (2 * sqrt(n + 0.5))
+  z <- qnorm(1 - (1 - conf.level) / 2)
+  phi_lower <- max(0, phi_hat1 - z * se_phi)
+  phi_upper <- min(pi / 2, phi_hat2 + z * se_phi)
+  if (x == 0) {
+    pi_lower <- 0
+    pi_upper <- (alpha / 2)^(1 / n)
+  } else if (x == n) {
+    pi_lower <- 1 - (alpha / 2)^(1 / n)
+    pi_upper <- 1
+  } else {
+    pi_lower <- sin(phi_lower)^2
+    pi_upper <- sin(phi_upper)^2
+  }
+  return(c(pi_lower, pi_upper))
+}
+ci_p_arcsine_ac <- Vectorize(ci_p_arcsine_ac)
