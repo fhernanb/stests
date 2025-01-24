@@ -15,7 +15,9 @@
 #' @seealso \link{ci_p_wald},
 #' \link{ci_p_agresti_coull},
 #' \link{ci_p_rindskopf},
-#' \link{ci_p_clopper_pearson}.
+#' \link{ci_p_clopper_pearson},
+#' \link{ci_p_add_4},
+#' \link{ci_p_arcsine_cc}.
 #'
 #' @example examples/examples_ci_p.R
 #' @export

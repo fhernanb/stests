@@ -38,6 +38,8 @@ ci_p(x=c(5, 7, 9),
 \link{ci_p_agresti_coull},
 \link{ci_p_rindskopf},
 \link{ci_p_clopper_pearson}.
+\link{ci_p_add_4}.
+\link{ci_p_arcsine_cc}.
 }
 \author{
 Freddy Hernandez, \email{fhernanb@unal.edu.co}

@@ -45,7 +45,8 @@ ci_p_rindskopf(x=15, n=50, conf.level=0.95)
 
 }
 \references{
-David me debe enviar la referencia en formato APA.
+Rindskopf, D. (2000). Commentary: Approximate is better than “exact” for interval
+estimation of binomial proportions. The American Statistician, 54, 88.
 }
 \seealso{
 \link{ci_p}.
