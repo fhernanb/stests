@@ -24,24 +24,24 @@ The function is vectorized, allowing for evaluation of single values or vectors.
 \details{
 The Add-4 Wald-t confidence interval improves the performance of the Wald interval by adding 2 successes and 2 failures to the observed data, effectively modifying the estimated proportion:
 
-\deqn{\tilde{\pi} = \frac{x + 2}{n + 4}.}
+\deqn{\hat{p} = \frac{x + 2}{n + 4}.}
 
-The variance \eqn{V(\tilde{\pi}, n+4)} is given by:
+The variance \eqn{V(\hat{p}, n+4)} is given by:
 
-\deqn{V(\tilde{\pi}, n+4) = \frac{\tilde{\pi}(1 - \tilde{\pi})}{n + 4}.}
+\deqn{V(\hat{p}, n+4) = \frac{\hat{p}(1 - \hat{p})}{n + 4}.}
 
 The degrees of freedom \eqn{\nu} are calculated using equation (2.9):
 
-\deqn{\nu = \frac{2 V(\tilde{\pi(2)}, n+4)^2}{\Omega(\tilde{\pi(2)}, n+4)},}
+\deqn{\nu = \frac{2 V(\hat{p}, n+4)^2}{\Omega(\hat{p}, n+4)},}
 
-where \eqn{\Omega(\tilde{\pi(2)}, n+4)} is defined as:
+where \eqn{\Omega(\hat{p}, n+4)} is defined as:
 
 \deqn{\Omega(p, n) = \frac{p - p^2}{n^3} + \frac{p + (6n - 7)p^2 + 4(n - 1)(n - 3)p^3 - 2(n - 1)(2n - 3)p^4}{n^5} - \frac{2(p + (2n - 3)p^2 - 2(n - 1)p^3)}{n^4}.}
 
 The confidence interval is then calculated as:
 
-\deqn{\text{Lower} = \tilde{\pi} - t \sqrt{\frac{\tilde{\pi}(1 - \tilde{\pi})}{n+4}},}
-\deqn{\text{Upper} = \tilde{\pi} + t \sqrt{\frac{\tilde{\pi}(1 - \tilde{\pi})}{n+4}},}
+\deqn{\text{Lower} = \hat{p} - t \cdot \sqrt{\frac{\tilde{\pi}(1 - \hat{p})}{n+4}},}
+\deqn{\text{Upper} = \hat{p} + t \cdot \sqrt{\frac{\tilde{\pi}(1 - \hat{p})}{n+4}},}
 
 where \eqn{t} is the critical value from the t-distribution with \eqn{\nu} degrees of freedom.
 }

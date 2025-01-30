@@ -244,24 +244,24 @@ ci_p_clopper_pearson <- Vectorize(ci_p_clopper_pearson)
 #' @details
 #' The Add-4 Wald-t confidence interval improves the performance of the Wald interval by adding 2 successes and 2 failures to the observed data, effectively modifying the estimated proportion:
 #'
-#' \deqn{\tilde{\pi} = \frac{x + 2}{n + 4}.}
+#' \deqn{\hat{p} = \frac{x + 2}{n + 4}.}
 #'
-#' The variance \eqn{V(\tilde{\pi}, n+4)} is given by:
+#' The variance \eqn{V(\hat{p}, n+4)} is given by:
 #'
-#' \deqn{V(\tilde{\pi}, n+4) = \frac{\tilde{\pi}(1 - \tilde{\pi})}{n + 4}.}
+#' \deqn{V(\hat{p}, n+4) = \frac{\hat{p}(1 - \hat{p})}{n + 4}.}
 #'
 #' The degrees of freedom \eqn{\nu} are calculated using equation (2.9):
 #'
-#' \deqn{\nu = \frac{2 V(\tilde{\pi(2)}, n+4)^2}{\Omega(\tilde{\pi(2)}, n+4)},}
+#' \deqn{\nu = \frac{2 V(\hat{p}, n+4)^2}{\Omega(\hat{p}, n+4)},}
 #'
-#' where \eqn{\Omega(\tilde{\pi(2)}, n+4)} is defined as:
+#' where \eqn{\Omega(\hat{p}, n+4)} is defined as:
 #'
 #' \deqn{\Omega(p, n) = \frac{p - p^2}{n^3} + \frac{p + (6n - 7)p^2 + 4(n - 1)(n - 3)p^3 - 2(n - 1)(2n - 3)p^4}{n^5} - \frac{2(p + (2n - 3)p^2 - 2(n - 1)p^3)}{n^4}.}
 #'
 #' The confidence interval is then calculated as:
 #'
-#' \deqn{\text{Lower} = \tilde{\pi} - t \sqrt{\frac{\tilde{\pi}(1 - \tilde{\pi})}{n+4}},}
-#' \deqn{\text{Upper} = \tilde{\pi} + t \sqrt{\frac{\tilde{\pi}(1 - \tilde{\pi})}{n+4}},}
+#' \deqn{\text{Lower} = \hat{p} - t \cdot \sqrt{\frac{\tilde{\pi}(1 - \hat{p})}{n+4}},}
+#' \deqn{\text{Upper} = \hat{p} + t \cdot \sqrt{\frac{\tilde{\pi}(1 - \hat{p})}{n+4}},}
 #'
 #' where \eqn{t} is the critical value from the t-distribution with \eqn{\nu} degrees of freedom.
 #'
@@ -274,11 +274,11 @@ ci_p_clopper_pearson <- Vectorize(ci_p_clopper_pearson)
 #'
 #' @export
 #'
-ci_p_add_4 <- function(x, n, conf.level=0.95) {
-  # Proporcion ajustada
+ci_p_add_4 <- function(x, n, conf.level = 0.95) {
+  # Proporción ajustada
   pi_tilde <- (x + 2) / (n + 4)
 
-  # Funcion para calcular Omega
+  # Función para calcular Omega
   Omega <- function(p, n) {
     term1 <- (p - p^2) / n^3
     term2 <- (p + (6 * n - 7) * p^2 + 4 * (n - 1) * (n - 3) * p^3 - 2 * (n - 1) * (2 * n - 3) * p^4) / n^5
@@ -286,7 +286,7 @@ ci_p_add_4 <- function(x, n, conf.level=0.95) {
     return(term1 + term2 - term3)
   }
 
-  # Varianza de p ajustada
+  # Variancia de p ajustada
   V <- function(p, n) {
     return(p * (1 - p) / n)
   }
@@ -294,20 +294,21 @@ ci_p_add_4 <- function(x, n, conf.level=0.95) {
   # Grados de libertad (nu)
   nu <- (2 * V(pi_tilde, n + 4)^2) / Omega(pi_tilde, n + 4)
 
-  # Valor critico de la t-distribucion
+  # Valor crítico de la t-distribución
   alpha <- 1 - conf.level
   t <- qt(1 - alpha / 2, df = nu)
 
-  # Error estandar
+  # Error estándar
   se <- sqrt(V(pi_tilde, n + 4))
 
-  # Calculo de los límites
+  # Cálculo de los límites
   lower <- max(0, pi_tilde - t * se)
   upper <- min(1, pi_tilde + t * se)
 
   return(c(lower, upper))
 }
 ci_p_add_4 <- Vectorize(ci_p_add_4)
+
 #'
 #'
 #'
@@ -374,22 +375,8 @@ ci_p_add_4 <- Vectorize(ci_p_add_4)
 #'
 #' @export
 #'
-ci_p_arcsine_cc <- function(x, n, conf.level=0.95) {
+ci_p_arcsine_cc <- function(x, n, conf.level = 0.95) {
   alpha <- 1 - conf.level
-  pi_hat1 <- (x - 0.5) / n
-  pi_hat2 <- (x + 0.5) / n
-  pi_hat1 <- max(0, pi_hat1)
-  pi_hat2 <- min(1, pi_hat2)
-
-  phi_hat1 <- asin(sqrt(pi_hat1))
-  phi_hat2 <- asin(sqrt(pi_hat2))
-
-  se_phi <- 1 / sqrt(4 * n)
-  z <- qnorm(1 - (1 - conf.level) / 2)
-
-  phi_lower <- max(0, phi_hat1 - z * se_phi)
-  phi_upper <- min(pi / 2, phi_hat2 + z * se_phi)
-
   if (x == 0) {
     pi_lower <- 0
     pi_upper <- (alpha / 2)^(1 / n)
@@ -397,11 +384,24 @@ ci_p_arcsine_cc <- function(x, n, conf.level=0.95) {
     pi_lower <- 1 - (alpha / 2)^(1 / n)
     pi_upper <- 1
   } else {
+    pi_hat1 <- (x - 0.5) / n
+    pi_hat2 <- (x + 0.5) / n
+    pi_hat1 <- max(0, pi_hat1)
+    pi_hat2 <- min(1, pi_hat2)
+
+    phi_hat1 <- asin(sqrt(pi_hat1))
+    phi_hat2 <- asin(sqrt(pi_hat2))
+
+    se_phi <- 1 / sqrt(4 * n)
+    z <- qnorm(1 - (1 - conf.level) / 2)
+
+    phi_lower <- max(0, phi_hat1 - z * se_phi)
+    phi_upper <- min(pi / 2, phi_hat2 + z * se_phi)
     pi_lower <- sin(phi_lower)^2
     pi_upper <- sin(phi_upper)^2
   }
 
-  return(c(pi_lower, pi_upper))
+  return(c(lower = pi_lower, upper = pi_upper))
 }
 ci_p_arcsine_cc <- Vectorize(ci_p_arcsine_cc)
 #'
