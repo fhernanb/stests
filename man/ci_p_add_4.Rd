@@ -52,7 +52,7 @@ ci_p_add_4(x=50, n=50, conf.level=0.95)
 
 }
 \references{
-Missing reference.
+Pan, W. (2002). Approximate confidence intervals for one proportion and difference of two proportions. Computational Statistics and Data Analysis, 40(1), 143–157
 }
 \seealso{
 \link{ci_p}.

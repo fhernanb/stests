@@ -58,8 +58,8 @@ Special cases are handled explicitly:
 These adjustments ensure that the confidence interval is valid and well-behaved, even at the boundaries of the parameter space.
 }
 \examples{
+ci_p_arcsine_cc(x= 0, n=50, conf.level=0.95)
 ci_p_arcsine_cc(x=15, n=50, conf.level=0.95)
-ci_p_arcsine_cc(x=0,  n=50, conf.level=0.95)
 ci_p_arcsine_cc(x=50, n=50, conf.level=0.95)
 
 }

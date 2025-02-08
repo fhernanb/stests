@@ -239,7 +239,7 @@ ci_p_clopper_pearson <- Vectorize(ci_p_clopper_pearson)
 #' @seealso \link{ci_p}.
 #'
 #' @references
-#' Missing reference.
+#' Pan, W. (2002). Approximate confidence intervals for one proportion and difference of two proportions. Computational Statistics and Data Analysis, 40(1), 143–157
 #'
 #' @details
 #' The Add-4 Wald-t confidence interval improves the performance of the Wald interval by adding 2 successes and 2 failures to the observed data, effectively modifying the estimated proportion:
@@ -369,8 +369,8 @@ ci_p_add_4 <- Vectorize(ci_p_add_4)
 #' @return A vector with the lower and upper limits of the confidence interval.
 #'
 #' @examples
+#' ci_p_arcsine_cc(x= 0, n=50, conf.level=0.95)
 #' ci_p_arcsine_cc(x=15, n=50, conf.level=0.95)
-#' ci_p_arcsine_cc(x=0,  n=50, conf.level=0.95)
 #' ci_p_arcsine_cc(x=50, n=50, conf.level=0.95)
 #'
 #' @export
@@ -475,7 +475,7 @@ ci_p_arcsine <- Vectorize(ci_p_arcsine)
 #' @seealso \link{ci_p}.
 #'
 #' @references
-#' Missing reference.
+#' Anscombe, F.J. (1948). Transformations of Poisson, binomial and negative-binomial data. Biometrika, 35, 246–254
 #'
 #' @details
 #' The Arcsine Wald confidence interval with continuity correction anscombe adjusts the classical Wald interval by transforming the proportion \eqn{\pi} to the arcsine scale.
@@ -514,22 +514,14 @@ ci_p_arcsine <- Vectorize(ci_p_arcsine)
 #' @return A vector with the lower and upper limits of the confidence interval.
 #'
 #' @examples
-#' ci_p_arcsine_ac(x=15, n=50, conf.level=0.95)
 #' ci_p_arcsine_ac(x= 0, n=50, conf.level=0.95)
+#' ci_p_arcsine_ac(x=15, n=50, conf.level=0.95)
 #' ci_p_arcsine_ac(x=50, n=50, conf.level=0.95)
 #'
 #' @export
 #'
-ci_p_arcsine_ac <- function(x, n, conf.level=0.95) {
+ci_p_arcsine_ac <- function(x, n, conf.level = 0.95) {
   alpha <- 1 - conf.level
-  pi_hat1 <- (0.375 + x - 0.5) / (n + 0.75)
-  pi_hat2 <- (0.375 + x + 0.5) / (n + 0.75)
-  phi_hat1 <- asin(sqrt(pi_hat1))
-  phi_hat2 <- asin(sqrt(pi_hat2))
-  se_phi <- 1 / (2 * sqrt(n + 0.5))
-  z <- qnorm(1 - (1 - conf.level) / 2)
-  phi_lower <- max(0, phi_hat1 - z * se_phi)
-  phi_upper <- min(pi / 2, phi_hat2 + z * se_phi)
   if (x == 0) {
     pi_lower <- 0
     pi_upper <- (alpha / 2)^(1 / n)
@@ -537,9 +529,133 @@ ci_p_arcsine_ac <- function(x, n, conf.level=0.95) {
     pi_lower <- 1 - (alpha / 2)^(1 / n)
     pi_upper <- 1
   } else {
+    pi_hat1 <- (0.375 + x - 0.5) / (n + 0.75)
+    pi_hat2 <- (0.375 + x + 0.5) / (n + 0.75)
+    phi_hat1 <- asin(sqrt(pi_hat1))
+    phi_hat2 <- asin(sqrt(pi_hat2))
+    se_phi <- 1 / (2 * sqrt(n + 0.5))
+    z <- qnorm(1 - (1 - conf.level) / 2)
+    phi_lower <- max(0, phi_hat1 - z * se_phi)
+    phi_upper <- min(pi / 2, phi_hat2 + z * se_phi)
     pi_lower <- sin(phi_lower)^2
     pi_upper <- sin(phi_upper)^2
   }
   return(c(pi_lower, pi_upper))
 }
 ci_p_arcsine_ac <- Vectorize(ci_p_arcsine_ac)
+#'
+#'
+#'
+#' Wilson confidence interval for Binomial proportion
+#'
+#' @author Victor David Usuga, \email{vusuga@unal.edu.co}
+#'
+#' @description
+#' This function obtains the confidence interval for a proportion. It is vectorized, so the user can evaluate it using single values or a vector.
+#'
+#' @param x a number or a vector with the number of successes.
+#' @param n a number or a vector with the number of trials.
+#' @param conf.level confidence level for the returned confidence interval. By default is 0.95.
+#'
+#' @seealso \link{ci_p}.
+#'
+#' @references
+#' Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association, 22(158), 209-212.
+#'
+#' @details
+#' The expression to obtain the confidence interval is given below:
+#'
+#' \eqn{\frac{\hat{p}+ \frac{z_{\alpha/2}^2}{2n}}{\widetilde{n}} \pm \frac{z_{\alpha/2}^2}{\widetilde{n}}  \sqrt{ (\hat{p}(1 - \hat{p}) + \frac{z_{\alpha/2}^2}{4n} )/n}},
+#'
+#' where \eqn{\hat{p} = \frac{x}{n}} is the sample proportion, \eqn{\widetilde{n} = 1 + \frac{ z_{\alpha/2}^2}{n}}, \eqn{x} the
+#' number of observed successes in the sample with size \eqn{n}.
+#' The value \eqn{z_{\alpha/2}} is the \eqn{1-\alpha/2} percentile of the
+#' standard normal distribution (e.g., \eqn{z_{0.025} = 1.96} for a 95\%
+#' confidence interval).
+#'
+#' @return A matrix with the lower and upper limits.
+#'
+#' @examples
+#' ci_p_wilson(x= 0, n=50, conf.level=0.95)
+#' ci_p_wilson(x=15, n=50, conf.level=0.95)
+#' ci_p_wilson(x=50, n=50, conf.level=0.95)
+#' @export
+#'
+ci_p_wilson <- function(x, n, conf.level = 0.95) {
+  pi_ml <- x / n
+  q_alpha <- qnorm(1 - (1 - conf.level) / 2)
+  numerator <- x + (q_alpha^2) / 2
+  denominator <- n + q_alpha^2
+  adjustment <- (q_alpha * sqrt(n) / denominator) * sqrt(pi_ml * (1 - pi_ml) + (q_alpha^2) / (4 * n))
+  lower <- numerator / denominator - adjustment
+  upper <- numerator / denominator + adjustment
+  return(c(lower, upper))
+}
+ci_p_wilson <- Vectorize(ci_p_wilson)
+#'
+#'
+#'
+#' Exact confidence interval for Binomial proportion
+#'
+#' @author Omar David Mercado Turizo, \email{omercado@unal.edu.co}
+#'
+#' @description
+#' This function calculates the exact confidence interval for a Binomial proportion using the Clopper-Pearson method. It is vectorized, allowing the evaluation of single values or vectors.
+#'
+#' @param x A number or a vector with the number of successes.
+#' @param n A number or a vector with the number of trials.
+#' @param conf.level Confidence level for the returned confidence interval. By default, it is 0.95.
+#'
+#' @seealso \link{ci_p}.
+#'
+#' @references
+#' Falta.
+#'
+#' @details
+#' The exact confidence interval is based on the Clopper-Pearson method, which uses the F-distribution to calculate the limits. Special cases are handled when \eqn{x = 0} or \eqn{x = n}.
+#'
+#' The mathematical definitions are as follows:
+#'
+#' - If \eqn{x = 0}, the lower limit is \eqn{0}, and the upper limit is \eqn{1 - (\alpha / 2)^{1/n}}.
+#'
+#' - If \eqn{x = n}, the lower limit is \eqn{(\alpha / 2)^{1/n}}, and the upper limit is \eqn{1}.
+#'
+#' - Otherwise, the limits are given by:
+#'
+#'  * Lower limit: \eqn{1 / (1 + ((n - x + 1) / (x \cdot F_{1 - \alpha/2}(2x, 2(n - x + 1)))))}.
+#'
+#'  * Upper limit: \eqn{1 / (1 + ((n - x) / ((x + 1) \cdot F_{\alpha/2}(2(x + 1), 2(n - x)))))}.
+#'
+#' @return A vector with the lower and upper limits.
+#'
+#' @examples
+#' ci_p_exact_clopper_pearson(x= 0, n=50, conf.level=0.95)
+#' ci_p_exact_clopper_pearson(x=15, n=50, conf.level=0.95)
+#' ci_p_exact_clopper_pearson(x=50, n=50, conf.level=0.95)
+#' ci_p_exact_clopper_pearson(x= 1, n=10, conf.level=0.95)
+#'
+#' @export
+#'
+ci_p_exact_clopper_pearson <- function(x, n, conf.level = 0.95) {
+  alpha <- 1 - conf.level
+
+  aux1 <- ((n-x+1)/x) * qf(p=alpha/2, df1=2*(n-x+1), df2=2*x, lower.tail=FALSE)
+  aux2 <- ((x+1)/(n-x))*qf(p=alpha/2, df1=2*(x+1), df2=2*(n-x), lower.tail=FALSE)
+
+  lower <- if (x == 0) {
+    0 # Si no hay éxitos, el límite inferior es 0
+  } else {
+    1 / (1 + aux1)
+  }
+
+  upper <- if (x == n) {
+    1 # Si todos son éxitos, el límite superior es 1
+  } else {
+    aux2 / (1 + aux2)
+  }
+
+  return(c(lower, upper))
+}
+ci_p_exact_clopper_pearson <- Vectorize(ci_p_exact_clopper_pearson)
+
+

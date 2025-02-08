@@ -13,8 +13,10 @@
 <url><loc>/reference/ci_p_arcsine_ac.html</loc></url>
 <url><loc>/reference/ci_p_arcsine_cc.html</loc></url>
 <url><loc>/reference/ci_p_clopper_pearson.html</loc></url>
+<url><loc>/reference/ci_p_exact_clopper_pearson.html</loc></url>
 <url><loc>/reference/ci_p_rindskopf.html</loc></url>
 <url><loc>/reference/ci_p_wald.html</loc></url>
+<url><loc>/reference/ci_p_wilson.html</loc></url>
 <url><loc>/reference/d.meantest.html</loc></url>
 <url><loc>/reference/d_meantest.html</loc></url>
 <url><loc>/reference/ic_p.html</loc></url>

@@ -56,13 +56,13 @@ Special cases are handled explicitly:
 These adjustments ensure that the confidence interval is valid and well-behaved, even at the boundaries of the parameter space.
 }
 \examples{
-ci_p_arcsine_ac(x=15, n=50, conf.level=0.95)
 ci_p_arcsine_ac(x= 0, n=50, conf.level=0.95)
+ci_p_arcsine_ac(x=15, n=50, conf.level=0.95)
 ci_p_arcsine_ac(x=50, n=50, conf.level=0.95)
 
 }
 \references{
-Missing reference.
+Anscombe, F.J. (1948). Transformations of Poisson, binomial and negative-binomial data. Biometrika, 35, 246–254
 }
 \seealso{
 \link{ci_p}.
