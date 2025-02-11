@@ -4,7 +4,7 @@ author: "Freddy Hernandez and Karen Rivera"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{D value}
+  %\VignetteIndexEntry{D-value}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

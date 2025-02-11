@@ -8,7 +8,11 @@
 #' @param x a number or a vector with the number of successes.
 #' @param n a number or a vector with the number of trials.
 #' @param conf.level confidence level for the returned confidence interval. By default is 0.95.
-#' @param intervalType type of confidence interval, possible choices are: "wald", "agresti_coull".
+#' @param intervalType type of confidence interval, possible choices are:
+#' "wald", "agresti_coull", "rindskopf",
+#' "clopper_pearson", "add_4", "arcsine_cc",
+#' "arcsine", "arcsine_ac", "wilson",
+#' "exact_clopper_pearson", "ci_p_jeffreys"
 #'
 #' @return A dataframe with the input information and the confidence interval.
 #'
@@ -20,6 +24,9 @@
 #' \link{ci_p_arcsine_cc},
 #' \link{ci_p_arcsine},
 #' \link{ci_p_arcsine_ac},
+#' \link{ci_p_wilson},
+#' \link{ci_p_exact_clopper_pearson},
+#' \link{ci_p_jeffreys},
 #'
 #' @example examples/examples_ci_p.R
 #' @export
@@ -45,9 +52,14 @@ ci_p <- function(x, n, conf.level=0.95, intervalType="wald") {
                                 "agresti_coull",
                                 "rindskopf",
                                 "clopper_pearson",
+                                "add_4",
                                 "arcsine_cc",
                                 "arcsine",
-                                "arcsine_ac"))
+                                "arcsine_ac",
+                                "ci_p_wilson",
+                                "ci_p_exact_clopper_pearson",
+                                "exact_clopper_pearson",
+                                "ci_p_jeffreys"))
 
   # To generate the code for evaluating, without using cases
   my_code <- paste0("ci_p_", method,

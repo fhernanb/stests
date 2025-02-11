@@ -13,7 +13,11 @@ ci_p(x, n, conf.level = 0.95, intervalType = "wald")
 
 \item{conf.level}{confidence level for the returned confidence interval. By default is 0.95.}
 
-\item{intervalType}{type of confidence interval, possible choices are: "wald", "agresti_coull".}
+\item{intervalType}{type of confidence interval, possible choices are:
+"wald", "agresti_coull", "rindskopf",
+"clopper_pearson", "add_4", "arcsine_cc",
+"arcsine", "arcsine_ac", "wilson",
+"exact_clopper_pearson", "ci_p_jeffreys"}
 }
 \value{
 A dataframe with the input information and the confidence interval.
@@ -50,6 +54,9 @@ ci_p(x=c(5, 7, 9),
 \link{ci_p_arcsine_cc},
 \link{ci_p_arcsine},
 \link{ci_p_arcsine_ac},
+\link{ci_p_wilson},
+\link{ci_p_exact_clopper_pearson},
+\link{ci_p_jeffreys},
 }
 \author{
 Freddy Hernandez, \email{fhernanb@unal.edu.co}

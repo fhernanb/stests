@@ -17,43 +17,43 @@ ci_p_arcsine_cc(x, n, conf.level = 0.95)
 A vector with the lower and upper limits of the confidence interval.
 }
 \description{
-This function calculates the Arcsine Wald confidence interval with continuity correction for a Binomial proportion.
-It transforms the proportion to the arcsine scale, applies the Wald interval with continuity correction, and then back-transforms the result to the original scale.
-The method is vectorized, allowing for evaluation of single values or vectors.
+This function calculates the confidence interval for a proportion.
+It is vectorized, allowing users to evaluate it using either
+single values or vectors.
 }
 \details{
 The Arcsine Wald confidence interval with continuity correction adjusts the classical Wald interval by transforming the proportion \eqn{\pi} to the arcsine scale.
 The parameter \eqn{\pi} represents the true proportion of successes in a Binomial experiment, defined as:
 
-\deqn{\pi = \frac{x \pm 0.5}{n},}
+\deqn{\pi=\frac{x \pm 0.5}{n},}
 
 where \eqn{x} is the number of successes and \eqn{n} is the number of trials.
 
 On the arcsine scale, the transformed parameter is given by:
 
-\deqn{\phi = \arcsin(\sqrt{\pi}).}
+\deqn{\phi=\arcsin(\sqrt{\pi}).}
 
 The standard error on the arcsine scale is constant:
 
-\deqn{\text{se}(\phi) = \frac{1}{\sqrt{4n}},}
+\deqn{\text{se}(\phi)=\frac{1}{\sqrt{4n}},}
 
 where \eqn{n} is the number of trials. The confidence interval on the arcsine scale is:
 
-\deqn{\text{Lower}(\phi) = \max\left(0, \phi - z \cdot (\phi)\right),}
-\deqn{\text{Upper}(\phi) = \min\left(\frac{\pi}{2}, \phi + z \cdot (\phi)\right),}
+\deqn{\text{Lower}(\phi)=\max\left(0, \phi - z \cdot (\phi)\right),}
+\deqn{\text{Upper}(\phi)=\min\left(\frac{\pi}{2}, \phi + z \cdot (\phi)\right),}
 
 where \eqn{z} is the critical value from the standard normal distribution at the specified confidence level.
 
 Back-transforming the limits to the original scale gives:
 
-\deqn{\text{Lower}(\pi) = \sin^2(\text{Lower}(\phi)),}
-\deqn{\text{Upper}(\pi) = \sin^2(\text{Upper}(\phi)).}
+\deqn{\text{Lower}(\pi)=\sin^2(\text{Lower}(\phi)),}
+\deqn{\text{Upper}(\pi)=\sin^2(\text{Upper}(\phi)).}
 
 Special cases are handled explicitly:
 
-- If \eqn{x = 0}, the lower limit is 0, and the upper limit is calculated as \eqn{(\alpha / 2)^{1/n}}.
+- If \eqn{x=0}, the lower limit is 0, and the upper limit is calculated as \eqn{(\alpha / 2)^{1/n}}.
 
-- If \eqn{x = n}, the upper limit is 1, and the lower limit is calculated as \eqn{1 - (\alpha / 2)^{1/n}}.
+- If \eqn{x=n}, the upper limit is 1, and the lower limit is calculated as \eqn{1 - (\alpha / 2)^{1/n}}.
 
 These adjustments ensure that the confidence interval is valid and well-behaved, even at the boundaries of the parameter space.
 }

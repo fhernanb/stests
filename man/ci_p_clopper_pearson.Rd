@@ -17,16 +17,29 @@ ci_p_clopper_pearson(x, n, conf.level = 0.95)
 A vector with the lower and upper limits.
 }
 \description{
-This function calculates the exact Clopper-Pearson confidence interval for a Binomial proportion. It is vectorized, allowing the evaluation of single values or vectors.
+This function calculates the confidence interval for a proportion.
+It is vectorized, allowing users to evaluate it using either
+single values or vectors.
 }
 \details{
 The Clopper-Pearson interval is an exact confidence interval for the Binomial proportion \eqn{p}.
-The limits of the interval are derived based on the Beta distribution. For the special cases where \eqn{x = 0} or \eqn{x = n}, the limits are calculated directly.
+The limits of the interval are derived based on the Beta distribution. For the special cases where \eqn{x=0} or \eqn{x=n}, the limits are calculated directly.
 
-The mathematical definitions are as follows. If \eqn{x = 0}, the lower limit is \eqn{0}, and the upper limit is \eqn{1 - (\alpha / 2)^{1/n}}.
-If \eqn{x = n}, the lower limit is \eqn{(\alpha / 2)^{1/n}}, and the upper limit is \eqn{1}.
-Otherwise, the limits are given by the \eqn{\alpha / 2} and \eqn{1 - \alpha / 2} quantiles of the Beta distribution with parameters adjusted by the data,
-that is, \eqn{B_{x+1/2,n-x+1/2,1-\alpha/2} \leq p \leq B_{x+1/2,n-x+1/2,\alpha/2}}.
+The mathematical definitions are as follows:
+
+- If \eqn{x=0}, the lower limit is \eqn{0}, and the upper limit is \eqn{1 - (\alpha / 2)^{1/n}}.
+
+- If \eqn{x=n}, the lower limit is \eqn{(\alpha / 2)^{1/n}}, and the upper limit is \eqn{1}.
+
+Otherwise, the limits are given by:
+
+\deqn{\text{Lower Limit}=B_{1-\alpha/2, x, n-x+1}}
+
+\deqn{\text{Upper Limit}=B_{\alpha/2, x+1, n-x}}
+
+where \eqn{B_{\omega, a, b}} is the \eqn{100\%(1-\omega)}
+percentile of the Beta distribution with parameters
+\eqn{a} and \eqn{b}.
 }
 \examples{
 ci_p_clopper_pearson(x=15, n=50, conf.level=0.95)

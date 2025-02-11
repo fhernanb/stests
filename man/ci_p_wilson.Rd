@@ -17,17 +17,19 @@ ci_p_wilson(x, n, conf.level = 0.95)
 A matrix with the lower and upper limits.
 }
 \description{
-This function obtains the confidence interval for a proportion. It is vectorized, so the user can evaluate it using single values or a vector.
+This function calculates the confidence interval for a proportion.
+It is vectorized, allowing users to evaluate it using either
+single values or vectors.
 }
 \details{
 The expression to obtain the confidence interval is given below:
 
 \eqn{\frac{\hat{p}+ \frac{z_{\alpha/2}^2}{2n}}{\widetilde{n}} \pm \frac{z_{\alpha/2}^2}{\widetilde{n}}  \sqrt{ (\hat{p}(1 - \hat{p}) + \frac{z_{\alpha/2}^2}{4n} )/n}},
 
-where \eqn{\hat{p} = \frac{x}{n}} is the sample proportion, \eqn{\widetilde{n} = 1 + \frac{ z_{\alpha/2}^2}{n}}, \eqn{x} the
+where \eqn{\hat{p}=\frac{x}{n}} is the sample proportion, \eqn{\widetilde{n}=1 + \frac{ z_{\alpha/2}^2}{n}}, \eqn{x} the
 number of observed successes in the sample with size \eqn{n}.
 The value \eqn{z_{\alpha/2}} is the \eqn{1-\alpha/2} percentile of the
-standard normal distribution (e.g., \eqn{z_{0.025} = 1.96} for a 95\%
+standard normal distribution (e.g., \eqn{z_{0.025}=1.96} for a 95\%
 confidence interval).
 }
 \examples{

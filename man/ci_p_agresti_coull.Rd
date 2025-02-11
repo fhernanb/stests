@@ -17,13 +17,15 @@ ci_p_agresti_coull(x, n, conf.level = 0.95)
 A vector with the lower and upper limits.
 }
 \description{
-This function calculates the Agresti-Coull confidence interval for a Binomial proportion. It is vectorized, allowing the evaluation of single values or vectors.
+This function calculates the confidence interval for a proportion.
+It is vectorized, allowing users to evaluate it using either
+single values or vectors.
 }
 \details{
 The Agresti-Coull interval is an approximate confidence interval for the Binomial proportion \eqn{p}.
 The limits are calculated based on an adjusted proportion \eqn{\tilde{p}} and its standard error. The mathematical definitions are as follows:
- Adjusted proportion: \eqn{\tilde{p} = \frac{x + 2}{n + 4}};
- Adjusted standard error: \eqn{se = \sqrt{\frac{\tilde{p}(1 - \tilde{p})}{n + 4}}};
+ Adjusted proportion: \eqn{\tilde{p}=\frac{x + 2}{n + 4}};
+ Adjusted standard error: \eqn{se=\sqrt{\frac{\tilde{p}(1 - \tilde{p})}{n + 4}}};
  Confidence limits: \eqn{\tilde{p} \pm z_{\alpha/2} \cdot se},
 
 where \eqn{z_{\alpha/2}} is the critical value of the standard normal distribution. The limits are truncated to the range \eqn{[0, 1]}.

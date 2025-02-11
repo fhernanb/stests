@@ -17,22 +17,28 @@ ci_p_exact_clopper_pearson(x, n, conf.level = 0.95)
 A vector with the lower and upper limits.
 }
 \description{
-This function calculates the exact confidence interval for a Binomial proportion using the Clopper-Pearson method. It is vectorized, allowing the evaluation of single values or vectors.
+This function calculates the confidence interval for a proportion.
+It is vectorized, allowing users to evaluate it using either
+single values or vectors.
 }
 \details{
-The exact confidence interval is based on the Clopper-Pearson method, which uses the F-distribution to calculate the limits. Special cases are handled when \eqn{x = 0} or \eqn{x = n}.
+The exact confidence interval is based on the Clopper-Pearson method, which uses the F-distribution to calculate the limits. Special cases are handled when \eqn{x=0} or \eqn{x=n}.
 
 The mathematical definitions are as follows:
 
-- If \eqn{x = 0}, the lower limit is \eqn{0}, and the upper limit is \eqn{1 - (\alpha / 2)^{1/n}}.
+- If \eqn{x=0}, the lower limit is \eqn{0}, and the upper limit is \eqn{1 - (\alpha / 2)^{1/n}}.
 
-- If \eqn{x = n}, the lower limit is \eqn{(\alpha / 2)^{1/n}}, and the upper limit is \eqn{1}.
+- If \eqn{x=n}, the lower limit is \eqn{(\alpha / 2)^{1/n}}, and the upper limit is \eqn{1}.
 
-- Otherwise, the limits are given by:
+Otherwise, the limits are given by:
 
- * Lower limit: \eqn{1 / (1 + ((n - x + 1) / (x \cdot F_{1 - \alpha/2}(2x, 2(n - x + 1)))))}.
+ \deqn{\text{Lower Limit}=\frac{1}{1+\frac{n-x+1}{x}F_{\alpha/2, \, 2(n-x+1), \, 2x}}}
 
- * Upper limit: \eqn{1 / (1 + ((n - x) / ((x + 1) \cdot F_{\alpha/2}(2(x + 1), 2(n - x)))))}.
+ \deqn{\text{Upper Limit}=\frac{\frac{x+1}{n-x} F_{\alpha/2, \, 2(x+1), \, 2(n-x)}}{1+\frac{x+1}{n-x} F_{\alpha/2, \, 2(x+1), \, 2(n-x)}}}
+
+where \eqn{F_{\omega, a, b}} is the \eqn{100\%(1-\omega)}
+percentile of the F distribution with parameters
+\eqn{a} and \eqn{b}.
 }
 \examples{
 ci_p_exact_clopper_pearson(x= 0, n=50, conf.level=0.95)
@@ -42,7 +48,7 @@ ci_p_exact_clopper_pearson(x= 1, n=10, conf.level=0.95)
 
 }
 \references{
-Falta.
+Blyth, C. R. (1986). Approximate binomial confidence limits. Journal of the American Statistical Association, 81(395), 843-855.
 }
 \seealso{
 \link{ci_p}.

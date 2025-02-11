@@ -17,7 +17,9 @@ ci_p_arcsine(x, n, conf.level = 0.95)
 A matrix with the lower and upper limits.
 }
 \description{
-This function obtains the confidence interval for a proportion. It is vectorized, so the user can evaluate it using single values or a vector.
+This function calculates the confidence interval for a proportion.
+It is vectorized, allowing users to evaluate it using either
+single values or vectors.
 }
 \details{
 The expression to obtain the confidence interval is given below:
@@ -25,10 +27,10 @@ The expression to obtain the confidence interval is given below:
 \eqn{\sin^2(\hat\phi_{ML} \pm z_{\alpha/2} \times se(\hat\phi_{ML}))},
 
 where the maximum likelihood estimator for \eqn{\phi} is
-\eqn{\hat\phi_{ML} = \arcsin(\sqrt{\hat \pi_{ML}})}, and its standard error is
-\eqn{se(\hat{\phi}_{ML}) = \frac{1}{\sqrt{4n}}}. The
+\eqn{\hat\phi_{ML}=\arcsin(\sqrt{\hat \pi_{ML}})}, and its standard error is
+\eqn{se(\hat{\phi}_{ML})=\frac{1}{\sqrt{4n}}}. The
 value \eqn{z_{\alpha/2}} is the \eqn{1-\alpha/2} percentile of the
-standard normal distribution (e.g., \eqn{z_{0.025} = 1.96} for a 95\%
+standard normal distribution (e.g., \eqn{z_{0.025}=1.96} for a 95\%
 confidence interval).
 }
 \examples{
