@@ -215,6 +215,16 @@ ci_p_rindskopf <- Vectorize(ci_p_rindskopf)
 #' percentile of the Beta distribution with parameters
 #' \eqn{a} and \eqn{b}.
 #'
+#' Due to the relationship between Beta and F distributions,
+#' the limits can be written as:
+#'
+#'  \deqn{\text{Lower Limit}=\frac{1}{1+\frac{n-x+1}{x}F_{\alpha/2, \, 2(n-x+1), \, 2x}}}
+#'
+#'  \deqn{\text{Upper Limit}=\frac{\frac{x+1}{n-x} F_{\alpha/2, \, 2(x+1), \, 2(n-x)}}{1+\frac{x+1}{n-x} F_{\alpha/2, \, 2(x+1), \, 2(n-x)}}}
+#'
+#' where \eqn{F_{\omega, a, b}} is the \eqn{100\%(1-\omega)}
+#' percentile of the F distribution with parameters
+#' \eqn{a} and \eqn{b}.
 #'
 #' @return A vector with the lower and upper limits.
 #'
@@ -615,77 +625,6 @@ ci_p_wilson <- function(x, n, conf.level=0.95) {
   return(c(lower, upper))
 }
 ci_p_wilson <- Vectorize(ci_p_wilson)
-#'
-#'
-#'
-#' Exact confidence interval for Binomial proportion
-#'
-#' @author Omar David Mercado Turizo, \email{omercado@unal.edu.co}
-#'
-#' @description
-#' This function calculates the confidence interval for a proportion.
-#' It is vectorized, allowing users to evaluate it using either
-#' single values or vectors.
-#'
-#' @param x A number or a vector with the number of successes.
-#' @param n A number or a vector with the number of trials.
-#' @param conf.level Confidence level for the returned confidence interval. By default, it is 0.95.
-#'
-#' @seealso \link{ci_p}.
-#'
-#' @references
-#' Blyth, C. R. (1986). Approximate binomial confidence limits. Journal of the American Statistical Association, 81(395), 843-855.
-#'
-#' @details
-#' The exact confidence interval is based on the Clopper-Pearson method, which uses the F-distribution to calculate the limits. Special cases are handled when \eqn{x=0} or \eqn{x=n}.
-#'
-#' The mathematical definitions are as follows:
-#'
-#' - If \eqn{x=0}, the lower limit is \eqn{0}, and the upper limit is \eqn{1 - (\alpha / 2)^{1/n}}.
-#'
-#' - If \eqn{x=n}, the lower limit is \eqn{(\alpha / 2)^{1/n}}, and the upper limit is \eqn{1}.
-#'
-#' Otherwise, the limits are given by:
-#'
-#'  \deqn{\text{Lower Limit}=\frac{1}{1+\frac{n-x+1}{x}F_{\alpha/2, \, 2(n-x+1), \, 2x}}}
-#'
-#'  \deqn{\text{Upper Limit}=\frac{\frac{x+1}{n-x} F_{\alpha/2, \, 2(x+1), \, 2(n-x)}}{1+\frac{x+1}{n-x} F_{\alpha/2, \, 2(x+1), \, 2(n-x)}}}
-#'
-#' where \eqn{F_{\omega, a, b}} is the \eqn{100\%(1-\omega)}
-#' percentile of the F distribution with parameters
-#' \eqn{a} and \eqn{b}.
-#'
-#' @return A vector with the lower and upper limits.
-#'
-#' @examples
-#' ci_p_exact_clopper_pearson(x= 0, n=50, conf.level=0.95)
-#' ci_p_exact_clopper_pearson(x=15, n=50, conf.level=0.95)
-#' ci_p_exact_clopper_pearson(x=50, n=50, conf.level=0.95)
-#' ci_p_exact_clopper_pearson(x= 1, n=10, conf.level=0.95)
-#'
-#' @export
-#'
-ci_p_exact_clopper_pearson <- function(x, n, conf.level=0.95) {
-  alpha <- 1 - conf.level
-
-  aux1 <- ((n-x+1)/x) * qf(p=alpha/2, df1=2*(n-x+1), df2=2*x, lower.tail=FALSE)
-  aux2 <- ((x+1)/(n-x))*qf(p=alpha/2, df1=2*(x+1), df2=2*(n-x), lower.tail=FALSE)
-
-  lower <- if (x == 0) {
-    0 # Si no hay éxitos, el límite inferior es 0
-  } else {
-    1 / (1 + aux1)
-  }
-
-  upper <- if (x == n) {
-    1 # Si todos son éxitos, el límite superior es 1
-  } else {
-    aux2 / (1 + aux2)
-  }
-
-  return(c(lower, upper))
-}
-ci_p_exact_clopper_pearson <- Vectorize(ci_p_exact_clopper_pearson)
 #'
 #'
 #'

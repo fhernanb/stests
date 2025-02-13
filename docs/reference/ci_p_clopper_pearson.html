@@ -106,6 +106,13 @@ The limits of the interval are derived based on the Beta distribution. For the s
 <p>where \(B_{\omega, a, b}\) is the \(100\%(1-\omega)\)
 percentile of the Beta distribution with parameters
 \(a\) and \(b\).</p>
+<p>Due to the relationship between Beta and F distributions,
+the limits can be written as:</p>
+<p>$$\text{Lower Limit}=\frac{1}{1+\frac{n-x+1}{x}F_{\alpha/2, \, 2(n-x+1), \, 2x}}$$</p>
+<p>$$\text{Upper Limit}=\frac{\frac{x+1}{n-x} F_{\alpha/2, \, 2(x+1), \, 2(n-x)}}{1+\frac{x+1}{n-x} F_{\alpha/2, \, 2(x+1), \, 2(n-x)}}$$</p>
+<p>where \(F_{\omega, a, b}\) is the \(100\%(1-\omega)\)
+percentile of the F distribution with parameters
+\(a\) and \(b\).</p>
     </div>
     <div id="references">
     <h2>References</h2>

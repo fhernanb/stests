@@ -40,6 +40,17 @@ Otherwise, the limits are given by:
 where \eqn{B_{\omega, a, b}} is the \eqn{100\%(1-\omega)}
 percentile of the Beta distribution with parameters
 \eqn{a} and \eqn{b}.
+
+Due to the relationship between Beta and F distributions,
+the limits can be written as:
+
+ \deqn{\text{Lower Limit}=\frac{1}{1+\frac{n-x+1}{x}F_{\alpha/2, \, 2(n-x+1), \, 2x}}}
+
+ \deqn{\text{Upper Limit}=\frac{\frac{x+1}{n-x} F_{\alpha/2, \, 2(x+1), \, 2(n-x)}}{1+\frac{x+1}{n-x} F_{\alpha/2, \, 2(x+1), \, 2(n-x)}}}
+
+where \eqn{F_{\omega, a, b}} is the \eqn{100\%(1-\omega)}
+percentile of the F distribution with parameters
+\eqn{a} and \eqn{b}.
 }
 \examples{
 ci_p_clopper_pearson(x=15, n=50, conf.level=0.95)
