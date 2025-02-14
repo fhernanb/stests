@@ -35,6 +35,7 @@ confidence interval).
 }
 \examples{
 ci_p_arcsine(x=15, n=50, conf.level=0.95)
+
 }
 \references{
 Missing reference.

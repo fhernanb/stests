@@ -36,6 +36,7 @@ confidence interval).
 ci_p_wilson(x= 0, n=50, conf.level=0.95)
 ci_p_wilson(x=15, n=50, conf.level=0.95)
 ci_p_wilson(x=50, n=50, conf.level=0.95)
+
 }
 \references{
 Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association, 22(158), 209-212.

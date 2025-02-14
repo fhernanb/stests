@@ -22,7 +22,8 @@ It is vectorized, allowing users to evaluate it using either
 single values or vectors.
 }
 \details{
-The Jeffreys prior is a non-informative prior based on the Fisher information. The posterior distribution is Beta:
+The Jeffreys prior is a non-informative prior (\eqn{Beta(0.5, 0.5)})
+based on the Fisher information. The posterior distribution is Beta:
 
 \deqn{p | x \sim \text{Beta}(x+0.5, n-x+0.5)}
 
@@ -47,6 +48,8 @@ ci_p_jeffreys(x=x_values, n=n_values, conf.level=0.95)
 
 }
 \seealso{
+\link{ci_p}.
+
 \link{ci_p}.
 }
 \author{

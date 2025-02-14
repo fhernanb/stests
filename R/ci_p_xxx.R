@@ -470,6 +470,7 @@ ci_p_arcsine_cc <- Vectorize(ci_p_arcsine_cc)
 #'
 #' @examples
 #' ci_p_arcsine(x=15, n=50, conf.level=0.95)
+#'
 #' @export
 #'
 ci_p_arcsine <- function(x, n, conf.level=0.95) {
@@ -612,6 +613,7 @@ ci_p_arcsine_ac <- Vectorize(ci_p_arcsine_ac)
 #' ci_p_wilson(x= 0, n=50, conf.level=0.95)
 #' ci_p_wilson(x=15, n=50, conf.level=0.95)
 #' ci_p_wilson(x=50, n=50, conf.level=0.95)
+#'
 #' @export
 #'
 ci_p_wilson <- function(x, n, conf.level=0.95) {
@@ -643,8 +645,11 @@ ci_p_wilson <- Vectorize(ci_p_wilson)
 #'
 #' @seealso \link{ci_p}.
 #'
+#' @seealso \link{ci_p}.
+#'
 #' @details
-#' The Jeffreys prior is a non-informative prior based on the Fisher information. The posterior distribution is Beta:
+#' The Jeffreys prior is a non-informative prior (\eqn{Beta(0.5, 0.5)})
+#' based on the Fisher information. The posterior distribution is Beta:
 #'
 #' \deqn{p | x \sim \text{Beta}(x+0.5, n-x+0.5)}
 #'
@@ -688,4 +693,69 @@ ci_p_jeffreys <- function(x, n, conf.level=0.95) {
 }
 # Vectorizar la función
 ci_p_jeffreys <- Vectorize(ci_p_jeffreys)
+#'
+#'
+#'
+#' Highest Posterior Density (HPD) interval for Binomial proportion using Jeffreys prior
+#'
+#' @author Rusvelt Jose Meza San Martín, \email{rmezas@unal.edu.co}
+#'
+#' @description
+#' This function calculates the Highest Posterior Density (HPD) interval for a Binomial proportion using Jeffreys prior. It is vectorized, allowing the evaluation of single values or vectors.
+#'
+#' @param x A number or a vector with the number of successes.
+#' @param n A number or a vector with the number of trials.
+#' @param conf.level Confidence level for the returned confidence interval. By default, it is 0.95.
+#'
+#' @seealso \link{ci_p}.
+#'
+#' @details
+#' The Jeffreys prior is a non-informative prior (\eqn{Beta(0.5, 0.5)})
+#' based on the Fisher information. The posterior distribution is Beta:
+#'
+#' \deqn{p | x \sim \text{Beta}(0.5 + x, 0.5 + n - x)}
+#'
+#' The HPD interval is calculated using the posterior samples from the Beta distribution:
+#'
+#' \deqn{	\text{HPD Interval}=[L, U]}
+#'
+#' where \eqn{L} and \eqn{U} are the bounds of the smallest interval
+#' containing \eqn{1 - \alpha} posterior probability.
+#'
+#' @return A vector with the lower and upper limits of the HPD interval.
+#'
+#' @examples
+#' # Example with a single value
+#' ci_p_hpd_jeffreys(x=5, n=20, conf.level=0.95)
+#'
+#' # Example with vectors
+#' x_values <- c(5, 10, 15)
+#' n_values <- c(20, 30, 40)
+#' ci_p_hpd_jeffreys(x=x_values, n=n_values, conf.level=0.95)
+#'
+#' @export
+#' @importFrom coda HPDinterval
+#' @importFrom mcmcr as.mcmc
+ci_p_hpd_jeffreys <- function(x, n, conf.level=0.95) {
+  alpha <- 1 - conf.level
+
+  # Función para la densidad beta posterior
+  posterior_density <- function(p) {
+    dbeta(p, 0.5+x, 0.5+n-x)
+  }
+
+  # Función para encontrar el intervalo HPD
+  find_hpd <- function(x, n, alpha) {
+    samples <- rbeta(10000, 0.5+x, 0.5+n-x) # Muestras de la posterior
+    the_samples <- mcmcr::as.mcmc(samples)
+    hpd_interval <- coda::HPDinterval(the_samples, prob=1-alpha) # Intervalo HPD
+    return(c(hpd_interval[1], hpd_interval[2]))
+  }
+
+  # Calcular el intervalo HPD
+  hpd <- find_hpd(x, n, alpha)
+  return(as.matrix(hpd))
+}
+# Vectorizar la función
+ci_p_hpd_jeffreys <- Vectorize(ci_p_hpd_jeffreys)
 
