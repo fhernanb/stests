@@ -113,16 +113,16 @@ containing \(1 - \alpha\) posterior probability.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Example with a single value</span></span></span>
 <span class="r-in"><span><span class="fu">ci_p_hpd_jeffreys</span><span class="op">(</span>x<span class="op">=</span><span class="fl">5</span>, n<span class="op">=</span><span class="fl">20</span>, conf.level<span class="op">=</span><span class="fl">0.95</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.08801149</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.44257242</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.08992554</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.44654470</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Example with vectors</span></span></span>
 <span class="r-in"><span><span class="va">x_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">10</span>, <span class="fl">15</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">n_values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">30</span>, <span class="fl">40</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">ci_p_hpd_jeffreys</span><span class="op">(</span>x<span class="op">=</span><span class="va">x_values</span>, n<span class="op">=</span><span class="va">n_values</span>, conf.level<span class="op">=</span><span class="fl">0.95</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            [,1]      [,2]      [,3]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.09522291 0.1822092 0.2362187</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.44866077 0.5015978 0.5271909</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] 0.08992554 0.1795676 0.2341161</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] 0.44654470 0.5035473 0.5252455</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

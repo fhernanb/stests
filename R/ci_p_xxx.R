@@ -734,27 +734,12 @@ ci_p_jeffreys <- Vectorize(ci_p_jeffreys)
 #' ci_p_hpd_jeffreys(x=x_values, n=n_values, conf.level=0.95)
 #'
 #' @export
-#' @importFrom coda HPDinterval
-#' @importFrom mcmcr as.mcmc
+#' @importFrom HDInterval hdi
 ci_p_hpd_jeffreys <- function(x, n, conf.level=0.95) {
-  alpha <- 1 - conf.level
 
-  # Función para la densidad beta posterior
-  posterior_density <- function(p) {
-    dbeta(p, 0.5+x, 0.5+n-x)
-  }
-
-  # Función para encontrar el intervalo HPD
-  find_hpd <- function(x, n, alpha) {
-    samples <- rbeta(10000, 0.5+x, 0.5+n-x) # Muestras de la posterior
-    the_samples <- mcmcr::as.mcmc(samples)
-    hpd_interval <- coda::HPDinterval(the_samples, prob=1-alpha) # Intervalo HPD
-    return(c(hpd_interval[1], hpd_interval[2]))
-  }
-
-  # Calcular el intervalo HPD
-  hpd <- find_hpd(x, n, alpha)
-  return(as.matrix(hpd))
+  res <- HDInterval::hdi(qbeta, credMass=conf.level,
+                         shape1=0.5+x, shape2=0.5+n-x)
+  return(as.matrix(res))
 }
 # Vectorizar la función
 ci_p_hpd_jeffreys <- Vectorize(ci_p_hpd_jeffreys)
