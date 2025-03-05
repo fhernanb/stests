@@ -10,7 +10,7 @@ You can visit the [package website](https://fhernanb.github.io/stests/index.html
 
 ### Installation
 
-* Install latest development version from GitHub using the code given below:
+* Installll latest development version from GitHub using the code given below:
 
 ```r
 if (!require('devtools')) install.packages('devtools')
