@@ -13,6 +13,7 @@
 #' "clopper_pearson", "add_4", "arcsine_cc",
 #' "arcsine", "arcsine_ac", "wilson",
 #' "ci_p_jeffreys", "hpd_jeffreys", "LRT",
+#' "mid_p"
 #'
 #' @return A dataframe with the input information and the confidence interval.
 #'
@@ -27,6 +28,7 @@
 #' \link{ci_p_wilson},
 #' \link{ci_p_jeffreys},
 #' \link{ci_p_hpd_jeffreys}
+#' \link{ci_p_mid_p},
 #'
 #' @example examples/examples_ci_p.R
 #' @export
@@ -59,7 +61,8 @@ ci_p <- function(x, n, conf.level=0.95, intervalType="wald") {
                                 "wilson",
                                 "jeffreys",
                                 "hpd_jeffreys",
-                                "LRT"))
+                                "LRT",
+                                "mid_p"))
 
   # To generate the code for evaluating, without using cases
   my_code <- paste0("ci_p_", method,
