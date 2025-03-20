@@ -909,4 +909,86 @@ ci_p_mid_p <- function(x, n, conf.level = 0.95) {
   return(c(lower_limit, upper_limit))
 }
 ci_p_mid_p <- Vectorize(ci_p_mid_p)
+#'
+#'
+#'
+#' Agresti-Caffo confidence interval for Binomial proportion
+#'
+#' @author David Esteban Cartagena Mejía, \email{dcartagena@unal.edu.co}
+#'
+#' @description
+#' This function calculates the Agresti-Caffo confidence interval for
+#' a Binomial
+#' proportion, which includes a Bayesian adjustment by adding 2 successes
+#' and 2 failures to stabilize the estimate. It is vectorized,
+#' allowing the evaluation of single values or vectors.
+#'
+#' @param x A number or a vector with the number of successes.
+#' @param n A number or a vector with the number of trials.
+#' @param conf.level Confidence level for the returned confidence interval.
+#' By default, it is 0.95.
+#'
+#' @seealso \link{ci_p}.
+#'
+#' @references
+#' Agresti, Alan, and Brian Caffo. "Simple and effective confidence
+#' intervals for proportions and differences of proportions result
+#' from adding two successes and two failures." The American
+#' Statistician 54.4 (2000): 280-288.
+#'
+#' @details
+#' The Agresti-Caffo confidence interval incorporates a simple
+#' Bayesian adjustment by
+#' adding 2 successes and 2 failures to the data. The adjusted proportion
+#' is calculated as:
+#'
+#' \deqn{\hat{p} = \frac{x + 2}{n + 4}}
+#'
+#' The standard error for the adjusted proportion is given by:
+#'
+#' \deqn{\text{se} = \sqrt{\frac{\hat{p} (1 - \hat{p})}{n + 4}}.}
+#'
+#' The confidence interval is then constructed using the \eqn{t}-distribution with \eqn{n - 1} degrees of freedom:
+#'
+#' \deqn{\text{CI} = \hat{p} \pm t_{n-1, \alpha/2} \cdot \text{se},}
+#'
+#' where \eqn{t_{n-1, \alpha/2}} is the critical value of the \eqn{t}-distribution at a two-tailed significance level of \eqn{\alpha = 1 - \text{conf.level}}.
+#'
+#' @return A vector with the lower and upper limits of the confidence interval.
+#'
+#' @examples
+#' # Example with a single value
+#' ci_p_agresti_caffo(x = 15, n = 50, conf.level = 0.95)
+#'
+#'
+#' @export
+#'
+ci_p_agresti_caffo <- function(x, n, conf.level = 0.95) {
+  p_hat <- (x + 2) / (n + 4)
+  se <- sqrt((p_hat * (1 - p_hat)) / (n + 4))
+  t <- qt(1 - (1 - conf.level) / 2, n - 1)
+  alpha <- 1-conf.level
+  # Limits
+  if (x == 0) {
+    upper <- (alpha / 2)^(1 / n)
+    lower <- 0
+  } else if (x == n) {
+    lower <- 1 - (alpha / 2)^(1 / n)
+    upper <- 1
+  } else {
+    # Limits
+    if (x == 0) {
+      upper <- (alpha / 2)^(1 / n)
+      lower <- 0
+    } else if (x == n) {
+      lower <- 1 - (alpha / 2)^(1 / n)
+      upper <- 1
+    } else {
+      lower <- p_hat - t * se
+      upper <- p_hat + t * se
+    }
+  }
 
+  return(c(lower, upper))
+}
+ci_p_agresti_caffo <- Vectorize(ci_p_agresti_caffo)
