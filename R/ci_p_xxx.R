@@ -9,7 +9,8 @@
 #'
 #' @param x a number or a vector with the number of successes.
 #' @param n a number or a vector with the number of trials.
-#' @param conf.level confidence level for the returned confidence interval. By default is 0.95.
+#' @param conf.level confidence level for the returned confidence interval.
+#' By default is 0.95.
 #'
 #' @seealso \link{ci_p}.
 #'
@@ -797,6 +798,7 @@ ci_p_hpd_jeffreys <- Vectorize(ci_p_hpd_jeffreys)
 ci_p_LRT <- function(x, n, conf.level = 0.95) {
   chi_crit <- qchisq(conf.level, df = 1)
   alpha <- 1 - conf.level
+
   BinLLR <- function(x, n, p) {
     phat <- x / n
     if (p == 0 || p == 1) return(Inf) # Evita problemas de logaritmos
@@ -831,4 +833,80 @@ ci_p_LRT <- function(x, n, conf.level = 0.95) {
   return(c(lower, upper))
 }
 ci_p_LRT <- Vectorize(ci_p_LRT)
+#'
+#'
+#'
+#' Mid-p confidence interval for Binomial proportion
+#'
+#' @author Rusvelt Jose Meza San Martín, \email{rmezas@unal.edu.co}
+#'
+#' @description
+#' This function calculates the mid-p confidence interval for a
+#' Binomial proportion. It is vectorized, allowing the evaluation
+#' of single values or vectors.
+#'
+#' @param x A number or a vector with the number of successes.
+#' @param n A number or a vector with the number of trials.
+#' @param conf.level confidence level for the returned confidence interval.
+#' By default is 0.95.
+#'
+#' @seealso \link{ci_p}.
+#'
+#' @references
+#' Berry, G., & Armitage, P. (1995). Mid-P confidence intervals:
+#' a brief review. Journal of the Royal Statistical Society Series
+#' D: The Statistician, 44(4), 417-423.
+#'
+#' @details
+#' The mid-p confidence interval adjusts the exact binomial
+#' interval by averaging the tail probabilities of the observed value.
+#' The limits are found by solving the following equations:
+#'
+#' \deqn{\sum_{j=0}^{x-1} P(X = j) + 0.5 \cdot P(X = x) = \alpha / 2}
+#'
+#' \deqn{\sum_{j=x+1}^{n} P(X = j) + 0.5 \cdot P(X = x) = \alpha / 2}
+#'
+#' where \eqn{P(X = j)} is the binomial probability.
+#'
+#' @return A vector with the lower and upper limits of the confidence
+#' interval.
+#'
+#' @examples
+#' # Example with a single value
+#' ci_p_mid_p(x = 5, n = 20, conf.level = 0.95)
+#'
+#' # Example with vectors
+#' x_values <- c(5, 10, 15)
+#' n_values <- c(20, 30, 40)
+#' ci_p_mid_p(x = x_values, n = n_values, conf.level = 0.95)
+#'
+#' @export
+ci_p_mid_p <- function(x, n, conf.level = 0.95) {
+
+  alpha <- 1 - conf.level
+
+  # Upper limit
+  upper_limit <- uniroot(
+    function(p) {
+      sum(sapply(0:(x - 1), function(j) dbinom(x=j, prob=p, size=n))) +
+        0.5 * dbinom(x=x, prob=p, size=n) - alpha / 2
+    },
+    interval = c(0, 1),
+    tol = 1e-8
+  )$root
+
+  # Lower limit
+  lower_limit <- uniroot(
+    function(p) {
+      sum(sapply((x + 1):n, function(j) dbinom(x=j, prob=p, size=n))) +
+        0.5 * dbinom(x=x, prob=p, size=n) - alpha / 2
+    },
+    interval = c(0, 1),
+    tol = 1e-8
+  )$root
+
+  # Retornar los límites
+  return(c(lower_limit, upper_limit))
+}
+ci_p_mid_p <- Vectorize(ci_p_mid_p)
 

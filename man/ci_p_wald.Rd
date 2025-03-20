@@ -11,7 +11,8 @@ ci_p_wald(x, n, conf.level = 0.95)
 
 \item{n}{a number or a vector with the number of trials.}
 
-\item{conf.level}{confidence level for the returned confidence interval. By default is 0.95.}
+\item{conf.level}{confidence level for the returned confidence interval.
+By default is 0.95.}
 }
 \value{
 A matrix with the lower and upper limits.
