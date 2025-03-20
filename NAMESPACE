@@ -2,6 +2,7 @@
 
 S3method(plot,htest)
 export(ci_p)
+export(ci_p_LRT)
 export(ci_p_add_4)
 export(ci_p_agresti_coull)
 export(ci_p_arcsine)

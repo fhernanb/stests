@@ -743,4 +743,92 @@ ci_p_hpd_jeffreys <- function(x, n, conf.level=0.95) {
 }
 # Vectorizar la función
 ci_p_hpd_jeffreys <- Vectorize(ci_p_hpd_jeffreys)
+#'
+#'
+#'
+#'
+#'
+#'
+#' Likelihood Ratio confidence interval for Binomial proportion
+#'
+#' @author David Esteban Cartagena Mejía, \email{dcartagena@unal.edu.co}
+#'
+#' @description
+#' This function calculates the Likelihood Ratio (LRT) confidence interval for
+#' a Binomial proportion.
+#' It is vectorized, allowing the evaluation of single values or vectors.
+#'
+#' @param x A number or a vector with the number of successes.
+#' @param n A number or a vector with the number of trials.
+#' @param conf.level Confidence level for the returned confidence interval.
+#' By default, it is 0.95.
+#'
+#' @seealso \link{ci_p}.
+#'
+#' @references
+#' Somerville, M. C., & Brown, R. S. (2013). Exact likelihood ratio
+#' and score confidence intervals for the binomial proportion.
+#' Pharmaceutical statistics, 12(3), 120-128.
+#'
+#' @details
+#' This function computes the confidence interval for a Binomial proportion
+#' based on the Likelihood Ratio Test (LRT). The confidence interval is
+#' defined as the set of values for \eqn{p} that satisfy the following
+#' condition:
+#'
+#' \deqn{-2 \log \left(\frac{L(p)}{L(\hat{p}_{ML})}\right) \leq \chi^2_{\gamma}(1),}
+#'
+#' where \eqn{L(p)} is the likelihood function for the binomial model,
+#' \eqn{\hat{p}_{ML} = x / n} is the maximum likelihood estimator
+#' for \eqn{p}, and \eqn{\chi^2_{\gamma}(1)} is the \eqn{1-\gamma}
+#' quantile of the chi-square distribution with 1
+#' degree of freedom.
+#'
+#' The confidence limits are calculated numerically using the \code{uniroot} function in R. Special care is taken
+#' to handle edge cases where \eqn{x = 0} or \eqn{x = n}, setting the limits to 0 or 1, respectively.
+#'
+#' @return A vector with the lower and upper limits.
+#'
+#' @examples
+#' ci_p_LRT(x = 15, n = 50, conf.level = 0.95)
+#'
+#' @export
+#'
+ci_p_LRT <- function(x, n, conf.level = 0.95) {
+  chi_crit <- qchisq(conf.level, df = 1)
+  alpha <- 1 - conf.level
+  BinLLR <- function(x, n, p) {
+    phat <- x / n
+    if (p == 0 || p == 1) return(Inf) # Evita problemas de logaritmos
+    -2 * (x * log(p / phat) + (n - x) * log((1 - p) / (1 - phat)))
+  }
+
+  LRT_function <- function(p) {
+    BinLLR(x, n, p) - chi_crit
+  }
+
+  # Limites del intervalo
+  if (x == 0) {
+    upper <- (alpha / 2)^(1 / n)
+    lower <- 0
+  } else if (x == n) {
+    lower <- 1 - (alpha / 2)^(1 / n)
+    upper <- 1
+  } else {
+    lower <- tryCatch(
+      uniroot(LRT_function,
+              lower = 1e-10,
+              upper = x / n - 1e-5, tol = 1e-8)$root,
+      error = function(e) 0
+    )
+    upper <- tryCatch(
+      uniroot(LRT_function,
+              lower = x / n + 1e-5,
+              upper = 1 - 1e-10, tol = 1e-8)$root,
+      error = function(e) 1
+    )
+  }
+  return(c(lower, upper))
+}
+ci_p_LRT <- Vectorize(ci_p_LRT)
 

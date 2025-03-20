@@ -17,7 +17,7 @@ ci_p(x, n, conf.level = 0.95, intervalType = "wald")
 "wald", "agresti_coull", "rindskopf",
 "clopper_pearson", "add_4", "arcsine_cc",
 "arcsine", "arcsine_ac", "wilson",
-"ci_p_jeffreys", "hpd_jeffreys"}
+"ci_p_jeffreys", "hpd_jeffreys", "LRT",}
 }
 \value{
 A dataframe with the input information and the confidence interval.

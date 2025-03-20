@@ -19,6 +19,7 @@
 <url><loc>/reference/ci_p_exact_clopper_pearson.html</loc></url>
 <url><loc>/reference/ci_p_hpd_jeffreys.html</loc></url>
 <url><loc>/reference/ci_p_jeffreys.html</loc></url>
+<url><loc>/reference/ci_p_LRT.html</loc></url>
 <url><loc>/reference/ci_p_rindskopf.html</loc></url>
 <url><loc>/reference/ci_p_wald.html</loc></url>
 <url><loc>/reference/ci_p_wilson.html</loc></url>
@@ -35,8 +36,8 @@
 <url><loc>/reference/shade.dist.html</loc></url>
 <url><loc>/reference/shade.norm.html</loc></url>
 <url><loc>/reference/suma.html</loc></url>
-<url><loc>/reference/t_test.html</loc></url>
 <url><loc>/reference/two_mean_vector_test.html</loc></url>
+<url><loc>/reference/t_test.html</loc></url>
 <url><loc>/reference/var.test.html</loc></url>
 <url><loc>/reference/var_test.html</loc></url>
 <url><loc>/reference/z.test.html</loc></url>
