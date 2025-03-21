@@ -36,8 +36,10 @@ for \eqn{p}, and \eqn{\chi^2_{\gamma}(1)} is the \eqn{1-\gamma}
 quantile of the chi-square distribution with 1
 degree of freedom.
 
-The confidence limits are calculated numerically using the \code{uniroot} function in R. Special care is taken
-to handle edge cases where \eqn{x = 0} or \eqn{x = n}, setting the limits to 0 or 1, respectively.
+The confidence limits are calculated numerically using the \code{uniroot}
+function in R. Special care is taken
+to handle edge cases where \eqn{x = 0} or \eqn{x = n}, setting the
+limits to 0 or 1, respectively.
 }
 \examples{
 ci_p_LRT(x = 15, n = 50, conf.level = 0.95)

@@ -11,7 +11,8 @@ ci_p_wilson(x, n, conf.level = 0.95)
 
 \item{n}{a number or a vector with the number of trials.}
 
-\item{conf.level}{confidence level for the returned confidence interval. By default is 0.95.}
+\item{conf.level}{confidence level for the returned confidence interval.
+By default is 0.95.}
 }
 \value{
 A matrix with the lower and upper limits.
@@ -39,7 +40,9 @@ ci_p_wilson(x=50, n=50, conf.level=0.95)
 
 }
 \references{
-Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association, 22(158), 209-212.
+Wilson, E. B. (1927). Probable inference, the law of succession, and
+statistical inference. Journal of the American Statistical Association,
+22(158), 209-212.
 }
 \seealso{
 \link{ci_p}.

@@ -11,7 +11,8 @@ ci_p_rindskopf(x, n, conf.level = 0.95)
 
 \item{n}{A number or a vector with the number of trials.}
 
-\item{conf.level}{Confidence level for the returned confidence interval. By default, it is 0.95.}
+\item{conf.level}{Confidence level for the returned confidence interval.
+By default, it is 0.95.}
 }
 \value{
 A vector with the lower and upper limits.
@@ -22,7 +23,8 @@ It is vectorized, allowing users to evaluate it using either
 single values or vectors.
 }
 \details{
-The expression to calculate the confidence interval according to the Rindskopf approach is given by:
+The expression to calculate the confidence interval according to the
+Rindskopf approach is given by:
 
 \eqn{\phi=\text{logit}(\pi)=\log\left(\frac{\pi}{1 - \pi}\right)},
 
@@ -34,20 +36,27 @@ and its standard error is:
 
 \eqn{\text{se}(\hat{\phi}_{ML})=\sqrt{\frac{1}{x + 0.5} + \frac{1}{n - x + 0.5}}}.
 
-The adjustment of adding 0.5 successes and non-successes ensures that intervals can also be computed for the cases where \eqn{x=0} or \eqn{x=n} (where otherwise the maximum likelihood estimator and standard error would be infinite).
+The adjustment of adding 0.5 successes and non-successes ensures that
+intervals can also be computed for the cases where \eqn{x=0} or \eqn{x=n}
+(where otherwise the maximum likelihood estimator and standard error would
+be infinite).
 
-Since the scale of \eqn{\phi} is \eqn{(- \infty, \infty)}, this interval respects the boundary constraints. Back-transformation to the scale of \eqn{\pi} is performed using the inverse logit function:
+Since the scale of \eqn{\phi} is \eqn{(- \infty, \infty)}, this interval
+respects the boundary constraints. Back-transformation to the scale
+of \eqn{\pi} is performed using the inverse logit function:
 
 \eqn{\pi=\text{expit}(\phi)=\frac{\exp(\phi)}{1 + \exp(\phi)}}.
 
-Thus, the confidence interval for \eqn{\pi} in the original scale is the Rindskopf confidence interval, as proposed by Rindskopf.
+Thus, the confidence interval for \eqn{\pi} in the original scale is the
+Rindskopf confidence interval, as proposed by Rindskopf.
 }
 \examples{
 ci_p_rindskopf(x=15, n=50, conf.level=0.95)
 
 }
 \references{
-Rindskopf, D. (2000). Commentary: Approximate is better than “exact” for interval
+Rindskopf, D. (2000). Commentary: Approximate is better than “exact”
+for interval
 estimation of binomial proportions. The American Statistician, 54, 88.
 }
 \seealso{

@@ -15,7 +15,8 @@
 #' @seealso \link{ci_p}.
 #'
 #' @references
-#' Wald, A. (1949). Statistical decision functions. The Annals of Mathematical Statistics, 165-205.
+#' Wald, A. (1949). Statistical decision functions. The Annals of
+#' Mathematical Statistics, 165-205.
 #'
 #' @details
 #' The expression to obtain the confidence interval is given below:
@@ -57,21 +58,27 @@ ci_p_wald <- Vectorize(ci_p_wald)
 #'
 #' @param x A number or a vector with the number of successes.
 #' @param n A number or a vector with the number of trials.
-#' @param conf.level Confidence level for the returned confidence interval. By default, it is 0.95.
+#' @param conf.level Confidence level for the returned confidence interval.
+#' By default, it is 0.95.
 #'
 #' @seealso \link{ci_p}.
 #'
 #' @references
-#' Agresti, A., & Coull, B. A. (1998). Approximate is better than “exact” for interval estimation of binomial proportions. The American Statistician, 52(2), 119-126.
+#' Agresti, A., & Coull, B. A. (1998). Approximate is better than “exact” for
+#' interval estimation of binomial proportions. The American Statistician,
+#' 52(2), 119-126.
 #'
 #' @details
-#' The Agresti-Coull interval is an approximate confidence interval for the Binomial proportion \eqn{p}.
-#' The limits are calculated based on an adjusted proportion \eqn{\tilde{p}} and its standard error. The mathematical definitions are as follows:
+#' The Agresti-Coull interval is an approximate confidence interval for the
+#' Binomial proportion \eqn{p}.
+#' The limits are calculated based on an adjusted proportion \eqn{\tilde{p}}
+#' and its standard error. The mathematical definitions are as follows:
 #'  Adjusted proportion: \eqn{\tilde{p}=\frac{x + 2}{n + 4}};
 #'  Adjusted standard error: \eqn{se=\sqrt{\frac{\tilde{p}(1 - \tilde{p})}{n + 4}}};
 #'  Confidence limits: \eqn{\tilde{p} \pm z_{\alpha/2} \cdot se},
 #'
-#' where \eqn{z_{\alpha/2}} is the critical value of the standard normal distribution. The limits are truncated to the range \eqn{[0, 1]}.
+#' where \eqn{z_{\alpha/2}} is the critical value of the standard normal
+#' distribution. The limits are truncated to the range \eqn{[0, 1]}.
 #'
 #' @return A vector with the lower and upper limits.
 #'
@@ -106,16 +113,19 @@ ci_p_agresti_coull <- Vectorize(ci_p_agresti_coull)
 #'
 #' @param x A number or a vector with the number of successes.
 #' @param n A number or a vector with the number of trials.
-#' @param conf.level Confidence level for the returned confidence interval. By default, it is 0.95.
+#' @param conf.level Confidence level for the returned confidence interval.
+#' By default, it is 0.95.
 #'
 #' @seealso \link{ci_p}.
 #'
 #' @references
-#' Rindskopf, D. (2000). Commentary: Approximate is better than “exact” for interval
+#' Rindskopf, D. (2000). Commentary: Approximate is better than “exact”
+#' for interval
 #' estimation of binomial proportions. The American Statistician, 54, 88.
 #'
 #' @details
-#' The expression to calculate the confidence interval according to the Rindskopf approach is given by:
+#' The expression to calculate the confidence interval according to the
+#' Rindskopf approach is given by:
 #'
 #' \eqn{\phi=\text{logit}(\pi)=\log\left(\frac{\pi}{1 - \pi}\right)},
 #'
@@ -127,13 +137,19 @@ ci_p_agresti_coull <- Vectorize(ci_p_agresti_coull)
 #'
 #' \eqn{\text{se}(\hat{\phi}_{ML})=\sqrt{\frac{1}{x + 0.5} + \frac{1}{n - x + 0.5}}}.
 #'
-#' The adjustment of adding 0.5 successes and non-successes ensures that intervals can also be computed for the cases where \eqn{x=0} or \eqn{x=n} (where otherwise the maximum likelihood estimator and standard error would be infinite).
+#' The adjustment of adding 0.5 successes and non-successes ensures that
+#' intervals can also be computed for the cases where \eqn{x=0} or \eqn{x=n}
+#' (where otherwise the maximum likelihood estimator and standard error would
+#' be infinite).
 #'
-#' Since the scale of \eqn{\phi} is \eqn{(- \infty, \infty)}, this interval respects the boundary constraints. Back-transformation to the scale of \eqn{\pi} is performed using the inverse logit function:
+#' Since the scale of \eqn{\phi} is \eqn{(- \infty, \infty)}, this interval
+#' respects the boundary constraints. Back-transformation to the scale
+#' of \eqn{\pi} is performed using the inverse logit function:
 #'
 #' \eqn{\pi=\text{expit}(\phi)=\frac{\exp(\phi)}{1 + \exp(\phi)}}.
 #'
-#' Thus, the confidence interval for \eqn{\pi} in the original scale is the Rindskopf confidence interval, as proposed by Rindskopf.
+#' Thus, the confidence interval for \eqn{\pi} in the original scale is the
+#' Rindskopf confidence interval, as proposed by Rindskopf.
 #'
 #' @return A vector with the lower and upper limits.
 #'
@@ -189,22 +205,28 @@ ci_p_rindskopf <- Vectorize(ci_p_rindskopf)
 #'
 #' @param x A number or a vector with the number of successes.
 #' @param n A number or a vector with the number of trials.
-#' @param conf.level Confidence level for the returned confidence interval. By default, it is 0.95.
+#' @param conf.level Confidence level for the returned confidence interval.
+#' By default, it is 0.95.
 #'
 #' @seealso \link{ci_p}.
 #'
 #' @references
-#' Clopper, C. J., & Pearson, E. S. (1934). The use of confidence or fiducial limits illustrated in the case of the binomial. Biometrika, 26(4), 404-413.
+#' Clopper, C. J., & Pearson, E. S. (1934). The use of confidence or fiducial
+#' limits illustrated in the case of the binomial. Biometrika, 26(4), 404-413.
 #'
 #' @details
-#' The Clopper-Pearson interval is an exact confidence interval for the Binomial proportion \eqn{p}.
-#' The limits of the interval are derived based on the Beta distribution. For the special cases where \eqn{x=0} or \eqn{x=n}, the limits are calculated directly.
+#' The Clopper-Pearson interval is an exact confidence interval for the
+#' Binomial proportion \eqn{p}.
+#' The limits of the interval are derived based on the Beta distribution.
+#' For the special cases where \eqn{x=0} or \eqn{x=n}, the limits are
+#' calculated directly.
 #'
 #' The mathematical definitions are as follows:
 #'
 #' - If \eqn{x=0}, the lower limit is \eqn{0}, and the upper limit is \eqn{1 - (\alpha / 2)^{1/n}}.
 #'
-#' - If \eqn{x=n}, the lower limit is \eqn{(\alpha / 2)^{1/n}}, and the upper limit is \eqn{1}.
+#' - If \eqn{x=n}, the lower limit is \eqn{(\alpha / 2)^{1/n}}, and the
+#' upper limit is \eqn{1}.
 #'
 #' Otherwise, the limits are given by:
 #'
@@ -270,10 +292,14 @@ ci_p_clopper_pearson <- Vectorize(ci_p_clopper_pearson)
 #' @seealso \link{ci_p}.
 #'
 #' @references
-#' Pan, W. (2002). Approximate confidence intervals for one proportion and difference of two proportions. Computational Statistics and Data Analysis, 40(1), 143–157
+#' Pan, W. (2002). Approximate confidence intervals for one proportion and
+#' difference of two proportions. Computational Statistics and Data Analysis,
+#' 40(1), 143–157
 #'
 #' @details
-#' The Add-4 Wald-t confidence interval improves the performance of the Wald interval by adding 2 successes and 2 failures to the observed data, effectively modifying the estimated proportion:
+#' The Add-4 Wald-t confidence interval improves the performance of the Wald
+#' interval by adding 2 successes and 2 failures to the observed data,
+#' effectively modifying the estimated proportion:
 #'
 #' \deqn{\hat{p}=\frac{x + 2}{n + 4}.}
 #'
@@ -294,7 +320,8 @@ ci_p_clopper_pearson <- Vectorize(ci_p_clopper_pearson)
 #' \deqn{\text{Lower}=\hat{p} - t \cdot \sqrt{\frac{\tilde{\pi}(1 - \hat{p})}{n+4}},}
 #' \deqn{\text{Upper}=\hat{p} + t \cdot \sqrt{\frac{\tilde{\pi}(1 - \hat{p})}{n+4}},}
 #'
-#' where \eqn{t} is the critical value from the t-distribution with \eqn{\nu} degrees of freedom.
+#' where \eqn{t} is the critical value from the t-distribution with \eqn{\nu}
+#' degrees of freedom.
 #'
 #' @return A vector with the lower and upper limits of the confidence interval.
 #'
@@ -342,7 +369,8 @@ ci_p_add_4 <- Vectorize(ci_p_add_4)
 #'
 #'
 #'
-#' Arcsine Wald Confidence Interval with Continuity Correction for Binomial Proportion
+#' Arcsine Wald Confidence Interval with Continuity Correction for
+#' Binomial Proportion
 #'
 #' @author David Esteban Cartagena Mejía, \email{dcartagena@unal.edu.co}
 #'
@@ -353,7 +381,8 @@ ci_p_add_4 <- Vectorize(ci_p_add_4)
 #'
 #' @param x A number or a vector with the number of successes.
 #' @param n A number or a vector with the number of trials.
-#' @param conf.level Confidence level for the returned confidence interval. By default, it is 0.95.
+#' @param conf.level Confidence level for the returned confidence interval.
+#' By default, it is 0.95.
 #'
 #' @seealso \link{ci_p}.
 #'
@@ -361,8 +390,11 @@ ci_p_add_4 <- Vectorize(ci_p_add_4)
 #' Missing reference.
 #'
 #' @details
-#' The Arcsine Wald confidence interval with continuity correction adjusts the classical Wald interval by transforming the proportion \eqn{\pi} to the arcsine scale.
-#' The parameter \eqn{\pi} represents the true proportion of successes in a Binomial experiment, defined as:
+#' The Arcsine Wald confidence interval with continuity correction adjusts the
+#' classical Wald interval by transforming the proportion \eqn{\pi} to the
+#' arcsine scale.
+#' The parameter \eqn{\pi} represents the true proportion of successes in
+#' a Binomial experiment, defined as:
 #'
 #' \deqn{\pi=\frac{x \pm 0.5}{n},}
 #'
@@ -376,12 +408,14 @@ ci_p_add_4 <- Vectorize(ci_p_add_4)
 #'
 #' \deqn{\text{se}(\phi)=\frac{1}{\sqrt{4n}},}
 #'
-#' where \eqn{n} is the number of trials. The confidence interval on the arcsine scale is:
+#' where \eqn{n} is the number of trials. The confidence interval on the
+#' arcsine scale is:
 #'
 #' \deqn{\text{Lower}(\phi)=\max\left(0, \phi - z \cdot (\phi)\right),}
 #' \deqn{\text{Upper}(\phi)=\min\left(\frac{\pi}{2}, \phi + z \cdot (\phi)\right),}
 #'
-#' where \eqn{z} is the critical value from the standard normal distribution at the specified confidence level.
+#' where \eqn{z} is the critical value from the standard normal distribution
+#' at the specified confidence level.
 #'
 #' Back-transforming the limits to the original scale gives:
 #'
@@ -394,7 +428,8 @@ ci_p_add_4 <- Vectorize(ci_p_add_4)
 #'
 #' - If \eqn{x=n}, the upper limit is 1, and the lower limit is calculated as \eqn{1 - (\alpha / 2)^{1/n}}.
 #'
-#' These adjustments ensure that the confidence interval is valid and well-behaved, even at the boundaries of the parameter space.
+#' These adjustments ensure that the confidence interval is valid and
+#' well-behaved, even at the boundaries of the parameter space.
 #'
 #' @return A vector with the lower and upper limits of the confidence interval.
 #'
@@ -448,7 +483,8 @@ ci_p_arcsine_cc <- Vectorize(ci_p_arcsine_cc)
 #'
 #' @param x a number or a vector with the number of successes.
 #' @param n a number or a vector with the number of trials.
-#' @param conf.level confidence level for the returned confidence interval. By default is 0.95.
+#' @param conf.level confidence level for the returned confidence interval.
+#' By default is 0.95.
 #'
 #' @seealso \link{ci_p}.
 #'
@@ -492,7 +528,8 @@ ci_p_arcsine <- Vectorize(ci_p_arcsine)
 #'
 #'
 #'
-#' Arcsine Wald Confidence Interval with Continuity Correction Anscombe for Binomial Proportion
+#' Arcsine Wald Confidence Interval with Continuity Correction Anscombe for
+#' Binomial Proportion
 #'
 #' @author David Esteban Cartagena Mejía, \email{dcartagena@unal.edu.co}
 #'
@@ -503,16 +540,21 @@ ci_p_arcsine <- Vectorize(ci_p_arcsine)
 #'
 #' @param x A number or a vector with the number of successes.
 #' @param n A number or a vector with the number of trials.
-#' @param conf.level Confidence level for the returned confidence interval. By default, it is 0.95.
+#' @param conf.level Confidence level for the returned confidence interval.
+#' By default, it is 0.95.
 #'
 #' @seealso \link{ci_p}.
 #'
 #' @references
-#' Anscombe, F.J. (1948). Transformations of Poisson, binomial and negative-binomial data. Biometrika, 35, 246–254
+#' Anscombe, F.J. (1948). Transformations of Poisson, binomial and
+#' negative-binomial data. Biometrika, 35, 246–254
 #'
 #' @details
-#' The Arcsine Wald confidence interval with continuity correction anscombe adjusts the classical Wald interval by transforming the proportion \eqn{\pi} to the arcsine scale.
-#' The parameter \eqn{\pi} represents the true proportion of successes in a Binomial experiment, defined as:
+#' The Arcsine Wald confidence interval with continuity correction anscombe
+#' adjusts the classical Wald interval by transforming the proportion \eqn{\pi}
+#' to the arcsine scale.
+#' The parameter \eqn{\pi} represents the true proportion of successes in a
+#' Binomial experiment, defined as:
 #'
 #' \deqn{\pi=\frac{0.3875+x \pm 0.5}{n+0.75},}
 #'
@@ -526,12 +568,14 @@ ci_p_arcsine <- Vectorize(ci_p_arcsine)
 #'
 #' \deqn{\text{se}(\phi)=\frac{1}{2\sqrt{n+0.5}},}
 #'
-#' where \eqn{n} is the number of trials. The confidence interval on the arcsine scale is:
+#' where \eqn{n} is the number of trials. The confidence interval on the
+#' arcsine scale is:
 #'
 #' \deqn{\text{Lower}(\phi)=\max\left(0, \phi - z \cdot (\phi)\right),}
 #' \deqn{\text{Upper}(\phi)=\min\left(\frac{\pi}{2}, \phi + z \cdot (\phi)\right),}
 #'
-#' where \eqn{z} is the critical value from the standard normal distribution at the specified confidence level.
+#' where \eqn{z} is the critical value from the standard normal distribution
+#' at the specified confidence level.
 #'
 #' Back-transforming the limits to the original scale gives:
 #'
@@ -542,7 +586,8 @@ ci_p_arcsine <- Vectorize(ci_p_arcsine)
 #' - If \eqn{x=0}, the lower limit is 0, and the upper limit is calculated as \eqn{(\alpha / 2)^{1/n}}.
 #' - If \eqn{x=n}, the upper limit is 1, and the lower limit is calculated as \eqn{1 - (\alpha / 2)^{1/n}}.
 #'
-#' These adjustments ensure that the confidence interval is valid and well-behaved, even at the boundaries of the parameter space.
+#' These adjustments ensure that the confidence interval is valid and
+#' well-behaved, even at the boundaries of the parameter space.
 #'
 #' @return A vector with the lower and upper limits of the confidence interval.
 #'
@@ -590,12 +635,15 @@ ci_p_arcsine_ac <- Vectorize(ci_p_arcsine_ac)
 #'
 #' @param x a number or a vector with the number of successes.
 #' @param n a number or a vector with the number of trials.
-#' @param conf.level confidence level for the returned confidence interval. By default is 0.95.
+#' @param conf.level confidence level for the returned confidence interval.
+#' By default is 0.95.
 #'
 #' @seealso \link{ci_p}.
 #'
 #' @references
-#' Wilson, E. B. (1927). Probable inference, the law of succession, and statistical inference. Journal of the American Statistical Association, 22(158), 209-212.
+#' Wilson, E. B. (1927). Probable inference, the law of succession, and
+#' statistical inference. Journal of the American Statistical Association,
+#' 22(158), 209-212.
 #'
 #' @details
 #' The expression to obtain the confidence interval is given below:
@@ -631,7 +679,8 @@ ci_p_wilson <- Vectorize(ci_p_wilson)
 #'
 #'
 #'
-#' Bayesian confidence interval for Binomial proportion using Jeffreys prior (non-informative prior).
+#' Bayesian confidence interval for Binomial proportion using Jeffreys
+#' prior (non-informative prior).
 #'
 #' @author Rusvelt Jose Meza San Martin, \email{rmezas@unal.edu.co}
 #'
@@ -642,9 +691,8 @@ ci_p_wilson <- Vectorize(ci_p_wilson)
 #'
 #' @param x A number or a vector with the number of successes.
 #' @param n A number or a vector with the number of trials.
-#' @param conf.level Confidence level for the returned confidence interval. By default, it is 0.95.
-#'
-#' @seealso \link{ci_p}.
+#' @param conf.level Confidence level for the returned confidence interval.
+#' By default, it is 0.95.
 #'
 #' @seealso \link{ci_p}.
 #'
@@ -654,7 +702,8 @@ ci_p_wilson <- Vectorize(ci_p_wilson)
 #'
 #' \deqn{p | x \sim \text{Beta}(x+0.5, n-x+0.5)}
 #'
-#' The limits of the Bayesian confidence interval are derived from the quantiles of the posterior distribution:
+#' The limits of the Bayesian confidence interval are derived from the
+#' quantiles of the posterior distribution:
 #'
 #' \deqn{\text{Lower Limit}=B_{1-\alpha/2, x+0.5, n-x+0.5}}
 #'
@@ -697,16 +746,20 @@ ci_p_jeffreys <- Vectorize(ci_p_jeffreys)
 #'
 #'
 #'
-#' Highest Posterior Density (HPD) interval for Binomial proportion using Jeffreys prior
+#' Highest Posterior Density (HPD) interval for Binomial proportion using
+#' Jeffreys prior
 #'
 #' @author Rusvelt Jose Meza San Martín, \email{rmezas@unal.edu.co}
 #'
 #' @description
-#' This function calculates the Highest Posterior Density (HPD) interval for a Binomial proportion using Jeffreys prior. It is vectorized, allowing the evaluation of single values or vectors.
+#' This function calculates the Highest Posterior Density (HPD) interval
+#' for a Binomial proportion using Jeffreys prior. It is vectorized,
+#' allowing the evaluation of single values or vectors.
 #'
 #' @param x A number or a vector with the number of successes.
 #' @param n A number or a vector with the number of trials.
-#' @param conf.level Confidence level for the returned confidence interval. By default, it is 0.95.
+#' @param conf.level Confidence level for the returned confidence interval.
+#' By default, it is 0.95.
 #'
 #' @seealso \link{ci_p}.
 #'
@@ -716,7 +769,8 @@ ci_p_jeffreys <- Vectorize(ci_p_jeffreys)
 #'
 #' \deqn{p | x \sim \text{Beta}(0.5 + x, 0.5 + n - x)}
 #'
-#' The HPD interval is calculated using the posterior samples from the Beta distribution:
+#' The HPD interval is calculated using the posterior samples from the
+#' Beta distribution:
 #'
 #' \deqn{	\text{HPD Interval}=[L, U]}
 #'
@@ -785,8 +839,10 @@ ci_p_hpd_jeffreys <- Vectorize(ci_p_hpd_jeffreys)
 #' quantile of the chi-square distribution with 1
 #' degree of freedom.
 #'
-#' The confidence limits are calculated numerically using the \code{uniroot} function in R. Special care is taken
-#' to handle edge cases where \eqn{x = 0} or \eqn{x = n}, setting the limits to 0 or 1, respectively.
+#' The confidence limits are calculated numerically using the \code{uniroot}
+#' function in R. Special care is taken
+#' to handle edge cases where \eqn{x = 0} or \eqn{x = n}, setting the
+#' limits to 0 or 1, respectively.
 #'
 #' @return A vector with the lower and upper limits.
 #'
@@ -938,9 +994,8 @@ ci_p_mid_p <- Vectorize(ci_p_mid_p)
 #'
 #' @details
 #' The Agresti-Caffo confidence interval incorporates a simple
-#' Bayesian adjustment by
-#' adding 2 successes and 2 failures to the data. The adjusted proportion
-#' is calculated as:
+#' Bayesian adjustment by adding 2 successes and 2 failures
+#' to the data. The adjusted proportion is calculated as:
 #'
 #' \deqn{\hat{p} = \frac{x + 2}{n + 4}}
 #'
@@ -948,11 +1003,14 @@ ci_p_mid_p <- Vectorize(ci_p_mid_p)
 #'
 #' \deqn{\text{se} = \sqrt{\frac{\hat{p} (1 - \hat{p})}{n + 4}}.}
 #'
-#' The confidence interval is then constructed using the \eqn{t}-distribution with \eqn{n - 1} degrees of freedom:
+#' The confidence interval is then constructed using the \eqn{t}-distribution
+#' with \eqn{n - 1} degrees of freedom:
 #'
 #' \deqn{\text{CI} = \hat{p} \pm t_{n-1, \alpha/2} \cdot \text{se},}
 #'
-#' where \eqn{t_{n-1, \alpha/2}} is the critical value of the \eqn{t}-distribution at a two-tailed significance level of \eqn{\alpha = 1 - \text{conf.level}}.
+#' where \eqn{t_{n-1, \alpha/2}} is the critical value of the
+#' \eqn{t}-distribution at a two-tailed significance level of
+#' \eqn{\alpha = 1 - \text{conf.level}}.
 #'
 #' @return A vector with the lower and upper limits of the confidence interval.
 #'
@@ -992,3 +1050,64 @@ ci_p_agresti_caffo <- function(x, n, conf.level = 0.95) {
   return(c(lower, upper))
 }
 ci_p_agresti_caffo <- Vectorize(ci_p_agresti_caffo)
+#'
+#'
+#'
+#' Score confidence interval with continuity correction for Binomial proportion
+#'
+#' @author Omar David Mercado Turizo, \email{omercado@unal.edu.co}
+#'
+#' @description
+#' This function calculates the score confidence interval with continuity
+#' correction for a Binomial proportion. It is vectorized, allowing the
+#' evaluation of single values or vectors.
+#'
+#' @param x A number or a vector with the number of successes.
+#' @param n A number or a vector with the number of trials.
+#' @param conf.level Confidence level for the returned confidence interval.
+#' By default, it is 0.95.
+#'
+#' @references
+#' Missing reference.
+#'
+#' @seealso \link{ci_p}.
+#'
+#' @details
+#' The score confidence interval with continuity correction is an
+#' adjusted interval for the Binomial proportion \eqn{p}.
+#'
+#' The mathematical definitions are as follows:
+#'
+#' Lower limit: \eqn{\frac{2np + z^2 - 1 - z \sqrt{z^2 - 2 - \frac{1}{n} + 4p(nq + 1)}}{2n + 2z^2}}.
+#'
+#' Upper limit: \eqn{\frac{2np + z^2 + 1 + z \sqrt{z^2 + 2 - \frac{1}{n} + 4p(nq - 1)}}{2n + 2z^2}}.
+#'
+#' Where \eqn{p = x / n} is the sample proportion, \eqn{q = 1 - p} its complement, and \eqn{z} is the critical value of the standard normal distribution.
+#'
+#' The limits are truncated to the range \eqn{[0, 1]}.
+#'
+#' @return A vector with the lower and upper limits.
+#'
+#' @examples
+#' # Example with a single value
+#' ci_p_score_cc(x = 15, n = 50, conf.level = 0.95)
+#' @export
+#'
+ci_p_score_cc <- function(x, n, conf.level = 0.95) {
+  z <- qnorm((1 + conf.level) / 2) # Valor crítico
+  p <- x / n                       # Proporción muestral
+  q <- 1 - p                       # Complemento de la proporción
+
+  # Cálculo del límite inferior
+  lower <- (2 * n * p + z^2 - 1 - z * sqrt(z^2 - 2 - (1 / n) + 4 * p * (n * q + 1))) /
+    (2 * n + 2 * z^2)
+  lower <- max(lower, 0) # Garantizar que no sea menor a 0
+
+  # Cálculo del límite superior
+  upper <- (2 * n * p + z^2 + 1 + z * sqrt(z^2 + 2 - (1 / n) + 4 * p * (n * q - 1))) /
+    (2 * n + 2 * z^2)
+  upper <- min(upper, 1) # Garantizar que no sea mayor a 1
+
+  return(c(lower, upper))
+}
+ci_p_score_cc <- Vectorize(ci_p_score_cc)

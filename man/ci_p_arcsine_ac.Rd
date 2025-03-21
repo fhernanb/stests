@@ -2,7 +2,8 @@
 % Please edit documentation in R/ci_p_xxx.R
 \name{ci_p_arcsine_ac}
 \alias{ci_p_arcsine_ac}
-\title{Arcsine Wald Confidence Interval with Continuity Correction Anscombe for Binomial Proportion}
+\title{Arcsine Wald Confidence Interval with Continuity Correction Anscombe for
+Binomial Proportion}
 \usage{
 ci_p_arcsine_ac(x, n, conf.level = 0.95)
 }
@@ -11,7 +12,8 @@ ci_p_arcsine_ac(x, n, conf.level = 0.95)
 
 \item{n}{A number or a vector with the number of trials.}
 
-\item{conf.level}{Confidence level for the returned confidence interval. By default, it is 0.95.}
+\item{conf.level}{Confidence level for the returned confidence interval.
+By default, it is 0.95.}
 }
 \value{
 A vector with the lower and upper limits of the confidence interval.
@@ -22,8 +24,11 @@ It is vectorized, allowing users to evaluate it using either
 single values or vectors.
 }
 \details{
-The Arcsine Wald confidence interval with continuity correction anscombe adjusts the classical Wald interval by transforming the proportion \eqn{\pi} to the arcsine scale.
-The parameter \eqn{\pi} represents the true proportion of successes in a Binomial experiment, defined as:
+The Arcsine Wald confidence interval with continuity correction anscombe
+adjusts the classical Wald interval by transforming the proportion \eqn{\pi}
+to the arcsine scale.
+The parameter \eqn{\pi} represents the true proportion of successes in a
+Binomial experiment, defined as:
 
 \deqn{\pi=\frac{0.3875+x \pm 0.5}{n+0.75},}
 
@@ -37,12 +42,14 @@ The standard error on the arcsine scale is constant:
 
 \deqn{\text{se}(\phi)=\frac{1}{2\sqrt{n+0.5}},}
 
-where \eqn{n} is the number of trials. The confidence interval on the arcsine scale is:
+where \eqn{n} is the number of trials. The confidence interval on the
+arcsine scale is:
 
 \deqn{\text{Lower}(\phi)=\max\left(0, \phi - z \cdot (\phi)\right),}
 \deqn{\text{Upper}(\phi)=\min\left(\frac{\pi}{2}, \phi + z \cdot (\phi)\right),}
 
-where \eqn{z} is the critical value from the standard normal distribution at the specified confidence level.
+where \eqn{z} is the critical value from the standard normal distribution
+at the specified confidence level.
 
 Back-transforming the limits to the original scale gives:
 
@@ -53,7 +60,8 @@ Special cases are handled explicitly:
 - If \eqn{x=0}, the lower limit is 0, and the upper limit is calculated as \eqn{(\alpha / 2)^{1/n}}.
 - If \eqn{x=n}, the upper limit is 1, and the lower limit is calculated as \eqn{1 - (\alpha / 2)^{1/n}}.
 
-These adjustments ensure that the confidence interval is valid and well-behaved, even at the boundaries of the parameter space.
+These adjustments ensure that the confidence interval is valid and
+well-behaved, even at the boundaries of the parameter space.
 }
 \examples{
 ci_p_arcsine_ac(x= 0, n=50, conf.level=0.95)
@@ -62,7 +70,8 @@ ci_p_arcsine_ac(x=50, n=50, conf.level=0.95)
 
 }
 \references{
-Anscombe, F.J. (1948). Transformations of Poisson, binomial and negative-binomial data. Biometrika, 35, 246–254
+Anscombe, F.J. (1948). Transformations of Poisson, binomial and
+negative-binomial data. Biometrika, 35, 246–254
 }
 \seealso{
 \link{ci_p}.

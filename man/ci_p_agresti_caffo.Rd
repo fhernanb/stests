@@ -26,9 +26,8 @@ allowing the evaluation of single values or vectors.
 }
 \details{
 The Agresti-Caffo confidence interval incorporates a simple
-Bayesian adjustment by
-adding 2 successes and 2 failures to the data. The adjusted proportion
-is calculated as:
+Bayesian adjustment by adding 2 successes and 2 failures
+to the data. The adjusted proportion is calculated as:
 
 \deqn{\hat{p} = \frac{x + 2}{n + 4}}
 
@@ -36,11 +35,14 @@ The standard error for the adjusted proportion is given by:
 
 \deqn{\text{se} = \sqrt{\frac{\hat{p} (1 - \hat{p})}{n + 4}}.}
 
-The confidence interval is then constructed using the \eqn{t}-distribution with \eqn{n - 1} degrees of freedom:
+The confidence interval is then constructed using the \eqn{t}-distribution
+with \eqn{n - 1} degrees of freedom:
 
 \deqn{\text{CI} = \hat{p} \pm t_{n-1, \alpha/2} \cdot \text{se},}
 
-where \eqn{t_{n-1, \alpha/2}} is the critical value of the \eqn{t}-distribution at a two-tailed significance level of \eqn{\alpha = 1 - \text{conf.level}}.
+where \eqn{t_{n-1, \alpha/2}} is the critical value of the
+\eqn{t}-distribution at a two-tailed significance level of
+\eqn{\alpha = 1 - \text{conf.level}}.
 }
 \examples{
 # Example with a single value

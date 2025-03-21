@@ -2,7 +2,8 @@
 % Please edit documentation in R/ci_p_xxx.R
 \name{ci_p_hpd_jeffreys}
 \alias{ci_p_hpd_jeffreys}
-\title{Highest Posterior Density (HPD) interval for Binomial proportion using Jeffreys prior}
+\title{Highest Posterior Density (HPD) interval for Binomial proportion using
+Jeffreys prior}
 \usage{
 ci_p_hpd_jeffreys(x, n, conf.level = 0.95)
 }
@@ -11,13 +12,16 @@ ci_p_hpd_jeffreys(x, n, conf.level = 0.95)
 
 \item{n}{A number or a vector with the number of trials.}
 
-\item{conf.level}{Confidence level for the returned confidence interval. By default, it is 0.95.}
+\item{conf.level}{Confidence level for the returned confidence interval.
+By default, it is 0.95.}
 }
 \value{
 A vector with the lower and upper limits of the HPD interval.
 }
 \description{
-This function calculates the Highest Posterior Density (HPD) interval for a Binomial proportion using Jeffreys prior. It is vectorized, allowing the evaluation of single values or vectors.
+This function calculates the Highest Posterior Density (HPD) interval
+for a Binomial proportion using Jeffreys prior. It is vectorized,
+allowing the evaluation of single values or vectors.
 }
 \details{
 The Jeffreys prior is a non-informative prior (\eqn{Beta(0.5, 0.5)})
@@ -25,7 +29,8 @@ based on the Fisher information. The posterior distribution is Beta:
 
 \deqn{p | x \sim \text{Beta}(0.5 + x, 0.5 + n - x)}
 
-The HPD interval is calculated using the posterior samples from the Beta distribution:
+The HPD interval is calculated using the posterior samples from the
+Beta distribution:
 
 \deqn{	\text{HPD Interval}=[L, U]}
 

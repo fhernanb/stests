@@ -22,7 +22,9 @@ It is vectorized, allowing users to evaluate it using either
 single values or vectors.
 }
 \details{
-The Add-4 Wald-t confidence interval improves the performance of the Wald interval by adding 2 successes and 2 failures to the observed data, effectively modifying the estimated proportion:
+The Add-4 Wald-t confidence interval improves the performance of the Wald
+interval by adding 2 successes and 2 failures to the observed data,
+effectively modifying the estimated proportion:
 
 \deqn{\hat{p}=\frac{x + 2}{n + 4}.}
 
@@ -43,7 +45,8 @@ The confidence interval is then calculated as:
 \deqn{\text{Lower}=\hat{p} - t \cdot \sqrt{\frac{\tilde{\pi}(1 - \hat{p})}{n+4}},}
 \deqn{\text{Upper}=\hat{p} + t \cdot \sqrt{\frac{\tilde{\pi}(1 - \hat{p})}{n+4}},}
 
-where \eqn{t} is the critical value from the t-distribution with \eqn{\nu} degrees of freedom.
+where \eqn{t} is the critical value from the t-distribution with \eqn{\nu}
+degrees of freedom.
 }
 \examples{
 ci_p_add_4(x=15, n=50, conf.level=0.95)
@@ -52,7 +55,9 @@ ci_p_add_4(x=50, n=50, conf.level=0.95)
 
 }
 \references{
-Pan, W. (2002). Approximate confidence intervals for one proportion and difference of two proportions. Computational Statistics and Data Analysis, 40(1), 143–157
+Pan, W. (2002). Approximate confidence intervals for one proportion and
+difference of two proportions. Computational Statistics and Data Analysis,
+40(1), 143–157
 }
 \seealso{
 \link{ci_p}.

@@ -86,7 +86,8 @@ single values or vectors.</p>
 
 
 <dt id="arg-conf-level">conf.level<a class="anchor" aria-label="anchor" href="#arg-conf-level"></a></dt>
-<dd><p>Confidence level for the returned confidence interval. By default, it is 0.95.</p></dd>
+<dd><p>Confidence level for the returned confidence interval.
+By default, it is 0.95.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -95,16 +96,21 @@ single values or vectors.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>The Agresti-Coull interval is an approximate confidence interval for the Binomial proportion \(p\).
-The limits are calculated based on an adjusted proportion \(\tilde{p}\) and its standard error. The mathematical definitions are as follows:
+    <p>The Agresti-Coull interval is an approximate confidence interval for the
+Binomial proportion \(p\).
+The limits are calculated based on an adjusted proportion \(\tilde{p}\)
+and its standard error. The mathematical definitions are as follows:
  Adjusted proportion: \(\tilde{p}=\frac{x + 2}{n + 4}\);
  Adjusted standard error: \(se=\sqrt{\frac{\tilde{p}(1 - \tilde{p})}{n + 4}}\);
  Confidence limits: \(\tilde{p} \pm z_{\alpha/2} \cdot se\),</p>
-<p>where \(z_{\alpha/2}\) is the critical value of the standard normal distribution. The limits are truncated to the range \([0, 1]\).</p>
+<p>where \(z_{\alpha/2}\) is the critical value of the standard normal
+distribution. The limits are truncated to the range \([0, 1]\).</p>
     </div>
     <div id="references">
     <h2>References</h2>
-    <p>Agresti, A., &amp; Coull, B. A. (1998). Approximate is better than “exact” for interval estimation of binomial proportions. The American Statistician, 52(2), 119-126.</p>
+    <p>Agresti, A., &amp; Coull, B. A. (1998). Approximate is better than “exact” for
+interval estimation of binomial proportions. The American Statistician,
+52(2), 119-126.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -136,7 +142,7 @@ The limits are calculated based on an adjusted proportion \(\tilde{p}\) and its 
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer></div>

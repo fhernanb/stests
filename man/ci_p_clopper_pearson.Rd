@@ -11,7 +11,8 @@ ci_p_clopper_pearson(x, n, conf.level = 0.95)
 
 \item{n}{A number or a vector with the number of trials.}
 
-\item{conf.level}{Confidence level for the returned confidence interval. By default, it is 0.95.}
+\item{conf.level}{Confidence level for the returned confidence interval.
+By default, it is 0.95.}
 }
 \value{
 A vector with the lower and upper limits.
@@ -22,14 +23,18 @@ It is vectorized, allowing users to evaluate it using either
 single values or vectors.
 }
 \details{
-The Clopper-Pearson interval is an exact confidence interval for the Binomial proportion \eqn{p}.
-The limits of the interval are derived based on the Beta distribution. For the special cases where \eqn{x=0} or \eqn{x=n}, the limits are calculated directly.
+The Clopper-Pearson interval is an exact confidence interval for the
+Binomial proportion \eqn{p}.
+The limits of the interval are derived based on the Beta distribution.
+For the special cases where \eqn{x=0} or \eqn{x=n}, the limits are
+calculated directly.
 
 The mathematical definitions are as follows:
 
 - If \eqn{x=0}, the lower limit is \eqn{0}, and the upper limit is \eqn{1 - (\alpha / 2)^{1/n}}.
 
-- If \eqn{x=n}, the lower limit is \eqn{(\alpha / 2)^{1/n}}, and the upper limit is \eqn{1}.
+- If \eqn{x=n}, the lower limit is \eqn{(\alpha / 2)^{1/n}}, and the
+upper limit is \eqn{1}.
 
 Otherwise, the limits are given by:
 
@@ -57,7 +62,8 @@ ci_p_clopper_pearson(x=15, n=50, conf.level=0.95)
 
 }
 \references{
-Clopper, C. J., & Pearson, E. S. (1934). The use of confidence or fiducial limits illustrated in the case of the binomial. Biometrika, 26(4), 404-413.
+Clopper, C. J., & Pearson, E. S. (1934). The use of confidence or fiducial
+limits illustrated in the case of the binomial. Biometrika, 26(4), 404-413.
 }
 \seealso{
 \link{ci_p}.

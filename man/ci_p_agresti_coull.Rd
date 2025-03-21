@@ -11,7 +11,8 @@ ci_p_agresti_coull(x, n, conf.level = 0.95)
 
 \item{n}{A number or a vector with the number of trials.}
 
-\item{conf.level}{Confidence level for the returned confidence interval. By default, it is 0.95.}
+\item{conf.level}{Confidence level for the returned confidence interval.
+By default, it is 0.95.}
 }
 \value{
 A vector with the lower and upper limits.
@@ -22,20 +23,25 @@ It is vectorized, allowing users to evaluate it using either
 single values or vectors.
 }
 \details{
-The Agresti-Coull interval is an approximate confidence interval for the Binomial proportion \eqn{p}.
-The limits are calculated based on an adjusted proportion \eqn{\tilde{p}} and its standard error. The mathematical definitions are as follows:
+The Agresti-Coull interval is an approximate confidence interval for the
+Binomial proportion \eqn{p}.
+The limits are calculated based on an adjusted proportion \eqn{\tilde{p}}
+and its standard error. The mathematical definitions are as follows:
  Adjusted proportion: \eqn{\tilde{p}=\frac{x + 2}{n + 4}};
  Adjusted standard error: \eqn{se=\sqrt{\frac{\tilde{p}(1 - \tilde{p})}{n + 4}}};
  Confidence limits: \eqn{\tilde{p} \pm z_{\alpha/2} \cdot se},
 
-where \eqn{z_{\alpha/2}} is the critical value of the standard normal distribution. The limits are truncated to the range \eqn{[0, 1]}.
+where \eqn{z_{\alpha/2}} is the critical value of the standard normal
+distribution. The limits are truncated to the range \eqn{[0, 1]}.
 }
 \examples{
 ci_p_agresti_coull(x=15, n=50, conf.level=0.95)
 
 }
 \references{
-Agresti, A., & Coull, B. A. (1998). Approximate is better than “exact” for interval estimation of binomial proportions. The American Statistician, 52(2), 119-126.
+Agresti, A., & Coull, B. A. (1998). Approximate is better than “exact” for
+interval estimation of binomial proportions. The American Statistician,
+52(2), 119-126.
 }
 \seealso{
 \link{ci_p}.

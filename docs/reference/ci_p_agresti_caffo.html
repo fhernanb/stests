@@ -101,15 +101,17 @@ By default, it is 0.95.</p></dd>
     <div id="details">
     <h2>Details</h2>
     <p>The Agresti-Caffo confidence interval incorporates a simple
-Bayesian adjustment by
-adding 2 successes and 2 failures to the data. The adjusted proportion
-is calculated as:</p>
+Bayesian adjustment by adding 2 successes and 2 failures
+to the data. The adjusted proportion is calculated as:</p>
 <p>$$\hat{p} = \frac{x + 2}{n + 4}$$</p>
 <p>The standard error for the adjusted proportion is given by:</p>
 <p>$$\text{se} = \sqrt{\frac{\hat{p} (1 - \hat{p})}{n + 4}}.$$</p>
-<p>The confidence interval is then constructed using the \(t\)-distribution with \(n - 1\) degrees of freedom:</p>
+<p>The confidence interval is then constructed using the \(t\)-distribution
+with \(n - 1\) degrees of freedom:</p>
 <p>$$\text{CI} = \hat{p} \pm t_{n-1, \alpha/2} \cdot \text{se},$$</p>
-<p>where \(t_{n-1, \alpha/2}\) is the critical value of the \(t\)-distribution at a two-tailed significance level of \(\alpha = 1 - \text{conf.level}\).</p>
+<p>where \(t_{n-1, \alpha/2}\) is the critical value of the
+\(t\)-distribution at a two-tailed significance level of
+\(\alpha = 1 - \text{conf.level}\).</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -150,7 +152,7 @@ Statistician 54.4 (2000): 280-288.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer></div>

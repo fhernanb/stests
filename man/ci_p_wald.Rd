@@ -38,7 +38,8 @@ ci_p_wald(x=15, n=50, conf.level=0.95)
 
 }
 \references{
-Wald, A. (1949). Statistical decision functions. The Annals of Mathematical Statistics, 165-205.
+Wald, A. (1949). Statistical decision functions. The Annals of
+Mathematical Statistics, 165-205.
 }
 \seealso{
 \link{ci_p}.

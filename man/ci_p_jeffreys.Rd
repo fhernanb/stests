@@ -2,7 +2,8 @@
 % Please edit documentation in R/ci_p_xxx.R
 \name{ci_p_jeffreys}
 \alias{ci_p_jeffreys}
-\title{Bayesian confidence interval for Binomial proportion using Jeffreys prior (non-informative prior).}
+\title{Bayesian confidence interval for Binomial proportion using Jeffreys
+prior (non-informative prior).}
 \usage{
 ci_p_jeffreys(x, n, conf.level = 0.95)
 }
@@ -11,7 +12,8 @@ ci_p_jeffreys(x, n, conf.level = 0.95)
 
 \item{n}{A number or a vector with the number of trials.}
 
-\item{conf.level}{Confidence level for the returned confidence interval. By default, it is 0.95.}
+\item{conf.level}{Confidence level for the returned confidence interval.
+By default, it is 0.95.}
 }
 \value{
 A vector with the lower and upper limits.
@@ -27,7 +29,8 @@ based on the Fisher information. The posterior distribution is Beta:
 
 \deqn{p | x \sim \text{Beta}(x+0.5, n-x+0.5)}
 
-The limits of the Bayesian confidence interval are derived from the quantiles of the posterior distribution:
+The limits of the Bayesian confidence interval are derived from the
+quantiles of the posterior distribution:
 
 \deqn{\text{Lower Limit}=B_{1-\alpha/2, x+0.5, n-x+0.5}}
 
@@ -48,8 +51,6 @@ ci_p_jeffreys(x=x_values, n=n_values, conf.level=0.95)
 
 }
 \seealso{
-\link{ci_p}.
-
 \link{ci_p}.
 }
 \author{

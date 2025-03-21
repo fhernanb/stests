@@ -86,7 +86,8 @@ single values or vectors.</p>
 
 
 <dt id="arg-conf-level">conf.level<a class="anchor" aria-label="anchor" href="#arg-conf-level"></a></dt>
-<dd><p>Confidence level for the returned confidence interval. By default, it is 0.95.</p></dd>
+<dd><p>Confidence level for the returned confidence interval.
+By default, it is 0.95.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -95,25 +96,31 @@ single values or vectors.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>The Arcsine Wald confidence interval with continuity correction adjusts the classical Wald interval by transforming the proportion \(\pi\) to the arcsine scale.
-The parameter \(\pi\) represents the true proportion of successes in a Binomial experiment, defined as:</p>
+    <p>The Arcsine Wald confidence interval with continuity correction adjusts the
+classical Wald interval by transforming the proportion \(\pi\) to the
+arcsine scale.
+The parameter \(\pi\) represents the true proportion of successes in
+a Binomial experiment, defined as:</p>
 <p>$$\pi=\frac{x \pm 0.5}{n},$$</p>
 <p>where \(x\) is the number of successes and \(n\) is the number of trials.</p>
 <p>On the arcsine scale, the transformed parameter is given by:</p>
 <p>$$\phi=\arcsin(\sqrt{\pi}).$$</p>
 <p>The standard error on the arcsine scale is constant:</p>
 <p>$$\text{se}(\phi)=\frac{1}{\sqrt{4n}},$$</p>
-<p>where \(n\) is the number of trials. The confidence interval on the arcsine scale is:</p>
+<p>where \(n\) is the number of trials. The confidence interval on the
+arcsine scale is:</p>
 <p>$$\text{Lower}(\phi)=\max\left(0, \phi - z \cdot (\phi)\right),$$
 $$\text{Upper}(\phi)=\min\left(\frac{\pi}{2}, \phi + z \cdot (\phi)\right),$$</p>
-<p>where \(z\) is the critical value from the standard normal distribution at the specified confidence level.</p>
+<p>where \(z\) is the critical value from the standard normal distribution
+at the specified confidence level.</p>
 <p>Back-transforming the limits to the original scale gives:</p>
 <p>$$\text{Lower}(\pi)=\sin^2(\text{Lower}(\phi)),$$
 $$\text{Upper}(\pi)=\sin^2(\text{Upper}(\phi)).$$</p>
 <p>Special cases are handled explicitly:</p>
 <p>- If \(x=0\), the lower limit is 0, and the upper limit is calculated as \((\alpha / 2)^{1/n}\).</p>
 <p>- If \(x=n\), the upper limit is 1, and the lower limit is calculated as \(1 - (\alpha / 2)^{1/n}\).</p>
-<p>These adjustments ensure that the confidence interval is valid and well-behaved, even at the boundaries of the parameter space.</p>
+<p>These adjustments ensure that the confidence interval is valid and
+well-behaved, even at the boundaries of the parameter space.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -157,7 +164,7 @@ $$\text{Upper}(\pi)=\sin^2(\text{Upper}(\phi)).$$</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer></div>

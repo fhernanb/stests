@@ -86,7 +86,8 @@ single values or vectors.</p>
 
 
 <dt id="arg-conf-level">conf.level<a class="anchor" aria-label="anchor" href="#arg-conf-level"></a></dt>
-<dd><p>Confidence level for the returned confidence interval. By default, it is 0.95.</p></dd>
+<dd><p>Confidence level for the returned confidence interval.
+By default, it is 0.95.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -95,20 +96,28 @@ single values or vectors.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>The expression to calculate the confidence interval according to the Rindskopf approach is given by:</p>
+    <p>The expression to calculate the confidence interval according to the
+Rindskopf approach is given by:</p>
 <p>\(\phi=\text{logit}(\pi)=\log\left(\frac{\pi}{1 - \pi}\right)\),</p>
 <p>where the maximum likelihood estimator for \(\phi\) is:</p>
 <p>\(\hat{\phi}_{ML}=\log\left(\frac{x + 0.5}{n - x + 0.5}\right)\),</p>
 <p>and its standard error is:</p>
 <p>\(\text{se}(\hat{\phi}_{ML})=\sqrt{\frac{1}{x + 0.5} + \frac{1}{n - x + 0.5}}\).</p>
-<p>The adjustment of adding 0.5 successes and non-successes ensures that intervals can also be computed for the cases where \(x=0\) or \(x=n\) (where otherwise the maximum likelihood estimator and standard error would be infinite).</p>
-<p>Since the scale of \(\phi\) is \((- \infty, \infty)\), this interval respects the boundary constraints. Back-transformation to the scale of \(\pi\) is performed using the inverse logit function:</p>
+<p>The adjustment of adding 0.5 successes and non-successes ensures that
+intervals can also be computed for the cases where \(x=0\) or \(x=n\)
+(where otherwise the maximum likelihood estimator and standard error would
+be infinite).</p>
+<p>Since the scale of \(\phi\) is \((- \infty, \infty)\), this interval
+respects the boundary constraints. Back-transformation to the scale
+of \(\pi\) is performed using the inverse logit function:</p>
 <p>\(\pi=\text{expit}(\phi)=\frac{\exp(\phi)}{1 + \exp(\phi)}\).</p>
-<p>Thus, the confidence interval for \(\pi\) in the original scale is the Rindskopf confidence interval, as proposed by Rindskopf.</p>
+<p>Thus, the confidence interval for \(\pi\) in the original scale is the
+Rindskopf confidence interval, as proposed by Rindskopf.</p>
     </div>
     <div id="references">
     <h2>References</h2>
-    <p>Rindskopf, D. (2000). Commentary: Approximate is better than “exact” for interval
+    <p>Rindskopf, D. (2000). Commentary: Approximate is better than “exact”
+for interval
 estimation of binomial proportions. The American Statistician, 54, 88.</p>
     </div>
     <div id="see-also">
@@ -141,7 +150,7 @@ estimation of binomial proportions. The American Statistician, 54, 88.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
       </footer></div>
