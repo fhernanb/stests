@@ -1111,3 +1111,491 @@ ci_p_score_cc <- function(x, n, conf.level = 0.95) {
   return(c(lower, upper))
 }
 ci_p_score_cc <- Vectorize(ci_p_score_cc)
+#'
+#'
+#'
+#' Highest Posterior Density (HPD) interval for Binomial proportion
+#'
+#' @author Omar David Mercado Turizo, \email{omercado@unal.edu.co}
+#'
+#' @description
+#' This function calculates the Highest Posterior Density (HPD) interval
+#' for a Binomial proportion using a Bayesian approach. It is vectorized,
+#' allowing the evaluation of single values or vectors.
+#'
+#' @param x A number or a vector with the number of successes.
+#' @param n A number or a vector with the number of trials.
+#' @param conf.level Confidence level for the returned confidence interval.
+#' By default, it is 0.95.
+#' @param prior The prior distribution to use. Options are
+#' "uniform" (default) or "jeffreys".
+#'
+#' @references
+#' Missing reference.
+#'
+#' @seealso \link{ci_p}.
+#'
+#' @details
+#' The HPD interval is a Bayesian credible interval for the Binomial
+#' proportion \eqn{p}. The posterior distribution is calculated based
+#' on the Beta prior:
+#'
+#' - "uniform": \eqn{\text{Beta}(1, 1)}.
+#'
+#' - "jeffreys": \eqn{\text{Beta}(0.5, 0.5)}.
+#'
+#' The limits of the interval are computed using the quantiles
+#' of the Beta posterior distribution:
+#'
+#' - Lower limit: \eqn{\text{qbeta}((1 - \text{conf.level}) / 2, \alpha + x, \beta + n - x)}.
+#'
+#' - Upper limit: \eqn{\text{qbeta}(1 - (1 - \text{conf.level}) / 2, \alpha + x, \beta + n - x)}.
+#'
+#' @return A vector with the lower and upper limits.
+#'
+#' @examples
+#' # Example with a single value
+#' ci_p_hpd(x = 15, n = 50, conf.level = 0.95)
+#' @export
+#'
+ci_p_hpd <- function(x, n, conf.level = 0.95, prior = "uniform") {
+  # Prior's parameters
+  if (prior == "uniform") {
+    alpha_prior <- 1
+    beta_prior <- 1
+  } else if (prior == "jeffreys") {
+    alpha_prior <- 0.5
+    beta_prior <- 0.5
+  } else {
+    stop("Unkwon prior, please use 'uniform' or 'jeffreys'.")
+  }
+
+  # Posterior Beta
+  alpha_post <- alpha_prior + x
+  beta_post  <- beta_prior + n - x
+
+  # Limits HPD
+  lower <- qbeta((1 - conf.level) / 2, alpha_post, beta_post)
+  upper <- qbeta(1 - (1 - conf.level) / 2, alpha_post, beta_post)
+
+  return(c(lower, upper))
+}
+ci_p_hpd <- Vectorize(ci_p_hpd)
+#'
+#'
+#'
+#' Wald Continuity-Corrected confidence interval for Binomial proportion
+#'
+#' @author David Esteban Cartagena Mejía, \email{dcartagena@unal.edu.co}
+#'
+#' @description
+#' This function calculates the Wald continuity-corrected confidence interval
+#' for a Binomial proportion.
+#' It is vectorized, allowing the evaluation of single values or vectors.
+#'
+#' @param x A number or a vector with the number of successes.
+#' @param n A number or a vector with the number of trials.
+#' @param conf.level Confidence level for the returned confidence interval.
+#' By default, it is 0.95.
+#'
+#' @references
+#' Pires, Ana M., and Conceiçao Amado. "Interval estimators for a binomial
+#' proportion: Comparison of twenty methods".
+#' REVSTAT-Statistical Journal 6.2 (2008): 165-197.
+#'
+#' @seealso \link{ci_p}.
+#'
+#' @details
+#' The Wald continuity-corrected confidence interval adjusts the standard Wald interval for small sample sizes or when the proportion
+#' \eqn{\hat{p}} is near 0 or 1. It incorporates a continuity correction to improve accuracy.
+#'
+#' The estimated proportion is given by:
+#'
+#' \deqn{\hat{p} = \frac{x}{n},}
+#'
+#' and its complement is:
+#'
+#' \deqn{\hat{q} = 1 - \hat{p}.}
+#'
+#' The continuity-corrected interval incorporates the critical value \eqn{z} from the standard normal distribution:
+#'
+#' \deqn{\text{Lower} = \hat{p} - z \sqrt{\frac{\hat{p}\hat{q}}{n}} - \frac{1}{2n},}
+#' \deqn{\text{Upper} = \hat{p} + z \sqrt{\frac{\hat{p}\hat{q}}{n}} + \frac{1}{2n}.}
+#'
+#'
+#' These adjustments ensure that the confidence interval is valid even
+#' at the boundaries of the parameter space.
+#'
+#' @return A vector with the lower and upper limits of the confidence interval.
+#'
+#' @examples
+#' ci_p_wald_cc(x = 15, n = 50, conf.level = 0.95)
+#' ci_p_wald_cc(x = 0, n = 50, conf.level = 0.95)
+#' ci_p_wald_cc(x = 50, n = 50, conf.level = 0.95)
+#'
+#' @export
+#'
+ci_p_wald_cc <- function(x, n, conf.level = 0.95) {
+  alpha <- 1 - conf.level
+  z <- qnorm(1 - alpha / 2)
+  p_hat <- x / n
+  q_hat <- 1 - p_hat
+
+  # Limites del intervalo
+  if (x == 0) {
+    upper <- (alpha / 2)^(1 / n)
+    lower <- 0
+  } else if (x == n) {
+    lower <- 1 - (alpha / 2)^(1 / n)
+    upper <- 1
+  } else {
+    lower <-  p_hat - z * sqrt(p_hat * q_hat / n) - 1 / (2 * n)
+    upper <-  p_hat + z * sqrt(p_hat * q_hat / n) + 1 / (2 * n)
+  }
+
+  return(c(lower,upper))
+}
+ci_p_wald_cc <- Vectorize(ci_p_wald_cc)
+#'
+#'
+#'
+#' Recentered Wald Interval for Binomial Proportion
+#'
+#' @author David Esteban Cartagena Mejía, \email{dcartagena@unal.edu.co}
+#'
+#' @description
+#' This function calculates the recentered Wald confidence interval for a
+#' Binomial proportion.
+#' It adjusts the classical Wald interval to improve accuracy near the
+#' boundaries of the parameter space.
+#' The method is vectorized, allowing for evaluation of single values or vectors.
+#'
+#' @param x A number or a vector with the number of successes.
+#' @param n A number or a vector with the number of trials.
+#' @param conf.level Confidence level for the returned confidence interval.
+#' By default, it is 0.95.
+#'
+#' @references
+#' Pires, Ana M., and Conceiçao Amado. "Interval estimators for a binomial
+#' proportion: Comparison of twenty methods".
+#' REVSTAT-Statistical Journal 6.2 (2008): 165-197.
+#'
+#' @seealso \link{ci_p}.
+#'
+#' @details
+#' The recentered Wald interval modifies the classical Wald interval by
+#' incorporating a recentering term and applying bounds to ensure that the
+#' interval remains within the parameter space \eqn{[0, 1]}.
+#'
+#' The critical value \eqn{z} is obtained from the standard normal
+#' distribution for the specified confidence level:
+#'
+#' \deqn{z = \Phi^{-1}(1 - \alpha / 2),}
+#'
+#' where \eqn{\alpha = 1 - \text{conf.level}}.
+#'
+#' The confidence limits are calculated as:
+#'
+#' \deqn{\text{Lower} = \max\left(\frac{x + z^2 / 2}{n + z^2} - z \sqrt{\frac{x}{n^2} \left(1 - \frac{x}{n}\right)}, 0\right),}
+#' \deqn{\text{Upper} = \min\left(\frac{x + z^2 / 2}{n + z^2} + z \sqrt{\frac{x}{n^2} \left(1 - \frac{x}{n}\right)}, 1\right).}
+#'
+#' Special cases are handled explicitly:
+#'
+#' - If \eqn{x = 0}, the lower limit is 0, and the upper limit is
+#' calculated as \eqn{(\alpha / 2)^{1/n}}.
+#'
+#' - If \eqn{x = n}, the upper limit is 1, and the lower limit is
+#' calculated as \eqn{1 - (\alpha / 2)^{1/n}}.
+#'
+#' @return A vector with the lower and upper limits of the confidence interval.
+#'
+#' @examples
+#' ci_p_wald_recentered(x =  0, n = 50, conf.level = 0.95)
+#' ci_p_wald_recentered(x = 22, n = 50, conf.level = 0.95)
+#' ci_p_wald_recentered(x = 50, n = 50, conf.level = 0.95)
+#'
+#' @export
+#'
+ci_p_wald_recentered <- function(x, n, conf.level = 0.95) {
+  alpha <- 1 - conf.level
+  c2 <- qnorm(1 - alpha / 2)
+
+  if (x == 0) {
+    lower <- 0
+    upper <- (alpha / 2)^(1 / n)
+  } else if (x == n) {
+    lower <- 1 - (alpha / 2)^(1 / n)
+    upper <- 1
+  } else {
+    lower <- max((x + c2^2 / 2) / (n + c2^2) - c2 * sqrt((x / n^2) * (1 - x / n)), 0)
+    upper <- min((x + c2^2 / 2) / (n + c2^2) + c2 * sqrt((x / n^2) * (1 - x / n)), 1)
+  }
+
+  return(c(lower, upper))
+}
+ci_p_wald_recentered <- Vectorize(ci_p_wald_recentered)
+#'
+#'
+#'
+#' Recentered Wald Interval with Continuity Correction for Binomial Proportion
+#'
+#' @author David Esteban Cartagena Mejía, \email{dcartagena@unal.edu.co}
+#'
+#' @description
+#' This function calculates the recentered Wald confidence interval with
+#' continuity correction for a Binomial proportion.
+#' It adjusts the classical Wald interval by introducing a recentering term
+#' and a continuity correction, improving accuracy for small sample sizes
+#' and boundary cases.
+#' The method is vectorized, allowing for evaluation of single
+#' values or vectors.
+#'
+#' @param x A number or a vector with the number of successes.
+#' @param n A number or a vector with the number of trials.
+#' @param conf.level Confidence level for the returned confidence interval.
+#' By default, it is 0.95.
+#'
+#' @references
+#' Pires, Ana M., and Conceiçao Amado. "Interval estimators for a binomial
+#' proportion: Comparison of twenty methods".
+#' REVSTAT-Statistical Journal 6.2 (2008): 165-197.
+#'
+#' @seealso \link{ci_p}.
+#'
+#' @details
+#' The recentered Wald interval with continuity correction adjusts the
+#' classical Wald interval by incorporating a recentering term and a
+#' continuity correction to account for the discreteness of the
+#' binomial distribution.
+#'
+#' The critical value \eqn{z} is obtained from the standard normal
+#' distribution for the specified confidence level:
+#'
+#' \deqn{z = \Phi^{-1}(1 - \alpha / 2),}
+#'
+#' where \eqn{\alpha = 1 - \text{conf.level}}.
+#'
+#' The confidence limits are calculated as:
+#'
+#' \deqn{\text{Lower} = \max\left(\frac{x + z^2 / 2}{n + z^2} - \left[z \sqrt{\frac{x}{n^2} \left(1 - \frac{x}{n}\right)} + \frac{1}{2n}\right], 0\right),}
+#' \deqn{\text{Upper} = \min\left(\frac{x + z^2 / 2}{n + z^2} + \left[z \sqrt{\frac{x}{n^2} \left(1 - \frac{x}{n}\right)} + \frac{1}{2n}\right], 1\right).}
+#'
+#' Special cases are handled explicitly:
+#'
+#' - If \eqn{x = 0}, the lower limit is 0, and the upper limit is
+#' calculated as \eqn{(\alpha / 2)^{1/n}}.
+#'
+#' - If \eqn{x = n}, the upper limit is 1, and the lower limit is
+#' calculated as \eqn{1 - (\alpha / 2)^{1/n}}.
+#'
+#' These adjustments ensure that the confidence interval is valid and
+#' well-behaved, even at the boundaries of the parameter space.
+#'
+#' @return A vector with the lower and upper limits of the confidence interval.
+#'
+#' @examples
+#' ci_p_wald_recentered_cc(x =  0, n = 50, conf.level = 0.95)
+#' ci_p_wald_recentered_cc(x = 25, n = 50, conf.level = 0.95)
+#' ci_p_wald_recentered_cc(x = 50, n = 50, conf.level = 0.95)
+#'
+#' @export
+#'
+ci_p_wald_recentered_cc <- function(x, n, conf.level = 0.95) {
+  alpha <- 1 - conf.level
+  c1 <- qnorm(1 - alpha / 2)  # Valor crítico Z
+
+  if (x == 0) {
+    lower <- 0
+    upper <- (alpha / 2)^(1 / n)
+  } else if (x == n) {
+    lower <- 1 - (alpha / 2)^(1 / n)
+    upper <- 1
+  } else {
+    error_term <- c1 * sqrt((x / n^2) * (1 - (x / n))) + 1 / (2 * n)
+
+    lower <- max((x + c1^2 / 2) / (n + c1^2) - error_term, 0)
+    upper <- min((x + c1^2 / 2) / (n + c1^2) + error_term, 1)
+  }
+
+  return(c(lower,upper))
+}
+ci_p_wald_recentered_cc <- Vectorize(ci_p_wald_recentered_cc)
+#'
+#'
+#'
+#' Wald-t Confidence Interval for Binomial Proportion
+#'
+#' @author David Esteban Cartagena Mejía, \email{dcartagena@unal.edu.co}
+#'
+#' @description
+#' This function calculates the Wald-t confidence interval for a Binomial
+#' proportion using the method XIX proposed by Pan (2002).
+#' It incorporates the use of a t-distribution with adjusted degrees of
+#' freedom \eqn{\nu}, as specified in equation (2.8).
+#' The function is vectorized, allowing for evaluation of single
+#' values or vectors.
+#'
+#' @param x A number or a vector with the number of successes.
+#' @param n A number or a vector with the number of trials.
+#' @param conf.level Confidence level for the returned confidence interval.
+#' By default, it is 0.95.
+#'
+#' @references
+#' Pires, Ana M., and Conceiçao Amado. "Interval estimators for a binomial
+#' proportion: Comparison of twenty methods".
+#' REVSTAT-Statistical Journal 6.2 (2008): 165-197.
+#'
+#' @seealso \link{ci_p}.
+#'
+#' @details
+#' The Wald-t confidence interval is a modification of the classical
+#' Wald interval that uses the t-distribution instead of the normal
+#' distribution for greater accuracy in small samples. The estimated
+#' proportion \eqn{\hat{p}} is adjusted as:
+#'
+#' \deqn{\hat{p} = \frac{x + 2}{n + 4},}
+#'
+#' which reduces bias in the interval estimation. The variance
+#'  \eqn{V(\hat{p}, n)} is given by:
+#'
+#' \deqn{V(\hat{p}, n) = \frac{\hat{p}(1 - \hat{p})}{n}.}
+#'
+#' The degrees of freedom \eqn{\nu} are calculated using equation (2.8):
+#'
+#' \deqn{\nu = \frac{2 V(\hat{p}, n)^2}{\Omega(\hat{p}, n)},}
+#'
+#' where \eqn{\Omega(\hat{p}, n)} is defined as:
+#'
+#' \deqn{\Omega(\hat{p}, n) = \frac{\hat{p} - \hat{p}^2}{n^3} + \frac{\hat{p} + (6n - 7)\hat{p}^2 + 4(n - 1)(n - 3)\hat{p}^3 - 2(n - 1)(2n - 3)\hat{p}^4}{n^5} - \frac{2(\hat{p} + (2n - 3)\hat{p}^2 - 2(n - 1)\hat{p}^3)}{n^4}.}
+#'
+#' The confidence interval is then calculated as:
+#'
+#' \deqn{\text{Lower} = \max\left(0, \hat{p} - t \cdot \sqrt{V(\hat{p}, n)}\right),}
+#' \deqn{\text{Upper} = \min\left(1, \hat{p} + t \cdot \sqrt{V(\hat{p}, n)}\right),}
+#'
+#' where \eqn{t} is the critical value from the t-distribution
+#' with \eqn{\nu} degrees of freedom.
+#'
+#' @return A vector with the lower and upper limits of the confidence interval.
+#'
+#' @examples
+#' ci_p_wald_t(x =  0, n = 50, conf.level = 0.95)
+#' ci_p_wald_t(x = 15, n = 50, conf.level = 0.95)
+#' ci_p_wald_t(x = 50, n = 50, conf.level = 0.95)
+#'
+#' @export
+#'
+ci_p_wald_t <- function(x, n, conf.level = 0.95) {
+  p_hat <- (x + 2) / (n + 4)
+  Omega <- function(p, n) {
+    term1 <- (p - p^2) / n^3
+    term2 <- (p + (6 * n - 7) * p^2 + 4 * (n - 1) * (n - 3) * p^3 - 2 * (n - 1) * (2 * n - 3) * p^4) / n^5
+    term3 <- (2 * (p + (2 * n - 3) * p^2 - 2 * (n - 1) * p^3)) / n^4
+    return(term1 + term2 - term3)
+  }
+  V <- function(p, n) {
+    return(p * (1 - p) / n)
+  }
+  nu <- (2 * V(p_hat, n)^2) / Omega(p_hat, n)
+
+  # Cálculo del error estándar
+  se <- sqrt(p_hat * (1 - p_hat) / n)
+  t <- qt(conf.level + (1 - conf.level) / 2, df = nu)
+  lower <- max(p_hat - t * se,0)
+  upper <- min(p_hat + t * se,1)
+
+  return(c(lower, upper))
+}
+ci_p_wald_t <- Vectorize(ci_p_wald_t)
+#'
+#'
+#'
+#' Wald with Blyth and Still approximation Binomial Score confidence
+#' interval for Binomial proportion
+#'
+#' @author David Esteban Cartagena Mejía, \email{dcartagena@unal.edu.co}
+#'
+#' @description
+#' This function calculates the Wald Binomial Score confidence interval for
+#' a Binomial proportion.
+#' It is vectorized, allowing the evaluation of single values or vectors.
+#'
+#' @param x A number or a vector with the number of successes.
+#' @param n A number or a vector with the number of trials.
+#' @param conf.level Confidence level for the returned confidence interval.
+#' By default, it is 0.95.
+#'
+#' @references
+#' Blyth, C.R. and Still, H.A. (1983). Binomial confidence intervals,
+#' Journal of the American Statistical Association, 78, 108–116.
+#'
+#' @seealso \link{ci_p}.
+#'
+#' @details
+#' The Wald Binomial Score confidence interval is an adjusted version of
+#' the Wald interval,
+#' designed to improve accuracy in small samples and near the boundaries
+#' of the parameter space.
+#'
+#' The estimated proportion is given by:
+#'
+#' \deqn{\hat{p} = \frac{x}{n}},
+#'
+#' and its complement is:
+#'
+#' \deqn{\hat{q} = 1 - \hat{p}}.
+#'
+#' The Wald Binomial Score interval incorporates adjustments for the sample
+#' size and confidence level:
+#'
+#' \deqn{\text{wn\_z} = \sqrt{n - z^2 - \frac{2z}{\sqrt{n}} - \frac{1}{n}}},
+#'
+#' where \eqn{z} is the quantile of the standard normal distribution
+#' corresponding to the confidence level.
+#' The final confidence interval is given by:
+#'
+#' \deqn{\text{Lower} = \hat{p} - \frac{z \sqrt{\hat{p}\hat{q} + \frac{1}{2n}}}{\text{wn\_z}},}
+#' \deqn{\text{Upper} = \hat{p} + \frac{z \sqrt{\hat{p}\hat{q} + \frac{1}{2n}}}{\text{wn\_z}}.}
+#'
+#' This interval is particularly useful when \eqn{n} is small or when
+#' the proportion \eqn{\hat{p}} is close to 0 or 1.
+#'
+#' @return A vector with the lower and upper limits of the confidence interval.
+#'
+#' @examples
+#' ci_p_wald_bs(x = 15, n = 50, conf.level = 0.95)
+#'
+#' @export
+#'
+ci_p_wald_bs <- function(x, n, conf.level = 0.95) {
+  p_hat <- x / n
+  q_hat <- 1 - p_hat
+  z <- qnorm(1 - (1 - conf.level) / 2)
+  # Adjustment factor
+  wn_z <- sqrt(n - z^2 - (2 * z / sqrt(n)) - (1 / n))
+  term1 <- 1 / wn_z
+  term2 <- z * sqrt((p_hat * q_hat) + 1 / (2 * n))
+  alpha <- 1-conf.level
+  # Límites del intervalo
+  if (x == 0) {
+    upper <- (alpha / 2)^(1 / n)
+    lower <- 0
+  } else if (x == n) {
+    lower <- 1 - (alpha / 2)^(1 / n)
+    upper <- 1
+  } else {
+    # Límites del intervalo
+    if (x == 0) {
+      upper <- (alpha / 2)^(1 / n)
+      lower <- 0
+    } else if (x == n) {
+      lower <- 1 - (alpha / 2)^(1 / n)
+      upper <- 1
+    } else {
+      lower <-  p_hat - z * sqrt(p_hat * q_hat / n) - 1 / (2 * n)
+      upper <-  p_hat + z * sqrt(p_hat * q_hat / n) + 1 / (2 * n)
+    }
+  }
+  return(c(lower, upper))
+}
+ci_p_wald_bs <- Vectorize(ci_p_wald_bs)
