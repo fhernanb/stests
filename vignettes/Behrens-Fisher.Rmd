@@ -630,7 +630,7 @@ res
 We can depict the $p-$value as follows.
 
 ```{r plot-ex-06, fig.align='center', fig.height=4, fig.width=6}
-plot(res, from=6, to=10, shade.col="lightgoldenrodyellow")
+plot(res, from=7, to=8, shade.col="lightgoldenrodyellow")
 ```
 
 ## Gamage's test
