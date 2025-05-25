@@ -44,7 +44,7 @@ y_sd <- c(1, 2)
 res <- permu_test_SD(x, x_sd, y, y_sd, alternative="less")
 res
 
-# Example 1 of the paper
+# Example 1 of Ermolinskiy (2024).
 x <- c(20, 33, 20, 24)
 x_sd <- c(2, 2, 2, 2)
 y <- c(21, 34, 22, 25)

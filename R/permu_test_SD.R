@@ -52,7 +52,12 @@
 permu_test_SD <- function(x, x_sd, y, y_sd, alternative = "two.sided") {
 
   # To ensure that the inputs are vector with the same length
-  error_handling(x, x_sd, y, y_sd)
+  if (!is.vector(x) || !is.vector(x_sd) || !is.vector(y) || !is.vector(y_sd)) {
+    stop("The input must be vectors")
+  }
+  if (length(x) != length(y) || length(x_sd) != length(y_sd) || length(x) != length(x_sd)) {
+    stop("All vectors must have the same length")
+  }
 
   alternative <- match.arg(arg=alternative,
                            choices=c("two.sided", "greater", "less"))
@@ -77,7 +82,7 @@ permu_test_SD <- function(x, x_sd, y, y_sd, alternative = "two.sided") {
   m <- ncol(comb1)
   multi <- expand.grid(replicate(m, c(-1, 1), simplify = FALSE))
 
-  # Auxiliar function to obtain all combinatios of the percentage differences
+  # Auxiliar function to obtain all combinations of the percentage differences
   # varying the signs
   aux_fun <- function(x) rowMeans(t(x * t(multi)))
 
@@ -95,7 +100,7 @@ permu_test_SD <- function(x, x_sd, y, y_sd, alternative = "two.sided") {
     p.value <- mean(percent_diff > statistic)
   }
 
-  method <- "Paired permutation with SD"
+  method <- "Paired permutation test with SD"
 
   res <- list(statistic = statistic,
               p.value=p.value,
@@ -114,12 +119,4 @@ combinations_mean_and_sd <- function(x, x_sd) {
 
   combinations <- t(t(sign_combinations) * x_sd + x)
   return(combinations)
-}
-error_handling <- function(x, x_sd, y, y_sd) {
-  if (!is.vector(x) || !is.vector(x_sd) || !is.vector(y) || !is.vector(y_sd)) {
-    stop("The input must be lists")
-  }
-  if (length(x) != length(y) || length(x_sd) != length(y_sd) || length(x) != length(x_sd)) {
-    stop("All lists must have the same length")
-  }
 }
