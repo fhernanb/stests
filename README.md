@@ -13,7 +13,7 @@ You can visit the [package website](https://fhernanb.github.io/stests/index.html
 * Install latest development version from GitHub using the code given below:
 
 ```r
-if (!require("devtools"")) install.packages("devtools"")
-devtools::install_github('fhernanb/stests', force=TRUE)
+if (!require("devtools")) install.packages("devtools")
+devtools::install_github("fhernanb/stests", force=TRUE)
 ```
 
