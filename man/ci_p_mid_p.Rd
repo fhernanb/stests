@@ -2,7 +2,7 @@
 % Please edit documentation in R/ci_p_xxx.R
 \name{ci_p_mid_p}
 \alias{ci_p_mid_p}
-\title{Mid-p confidence interval for Binomial proportion}
+\title{Mid-p confidence interval for binomial proportion}
 \usage{
 ci_p_mid_p(x, n, conf.level = 0.95)
 }
@@ -20,7 +20,7 @@ interval.
 }
 \description{
 This function calculates the mid-p confidence interval for a
-Binomial proportion. It is vectorized, allowing the evaluation
+binomial proportion. It is vectorized, allowing the evaluation
 of single values or vectors.
 }
 \details{

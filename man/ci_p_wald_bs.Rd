@@ -3,7 +3,7 @@
 \name{ci_p_wald_bs}
 \alias{ci_p_wald_bs}
 \title{Wald with Blyth and Still approximation Binomial Score confidence
-interval for Binomial proportion}
+interval for binomial proportion}
 \usage{
 ci_p_wald_bs(x, n, conf.level = 0.95)
 }
@@ -20,7 +20,7 @@ A vector with the lower and upper limits of the confidence interval.
 }
 \description{
 This function calculates the Wald Binomial Score confidence interval for
-a Binomial proportion.
+a binomial proportion.
 It is vectorized, allowing the evaluation of single values or vectors.
 }
 \details{

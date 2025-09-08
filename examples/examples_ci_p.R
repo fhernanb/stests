@@ -3,7 +3,7 @@ ci_p(x=5, n=15, intervalType="wald", conf.level=0.90)
 ci_p(x=5, n=15, intervalType="agresti_coull", conf.level=0.90)
 ci_p(x=5, n=15, intervalType="rindskopf", conf.level=0.90)
 ci_p(x=5, n=15, intervalType="clopper_pearson", conf.level=0.90)
-ci_p(x=5, n=15, intervalType="arcsine_cc", conf.level=0.90)
+ci_p(x=5, n=15, intervalType="arcsine_anscombe", conf.level=0.90)
 ci_p(x=5, n=15, intervalType="arcsine", conf.level=0.90)
 
 # Examples for multiple values

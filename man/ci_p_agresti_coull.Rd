@@ -2,7 +2,7 @@
 % Please edit documentation in R/ci_p_xxx.R
 \name{ci_p_agresti_coull}
 \alias{ci_p_agresti_coull}
-\title{Agresti-Coull confidence interval for Binomial proportion}
+\title{Agresti-Coull confidence interval for binomial proportion}
 \usage{
 ci_p_agresti_coull(x, n, conf.level = 0.95)
 }
@@ -24,7 +24,7 @@ single values or vectors.
 }
 \details{
 The Agresti-Coull interval is an approximate confidence interval for the
-Binomial proportion \eqn{p}.
+binomial proportion \eqn{p}.
 The limits are calculated based on an adjusted proportion \eqn{\tilde{p}}
 and its standard error. The mathematical definitions are as follows:
  Adjusted proportion: \eqn{\tilde{p}=\frac{x + 2}{n + 4}};

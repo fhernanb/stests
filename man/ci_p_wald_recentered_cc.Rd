@@ -2,7 +2,7 @@
 % Please edit documentation in R/ci_p_xxx.R
 \name{ci_p_wald_recentered_cc}
 \alias{ci_p_wald_recentered_cc}
-\title{Recentered Wald Interval with Continuity Correction for Binomial Proportion}
+\title{Recentered Wald Interval with Continuity Correction for binomial proportion}
 \usage{
 ci_p_wald_recentered_cc(x, n, conf.level = 0.95)
 }
@@ -19,7 +19,7 @@ A vector with the lower and upper limits of the confidence interval.
 }
 \description{
 This function calculates the recentered Wald confidence interval with
-continuity correction for a Binomial proportion.
+continuity correction for a binomial proportion.
 It adjusts the classical Wald interval by introducing a recentering term
 and a continuity correction, improving accuracy for small sample sizes
 and boundary cases.

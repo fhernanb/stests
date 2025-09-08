@@ -2,7 +2,7 @@
 % Please edit documentation in R/ci_p_xxx.R
 \name{ci_p_hpd_jeffreys}
 \alias{ci_p_hpd_jeffreys}
-\title{Highest Posterior Density (HPD) interval for Binomial proportion using
+\title{Highest Posterior Density (HPD) interval for binomial proportion using
 Jeffreys prior}
 \usage{
 ci_p_hpd_jeffreys(x, n, conf.level = 0.95)

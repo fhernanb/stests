@@ -10,8 +10,8 @@
 #' @param conf.level confidence level for the returned confidence interval. By default is 0.95.
 #' @param intervalType type of confidence interval, possible choices are:
 #' "wald", "agresti_coull", "rindskopf",
-#' "clopper_pearson", "add_4", "arcsine_cc",
-#' "arcsine", "arcsine_ac", "wilson",
+#' "clopper_pearson", "add_4",
+#' "arcsine", "ci_p_arcsine_anscombe", "wilson",
 #' "ci_p_jeffreys", "hpd_jeffreys", "LRT",
 #' "mid_p", "agresti_caffo", "score_cc",
 #' "wald_cc", "wald_recentered", "wald_recentered_cc",
@@ -23,9 +23,8 @@
 #' \link{ci_p_rindskopf},
 #' \link{ci_p_clopper_pearson},
 #' \link{ci_p_add_4},
-#' \link{ci_p_arcsine_cc},
 #' \link{ci_p_arcsine},
-#' \link{ci_p_arcsine_ac},
+#' \link{ci_p_arcsine_anscombe},
 #' \link{ci_p_wilson},
 #' \link{ci_p_jeffreys},
 #' \link{ci_p_hpd_jeffreys}
@@ -65,7 +64,7 @@ ci_p <- function(x, n, conf.level=0.95, intervalType="wald") {
                                 "add_4",
                                 "arcsine_cc",
                                 "arcsine",
-                                "arcsine_ac",
+                                "arcsine_anscombe",
                                 "wilson",
                                 "jeffreys",
                                 "hpd_jeffreys",

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ci_p_xxx.R
 \name{ci_p_LRT}
 \alias{ci_p_LRT}
-\title{Likelihood Ratio confidence interval for Binomial proportion}
+\title{Likelihood Ratio confidence interval for binomial proportion}
 \usage{
 ci_p_LRT(x, n, conf.level = 0.95)
 }
@@ -19,11 +19,11 @@ A vector with the lower and upper limits.
 }
 \description{
 This function calculates the Likelihood Ratio (LRT) confidence interval for
-a Binomial proportion.
+a binomial proportion.
 It is vectorized, allowing the evaluation of single values or vectors.
 }
 \details{
-This function computes the confidence interval for a Binomial proportion
+This function computes the confidence interval for a binomial proportion
 based on the Likelihood Ratio Test (LRT). The confidence interval is
 defined as the set of values for \eqn{p} that satisfy the following
 condition:

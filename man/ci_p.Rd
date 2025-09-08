@@ -15,8 +15,8 @@ ci_p(x, n, conf.level = 0.95, intervalType = "wald")
 
 \item{intervalType}{type of confidence interval, possible choices are:
 "wald", "agresti_coull", "rindskopf",
-"clopper_pearson", "add_4", "arcsine_cc",
-"arcsine", "arcsine_ac", "wilson",
+"clopper_pearson", "add_4",
+"arcsine", "ci_p_arcsine_anscombe", "wilson",
 "ci_p_jeffreys", "hpd_jeffreys", "LRT",
 "mid_p", "agresti_caffo", "score_cc",
 "wald_cc", "wald_recentered", "wald_recentered_cc",}
@@ -33,7 +33,7 @@ ci_p(x=5, n=15, intervalType="wald", conf.level=0.90)
 ci_p(x=5, n=15, intervalType="agresti_coull", conf.level=0.90)
 ci_p(x=5, n=15, intervalType="rindskopf", conf.level=0.90)
 ci_p(x=5, n=15, intervalType="clopper_pearson", conf.level=0.90)
-ci_p(x=5, n=15, intervalType="arcsine_cc", conf.level=0.90)
+ci_p(x=5, n=15, intervalType="arcsine_anscombe", conf.level=0.90)
 ci_p(x=5, n=15, intervalType="arcsine", conf.level=0.90)
 
 # Examples for multiple values
@@ -48,9 +48,8 @@ ci_p(x=c(5, 7, 9),
 \link{ci_p_rindskopf},
 \link{ci_p_clopper_pearson},
 \link{ci_p_add_4},
-\link{ci_p_arcsine_cc},
 \link{ci_p_arcsine},
-\link{ci_p_arcsine_ac},
+\link{ci_p_arcsine_anscombe},
 \link{ci_p_wilson},
 \link{ci_p_jeffreys},
 \link{ci_p_hpd_jeffreys}

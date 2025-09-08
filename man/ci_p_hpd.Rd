@@ -2,7 +2,7 @@
 % Please edit documentation in R/ci_p_xxx.R
 \name{ci_p_hpd}
 \alias{ci_p_hpd}
-\title{Highest Posterior Density (HPD) interval for Binomial proportion}
+\title{Highest Posterior Density (HPD) interval for binomial proportion}
 \usage{
 ci_p_hpd(x, n, conf.level = 0.95, prior = "uniform")
 }
@@ -22,7 +22,7 @@ A vector with the lower and upper limits.
 }
 \description{
 This function calculates the Highest Posterior Density (HPD) interval
-for a Binomial proportion using a Bayesian approach. It is vectorized,
+for a binomial proportion using a Bayesian approach. It is vectorized,
 allowing the evaluation of single values or vectors.
 }
 \details{

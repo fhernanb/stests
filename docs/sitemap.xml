@@ -7,12 +7,12 @@
 <url><loc>/authors.html</loc></url>
 <url><loc>/index.html</loc></url>
 <url><loc>/reference/ci_p.html</loc></url>
-<url><loc>/reference/ci_p_LRT.html</loc></url>
 <url><loc>/reference/ci_p_add_4.html</loc></url>
 <url><loc>/reference/ci_p_agresti_caffo.html</loc></url>
 <url><loc>/reference/ci_p_agresti_coull.html</loc></url>
 <url><loc>/reference/ci_p_arcsine.html</loc></url>
 <url><loc>/reference/ci_p_arcsine_ac.html</loc></url>
+<url><loc>/reference/ci_p_arcsine_anscombe.html</loc></url>
 <url><loc>/reference/ci_p_arcsine_cc.html</loc></url>
 <url><loc>/reference/ci_p_clopper_pearson.html</loc></url>
 <url><loc>/reference/ci_p_coverage.html</loc></url>
@@ -22,6 +22,7 @@
 <url><loc>/reference/ci_p_hpd.html</loc></url>
 <url><loc>/reference/ci_p_hpd_jeffreys.html</loc></url>
 <url><loc>/reference/ci_p_jeffreys.html</loc></url>
+<url><loc>/reference/ci_p_LRT.html</loc></url>
 <url><loc>/reference/ci_p_mid_p.html</loc></url>
 <url><loc>/reference/ci_p_rindskopf.html</loc></url>
 <url><loc>/reference/ci_p_score_cc.html</loc></url>
@@ -46,8 +47,8 @@
 <url><loc>/reference/shade.dist.html</loc></url>
 <url><loc>/reference/shade.norm.html</loc></url>
 <url><loc>/reference/suma.html</loc></url>
-<url><loc>/reference/t_test.html</loc></url>
 <url><loc>/reference/two_mean_vector_test.html</loc></url>
+<url><loc>/reference/t_test.html</loc></url>
 <url><loc>/reference/var.test.html</loc></url>
 <url><loc>/reference/var_test.html</loc></url>
 <url><loc>/reference/z.test.html</loc></url>

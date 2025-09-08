@@ -2,7 +2,7 @@
 % Please edit documentation in R/ci_p_xxx.R
 \name{ci_p_wilson}
 \alias{ci_p_wilson}
-\title{Wilson confidence interval for Binomial proportion}
+\title{Wilson confidence interval for binomial proportion}
 \usage{
 ci_p_wilson(x, n, conf.level = 0.95)
 }

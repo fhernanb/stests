@@ -2,7 +2,7 @@
 % Please edit documentation in R/ci_p_xxx.R
 \name{ci_p_jeffreys}
 \alias{ci_p_jeffreys}
-\title{Bayesian confidence interval for Binomial proportion using Jeffreys
+\title{Bayesian confidence interval for binomial proportion using Jeffreys
 prior (non-informative prior).}
 \usage{
 ci_p_jeffreys(x, n, conf.level = 0.95)

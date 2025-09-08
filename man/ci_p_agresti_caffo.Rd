@@ -2,7 +2,7 @@
 % Please edit documentation in R/ci_p_xxx.R
 \name{ci_p_agresti_caffo}
 \alias{ci_p_agresti_caffo}
-\title{Agresti-Caffo confidence interval for Binomial proportion}
+\title{Agresti-Caffo confidence interval for binomial proportion}
 \usage{
 ci_p_agresti_caffo(x, n, conf.level = 0.95)
 }

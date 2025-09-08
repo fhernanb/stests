@@ -2,7 +2,7 @@
 % Please edit documentation in R/ci_p_xxx.R
 \name{ci_p_arcsine}
 \alias{ci_p_arcsine}
-\title{ArcoSeno confidence interval for Binomial proportion}
+\title{ArcSine confidence interval for binomial proportion}
 \usage{
 ci_p_arcsine(x, n, conf.level = 0.95)
 }
@@ -25,21 +25,21 @@ single values or vectors.
 \details{
 The expression to obtain the confidence interval is given below:
 
-\eqn{\sin^2(\hat\phi_{ML} \pm z_{\alpha/2} \times se(\hat\phi_{ML}))},
+\eqn{\sin^2(\arcsin(\sqrt{\tilde{p}}) \mp \frac{z_{\alpha/2}}{2\sqrt{n}})},
 
-where the maximum likelihood estimator for \eqn{\phi} is
-\eqn{\hat\phi_{ML}=\arcsin(\sqrt{\hat \pi_{ML}})}, and its standard error is
-\eqn{se(\hat{\phi}_{ML})=\frac{1}{\sqrt{4n}}}. The
-value \eqn{z_{\alpha/2}} is the \eqn{1-\alpha/2} percentile of the
+where \eqn{\tilde{p} = x/n}.
+The value \eqn{z_{\alpha/2}} is the \eqn{1-\alpha/2} percentile of the
 standard normal distribution (e.g., \eqn{z_{0.025}=1.96} for a 95\%
 confidence interval).
 }
 \examples{
+ci_p_arcsine(x= 0, n=50, conf.level=0.95)
 ci_p_arcsine(x=15, n=50, conf.level=0.95)
+ci_p_arcsine(x=50, n=50, conf.level=0.95)
 
 }
 \references{
-Missing reference.
+No reference.
 }
 \seealso{
 \link{ci_p}.

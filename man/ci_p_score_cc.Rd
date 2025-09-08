@@ -2,7 +2,7 @@
 % Please edit documentation in R/ci_p_xxx.R
 \name{ci_p_score_cc}
 \alias{ci_p_score_cc}
-\title{Score confidence interval with continuity correction for Binomial proportion}
+\title{Score confidence interval with continuity correction for binomial proportion}
 \usage{
 ci_p_score_cc(x, n, conf.level = 0.95)
 }
@@ -19,12 +19,12 @@ A vector with the lower and upper limits.
 }
 \description{
 This function calculates the score confidence interval with continuity
-correction for a Binomial proportion. It is vectorized, allowing the
+correction for a binomial proportion. It is vectorized, allowing the
 evaluation of single values or vectors.
 }
 \details{
 The score confidence interval with continuity correction is an
-adjusted interval for the Binomial proportion \eqn{p}.
+adjusted interval for the binomial proportion \eqn{p}.
 
 The mathematical definitions are as follows:
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/ci_p_xxx.R
 \name{ci_p_clopper_pearson}
 \alias{ci_p_clopper_pearson}
-\title{Clopper-Pearson confidence interval for Binomial proportion}
+\title{Clopper-Pearson confidence interval for binomial proportion}
 \usage{
 ci_p_clopper_pearson(x, n, conf.level = 0.95)
 }
@@ -24,7 +24,7 @@ single values or vectors.
 }
 \details{
 The Clopper-Pearson interval is an exact confidence interval for the
-Binomial proportion \eqn{p}.
+binomial proportion \eqn{p}.
 The limits of the interval are derived based on the Beta distribution.
 For the special cases where \eqn{x=0} or \eqn{x=n}, the limits are
 calculated directly.

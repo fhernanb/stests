@@ -2,7 +2,7 @@
 % Please edit documentation in R/ci_p_xxx.R
 \name{ci_p_wald_recentered}
 \alias{ci_p_wald_recentered}
-\title{Recentered Wald Interval for Binomial Proportion}
+\title{Recentered Wald Interval for binomial proportion}
 \usage{
 ci_p_wald_recentered(x, n, conf.level = 0.95)
 }
@@ -19,7 +19,7 @@ A vector with the lower and upper limits of the confidence interval.
 }
 \description{
 This function calculates the recentered Wald confidence interval for a
-Binomial proportion.
+binomial proportion.
 It adjusts the classical Wald interval to improve accuracy near the
 boundaries of the parameter space.
 The method is vectorized, allowing for evaluation of single values or vectors.

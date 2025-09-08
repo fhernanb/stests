@@ -2,7 +2,7 @@
 % Please edit documentation in R/ci_p_xxx.R
 \name{ci_p_wald_cc}
 \alias{ci_p_wald_cc}
-\title{Wald Continuity-Corrected confidence interval for Binomial proportion}
+\title{Wald Continuity-Corrected confidence interval for binomial proportion}
 \usage{
 ci_p_wald_cc(x, n, conf.level = 0.95)
 }
@@ -19,7 +19,7 @@ A vector with the lower and upper limits of the confidence interval.
 }
 \description{
 This function calculates the Wald continuity-corrected confidence interval
-for a Binomial proportion.
+for a binomial proportion.
 It is vectorized, allowing the evaluation of single values or vectors.
 }
 \details{
