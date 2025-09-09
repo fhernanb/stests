@@ -1,7 +1,7 @@
 #' Tests for homogeneity of covariances matrices
 #'
 #' The function implements the test for
-#'  \eqn{H_0: \Sigma_1 = \Sigma_2 = ... = \Sigma_q} versus
+#'  \eqn{H_0: \Sigma_1 = \Sigma_2 = ... = \Sigma_g} versus
 #'  \eqn{H_1} at least one \eqn{\Sigma_i} is different.
 #'
 #' @param S a list with the sample covariance matrices.
@@ -9,7 +9,8 @@
 #' @param method a character string specifying the method, "box" (default),
 #' please see the details section for other methods.
 
-#' @details the \code{"method"} must be one of \code{"box"} (default), \code{"xxx"}.
+#' @details the \code{"method"} must be one of \code{"box"} (default),
+#' \code{"modified_LRT"}, \code{"wald_schott"}.
 #'
 #' @return A list with class \code{"htest"} containing the following components:
 #' \item{statistic}{the value of the statistic.}
@@ -18,54 +19,37 @@
 #' \item{estimate}{the estimated mean vectors.}
 #' \item{method}{a character string indicating the type of test performed.}
 #'
+#' @references
+#' Schott, J. R. (2001). Some tests for the equality of covariance matrices.
+#' Journal of statistical planning and inference, 94(1), 25-36.
+#'
+#' Schott, J. R. (2007). A test for the equality of covariance matrices
+#' when the dimension is large relative to the sample sizes.
+#' Computational Statistics & Data Analysis, 51(12), 6535-6542.
+#'
+#' Mardia, K. V., Kent, J. T., & Bibby, J. M. (1979). Multivariate analysis.
+#'
+#' @details
+#' The
+#'
+#' @example examples/examples_mult_var_matrices.R
+#'
 #' @author Freddy Hernandez.
-#' @examples
-#' # Example 5.2.3 from Diaz and Morales (2015) page 200
-#' S1 <- matrix(c(12.65, -16.45,
-#'                -16.45, 73.04), ncol=2, nrow=2)
-#' S2 <- matrix(c(11.44, -27.77,
-#'                -27.77, 100.64), ncol=2, nrow=2)
-#' S3 <- matrix(c(14.46, -31.26,
-#'                -31.26, 101.03), ncol=2, nrow=2)
-#' N1 <- 26
-#' N2 <- 23
-#' N3 <- 25
-#' S <- list(S1, S2, S3)
-#' N <- list(N1, N2, N3)
-#'
-#' res <- mult_var_matrices_test(S, N, method="box")
-#' res
-#' plot(res, shade.col="tomato")
-#'
-#' # Example 5.3.4 from Mardia (1979) page 141
-#' S1 <- matrix(c(132.99, 75.85, 35.82,
-#'                75.85, 47.96, 20.75,
-#'                35.82, 20.75, 10.79), ncol=3, nrow=3)
-#' S2 <- matrix(c(432.58, 259.87, 161.67,
-#'                259.87, 164.57, 98.99,
-#'                161.67, 98.99, 63.87), ncol=3, nrow=3)
-#' N1 <- 24
-#' N2 <- 24
-#' S <- list(S1, S2)
-#' N <- list(N1, N2)
-#'
-#' res <- mult_var_matrices_test(S, N, method="box")
-#' res
-#' plot(res, from=20, to=30, shade.col="pink")
 #'
 #' @importFrom stats pf
 #' @export
-mult_var_matrices_test <- function(s, n, method="box") {
+mult_var_matrices_test <- function(S, N, method="box") {
 
-  if (! var(unlist(lapply(s, dim))) == 0)
+  if (! var(unlist(lapply(S, dim))) == 0)
     stop("All matrices in list s must have identical dimension")
 
-  if (! identical(length(s), length(n)))
+  if (! identical(length(S), length(N)))
     stop("The length of the lists S and N do not match")
 
   method <- match.arg(arg=method,
                       choices=c("box",
-                                "modified_LRT"))
+                                "modified_LRT",
+                                "wald_schott"))
 
   # To generate the code for evaluating, without using cases
   my_code <- paste0("mult_var_matrices_test_", method,
@@ -124,7 +108,7 @@ mult_var_matrices_test_box <- function(S, N) {
 #' @importFrom stats pchisq
 mult_var_matrices_test_modified_LRT <- function(S, N) {
 
-  # Bartlett’s test or modified LRT
+  # Bartlett's test or modified LRT
   # Taken from Schott (2001) page 26
 
   # S: list with the var() output
@@ -157,12 +141,70 @@ mult_var_matrices_test_modified_LRT <- function(S, N) {
   p.value <- pchisq(q=M, df=(g-1)*m*(m+1)/2, lower.tail=FALSE)
 
   # The usual way to report a test in R is:
-  method <- "Modified likelihood ratio (or Bartlett’s) test for homogeneity of covariances"
+  method <- "Modified likelihood ratio (or Bartlett's) test for homogeneity of covariances"
   statistic <- M
   names(statistic) <- c("M")
   parameter <- c((g-1)*m*(m+1)/2)
   names(parameter) <- c("df")
   alternative <- "at least one covariance matrix is different \n"
+  estimate <- sprintf("Due to the high value of m, matrices S1, ..., S%d are not displayed.", g)
+  data.name <- "this test uses summarized data"
+
+  return(list(statistic = statistic,
+              parameter = parameter,
+              p.value = p.value,
+              estimate = estimate,
+              alternative = alternative,
+              method = method,
+              data.name = data.name))
+}
+#' @importFrom stats pchisq
+mult_var_matrices_test_wald_schott <- function(S, N) {
+
+  # Taken from Schott (2001) page 27
+
+  # S: list with the var() output
+  # N: list with the number of observations by group
+
+  # Important convention
+  # N_i: sample sizes for i-th group
+  # n_i: N_i - 1
+
+  n <- unlist(N) - 1
+  m  <- nrow(S[[1]])   # number of variables
+  g <- length(S)       # number of groups
+
+  # Obtaining S_pooled
+  S_pooled <- 0
+  for (i in 1:g) {
+    S_pooled <- S_pooled + n[i] * S[[i]] / sum(n)
+  }
+
+  # Auxiliary function
+  my_trace <- function(x) sum(diag(x))
+
+  # To obtain the two parts to create the statistic W
+  part1 <- 0
+  part2 <- 0
+
+  for (i in 1:g)
+    part1 <- part1 + my_trace(S[[i]]%*%solve(S_pooled)%*%S[[i]]%*%solve(S_pooled)) * n[i] / sum(n)
+
+  for (i in 1:g)
+    for (j in 1: g)
+      part2 <- my_trace(S[[i]]%*%solve(S_pooled)%*%S[[i]]%*%solve(S_pooled)) * n[i]*n[j]/(sum(n)*sum(n))
+
+  # The statistic and p-value
+  W <- sum(n) * (part1 - part2)
+  p.value <- pchisq(q=W, df=(g-1)*m*(m+1)/2, lower.tail=FALSE)
+
+  # The usual way to report a test in R is:
+  method <- "Wald-Schott test for homogeneity of covariances"
+  statistic <- W
+  names(statistic) <- c("W")
+  parameter <- c((g-1)*m*(m+1)/2)
+  names(parameter) <- c("df")
+  alternative <- "the covariance matrices are different \n"
   estimate <- sprintf("Due to the high value of m, matrices S1, ..., S%d are not displayed.", g)
   data.name <- "this test uses summarized data"
 

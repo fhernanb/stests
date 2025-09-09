@@ -314,7 +314,8 @@ plot.htest <- function(x, col='red', shade.col='red', cex=0.8,
   ############# Test multiple covariance matrices ###############
 
   if (x$method %in% c("Box test for homogeneity of covariances",
-                      "Modified likelihood ratio (or Bartlett’s) test for homogeneity of covariances")) {
+                      "Modified likelihood ratio (or Bartlett's) test for homogeneity of covariances",
+                      "Wald-Schott test for homogeneity of covariances")) {
 
     df <- x$parameter
     st <- x$statistic

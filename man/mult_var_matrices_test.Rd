@@ -4,15 +4,15 @@
 \alias{mult_var_matrices_test}
 \title{Tests for homogeneity of covariances matrices}
 \usage{
-mult_var_matrices_test(s, n, method = "box")
+mult_var_matrices_test(S, N, method = "box")
 }
 \arguments{
-\item{method}{a character string specifying the method, "box" (default),
-please see the details section for other methods.}
-
 \item{S}{a list with the sample covariance matrices.}
 
 \item{N}{a list with the sample sizes.}
+
+\item{method}{a character string specifying the method, "box" (default),
+please see the details section for other methods.}
 }
 \value{
 A list with class \code{"htest"} containing the following components:
@@ -24,11 +24,14 @@ A list with class \code{"htest"} containing the following components:
 }
 \description{
 The function implements the test for
- \eqn{H_0: \Sigma_1 = \Sigma_2 = ... = \Sigma_q} versus
+ \eqn{H_0: \Sigma_1 = \Sigma_2 = ... = \Sigma_g} versus
  \eqn{H_1} at least one \eqn{\Sigma_i} is different.
 }
 \details{
-the \code{"method"} must be one of \code{"box"} (default), \code{"xxx"}.
+the \code{"method"} must be one of \code{"box"} (default),
+\code{"modified_LRT"}, \code{"wald_schott"}.
+
+The
 }
 \examples{
 # Example 5.2.3 from Diaz and Morales (2015) page 200
@@ -44,7 +47,7 @@ N3 <- 25
 S <- list(S1, S2, S3)
 N <- list(N1, N2, N3)
 
-res <- mult_var_matrices_test(S, N, method="box")
+res <- mult_var_matrices_test(S=S, N=N, method="box")
 res
 plot(res, shade.col="tomato")
 
@@ -60,10 +63,24 @@ N2 <- 24
 S <- list(S1, S2)
 N <- list(N1, N2)
 
-res <- mult_var_matrices_test(S, N, method="box")
+res <- mult_var_matrices_test(S=S, N=N, method="modified_LRT")
 res
 plot(res, from=20, to=30, shade.col="pink")
 
+res <- mult_var_matrices_test(S=S, N=N, method="wald_schott")
+res
+plot(res, from=100, to=110, shade.col="lightblue")
+
+}
+\references{
+Schott, J. R. (2001). Some tests for the equality of covariance matrices.
+Journal of statistical planning and inference, 94(1), 25-36.
+
+Schott, J. R. (2007). A test for the equality of covariance matrices
+when the dimension is large relative to the sample sizes.
+Computational Statistics & Data Analysis, 51(12), 6535-6542.
+
+Mardia, K. V., Kent, J. T., & Bibby, J. M. (1979). Multivariate analysis.
 }
 \author{
 Freddy Hernandez.
