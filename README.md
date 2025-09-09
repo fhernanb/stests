@@ -2,7 +2,7 @@
 [![R-CMD-check](https://github.com/fhernanb/stests/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/fhernanb/stests/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-# stests <img src="man/figures/logo.png" align="right" alt="" width="120" />
+# stests <img src="docs/logo.png" align="right" alt="" width="120" />
 
 An R package with useful functions to perform several statistical tests.
 
