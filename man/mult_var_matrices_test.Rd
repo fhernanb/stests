@@ -7,11 +7,12 @@
 mult_var_matrices_test(s, n, method = "box")
 }
 \arguments{
-\item{s}{a list with the sample covariance matrices.}
+\item{method}{a character string specifying the method, "box" (default),
+please see the details section for other methods.}
 
-\item{n}{a list with the sample sizes.}
+\item{S}{a list with the sample covariance matrices.}
 
-\item{method}{a character string specifying the method, "box" (default), please see the details section for other methods.}
+\item{N}{a list with the sample sizes.}
 }
 \value{
 A list with class \code{"htest"} containing the following components:
@@ -22,44 +23,46 @@ A list with class \code{"htest"} containing the following components:
 \item{method}{a character string indicating the type of test performed.}
 }
 \description{
-The function implements the test for \eqn{H_0: \Sigma_1 = \Sigma_2 = ... = \Sigma_q} versus \eqn{H_1} at least one \eqn{\Sigma_i} is different.
+The function implements the test for
+ \eqn{H_0: \Sigma_1 = \Sigma_2 = ... = \Sigma_q} versus
+ \eqn{H_1} at least one \eqn{\Sigma_i} is different.
 }
 \details{
-the \code{"method"} must be one of \code{"box"} (default), \code{"xxx"} (pronto otros metodos).
+the \code{"method"} must be one of \code{"box"} (default), \code{"xxx"}.
 }
 \examples{
 # Example 5.2.3 from Diaz and Morales (2015) page 200
-s1 <- matrix(c(12.65, -16.45,
+S1 <- matrix(c(12.65, -16.45,
                -16.45, 73.04), ncol=2, nrow=2)
-s2 <- matrix(c(11.44, -27.77,
+S2 <- matrix(c(11.44, -27.77,
                -27.77, 100.64), ncol=2, nrow=2)
-s3 <- matrix(c(14.46, -31.26,
+S3 <- matrix(c(14.46, -31.26,
                -31.26, 101.03), ncol=2, nrow=2)
-n1 <- 26
-n2 <- 23
-n3 <- 25
-s <- list(s1, s2, s3)
-n <- list(n1, n2, n3)
+N1 <- 26
+N2 <- 23
+N3 <- 25
+S <- list(S1, S2, S3)
+N <- list(N1, N2, N3)
 
-res <- mult_var_matrices_test(s, n, method="box")
+res <- mult_var_matrices_test(S, N, method="box")
 res
-plot(res, shade.col='tomato')
+plot(res, shade.col="tomato")
 
 # Example 5.3.4 from Mardia (1979) page 141
-s1 <- matrix(c(132.99, 75.85, 35.82,
+S1 <- matrix(c(132.99, 75.85, 35.82,
                75.85, 47.96, 20.75,
                35.82, 20.75, 10.79), ncol=3, nrow=3)
-s2 <- matrix(c(432.58, 259.87, 161.67,
+S2 <- matrix(c(432.58, 259.87, 161.67,
                259.87, 164.57, 98.99,
                161.67, 98.99, 63.87), ncol=3, nrow=3)
-n1 <- 24
-n2 <- 24
-s <- list(s1, s2)
-n <- list(n1, n2)
+N1 <- 24
+N2 <- 24
+S <- list(S1, S2)
+N <- list(N1, N2)
 
-res <- mult_var_matrices_test(s, n, method="box")
+res <- mult_var_matrices_test(S, N, method="box")
 res
-plot(res, from=20, to=30, shade.col='pink')
+plot(res, from=20, to=30, shade.col="pink")
 
 }
 \author{
