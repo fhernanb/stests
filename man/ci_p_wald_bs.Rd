@@ -29,25 +29,9 @@ the Wald interval,
 designed to improve accuracy in small samples and near the boundaries
 of the parameter space.
 
-The estimated proportion is given by:
+The bound for the interval confidence are:
 
-\deqn{\hat{p} = \frac{x}{n}},
-
-and its complement is:
-
-\deqn{\hat{q} = 1 - \hat{p}}.
-
-The Wald Binomial Score interval incorporates adjustments for the sample
-size and confidence level:
-
-\deqn{\text{wn\_z} = \sqrt{n - z^2 - \frac{2z}{\sqrt{n}} - \frac{1}{n}}},
-
-where \eqn{z} is the quantile of the standard normal distribution
-corresponding to the confidence level.
-The final confidence interval is given by:
-
-\deqn{\text{Lower} = \hat{p} - \frac{z \sqrt{\hat{p}\hat{q} + \frac{1}{2n}}}{\text{wn\_z}},}
-\deqn{\text{Upper} = \hat{p} + \frac{z \sqrt{\hat{p}\hat{q} + \frac{1}{2n}}}{\text{wn\_z}}.}
+\eqn{\hat{p} \mp \left[ \frac{Z_{\alpha/2} \sqrt{\hat{p} (1-\hat{p})}}{\sqrt{n - Z_{\alpha/2}^2 - \frac{2Z_{\alpha/2}}{\sqrt{n}} - \frac{1}{n}}} + \frac{1}{2n} \right]}
 
 This interval is particularly useful when \eqn{n} is small or when
 the proportion \eqn{\hat{p}} is close to 0 or 1.

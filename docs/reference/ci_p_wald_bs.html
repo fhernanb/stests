@@ -100,18 +100,8 @@ By default, it is 0.95.</p></dd>
 the Wald interval,
 designed to improve accuracy in small samples and near the boundaries
 of the parameter space.</p>
-<p>The estimated proportion is given by:</p>
-<p>$$\hat{p} = \frac{x}{n}$$,</p>
-<p>and its complement is:</p>
-<p>$$\hat{q} = 1 - \hat{p}$$.</p>
-<p>The Wald Binomial Score interval incorporates adjustments for the sample
-size and confidence level:</p>
-<p>$$\text{wn\_z} = \sqrt{n - z^2 - \frac{2z}{\sqrt{n}} - \frac{1}{n}}$$,</p>
-<p>where \(z\) is the quantile of the standard normal distribution
-corresponding to the confidence level.
-The final confidence interval is given by:</p>
-<p>$$\text{Lower} = \hat{p} - \frac{z \sqrt{\hat{p}\hat{q} + \frac{1}{2n}}}{\text{wn\_z}},$$
-$$\text{Upper} = \hat{p} + \frac{z \sqrt{\hat{p}\hat{q} + \frac{1}{2n}}}{\text{wn\_z}}.$$</p>
+<p>The bound for the interval confidence are:</p>
+<p>\(\hat{p} \mp \left[ \frac{Z_{\alpha/2} \sqrt{\hat{p} (1-\hat{p})}}{\sqrt{n - Z_{\alpha/2}^2 - \frac{2Z_{\alpha/2}}{\sqrt{n}} - \frac{1}{n}}} + \frac{1}{2n} \right]\)</p>
 <p>This interval is particularly useful when \(n\) is small or when
 the proportion \(\hat{p}\) is close to 0 or 1.</p>
     </div>
