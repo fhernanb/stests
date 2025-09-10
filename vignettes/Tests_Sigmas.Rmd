@@ -56,6 +56,25 @@ Under true $H_{0}$, the statistic
 \varphi \sim \chi^{2}_{p(p+1)(g-1)/2}
 \]
 
+Where
+
+\[
+\rho = 1 - \frac{2p^{2} + 3p - 1}{6(p + 1)(g - 1)}
+\left( \sum_{i=1}^{g} \frac{1}{v_i} - \frac{1}{v} \right)
+\]
+
+\[
+v_i = n_i - 1
+\]
+
+\[
+v = \sum_{i=1}^{g} v_i = N - g
+\]
+
+\[
+N = n_1 + n_2 + \cdots + n_g
+\]
+
 This test seems to be good if each $n_i$ exceeds 20, and if $g$ and $p$ do not exceed 5 (@Mardia_et_1992, page 140).
 
 

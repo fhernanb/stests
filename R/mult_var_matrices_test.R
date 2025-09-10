@@ -12,6 +12,9 @@
 #' @details the \code{"method"} must be one of \code{"box"} (default),
 #' \code{"modified_LRT"}, \code{"wald_schott"}.
 #'
+#' To know in detail all tests implemented here the reader can visit
+#' the vignette \url{https://fhernanb.github.io/stests/articles/Tests_Sigmas.html}
+#'
 #' @return A list with class \code{"htest"} containing the following components:
 #' \item{statistic}{the value of the statistic.}
 #' \item{parameter}{the degrees of freedom for the test.}
@@ -28,10 +31,6 @@
 #' Computational Statistics & Data Analysis, 51(12), 6535-6542.
 #'
 #' Mardia, K. V., Kent, J. T., & Bibby, J. M. (1979). Multivariate analysis.
-#'
-#' @details
-#' To know in detail all tests implemented here the reader can visit
-#' the vignette https://fhernanb.github.io/stests/articles/Tests_Sigmas.html
 #'
 #' @example examples/examples_mult_var_matrices.R
 #'
