@@ -4,3 +4,4 @@ inst/pkgdown
 .Rhistory
 .RData
 .Ruserdata
+inst/doc

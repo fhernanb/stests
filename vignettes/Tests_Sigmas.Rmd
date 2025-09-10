@@ -1,0 +1,48 @@
+---
+title: "Tests to compare covariance matrices"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tests_Sigmas}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, message=FALSE}
+library(stests)
+```
+
+# Introduction
+
+Let $\mathbf{X}_{1i}, \mathbf{X}_{2i}, \ldots, \mathbf{X}_{N_i i}$ be a random sample from the population 
+$N_p(\boldsymbol{\mu}_g, \boldsymbol{\Sigma}_g)$ indexed by $i = 1,2,\ldots,g$. 
+In other words, we have $g$ samples as follows
+
+\[
+\begin{matrix}
+\mathbf{X}_{11}, \mathbf{X}_{21}, \ldots, \mathbf{X}_{N_1 1} \\
+\mathbf{X}_{12}, \mathbf{X}_{22}, \ldots, \mathbf{X}_{N_2 2} \\
+\vdots \\
+\mathbf{X}_{1g}, \mathbf{X}_{2g}, \ldots, \mathbf{X}_{N_g g}
+\end{matrix}
+\]
+
+It is not necessary to have equal $N_i$. The main objective in this vignette is to use test to study the following hypothesis.
+
+\[
+H_{0}: \Sigma_{1} = \Sigma_{2} = \cdots = \Sigma_{g} = \Sigma
+\]
+
+\[
+H_{A}: \text{at least one } \Sigma \text{ is different}
+\]
+
+# Box-M test
+
+
