@@ -29,7 +29,7 @@ the Wald interval,
 designed to improve accuracy in small samples and near the boundaries
 of the parameter space.
 
-The bound for the interval confidence are:
+The bounds for the interval confidence are:
 
 \eqn{\hat{p} \mp \left[ \frac{Z_{\alpha/2} \sqrt{\hat{p} (1-\hat{p})}}{\sqrt{n - Z_{\alpha/2}^2 - \frac{2Z_{\alpha/2}}{\sqrt{n}} - \frac{1}{n}}} + \frac{1}{2n} \right]}
 

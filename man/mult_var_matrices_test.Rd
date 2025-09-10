@@ -31,7 +31,8 @@ The function implements the test for
 the \code{"method"} must be one of \code{"box"} (default),
 \code{"modified_LRT"}, \code{"wald_schott"}.
 
-The
+To know in detail all tests implemented here the reader can visit
+the vignette https://fhernanb.github.io/stests/articles/Tests_Sigmas.html
 }
 \examples{
 # Example 5.2.3 from Diaz and Morales (2015) page 200

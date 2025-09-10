@@ -30,7 +30,8 @@
 #' Mardia, K. V., Kent, J. T., & Bibby, J. M. (1979). Multivariate analysis.
 #'
 #' @details
-#' The
+#' To know in detail all tests implemented here the reader can visit
+#' the vignette https://fhernanb.github.io/stests/articles/Tests_Sigmas.html
 #'
 #' @example examples/examples_mult_var_matrices.R
 #'
