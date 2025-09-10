@@ -13,7 +13,8 @@
 #' \code{"modified_LRT"}, \code{"wald_schott"}.
 #'
 #' To know in detail all tests implemented here the reader can visit
-#' the vignette \url{https://fhernanb.github.io/stests/articles/Tests_Sigmas.html}
+#' the vignette
+#'  \url{https://fhernanb.github.io/stests/articles/Tests_Sigmas.html}
 #'
 #' @return A list with class \code{"htest"} containing the following components:
 #' \item{statistic}{the value of the statistic.}
