@@ -1,6 +1,7 @@
 ---
 title: "Tests to compare covariance matrices"
 output: rmarkdown::html_vignette
+bibliography: ref_multiv_test.bib
 vignette: >
   %\VignetteIndexEntry{Tests_Sigmas}
   %\VignetteEngine{knitr::rmarkdown}
@@ -44,5 +45,19 @@ H_{A}: \text{at least one } \Sigma \text{ is different}
 \]
 
 # Box-M test
+@box1949 proposed this test and the statistic $\varphi$ is given by:
 
+\[
+\varphi = -2 \rho \log(\lambda)
+\]
+
+Under true $H_{0}$, the statistic 
+\[
+\varphi \sim \chi^{2}_{p(p+1)(g-1)/2}
+\]
+
+This test seems to be good if each $n_i$ exceeds 20, and if $g$ and $p$ do not exceed 5 (@Mardia_et_1992, page 140).
+
+
+# References
 

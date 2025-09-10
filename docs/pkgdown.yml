@@ -4,5 +4,6 @@ pkgdown_sha: ~
 articles:
   Behrens-Fisher: Behrens-Fisher.html
   d_value: d_value.html
+  Tests_Sigmas: Tests_Sigmas.html
   univariate_tests: univariate_tests.html
-last_built: 2025-09-09T20:36Z
+last_built: 2025-09-10T19:46Z
