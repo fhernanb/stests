@@ -1,9 +1,9 @@
 pandoc: '3.4'
-pkgdown: 2.1.2
+pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
   Behrens-Fisher: Behrens-Fisher.html
   d_value: d_value.html
   Tests_Sigmas: Tests_Sigmas.html
   univariate_tests: univariate_tests.html
-last_built: 2025-09-10T23:58Z
+last_built: 2025-09-11T11:35Z

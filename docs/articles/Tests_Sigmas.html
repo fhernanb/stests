@@ -135,7 +135,7 @@ H_{A}: \text{at least one } \Sigma \text{ is different}
 <h2 id="box-m-test">Box-M test<a class="anchor" aria-label="anchor" href="#box-m-test"></a>
 </h2>
 <p><span class="citation">Box (1949)</span> proposed this test and the
-statistic
+statistic test
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>φ</mi><annotation encoding="application/x-tex">\varphi</annotation></semantics></math>
 is given by:</p>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi><mo>=</mo><mi>−</mi><mn>2</mn><mi>ρ</mi><mo>log</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>λ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
@@ -143,20 +143,33 @@ is given by:</p>
 </annotation></semantics></math></p>
 <p>Under true
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>H</mi><mn>0</mn></msub><annotation encoding="application/x-tex">H_{0}</annotation></semantics></math>,
-the statistic
-<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi><mo>∼</mo><msubsup><mi>χ</mi><mrow><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>p</mi><mo>+</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>g</mi><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>2</mn></mrow><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">
+the statistic</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi><mo>∼</mo><msubsup><mi>χ</mi><mrow><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>p</mi><mo>+</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>g</mi><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>2</mn></mrow><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">
 \varphi \sim \chi^{2}_{p(p+1)(g-1)/2}
 </annotation></semantics></math></p>
-<p>where</p>
+<p>Where
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ρ</mi><annotation encoding="application/x-tex">\rho</annotation></semantics></math>,
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>log</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>λ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\log(\lambda)</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math>
+are obtained by as</p>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><mrow><mn>2</mn><msup><mi>p</mi><mn>2</mn></msup><mo>+</mo><mn>3</mn><mi>p</mi><mo>−</mo><mn>1</mn></mrow><mrow><mn>6</mn><mrow><mo stretchy="true" form="prefix">(</mo><mi>p</mi><mo>+</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>g</mi><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>g</mi></munderover><mfrac><mn>1</mn><msub><mi>n</mi><mi>i</mi></msub></mfrac><mo>−</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 \rho = 1 - \frac{2p^{2} + 3p - 1}{6(p + 1)(g - 1)}
 \left( \sum_{i=1}^{g} \frac{1}{n_i} - \frac{1}{n} \right)
 </annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>log</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>λ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mfrac><mrow><mi>n</mi><mspace width="0.167em"></mspace><mo>log</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">|</mo><mi>S</mi><mo stretchy="true" form="postfix">|</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>g</mi></munderover><msub><mi>n</mi><mi>i</mi></msub><mspace width="0.167em"></mspace><mo>log</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">|</mo><msub><mi>S</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">|</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><mrow><mi>−</mi><mn>2</mn></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+\log(\lambda) = 
+\frac{n \, \log(|S|) - \sum_{i=1}^{g} n_i \, \log(|S_i|)}{-2}
+</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mo>=</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>g</mi></munderover><msub><mi>n</mi><mi>i</mi></msub><msub><mi>S</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">
+S = \frac{1}{n} \sum_{i=1}^{g} n_i S_i
+</annotation></semantics></math></p>
+<p>with</p>
 <p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mi>i</mi></msub><mo>=</mo><msub><mi>N</mi><mi>i</mi></msub><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">
 n_i = N_i - 1
 </annotation></semantics></math></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>g</mi></munderover><msub><mi>n</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">
-n = \sum_{i=1}^{g} n_i 
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><msub><mi>n</mi><mn>1</mn></msub><mo>+</mo><msub><mi>n</mi><mn>2</mn></msub><mo>+</mo><mi>…</mi><msub><mi>n</mi><mi>g</mi></msub></mrow><annotation encoding="application/x-tex">
+n = n_1 + n_2 + \ldots n_g
 </annotation></semantics></math></p>
 <p>This test seems to be good if each
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mi>i</mi></msub><annotation encoding="application/x-tex">N_i</annotation></semantics></math>
@@ -171,11 +184,53 @@ do not exceed 5 (<span class="citation">Mardia, Bibby, and Kent
 <h2 id="bartletts-test-or-modified-lrt">Bartlett’s test or modified LRT<a class="anchor" aria-label="anchor" href="#bartletts-test-or-modified-lrt"></a>
 </h2>
 <p>xxx proposed this test and the statistic is given by:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>=</mo><mi>n</mi><mo>log</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">|</mo><mi>S</mi><mo stretchy="true" form="postfix">|</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>g</mi></munderover><msub><mi>n</mi><mi>i</mi></msub><mo>log</mo><mrow><mo stretchy="true" form="prefix">(</mo><mrow><mo stretchy="true" form="prefix">|</mo><msub><mi>S</mi><mi>i</mi></msub><mo stretchy="true" form="postfix">|</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+M = n \log(|S|) - \sum_{i=1}^{g} n_i \log(|S_i|)
+</annotation></semantics></math></p>
+<p>Under true
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>H</mi><mn>0</mn></msub><annotation encoding="application/x-tex">H_{0}</annotation></semantics></math>,
+the statistic</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>M</mi><mo>∼</mo><msubsup><mi>χ</mi><mrow><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>p</mi><mo>+</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>g</mi><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>2</mn></mrow><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">
+M \sim \chi^{2}_{p(p+1)(g-1)/2}
+</annotation></semantics></math></p>
+<p>The matrix
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
+are the same as in the Box-M test.</p>
+<p>Note: <span class="citation">Schott (2007)</span> claims that since
+the sample covariance matrix
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>S</mi><mi>i</mi></msub><annotation encoding="application/x-tex">S_i</annotation></semantics></math>
+is singular if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mi>i</mi></msub><mo>&lt;</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">n_i &lt; p</annotation></semantics></math>,
+this likelihood ratio test is valid only if
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mi>i</mi></msub><mo>≥</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">n_i \ge p</annotation></semantics></math>
+for
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>=</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>g</mi></mrow><annotation encoding="application/x-tex">i = 1,2, \ldots, g</annotation></semantics></math>.</p>
 </div>
 <div class="section level2">
-<h2 id="wald-sschott-test">Wald Sschott test<a class="anchor" aria-label="anchor" href="#wald-sschott-test"></a>
+<h2 id="wald-schott-test">Wald Schott test<a class="anchor" aria-label="anchor" href="#wald-schott-test"></a>
 </h2>
-<p>yyy proposed this test and the statistic is given by:</p>
+<p><span class="citation">Schott (2001)</span> (page 27) proposed this
+test and the statistic is given by:</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>=</mo><mfrac><mi>n</mi><mn>2</mn></mfrac><mrow><mo stretchy="true" form="prefix">{</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>g</mi></munderover><mfrac><msub><mi>n</mi><mi>i</mi></msub><mi>n</mi></mfrac><mspace width="0.167em"></mspace><mrow><mi mathvariant="normal">t</mi><mi mathvariant="normal">r</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>S</mi><mi>i</mi></msub><msup><mi>S</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><msub><mi>S</mi><mi>i</mi></msub><msup><mi>S</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>g</mi></munderover><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>g</mi></munderover><mfrac><mrow><msub><mi>n</mi><mi>i</mi></msub><msub><mi>n</mi><mi>j</mi></msub></mrow><msup><mi>n</mi><mn>2</mn></msup></mfrac><mspace width="0.167em"></mspace><mrow><mi mathvariant="normal">t</mi><mi mathvariant="normal">r</mi></mrow><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>S</mi><mi>i</mi></msub><msup><mi>S</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><msub><mi>S</mi><mi>j</mi></msub><msup><mi>S</mi><mrow><mi>−</mi><mn>1</mn></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">}</mo></mrow><mi>.</mi></mrow><annotation encoding="application/x-tex">
+W = \frac{n}{2} \left\{ 
+\sum_{i=1}^{g} \frac{n_i}{n} \, \mathrm{tr}(S_i S^{-1} S_i S^{-1})
+- 
+\sum_{i=1}^{g} \sum_{j=1}^{g} \frac{n_i n_j}{n^{2}} \, \mathrm{tr}(S_i S^{-1} S_j S^{-1})
+\right\}.
+</annotation></semantics></math></p>
+<p>Under true
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>H</mi><mn>0</mn></msub><annotation encoding="application/x-tex">H_{0}</annotation></semantics></math>,
+the statistic</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>W</mi><mo>∼</mo><msubsup><mi>χ</mi><mrow><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>p</mi><mo>+</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>g</mi><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>2</mn></mrow><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">
+W \sim \chi^{2}_{p(p+1)(g-1)/2}
+</annotation></semantics></math></p>
+<p>The matrix
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>S</mi><annotation encoding="application/x-tex">S</annotation></semantics></math>
+and
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
+are the same as in the Box-M test.</p>
 </div>
 <div class="section level2">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
@@ -188,6 +243,16 @@ of Likelihood Criteria.”</span> <em>Biometrika</em> 36 (3/4): 317–46.
 <div id="ref-Mardia_et_1992" class="csl-entry">
 Mardia, Kanti V., John M. Bibby, and J. T. Kent. 1992. <em>Multivariate
 Analysis</em>. Acad. Pr.
+</div>
+<div id="ref-schott2001" class="csl-entry">
+Schott, James R. 2001. <span>“Some Tests for the Equality of Covariance
+Matrices.”</span> <em>Journal of Statistical Planning and Inference</em>
+94 (1): 25–36.
+</div>
+<div id="ref-schott2007" class="csl-entry">
+———. 2007. <span>“A Test for the Equality of Covariance Matrices When
+the Dimension Is Large Relative to the Sample Sizes.”</span>
+<em>Computational Statistics &amp; Data Analysis</em> 51 (12): 6535–42.
 </div>
 </div>
 </div>
@@ -208,7 +273,7 @@ Analysis</em>. Acad. Pr.
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
       </footer>
