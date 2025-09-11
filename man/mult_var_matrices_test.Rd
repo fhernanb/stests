@@ -32,7 +32,8 @@ the \code{"method"} must be one of \code{"box"} (default),
 \code{"modified_LRT"}, \code{"wald_schott"}.
 
 To know in detail all tests implemented here the reader can visit
-the vignette \url{https://fhernanb.github.io/stests/articles/Tests_Sigmas.html}
+the vignette
+ \url{https://fhernanb.github.io/stests/articles/Tests_Sigmas.html}
 }
 \examples{
 # Example 5.2.3 from Diaz and Morales (2015) page 200

@@ -147,28 +147,35 @@ the statistic
 <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>φ</mi><mo>∼</mo><msubsup><mi>χ</mi><mrow><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>p</mi><mo>+</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>g</mi><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mi>/</mi><mn>2</mn></mrow><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">
 \varphi \sim \chi^{2}_{p(p+1)(g-1)/2}
 </annotation></semantics></math></p>
-<p>Where</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><mrow><mn>2</mn><msup><mi>p</mi><mn>2</mn></msup><mo>+</mo><mn>3</mn><mi>p</mi><mo>−</mo><mn>1</mn></mrow><mrow><mn>6</mn><mrow><mo stretchy="true" form="prefix">(</mo><mi>p</mi><mo>+</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>g</mi><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>g</mi></munderover><mfrac><mn>1</mn><msub><mi>v</mi><mi>i</mi></msub></mfrac><mo>−</mo><mfrac><mn>1</mn><mi>v</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+<p>where</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi><mo>=</mo><mn>1</mn><mo>−</mo><mfrac><mrow><mn>2</mn><msup><mi>p</mi><mn>2</mn></msup><mo>+</mo><mn>3</mn><mi>p</mi><mo>−</mo><mn>1</mn></mrow><mrow><mn>6</mn><mrow><mo stretchy="true" form="prefix">(</mo><mi>p</mi><mo>+</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>g</mi><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow></mrow></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>g</mi></munderover><mfrac><mn>1</mn><msub><mi>n</mi><mi>i</mi></msub></mfrac><mo>−</mo><mfrac><mn>1</mn><mi>n</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 \rho = 1 - \frac{2p^{2} + 3p - 1}{6(p + 1)(g - 1)}
-\left( \sum_{i=1}^{g} \frac{1}{v_i} - \frac{1}{v} \right)
+\left( \sum_{i=1}^{g} \frac{1}{n_i} - \frac{1}{n} \right)
 </annotation></semantics></math></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>v</mi><mi>i</mi></msub><mo>=</mo><msub><mi>n</mi><mi>i</mi></msub><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">
-v_i = n_i - 1
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mi>i</mi></msub><mo>=</mo><msub><mi>N</mi><mi>i</mi></msub><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">
+n_i = N_i - 1
 </annotation></semantics></math></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>g</mi></munderover><msub><mi>v</mi><mi>i</mi></msub><mo>=</mo><mi>N</mi><mo>−</mo><mi>g</mi></mrow><annotation encoding="application/x-tex">
-v = \sum_{i=1}^{g} v_i = N - g
-</annotation></semantics></math></p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><msub><mi>n</mi><mn>1</mn></msub><mo>+</mo><msub><mi>n</mi><mn>2</mn></msub><mo>+</mo><mi>⋯</mi><mo>+</mo><msub><mi>n</mi><mi>g</mi></msub></mrow><annotation encoding="application/x-tex">
-N = n_1 + n_2 + \cdots + n_g
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>g</mi></munderover><msub><mi>n</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">
+n = \sum_{i=1}^{g} n_i 
 </annotation></semantics></math></p>
 <p>This test seems to be good if each
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>n</mi><mi>i</mi></msub><annotation encoding="application/x-tex">n_i</annotation></semantics></math>
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>N</mi><mi>i</mi></msub><annotation encoding="application/x-tex">N_i</annotation></semantics></math>
 exceeds 20, and if
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math>
 and
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>
 do not exceed 5 (<span class="citation">Mardia, Bibby, and Kent
 (1992)</span>, page 140).</p>
+</div>
+<div class="section level2">
+<h2 id="bartletts-test-or-modified-lrt">Bartlett’s test or modified LRT<a class="anchor" aria-label="anchor" href="#bartletts-test-or-modified-lrt"></a>
+</h2>
+<p>xxx proposed this test and the statistic is given by:</p>
+</div>
+<div class="section level2">
+<h2 id="wald-sschott-test">Wald Sschott test<a class="anchor" aria-label="anchor" href="#wald-sschott-test"></a>
+</h2>
+<p>yyy proposed this test and the statistic is given by:</p>
 </div>
 <div class="section level2">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
